@@ -18,6 +18,9 @@ Gemfile.lock
 ehthumbs.db
 Thumbs.db
 
+# Claude Code
+CLAUDE.md
+
 # IDE
 .vscode/
 .idea/

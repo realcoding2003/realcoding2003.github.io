@@ -3,9 +3,10 @@
 {% assign current_lang = page.lang | default: site.default_lang %}
 {% assign lang_data = site.data[current_lang] %}
 
-<html lang="{{ current_lang }}" data-theme="light">
+<html lang="{{ current_lang }}">
 <head>
     <meta charset="UTF-8">
+    <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'light')</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title | default: lang_data.site.title }} | {{ lang_data.site.title }}</title>
     <meta name="description" content="{{ page.description | default: lang_data.site.description }}">

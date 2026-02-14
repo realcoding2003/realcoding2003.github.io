@@ -466,6 +466,12 @@ a:hover {
     background: linear-gradient(135deg, rgba(13,17,23,0.92) 0%, rgba(68,147,248,0.35) 100%);
 }
 
+[data-theme="dark"] .blog-hero,
+[data-theme="dark"] .about-hero,
+[data-theme="dark"] .post-hero {
+    filter: brightness(0.8);
+}
+
 .hero-text {
     position: relative;
     z-index: 1;

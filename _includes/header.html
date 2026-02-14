@@ -11,205 +11,67 @@
                 {% else %}
                     <a href="{{ '/' | append: current_lang | append: '/' | relative_url }}" class="brand-link">
                 {% endif %}
-                    <img src="{{ '/assets/images/character.png' | relative_url }}" alt="Logo" class="brand-logo">
                     <span class="brand-text">{{ lang_data.site.title }}</span>
                 </a>
             </div>
 
-            <!-- 네비게이션 메뉴 -->
+            <!-- 네비게이션 -->
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li class="nav-item">
                         {% if current_lang == site.default_lang %}
                             <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">
                         {% else %}
-                            <a href="{{ '/' | append: current_lang | append: '/' | relative_url }}" class="nav-link {% if page.url contains current_lang and page.url contains 'index' %}active{% endif %}">
+                            <a href="{{ '/' | append: current_lang | append: '/' | relative_url }}" class="nav-link {% if page.url contains 'index' %}active{% endif %}">
                         {% endif %}
-                            <i class="fas fa-home"></i> {{ lang_data.nav.home }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        {% if current_lang == site.default_lang %}
-                            <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url == '/about/' %}active{% endif %}">
-                        {% else %}
-                            <a href="{{ '/' | append: current_lang | append: '/about' | relative_url }}" class="nav-link {% if page.url contains current_lang and page.url contains 'about' %}active{% endif %}">
-                        {% endif %}
-                            <i class="fas fa-user"></i> {{ lang_data.nav.about }}
+                            {{ lang_data.nav.home }}
                         </a>
                     </li>
                     <li class="nav-item">
                         {% if current_lang == site.default_lang %}
                             <a href="{{ '/archive' | relative_url }}" class="nav-link {% if page.url == '/archive/' %}active{% endif %}">
                         {% else %}
-                            <a href="{{ '/' | append: current_lang | append: '/archive' | relative_url }}" class="nav-link {% if page.url contains current_lang and page.url contains 'archive' %}active{% endif %}">
+                            <a href="{{ '/' | append: current_lang | append: '/archive' | relative_url }}" class="nav-link {% if page.url contains 'archive' %}active{% endif %}">
                         {% endif %}
-                            <i class="fas fa-archive"></i> {{ lang_data.nav.archive }}
+                            {{ lang_data.nav.archive }}
                         </a>
                     </li>
                     <li class="nav-item">
                         {% if current_lang == site.default_lang %}
-                            <a href="{{ '/categories' | relative_url }}" class="nav-link {% if page.url == '/categories/' %}active{% endif %}">
+                            <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url == '/about/' %}active{% endif %}">
                         {% else %}
-                            <a href="{{ '/' | append: current_lang | append: '/categories' | relative_url }}" class="nav-link {% if page.url contains current_lang and page.url contains 'categories' %}active{% endif %}">
+                            <a href="{{ '/' | append: current_lang | append: '/about' | relative_url }}" class="nav-link {% if page.url contains 'about' %}active{% endif %}">
                         {% endif %}
-                            <i class="fas fa-folder"></i> {{ lang_data.nav.categories }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        {% if current_lang == site.default_lang %}
-                            <a href="{{ '/tags' | relative_url }}" class="nav-link {% if page.url == '/tags/' %}active{% endif %}">
-                        {% else %}
-                            <a href="{{ '/' | append: current_lang | append: '/tags' | relative_url }}" class="nav-link {% if page.url contains current_lang and page.url contains 'tags' %}active{% endif %}">
-                        {% endif %}
-                            <i class="fas fa-tags"></i> {{ lang_data.nav.tags }}
+                            {{ lang_data.nav.about }}
                         </a>
                     </li>
                 </ul>
             </nav>
 
-            <!-- 헤더 유틸리티 영역 -->
+            <!-- 유틸리티 -->
             <div class="header-utilities">
-                <!-- 언어 전환 드롭다운 -->
+                <!-- 언어 전환 (인라인) -->
                 <div class="language-switcher">
-                    <button class="lang-toggle" aria-label="{{ lang_data.ui.language_selector }}" title="{{ lang_data.ui.language_selector }}">
-                                    {% case current_lang %}
-              {% when 'ko' %}
-                🇰🇷 {{ lang_data.ui.korean }}
-              {% when 'en' %}
-                🇺🇸 {{ lang_data.ui.english }}
-              {% when 'ja' %}
-                🇯🇵 {{ lang_data.ui.japanese }}
-              {% else %}
-                🇰🇷 {{ lang_data.ui.korean }}
-            {% endcase %}
-                        <span class="dropdown-arrow">▼</span>
-                    </button>
-                    
-                    <div class="lang-dropdown">
-                        {% for lang in site.languages %}
-                            {% assign target_lang_data = site.data[lang] %}
-                            {% if lang != current_lang %}
-                                {% comment %} 개선된 언어 전환 로직 {% endcomment %}
-                                {% assign target_url = '' %}
-                                {% assign has_translation = false %}
-                                {% assign page_type = '' %}
-                                
-                                {% comment %} 현재 페이지 타입 및 기본 URL 파악 {% endcomment %}
-                                {% comment %} URL에서 언어 부분을 정확히 제거 {% endcomment %}
-                                {% assign current_url = page.url %}
-                                {% if current_url contains '/en/' %}
-                                    {% assign clean_url = current_url | replace: '/en/', '/' %}
-                                {% elsif current_url contains '/ja/' %}
-                                    {% assign clean_url = current_url | replace: '/ja/', '/' %}
-                                {% elsif current_url == '/en' %}
-                                    {% assign clean_url = '/' %}
-                                {% elsif current_url == '/ja' %}
-                                    {% assign clean_url = '/' %}
-                                {% else %}
-                                    {% assign clean_url = current_url %}
-                                {% endif %}
-                                {% if clean_url == '/' or clean_url == '' or clean_url == '/index.html' %}
-                                    {% assign page_type = 'home' %}
-                                {% elsif page.layout == 'post' %}
-                                    {% assign page_type = 'post' %}
-                                {% elsif clean_url contains '/about' %}
-                                    {% assign page_type = 'about' %}
-                                {% elsif clean_url contains '/archive' %}
-                                    {% assign page_type = 'archive' %}
-                                {% elsif clean_url contains '/categories' %}
-                                    {% assign page_type = 'categories' %}
-                                {% elsif clean_url contains '/tags' %}
-                                    {% assign page_type = 'tags' %}
-                                {% else %}
-                                    {% assign page_type = 'other' %}
-                                {% endif %}
-                                
-                                {% comment %} 페이지 타입별 URL 생성 {% endcomment %}
-                                {% if page_type == 'home' %}
-                                    {% comment %} 홈페이지 {% endcomment %}
-                                    {% if lang == site.default_lang %}
-                                        {% assign target_url = '/' %}
-                                    {% else %}
-                                        {% assign target_url = '/' | append: lang | append: '/' %}
-                                    {% endif %}
-                                    {% assign has_translation = true %}
-                                    
-                                {% elsif page_type == 'post' %}
-                                    {% comment %} 포스트 페이지 - translation_key로 번역된 포스트 찾기 {% endcomment %}
-                                    {% assign translated_post = null %}
-                                    {% if page.translation_key %}
-                                        {% for post in site.posts %}
-                                            {% if post.lang == lang and post.translation_key == page.translation_key %}
-                                                {% assign translated_post = post %}
-                                                {% assign has_translation = true %}
-                                                {% break %}
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                                    
-                                    {% if translated_post %}
-                                        {% assign target_url = translated_post.url %}
-                                    {% else %}
-                                        {% comment %} 번역된 포스트가 없으면 해당 언어의 홈페이지로 {% endcomment %}
-                                        {% if lang == site.default_lang %}
-                                            {% assign target_url = '/' %}
-                                        {% else %}
-                                            {% assign target_url = '/' | append: lang | append: '/' %}
-                                        {% endif %}
-                                        {% assign has_translation = false %}
-                                    {% endif %}
-                                    
-                                {% else %}
-                                    {% comment %} 일반 페이지 (about, archive, categories, tags 등) {% endcomment %}
-                                    {% if lang == site.default_lang %}
-                                        {% assign target_url = clean_url %}
-                                    {% else %}
-                                        {% comment %} URL 안전하게 결합 {% endcomment %}
-                                        {% if clean_url == '/' %}
-                                            {% assign target_url = '/' | append: lang | append: '/' %}
-                                        {% else %}
-                                            {% assign target_url = '/' | append: lang | append: clean_url %}
-                                        {% endif %}
-                                    {% endif %}
-                                    {% assign has_translation = true %}
-                                {% endif %}
-                                
-                                <a href="{{ target_url | relative_url }}" 
-                                   class="lang-option" 
-                                   data-lang="{{ lang }}"
-                                   {% unless has_translation %}
-                                   title="{{ target_lang_data.ui.translation_not_available | default: 'Translation not available, redirecting to homepage' }}"
-                                   {% endunless %}>
-                                    {% case lang %}
-                                        {% when 'ko' %}
-                                            🇰🇷 {{ target_lang_data.ui.korean }}
-                                        {% when 'en' %}
-                                            🇺🇸 {{ target_lang_data.ui.english }}
-                                        {% when 'ja' %}
-                                            🇯🇵 {{ target_lang_data.ui.japanese }}
-                                    {% endcase %}
-                                    {% unless has_translation %}
-                                        <span class="no-translation">*</span>
-                                    {% endunless %}
-                                </a>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+                    {% for lang in site.languages %}
+                        {% if lang == site.default_lang %}
+                            {% assign lang_url = '/' %}
+                        {% else %}
+                            {% assign lang_url = '/' | append: lang | append: '/' %}
+                        {% endif %}
+                        <a href="{{ lang_url | relative_url }}" class="lang-btn {% if lang == current_lang %}active{% endif %}">
+                            {{ lang | upcase }}
+                        </a>
+                    {% endfor %}
                 </div>
 
                 <!-- 다크모드 토글 -->
                 <button class="theme-toggle" id="themeToggle" title="{{ lang_data.ui.toggle_dark_mode | default: 'Toggle Dark Mode' }}" aria-label="{{ lang_data.ui.toggle_dark_mode | default: 'Toggle Dark Mode' }}">
-                    <i class="fas fa-moon"></i>
+                    ☀
                 </button>
-                
-                <!-- RSS 피드 -->
-                <a href="{{ '/feed.xml' | relative_url }}" class="rss-link" title="{{ lang_data.ui.rss_feed | default: 'RSS Feed' }}" aria-label="{{ lang_data.ui.rss_feed | default: 'RSS Feed' }}">
-                    <i class="fas fa-rss"></i>
-                </a>
             </div>
 
-            <!-- 모바일 메뉴 토글 -->
-            <button class="mobile-menu-toggle" aria-label="{{ lang_data.ui.menu_toggle }}" title="{{ lang_data.ui.menu_toggle }}">
+            <!-- 모바일 메뉴 -->
+            <button class="mobile-menu-toggle" aria-label="{{ lang_data.ui.menu_toggle }}">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>

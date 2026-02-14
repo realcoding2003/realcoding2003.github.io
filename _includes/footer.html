@@ -2,105 +2,27 @@
     <div class="container">
         {% assign current_lang = page.lang | default: site.default_lang %}
         {% assign lang_data = site.data[current_lang] %}
-        
+
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>{{ lang_data.site.title }}</h3>
-                <p>{{ lang_data.site.description }}</p>
-                <div class="social-links">
-                    {% if site.github_username %}
-                        <a href="https://github.com/{{ site.github_username }}" class="social-link" target="_blank" rel="noopener">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    {% endif %}
-                    {% if site.linkedin_username %}
-                        <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="social-link" target="_blank" rel="noopener">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    {% endif %}
-                    {% if site.author.email %}
-                        <a href="mailto:{{ site.author.email }}" class="social-link">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    {% endif %}
-                    <a href="{{ '/feed.xml' | relative_url }}" class="social-link" title="RSS Feed">
-                        <i class="fas fa-rss"></i>
+            <div class="social-links">
+                {% if site.github_username %}
+                    <a href="https://github.com/{{ site.github_username }}" class="social-link" target="_blank" rel="noopener" title="GitHub">
+                        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
                     </a>
-                </div>
+                {% endif %}
+                {% if site.linkedin_username %}
+                    <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="social-link" target="_blank" rel="noopener" title="LinkedIn">
+                        <svg viewBox="0 0 16 16"><path d="M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6H8.51v1.04h.03c.318-.6 1.092-1.233 2.247-1.233 2.4 0 2.845 1.58 2.845 3.637v4.188zM3.558 4.955c-.762 0-1.376-.617-1.376-1.377 0-.758.614-1.375 1.376-1.375.76 0 1.376.617 1.376 1.375 0 .76-.617 1.377-1.376 1.377zm1.188 8.68H2.37V6h2.376v7.635zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.484.528 16 1.18 16h13.635c.652 0 1.185-.516 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z"/></svg>
+                    </a>
+                {% endif %}
+                {% if site.author.email %}
+                    <a href="mailto:{{ site.author.email }}" class="social-link" title="Email">
+                        <svg viewBox="0 0 16 16"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0114.25 14H1.75A1.75 1.75 0 010 12.25v-8.5C0 2.784.784 2 1.75 2zM1.5 3.75v.736l6.5 3.248 6.5-3.248V3.75a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25zm13 2.014l-6.5 3.248L1.5 5.764v6.486c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.764z"/></svg>
+                    </a>
+                {% endif %}
+                <!-- RSS feed available at /feed.xml -->
             </div>
-
-            <div class="footer-section">
-                <h4>{{ lang_data.footer.categories_title }}</h4>
-                <ul class="footer-links">
-                    {% assign lang_categories = '' | split: '' %}
-                    {% for post in site.posts %}
-                        {% assign post_lang = post.lang | default: site.default_lang %}
-                        {% if post_lang == current_lang %}
-                            {% for category in post.categories %}
-                                {% unless lang_categories contains category %}
-                                    {% assign lang_categories = lang_categories | push: category %}
-                                {% endunless %}
-                            {% endfor %}
-                        {% endif %}
-                    {% endfor %}
-                    {% assign sorted_categories = lang_categories | sort %}
-                    {% for category in sorted_categories limit:5 %}
-                        <li>
-                            {% assign cat_count = 0 %}
-                            {% for post in site.posts %}
-                                {% assign post_lang = post.lang | default: site.default_lang %}
-                                {% if post_lang == current_lang and post.categories contains category %}
-                                    {% assign cat_count = cat_count | plus: 1 %}
-                                {% endif %}
-                            {% endfor %}
-                            <a href="{% if current_lang != site.default_lang %}/{{ current_lang }}{% endif %}/categories#{{ category | slugify }}">
-                                {{ category }} ({{ cat_count }})
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>{{ lang_data.footer.recent_posts_title }}</h4>
-                <ul class="footer-links">
-                    {% assign lang_posts = '' | split: '' %}
-                    {% for post in site.posts %}
-                        {% assign post_lang = post.lang | default: site.default_lang %}
-                        {% if post_lang == current_lang %}
-                            {% assign lang_posts = lang_posts | push: post %}
-                        {% endif %}
-                    {% endfor %}
-                    {% for post in lang_posts limit:5 %}
-                        <li>
-                            <a href="{{ post.url | relative_url }}">
-                                {{ post.title | truncate: 30 }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>{{ lang_data.footer.information_title }}</h4>
-                <ul class="footer-links">
-                    <li><a href="{% if current_lang != site.default_lang %}/{{ current_lang }}{% endif %}/about">{{ lang_data.footer.about_link }}</a></li>
-                    <li><a href="{% if current_lang != site.default_lang %}/{{ current_lang }}{% endif %}/archive">{{ lang_data.footer.archive_link }}</a></li>
-                    <li><a href="{{ '/privacy' | relative_url }}">{{ lang_data.footer.privacy_link }}</a></li>
-                    <li><a href="{{ '/sitemap.xml' | relative_url }}">{{ lang_data.footer.sitemap_link }}</a></li>
-                    <li><a href="{{ '/feed.xml' | relative_url }}">{{ lang_data.footer.rss_link }}</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <p>&copy; {{ 'now' | date: "%Y" }} {{ lang_data.site.title }}. {{ lang_data.footer.copyright }}</p>
-                <p>
-                    <a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a>과 
-                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>로 {{ lang_data.footer.powered_by }}
-                </p>
-            </div>
+            <p class="footer-copyright">&copy; {{ 'now' | date: "%Y" }} {{ lang_data.site.title }}</p>
         </div>
     </div>
 </footer>

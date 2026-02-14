@@ -2,42 +2,88 @@
 layout: default
 ---
 
+{% assign current_lang = page.lang | default: site.default_lang %}
+{% assign lang_data = site.data[current_lang] %}
+
 <article class="post">
+    {% if page.image %}
+    <div class="post-hero" style="background-image: url('{{ page.image }}')">
+        <div class="hero-overlay">
+            <div class="container">
+                <div class="hero-text">
+                    <h1>{{ page.title }}</h1>
+                    <div class="post-meta">
+                        <span class="post-date">
+                            <time datetime="{{ page.date | date_to_xmlschema }}">
+                                {{ page.date | date: "%Y.%m.%d" }}
+                            </time>
+                        </span>
+                        {% if page.author %}
+                            <span class="post-author">{{ page.author }}</span>
+                        {% endif %}
+                        {% if page.categories %}
+                            <span class="post-categories">
+                                {% for category in page.categories %}
+                                    <a href="/categories#{{ category | slugify }}">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+                                {% endfor %}
+                            </span>
+                        {% endif %}
+                        <span class="reading-time">
+                            {% assign words = content | number_of_words %}
+                            {% if words < 360 %}
+                                1 min read
+                            {% else %}
+                                {{ words | divided_by: 180 }} min read
+                            {% endif %}
+                        </span>
+                        <button class="share-btn-mini copy-link" onclick="copyToClipboard('{{ site.url }}{{ page.url }}')">
+                            {{ lang_data.ui.copy_link | default: "Link" }}
+                        </button>
+                    </div>
+                    {% if page.tags %}
+                        <div class="post-tags">
+                            {% for tag in page.tags %}
+                                <a href="/tags#{{ tag | slugify }}" class="tag">{{ tag }}</a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
     <header class="post-header">
         <div class="container">
             <h1 class="post-title">{{ page.title }}</h1>
             <div class="post-meta">
                 <span class="post-date">
-                    <i class="far fa-calendar"></i>
                     <time datetime="{{ page.date | date_to_xmlschema }}">
-                        {{ page.date | date: "%Y년 %m월 %d일" }}
+                        {{ page.date | date: "%Y.%m.%d" }}
                     </time>
                 </span>
                 {% if page.author %}
-                    <span class="post-author">
-                        <i class="far fa-user"></i>
-                        {{ page.author }}
-                    </span>
+                    <span class="post-author">{{ page.author }}</span>
                 {% endif %}
                 {% if page.categories %}
                     <span class="post-categories">
-                        <i class="far fa-folder"></i>
                         {% for category in page.categories %}
                             <a href="/categories#{{ category | slugify }}">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
                         {% endfor %}
                     </span>
                 {% endif %}
                 <span class="reading-time">
-                    <i class="far fa-clock"></i>
                     {% assign words = content | number_of_words %}
                     {% if words < 360 %}
-                        1분 읽기
+                        1 min read
                     {% else %}
-                        {{ words | divided_by: 180 }}분 읽기
+                        {{ words | divided_by: 180 }} min read
                     {% endif %}
                 </span>
+                <button class="share-btn-mini copy-link" onclick="copyToClipboard('{{ site.url }}{{ page.url }}')">
+                    {{ lang_data.ui.copy_link | default: "Link" }}
+                </button>
             </div>
-            
+
             {% if page.tags %}
                 <div class="post-tags">
                     {% for tag in page.tags %}
@@ -47,6 +93,7 @@ layout: default
             {% endif %}
         </div>
     </header>
+    {% endif %}
 
     <div class="post-content">
         <div class="container">
@@ -56,74 +103,25 @@ layout: default
 
     <footer class="post-footer">
         <div class="container">
-            <!-- 네비게이션 -->
             <nav class="post-navigation">
-                {% assign current_lang = page.lang | default: site.default_lang %}
-                {% assign lang_data = site.data[current_lang] %}
-                
-                <!-- 현재 언어의 이전 포스트 찾기 -->
-                {% assign prev_post = null %}
-                {% for post in site.posts %}
-                    {% assign post_lang = post.lang | default: site.default_lang %}
-                    {% if post_lang == current_lang and post.date < page.date %}
-                        {% assign prev_post = post %}
-                        {% break %}
-                    {% endif %}
-                {% endfor %}
-                
-                <!-- 현재 언어의 다음 포스트 찾기 -->
-                {% assign next_post = null %}
-                {% assign posts_reversed = site.posts | reverse %}
-                {% for post in posts_reversed %}
-                    {% assign post_lang = post.lang | default: site.default_lang %}
-                    {% if post_lang == current_lang and post.date > page.date %}
-                        {% assign next_post = post %}
-                        {% break %}
-                    {% endif %}
-                {% endfor %}
-                
-                {% if prev_post %}
-                    <div class="nav-previous">
-                        <a href="{{ prev_post.url | relative_url }}">
-                            <span class="nav-label">{{ lang_data.ui.previous_post }}</span>
-                            <span class="nav-title">{{ prev_post.title }}</span>
-                        </a>
-                    </div>
-                {% endif %}
-                
-                {% if next_post %}
-                    <div class="nav-next">
-                        <a href="{{ next_post.url | relative_url }}">
-                            <span class="nav-label">{{ lang_data.ui.next_post }}</span>
-                            <span class="nav-title">{{ next_post.title }}</span>
-                        </a>
-                    </div>
-                {% endif %}
+                <h3 class="nav-heading">{{ lang_data.ui.other_posts | default: "Other Posts" }}</h3>
+                <ul class="nav-post-list">
+                    {% assign count = 0 %}
+                    {% for post in site.posts %}
+                        {% assign post_lang = post.lang | default: site.default_lang %}
+                        {% if post_lang == current_lang and post.url != page.url %}
+                            {% if count < 5 %}
+                                <li class="nav-post-item">
+                                    <span class="nav-post-date">{{ post.date | date: "%m.%d" }}</span>
+                                    <a href="{{ post.url | relative_url }}" class="nav-post-link">{{ post.title }}</a>
+                                </li>
+                                {% assign count = count | plus: 1 %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </nav>
 
-            <!-- 공유 버튼 -->
-            <div class="post-share">
-                <h4>이 포스트 공유하기</h4>
-                <div class="share-buttons">
-                    <a href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&url={{ site.url }}{{ page.url }}" 
-                       class="share-btn twitter" target="_blank" rel="noopener">
-                        <i class="fab fa-twitter"></i> Twitter
-                    </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" 
-                       class="share-btn facebook" target="_blank" rel="noopener">
-                        <i class="fab fa-facebook-f"></i> Facebook
-                    </a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}" 
-                       class="share-btn linkedin" target="_blank" rel="noopener">
-                        <i class="fab fa-linkedin-in"></i> LinkedIn
-                    </a>
-                    <button class="share-btn copy-link" onclick="copyToClipboard('{{ site.url }}{{ page.url }}')">
-                        <i class="fas fa-link"></i> 링크 복사
-                    </button>
-                </div>
-            </div>
-
-            <!-- 댓글 섹션 -->
             {% if site.comments.provider == "utterances" %}
                 <div class="post-comments">
                     <script src="https://utteranc.es/client.js"
@@ -139,17 +137,46 @@ layout: default
     </footer>
 </article>
 
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": {{ page.title | jsonify }},
+    "datePublished": "{{ page.date | date_to_xmlschema }}",
+    "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+    "author": {
+        "@type": "Person",
+        "name": "{{ page.author | default: site.author }}",
+        "url": "{{ site.url }}/about/"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{ site.title }}",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ site.url }}/assets/images/character.png"
+        }
+    },
+    "description": {{ page.excerpt | strip_html | truncate: 200 | jsonify }},
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ page.url | absolute_url }}"
+    }
+    {% if page.image %},
+    "image": "{{ page.image | absolute_url }}"
+    {% endif %}
+}
+</script>
+
 <script>
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(function() {
             const btn = document.querySelector('.copy-link');
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-check"></i> 복사됨!';
-            btn.style.backgroundColor = '#28a745';
-            
+            btn.innerHTML = '✓ {{ lang_data.ui.copied | default: "Copied!" }}';
             setTimeout(function() {
                 btn.innerHTML = originalText;
-                btn.style.backgroundColor = '';
             }, 2000);
         });
     }

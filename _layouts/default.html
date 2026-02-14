@@ -30,26 +30,21 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Pretendard Font -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     
     <!-- Highlight.js for Code Syntax Highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
     
     <!-- Theme color -->
-    <meta name="theme-color" content="#2563eb">
+    <meta name="theme-color" content="#0969da">
     
     <!-- Dynamic OG Image Selection -->
     {% if page.layout == "post" %}
-      {% assign og_image = page.og_image | default: page.image | default: '/assets/images/character.png' %}
+      {% assign og_image = page.og_image | default: page.image | default: '/assets/images/og-default.jpg' %}
     {% else %}
-      {% assign og_image = '/assets/images/character.png' %}
+      {% assign og_image = '/assets/images/og-default.jpg' %}
     {% endif %}
     
     <!-- Open Graph / Facebook -->
@@ -68,6 +63,18 @@
     
     <!-- SEO Tags -->
     {% seo %}
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ lang_data.site.title }}",
+        "url": "{{ site.url }}",
+        "description": "{{ lang_data.site.description }}",
+        "inLanguage": "{{ current_lang }}"
+    }
+    </script>
     
     <!-- Google Analytics -->
     {% include analytics.html %}

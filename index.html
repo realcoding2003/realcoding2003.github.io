@@ -5,12 +5,13 @@ title: Home
 
 {% assign lang_data = site.data["ko"] %}
 
-<div class="blog-intro">
-  <div class="container">
-    <div class="intro-content">
-      <h1>{{ lang_data.site.title | default: site.title }}</h1>
-      <p class="intro-description">{{ lang_data.site.description | default: site.description }}</p>
-      <p class="intro-greeting">{{ lang_data.site.greeting }}</p>
+<div class="blog-hero" style="background-image: url('{{ site.hero_image }}')">
+  <div class="hero-overlay">
+    <div class="container">
+      <div class="hero-text">
+        <h1>{{ lang_data.site.title | default: site.title }}</h1>
+        <p class="hero-subtitle">{{ lang_data.site.description | default: site.description }}</p>
+      </div>
     </div>
   </div>
 </div>
@@ -18,7 +19,6 @@ title: Home
 <main class="blog-main">
   <div class="container">
     <div class="blog-layout">
-      <!-- 메인 콘텐츠 영역 -->
       <section class="posts-feed">
         <div class="section-header">
           <h2>{{ lang_data.posts.recent }}</h2>
@@ -29,95 +29,26 @@ title: Home
           {% assign korean_posts = site.posts | where: "lang", "ko" %}
           {% for post in korean_posts limit:20 %}
             <article class="post-item">
-              <div class="post-content">
-                <h3 class="post-title">
-                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                </h3>
-                
-                <div class="post-meta">
-                  <time class="post-date">{{ post.date | date: lang_data.posts.date_format }}</time>
-                  {% if post.categories and post.categories.size > 0 %}
-                    <span class="post-category">
-                      <a href="/categories#{{ post.categories[0] | slugify }}">{{ post.categories[0] }}</a>
-                    </span>
-                  {% endif %}
-                  {% if post.author %}
-                    <span class="post-author">{{ post.author }}</span>
-                  {% endif %}
-                </div>
-                
-                {% if post.excerpt %}
-                  <div class="post-excerpt">
-                    {{ post.excerpt | strip_html | truncate: 180 }}
-                  </div>
-                {% endif %}
-                
-                {% if post.tags and post.tags.size > 0 %}
-                  <div class="post-tags">
-                    {% for tag in post.tags limit:3 %}
-                      <a href="/tags#{{ tag | slugify }}" class="tag">#{{ tag }}</a>
-                    {% endfor %}
-                  </div>
+              <h3 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              </h3>
+              <div class="post-meta">
+                <time class="post-date">{{ post.date | date: lang_data.posts.date_format }}</time>
+                {% if post.categories and post.categories.size > 0 %}
+                  <span class="post-category">
+                    <a href="/categories#{{ post.categories[0] | slugify }}">{{ post.categories[0] }}</a>
+                  </span>
                 {% endif %}
               </div>
+              {% if post.excerpt %}
+                <div class="post-excerpt">
+                  {{ post.excerpt | strip_html | truncate: 120 }}
+                </div>
+              {% endif %}
             </article>
           {% endfor %}
         </div>
       </section>
-
-      <!-- 사이드바 -->
-      <aside class="blog-sidebar">
-        <!-- 블로그 소개 -->
-        <div class="sidebar-widget about-widget">
-          <h3>{{ lang_data.sidebar.about_title }}</h3>
-          <div class="about-content">
-            <div class="about-avatar">
-              <img src="{{ '/assets/images/character.png' | relative_url }}" alt="Kevin Park" class="avatar-image">
-            </div>
-            <p>{{ lang_data.sidebar.about_description }}</p>
-            <a href="/about" class="about-link">{{ lang_data.sidebar.learn_more }} →</a>
-          </div>
-        </div>
-
-        <!-- 인기 카테고리 -->
-        <div class="sidebar-widget categories-widget">
-          <h3>{{ lang_data.sidebar.categories_title }}</h3>
-          <div class="categories-list">
-            {% assign sorted_categories = site.categories | sort %}
-            {% for category in sorted_categories limit:6 %}
-              <div class="category-item">
-                <a href="/categories#{{ category[0] | slugify }}" class="category-link">
-                  <span class="category-name">{{ category[0] }}</span>
-                  <span class="category-count">{{ category[1].size }}</span>
-                </a>
-              </div>
-            {% endfor %}
-            <div class="category-item">
-              <a href="/categories" class="view-all-categories">{{ lang_data.sidebar.view_all_categories }} →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 최근 태그 -->
-        {% assign tag_counts = '' | split: '' %}
-        {% for post in site.posts limit:20 %}
-          {% for tag in post.tags %}
-            {% assign tag_counts = tag_counts | push: tag %}
-          {% endfor %}
-        {% endfor %}
-        
-        {% if tag_counts.size > 0 %}
-        <div class="sidebar-widget tags-widget">
-          <h3>{{ lang_data.sidebar.tags_title }}</h3>
-          <div class="tags-cloud">
-            {% assign unique_tags = tag_counts | uniq | sort %}
-            {% for tag in unique_tags limit:12 %}
-              <a href="/tags#{{ tag | slugify }}" class="tag-cloud-item">#{{ tag }}</a>
-            {% endfor %}
-          </div>
-        </div>
-        {% endif %}
-      </aside>
     </div>
   </div>
 </main>

@@ -5,249 +5,34 @@ lang: ko
 permalink: /categories/
 ---
 
-<div class="categories-container">
-  {% comment %} 한국어 포스트만 필터링하여 카테고리 생성 {% endcomment %}
-  {% assign korean_posts = '' | split: '' %}
-  {% for post in site.posts %}
-    {% assign post_lang = post.lang | default: site.default_lang %}
-    {% if post_lang == 'ko' %}
-      {% assign korean_posts = korean_posts | push: post %}
+{% assign current_lang = "ko" %}
+<div class="container categories-container">
+  <div class="categories-overview">
+    {% assign sorted_categories = site.categories | sort %}
+    {% for category in sorted_categories %}
+      {% assign cat_posts = category[1] | where: "lang", current_lang %}
+      {% if cat_posts.size > 0 %}
+        <a href="#{{ category[0] | slugify }}" class="category-chip">
+          {{ category[0] }} <span class="count">{{ cat_posts.size }}</span>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% for category in sorted_categories %}
+    {% assign cat_posts = category[1] | where: "lang", current_lang %}
+    {% if cat_posts.size > 0 %}
+      <div class="category-section" id="{{ category[0] | slugify }}">
+        <h2>{{ category[0] }} <span class="category-count-badge">{{ cat_posts.size }}</span></h2>
+        <ul class="category-posts">
+          {% for post in cat_posts %}
+            <li class="category-post-item">
+              <span class="category-post-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+              <span class="category-post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     {% endif %}
   {% endfor %}
-  
-  {% comment %} 한국어 포스트들을 카테고리별로 그룹화 {% endcomment %}
-  {% assign categories_hash = '' | split: '' %}
-  {% for post in korean_posts %}
-    {% for category in post.categories %}
-      {% assign category_posts = categories_hash[category] | default: '' | split: '' %}
-      {% assign category_posts = category_posts | push: post %}
-      {% assign categories_hash = categories_hash | push: category | push: category_posts %}
-    {% endfor %}
-  {% endfor %}
-  
-  {% comment %} 카테고리 목록 생성 {% endcomment %}
-  {% assign unique_categories = '' | split: '' %}
-  {% for post in korean_posts %}
-    {% for category in post.categories %}
-      {% unless unique_categories contains category %}
-        {% assign unique_categories = unique_categories | push: category %}
-      {% endunless %}
-    {% endfor %}
-  {% endfor %}
-  {% assign unique_categories = unique_categories | sort %}
-  
-  <div class="categories-overview">
-    <h2>전체 카테고리</h2>
-    <div class="categories-grid">
-      {% for category in unique_categories %}
-        {% assign category_count = 0 %}
-        {% for post in korean_posts %}
-          {% if post.categories contains category %}
-            {% assign category_count = category_count | plus: 1 %}
-          {% endif %}
-        {% endfor %}
-        
-        <div class="category-card">
-          <h3><a href="#{{ category | slugify }}">{{ category }}</a></h3>
-          <p>{{ category_count }}개 포스트</p>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-  
-  <div class="categories-detail">
-    {% for category in unique_categories %}
-      {% assign category_posts = '' | split: '' %}
-      {% for post in korean_posts %}
-        {% if post.categories contains category %}
-          {% assign category_posts = category_posts | push: post %}
-        {% endif %}
-      {% endfor %}
-      
-      <div class="category-section" id="{{ category | slugify }}">
-        <h2 class="category-title">{{ category }}</h2>
-        <p class="category-description">{{ category_posts | size }}개의 포스트</p>
-        
-        <div class="category-posts">
-          {% for post in category_posts %}
-            <article class="category-post">
-              <div class="post-meta">
-                <span class="post-date">{{ post.date | date: "%Y.%m.%d" }}</span>
-              </div>
-              <h3 class="post-title">
-                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-              </h3>
-              {% if post.excerpt %}
-                <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
-              {% endif %}
-              {% if post.tags %}
-                <div class="post-tags">
-                  {% for tag in post.tags limit: 3 %}
-                    <span class="tag">{{ tag }}</span>
-                  {% endfor %}
-                </div>
-              {% endif %}
-            </article>
-          {% endfor %}
-        </div>
-      </div>
-    {% endfor %}
-  </div>
 </div>
-
-<style>
-.categories-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.categories-overview {
-  margin-bottom: 4rem;
-}
-
-.categories-overview h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  color: var(--primary-color);
-}
-
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-}
-
-.category-card {
-  background: var(--surface);
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
-  text-align: center;
-  border: 1px solid var(--border);
-  transition: var(--transition);
-}
-
-.category-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px var(--shadow);
-}
-
-.category-card h3 {
-  margin-bottom: 0.5rem;
-}
-
-.category-card h3 a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.category-card h3 a:hover {
-  text-decoration: underline;
-}
-
-.category-card p {
-  color: var(--text-muted);
-  margin-bottom: 0;
-  font-size: 0.9rem;
-}
-
-.category-section {
-  margin-bottom: 4rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.category-section:last-child {
-  border-bottom: none;
-}
-
-.category-title {
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-  font-size: 2rem;
-}
-
-.category-description {
-  color: var(--text-muted);
-  margin-bottom: 2rem;
-  font-size: 1rem;
-}
-
-.category-posts {
-  display: grid;
-  gap: 2rem;
-}
-
-.category-post {
-  background: var(--surface);
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  transition: var(--transition);
-}
-
-.category-post:hover {
-  box-shadow: 0 4px 15px var(--shadow);
-}
-
-.category-post .post-meta {
-  margin-bottom: 0.5rem;
-}
-
-.category-post .post-date {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-.category-post .post-title {
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-}
-
-.category-post .post-title a {
-  color: var(--text-primary);
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.category-post .post-title a:hover {
-  color: var(--primary-color);
-}
-
-.category-post .post-excerpt {
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.category-post .post-tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.category-post .tag {
-  background: var(--background);
-  color: var(--text-secondary);
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.8rem;
-  border: 1px solid var(--border);
-}
-
-@media (max-width: 768px) {
-  .categories-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .category-title {
-    font-size: 1.5rem;
-  }
-  
-  .categories-container {
-    padding: 1rem;
-  }
-}
-</style> 

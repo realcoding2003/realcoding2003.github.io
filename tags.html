@@ -5,273 +5,34 @@ lang: ko
 permalink: /tags/
 ---
 
-<div class="tags-container">
-  {% comment %} 한국어 포스트만 필터링 {% endcomment %}
-  {% assign korean_posts = '' | split: '' %}
-  {% for post in site.posts %}
-    {% assign post_lang = post.lang | default: site.default_lang %}
-    {% if post_lang == 'ko' %}
-      {% assign korean_posts = korean_posts | push: post %}
+{% assign current_lang = "ko" %}
+<div class="container tags-container">
+  <div class="tags-cloud-section">
+    {% assign sorted_tags = site.tags | sort %}
+    {% for tag in sorted_tags %}
+      {% assign tag_posts = tag[1] | where: "lang", current_lang %}
+      {% if tag_posts.size > 0 %}
+        <a href="#{{ tag[0] | slugify }}" class="tag-chip">
+          #{{ tag[0] }} <span class="tag-count">{{ tag_posts.size }}</span>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% for tag in sorted_tags %}
+    {% assign tag_posts = tag[1] | where: "lang", current_lang %}
+    {% if tag_posts.size > 0 %}
+      <div class="tag-section" id="{{ tag[0] | slugify }}">
+        <h2>#{{ tag[0] }}</h2>
+        <ul class="tag-posts">
+          {% for post in tag_posts %}
+            <li class="tag-post-item">
+              <span class="tag-post-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+              <span class="tag-post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     {% endif %}
   {% endfor %}
-  
-  {% comment %} 한국어 포스트들에서 태그 목록 생성 {% endcomment %}
-  {% assign unique_tags = '' | split: '' %}
-  {% for post in korean_posts %}
-    {% for tag in post.tags %}
-      {% unless unique_tags contains tag %}
-        {% assign unique_tags = unique_tags | push: tag %}
-      {% endunless %}
-    {% endfor %}
-  {% endfor %}
-  {% assign unique_tags = unique_tags | sort %}
-  
-  <div class="tags-cloud">
-    <h2>태그 클라우드</h2>
-    <div class="cloud">
-      {% for tag in unique_tags %}
-        {% assign tag_count = 0 %}
-        {% for post in korean_posts %}
-          {% if post.tags contains tag %}
-            {% assign tag_count = tag_count | plus: 1 %}
-          {% endif %}
-        {% endfor %}
-        
-        {% if tag_count > 5 %}
-          {% assign size_class = 'tag-xl' %}
-        {% elsif tag_count > 3 %}
-          {% assign size_class = 'tag-lg' %}
-        {% elsif tag_count > 1 %}
-          {% assign size_class = 'tag-md' %}
-        {% else %}
-          {% assign size_class = 'tag-sm' %}
-        {% endif %}
-        
-        <a href="#{{ tag | slugify }}" class="cloud-tag {{ size_class }}">
-          {{ tag }} ({{ tag_count }})
-        </a>
-      {% endfor %}
-    </div>
-  </div>
-  
-  <div class="tags-detail">
-    {% for tag in unique_tags %}
-      {% assign tag_posts = '' | split: '' %}
-      {% for post in korean_posts %}
-        {% if post.tags contains tag %}
-          {% assign tag_posts = tag_posts | push: post %}
-        {% endif %}
-      {% endfor %}
-      
-      <div class="tag-section" id="{{ tag | slugify }}">
-        <h2 class="tag-title"># {{ tag }}</h2>
-        <p class="tag-description">{{ tag_posts | size }}개의 포스트</p>
-        
-        <div class="tag-posts">
-          {% for post in tag_posts %}
-            <article class="tag-post">
-              <div class="post-header">
-                <h3 class="post-title">
-                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                </h3>
-                <div class="post-meta">
-                  <span class="post-date">{{ post.date | date: "%Y.%m.%d" }}</span>
-                  {% if post.categories %}
-                    <span class="post-category">{{ post.categories | first }}</span>
-                  {% endif %}
-                </div>
-              </div>
-              {% if post.excerpt %}
-                <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
-              {% endif %}
-            </article>
-          {% endfor %}
-        </div>
-      </div>
-    {% endfor %}
-  </div>
 </div>
-
-<style>
-.tags-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.tags-cloud {
-  margin-bottom: 4rem;
-  text-align: center;
-}
-
-.tags-cloud h2 {
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  color: var(--primary-color);
-}
-
-.cloud {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-}
-
-.cloud-tag {
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
-  background: var(--background);
-  border: 1px solid var(--border);
-  transition: var(--transition);
-  color: var(--text-secondary);
-}
-
-.cloud-tag:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
-  text-decoration: none;
-}
-
-.cloud-tag.tag-xl {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-.cloud-tag.tag-lg {
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.cloud-tag.tag-md {
-  font-size: 1rem;
-}
-
-.cloud-tag.tag-sm {
-  font-size: 0.9rem;
-}
-
-.tag-section {
-  margin-bottom: 4rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.tag-section:last-child {
-  border-bottom: none;
-}
-
-.tag-title {
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-.tag-description {
-  color: var(--text-muted);
-  margin-bottom: 2rem;
-  font-size: 1rem;
-}
-
-.tag-posts {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.tag-post {
-  background: var(--surface);
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  transition: var(--transition);
-}
-
-.tag-post:hover {
-  box-shadow: 0 4px 15px var(--shadow);
-}
-
-.post-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-  gap: 1rem;
-}
-
-.tag-post .post-title {
-  margin-bottom: 0;
-  font-size: 1.2rem;
-  flex: 1;
-}
-
-.tag-post .post-title a {
-  color: var(--text-primary);
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.tag-post .post-title a:hover {
-  color: var(--primary-color);
-}
-
-.tag-post .post-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.25rem;
-  flex-shrink: 0;
-}
-
-.tag-post .post-date {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-.tag-post .post-category {
-  color: var(--primary-color);
-  font-size: 0.8rem;
-  background: var(--background);
-  padding: 0.2rem 0.5rem;
-  border-radius: 0.25rem;
-  border: 1px solid var(--border);
-}
-
-.tag-post .post-excerpt {
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 0;
-}
-
-@media (max-width: 768px) {
-  .cloud {
-    padding: 1rem;
-  }
-  
-  .post-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  
-  .tag-post .post-meta {
-    align-items: flex-start;
-    flex-direction: row;
-    gap: 0.5rem;
-  }
-  
-  .tag-title {
-    font-size: 1.5rem;
-  }
-  
-  .tags-container {
-    padding: 1rem;
-  }
-}
-</style> 

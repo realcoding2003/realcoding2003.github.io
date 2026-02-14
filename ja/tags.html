@@ -5,267 +5,34 @@ lang: ja
 permalink: /ja/tags/
 ---
 
-<div class="tags-container">
-  {% assign tags = site.tags | sort %}
-  
-  <div class="tags-cloud">
-    <h2>タグクラウド</h2>
-    <div class="cloud">
-      {% for tag in tags %}
-        {% assign tag_size = tag[1].size %}
-        {% if tag_size > 5 %}
-          {% assign size_class = 'tag-xl' %}
-        {% elsif tag_size > 3 %}
-          {% assign size_class = 'tag-lg' %}
-        {% elsif tag_size > 1 %}
-          {% assign size_class = 'tag-md' %}
-        {% else %}
-          {% assign size_class = 'tag-sm' %}
-        {% endif %}
-        
-        <a href="#{{ tag[0] | slugify }}" class="cloud-tag {{ size_class }}">
-          {{ tag[0] }} ({{ tag[1].size }})
+{% assign current_lang = "ja" %}
+<div class="container tags-container">
+  <div class="tags-cloud-section">
+    {% assign sorted_tags = site.tags | sort %}
+    {% for tag in sorted_tags %}
+      {% assign tag_posts = tag[1] | where: "lang", current_lang %}
+      {% if tag_posts.size > 0 %}
+        <a href="#{{ tag[0] | slugify }}" class="tag-chip">
+          #{{ tag[0] }} <span class="tag-count">{{ tag_posts.size }}</span>
         </a>
-      {% endfor %}
-    </div>
-  </div>
-  
-  <div class="tags-detail">
-    {% for tag in tags %}
-      <div class="tag-section" id="{{ tag[0] | slugify }}">
-        <h2 class="tag-title"># {{ tag[0] }}</h2>
-        <p class="tag-description">{{ tag[1].size }}件の記事</p>
-        
-        <div class="tag-posts">
-          {% assign japanese_posts = tag[1] | where: "lang", "ja" %}
-          {% if japanese_posts.size > 0 %}
-            {% for post in japanese_posts %}
-            <article class="tag-post">
-              <div class="post-header">
-                <h3 class="post-title">
-                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                </h3>
-                <div class="post-meta">
-                  <span class="post-date">{{ post.date | date: "%Y.%m.%d" }}</span>
-                  {% if post.categories %}
-                    <span class="post-category">{{ post.categories | first }}</span>
-                  {% endif %}
-                </div>
-              </div>
-              {% if post.excerpt %}
-                <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
-              {% endif %}
-            </article>
-            {% endfor %}
-          {% else %}
-            <div class="no-posts-message">
-              <p>このタグの日本語記事はまだありません。</p>
-              <p>このタグの<a href="{{ '/tags/' | relative_url }}">韓国語記事</a>をご覧ください。</p>
-            </div>
-          {% endif %}
-        </div>
-      </div>
+      {% endif %}
     {% endfor %}
   </div>
+
+  {% for tag in sorted_tags %}
+    {% assign tag_posts = tag[1] | where: "lang", current_lang %}
+    {% if tag_posts.size > 0 %}
+      <div class="tag-section" id="{{ tag[0] | slugify }}">
+        <h2>#{{ tag[0] }}</h2>
+        <ul class="tag-posts">
+          {% for post in tag_posts %}
+            <li class="tag-post-item">
+              <span class="tag-post-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+              <span class="tag-post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endfor %}
 </div>
-
-<style>
-.tags-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.tags-cloud {
-  margin-bottom: 4rem;
-  text-align: center;
-}
-
-.tags-cloud h2 {
-  margin-bottom: 2rem;
-}
-
-.cloud {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-}
-
-.cloud-tag {
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
-  background: var(--background);
-  border: 1px solid var(--border);
-  transition: var(--transition);
-  color: var(--text-secondary);
-}
-
-.cloud-tag:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
-  text-decoration: none;
-}
-
-.cloud-tag.tag-xl {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-.cloud-tag.tag-lg {
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.cloud-tag.tag-md {
-  font-size: 1rem;
-}
-
-.cloud-tag.tag-sm {
-  font-size: 0.9rem;
-}
-
-.tag-section {
-  margin-bottom: 4rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.tag-section:last-child {
-  border-bottom: none;
-}
-
-.tag-title {
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-.tag-description {
-  color: var(--text-muted);
-  margin-bottom: 2rem;
-  font-size: 1rem;
-}
-
-.tag-posts {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.tag-post {
-  background: var(--surface);
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  transition: var(--transition);
-}
-
-.tag-post:hover {
-  box-shadow: 0 4px 15px var(--shadow);
-}
-
-.post-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-  gap: 1rem;
-}
-
-.tag-post .post-title {
-  margin-bottom: 0;
-  font-size: 1.2rem;
-  flex: 1;
-}
-
-.tag-post .post-title a {
-  color: var(--text-primary);
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.tag-post .post-title a:hover {
-  color: var(--primary-color);
-}
-
-.tag-post .post-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.25rem;
-  flex-shrink: 0;
-}
-
-.tag-post .post-date {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-.tag-post .post-category {
-  background: var(--primary-color);
-  color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.8rem;
-}
-
-.tag-post .post-excerpt {
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 0;
-}
-
-.no-posts-message {
-  text-align: center;
-  padding: 3rem 2rem;
-  background: var(--background);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-}
-
-.no-posts-message p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-.no-posts-message a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.no-posts-message a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .post-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  
-  .tag-post .post-meta {
-    align-items: flex-start;
-    flex-direction: row;
-    gap: 1rem;
-  }
-  
-  .tag-title {
-    font-size: 1.5rem;
-  }
-  
-  .no-posts-message {
-    padding: 2rem 1rem;
-  }
-}
-</style> 

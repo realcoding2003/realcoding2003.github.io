@@ -2,55 +2,23 @@ nav:
   home: "홈"
   about: "소개"
   archive: "아카이브"
-  categories: "카테고리"
-  tags: "태그"
 
 site:
   title: "실전코딩 기술 블로그"
   description: "실무에서 배운 개발 노하우와 기술적 인사이트를 공유합니다"
-  greeting: "안녕하세요! 실무에서 배운 개발 노하우와 기술적 인사이트를 공유하는 공간입니다. 🚀"
 
 posts:
   recent: "최근 포스트"
   view_all: "모든 포스트 보기"
   date_format: "%Y년 %m월 %d일"
-  read_more: "더 읽기"
-
-sidebar:
-  about_title: "About"
-  about_description: "실무 중심의 개발 이야기를 기록합니다. 문제 해결 과정과 배운 점들을 공유하며, 다른 개발자들에게 도움이 되고자 합니다."
-  learn_more: "더 알아보기"
-  categories_title: "카테고리"
-  tags_title: "인기 태그"
-  view_all_categories: "모든 카테고리 보기"
 
 ui:
-  language_selector: "언어 선택"
-  menu_toggle: "메뉴 전환"
-  korean: "한국어"
-  english: "영어"
-  japanese: "일본어"
-  search_placeholder: "포스트 검색..."
-  read_more: "더 읽기"
-  share_post: "이 포스트 공유"
-  previous_post: "이전 포스트"
-  next_post: "다음 포스트"
-  toggle_dark_mode: "다크모드 전환"
-  rss_feed: "RSS 피드"
-  translation_not_available: "번역이 없어 홈페이지로 이동합니다"
-
-footer:
-  categories_title: "카테고리"
-  recent_posts_title: "최근 포스트"
-  information_title: "정보"
-  about_link: "소개"
-  archive_link: "아카이브"
-  privacy_link: "개인정보 처리방침"
-  sitemap_link: "사이트맵"
-  rss_link: "RSS 피드"
-  copyright: "모든 권리 보유."
-  powered_by: "Jekyll과 GitHub Pages로 제작"
+  previous_post: "← 이전 포스트"
+  next_post: "다음 포스트 →"
+  other_posts: "다른 포스트"
+  copy_link: "링크 복사"
+  copied: "복사됨!"
 
 language:
   name: "한국어"
-  code: "ko" 
+  code: "ko"

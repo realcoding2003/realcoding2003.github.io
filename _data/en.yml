@@ -2,55 +2,23 @@ nav:
   home: "Home"
   about: "About"
   archive: "Archive"
-  categories: "Categories"
-  tags: "Tags"
 
 site:
   title: "RealCoding Tech Blog"
   description: "Sharing practical development insights and technical know-how from real-world experience"
-  greeting: "Welcome to RealCoding! Here we share practical development insights and technical solutions learned from real-world projects."
 
 posts:
   recent: "Recent Posts"
   view_all: "View All Posts"
   date_format: "%B %d, %Y"
-  read_more: "Read More"
 
-sidebar:
-  about_title: "About"
-  about_description: "I record development stories focused on practical work. I share problem-solving processes and lessons learned to help other developers."
-  learn_more: "Learn More"
-  categories_title: "Categories"
-  tags_title: "Popular Tags"
-  view_all_categories: "View All Categories"
+ui:
+  previous_post: "← Previous"
+  next_post: "Next →"
+  other_posts: "Other Posts"
+  copy_link: "Copy Link"
+  copied: "Copied!"
 
 language:
   name: "English"
   code: "en"
-
-ui:
-  language_selector: "Language Selector"
-  menu_toggle: "Menu Toggle"
-  korean: "Korean"
-  english: "English"
-  japanese: "Japanese"
-  search_placeholder: "Search posts..."
-  read_more: "Read more"
-  share_post: "Share this post"
-  previous_post: "Previous Post"
-  next_post: "Next Post"
-  toggle_dark_mode: "Toggle Dark Mode"
-  rss_feed: "RSS Feed"
-  translation_not_available: "Translation not available, redirecting to homepage"
-
-footer:
-  categories_title: "Categories"
-  recent_posts_title: "Recent Posts"
-  information_title: "Information"
-  about_link: "About"
-  archive_link: "Archive"
-  privacy_link: "Privacy Policy"
-  sitemap_link: "Sitemap"
-  rss_link: "RSS Feed"
-  copyright: "All rights reserved."
-  powered_by: "Built with Jekyll and GitHub Pages" 

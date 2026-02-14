@@ -47,6 +47,10 @@ plugins:
 paginate: 10
 paginate_path: "/page:num/"
 
+# Include in processing
+include:
+  - ads.txt
+
 # Exclude from processing
 exclude:
   - Gemfile

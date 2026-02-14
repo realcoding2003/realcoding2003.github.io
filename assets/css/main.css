@@ -1008,7 +1008,8 @@ a:hover {
     background: #ffffff;
     border-radius: var(--radius-md);
     padding: var(--spacing-lg);
-    max-width: 85vw;
+    width: 85vw;
+    height: auto;
     max-height: 85vh;
     pointer-events: none;
     user-select: none;

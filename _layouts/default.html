@@ -47,9 +47,9 @@
     
     <!-- Dynamic OG Image Selection -->
     {% if page.layout == "post" %}
-      {% assign og_image = page.og_image | default: page.image | default: '/assets/images/character.svg' %}
+      {% assign og_image = page.og_image | default: page.image | default: '/assets/images/character.png' %}
     {% else %}
-      {% assign og_image = '/assets/images/character.svg' %}
+      {% assign og_image = '/assets/images/character.png' %}
     {% endif %}
     
     <!-- Open Graph / Facebook -->

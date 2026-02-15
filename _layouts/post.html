@@ -98,6 +98,8 @@ layout: default
     <div class="post-content">
         <div class="container">
             {{ content }}
+
+            {% include ad-banner.html %}
         </div>
     </div>
 
@@ -181,3 +183,23 @@ layout: default
         });
     }
 </script>
+
+{% if site.adsense.client and site.adsense.show_ads %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var postContent = document.querySelector('.post-content .container');
+        if (!postContent) return;
+
+        var paragraphs = postContent.querySelectorAll(':scope > p');
+        if (paragraphs.length < 6) return;
+
+        var target = paragraphs[4];
+        var adDiv = document.createElement('div');
+        adDiv.className = 'ad-container ad-in-article';
+        adDiv.innerHTML = '<ins class="adsbygoogle" style="display:block" data-ad-client="{{ site.adsense.client }}" data-ad-slot="2396306733" data-ad-format="auto" data-full-width-responsive="true"></ins>';
+        target.parentNode.insertBefore(adDiv, target.nextSibling);
+
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    });
+</script>
+{% endif %}

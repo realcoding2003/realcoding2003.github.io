@@ -1,0 +1,24 @@
+{% if site.adsense.client and site.adsense.show_ads %}
+<div class="ad-floating ad-floating-left">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="{{ site.adsense.client }}"
+       data-ad-slot="2396306733"
+       data-ad-format="vertical"
+       data-full-width-responsive="false"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+<div class="ad-floating ad-floating-right">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="{{ site.adsense.client }}"
+       data-ad-slot="2396306733"
+       data-ad-format="vertical"
+       data-full-width-responsive="false"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+{% endif %}

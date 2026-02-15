@@ -1797,3 +1797,40 @@ a:hover {
         gap: var(--spacing-xs);
     }
 }
+
+/* ===========================
+   ADSENSE
+   =========================== */
+.ad-container {
+    margin: 2rem 0;
+    text-align: center;
+    min-height: 100px;
+}
+
+.ad-in-article {
+    margin: 2.5rem 0;
+}
+
+/* Floating side ads */
+.ad-floating {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 160px;
+    z-index: 50;
+    display: none;
+}
+
+.ad-floating-left {
+    left: calc((100vw - 1000px) / 2 - 180px);
+}
+
+.ad-floating-right {
+    right: calc((100vw - 1000px) / 2 - 180px);
+}
+
+@media (min-width: 1400px) {
+    .ad-floating {
+        display: block;
+    }
+}

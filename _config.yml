@@ -16,7 +16,7 @@ google_analytics: G-E2F9P3J8TQ  # 실제 GA4 측정 ID로 교체 필요
 # Google AdSense
 adsense:
   client: ca-pub-4992764083187170
-  auto_ads: true
+  auto_ads: false
   show_ads: true
 
 # Comments system

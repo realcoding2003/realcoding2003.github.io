@@ -12,13 +12,35 @@
     <meta name="description" content="{{ page.description | default: lang_data.site.description }}">
     
     <!-- 다국어 hreflang 태그 -->
-    {% for lang in site.languages %}
-      {% if lang == site.default_lang %}
-        <link rel="alternate" hreflang="{{ lang }}" href="{{ site.url }}{{ site.baseurl }}{{ page.url | remove: '/en' | remove: '/ja' }}" />
-      {% else %}
-        <link rel="alternate" hreflang="{{ lang }}" href="{{ site.url }}{{ site.baseurl }}/{{ lang }}{{ page.url | remove: '/en' | remove: '/ja' }}" />
-      {% endif %}
-    {% endfor %}
+    {% if page.layout == "post" %}
+      {%- assign page_lang = page.lang | default: site.default_lang -%}
+      {%- assign post_slug = page.slug -%}
+      {%- if page_lang == "en" -%}
+        {%- assign slug_len = post_slug.size | minus: 3 -%}
+        {%- assign base_slug = post_slug | truncate: slug_len, "" -%}
+      {%- elsif page_lang == "ja" -%}
+        {%- assign slug_len = post_slug.size | minus: 3 -%}
+        {%- assign base_slug = post_slug | truncate: slug_len, "" -%}
+      {%- else -%}
+        {%- assign base_slug = post_slug -%}
+      {%- endif -%}
+      {%- assign date_path = page.date | date: "/%Y/%m/%d/" -%}
+      <link rel="alternate" hreflang="ko" href="{{ site.url }}{{ date_path }}{{ base_slug }}/" />
+      <link rel="alternate" hreflang="en" href="{{ site.url }}{{ date_path }}{{ base_slug }}-en/" />
+      <link rel="alternate" hreflang="ja" href="{{ site.url }}{{ date_path }}{{ base_slug }}-ja/" />
+      <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ date_path }}{{ base_slug }}/" />
+    {% else %}
+      {%- assign base_path = page.url | remove: '/en' | remove: '/ja' -%}
+      <link rel="alternate" hreflang="ko" href="{{ site.url }}{{ base_path }}" />
+      <link rel="alternate" hreflang="en" href="{{ site.url }}/en{{ base_path }}" />
+      <link rel="alternate" hreflang="ja" href="{{ site.url }}/ja{{ base_path }}" />
+      <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ base_path }}" />
+    {% endif %}
+
+    <!-- 페이지네이션 noindex -->
+    {% if paginator and paginator.page > 1 %}
+    <meta name="robots" content="noindex, follow">
+    {% endif %}
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ '/assets/favicons/favicon.ico' | relative_url }}">

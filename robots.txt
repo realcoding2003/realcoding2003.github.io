@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 
+Disallow: /page*/
+
 Sitemap: https://realcoding.blog/sitemap.xml

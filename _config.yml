@@ -11,7 +11,7 @@ languages: ["ko", "en", "ja"]
 default_lang: "ko"
 
 # Google Analytics
-google_analytics: G-E2F9P3J8TQ  # 실제 GA4 측정 ID로 교체 필요
+google_analytics: G-MEFBMHM6FK
 
 # Google AdSense
 adsense:

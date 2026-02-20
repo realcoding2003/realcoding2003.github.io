@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "$50 크레딧이 3시간 만에 증발했다 - Claude Code 1M 실사용 비용 후기"
-date: 2026-02-21 09:00:00 +0900
+date: 2026-02-21 00:02:00 +0900
 categories: [Development, AI]
 tags: [Claude Code, 1M Context, AI코딩, Anthropic, 개발도구, 토큰비용, 사용후기]
 author: "Kevin Park"

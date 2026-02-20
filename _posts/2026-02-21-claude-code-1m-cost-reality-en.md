@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "My $50 Credit Vanished in 3 Hours - The Real Cost of Claude Code 1M"
-date: 2026-02-21 09:00:00 +0900
+date: 2026-02-21 00:02:00 +0900
 categories: [Development, AI]
 tags: [Claude Code, 1M Context, AI Coding, Anthropic, Dev Tools, Token Cost, Review]
 author: "Kevin Park"

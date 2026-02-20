@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "$50クレジットが3時間で消えた - Claude Code 1Mの実使用コスト体験記"
-date: 2026-02-21 09:00:00 +0900
+date: 2026-02-21 00:02:00 +0900
 categories: [Development, AI]
 tags: [Claude Code, 1M Context, AIコーディング, Anthropic, 開発ツール, トークンコスト, レビュー]
 author: "Kevin Park"

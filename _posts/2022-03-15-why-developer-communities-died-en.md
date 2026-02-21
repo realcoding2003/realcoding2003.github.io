@@ -7,6 +7,9 @@ tags: [Developer, Community, Change, Dev Culture, Essay]
 author: "Kevin Park"
 lang: en
 excerpt: "Developer forums used to be buzzing with activity. Now they're quiet. Did the communities die, or did they just evolve into something different?"
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2022/03/15/why-developer-communities-died-en/
 ---
 
 # Why Developer Communities Died

@@ -10,6 +10,9 @@ excerpt: "Introducing a Python package that makes it easier to use Google Vertex
 image: "/assets/images/posts/vertex-ai-imagen-package-hero.png"
 mermaid: true
 translation_key: "vertex-ai-imagen-package"
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/07/vertex-ai-imagen-python-package-en/
 ---
 
 ![vertex-ai-imagen Package Hero Image](/assets/images/posts/vertex-ai-imagen-package-hero.png)

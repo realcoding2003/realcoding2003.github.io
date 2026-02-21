@@ -13,6 +13,9 @@ mermaid: true
 sitemap:
   changefreq: weekly
   priority: 0.8
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/02/10/apache-korean-character-encoding-fix-en/
 ---
 
 After server migration or fresh Apache installation, Korean characters on websites may appear corrupted. This issue typically occurs due to **improper charset configuration**.

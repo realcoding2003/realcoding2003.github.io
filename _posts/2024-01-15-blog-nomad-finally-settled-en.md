@@ -7,6 +7,9 @@ tags: [Blog, WordPress, GitHub Pages, Developer, Writing]
 author: "Kevin Park"
 lang: en
 excerpt: "Naver Blog, Tistory, WordPress, GitHub Pages... After years of platform-hopping, I've finally settled. A developer's blog nomad journey comes to an end."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2024/01/15/blog-nomad-finally-settled-en/
 ---
 
 # The Blog Nomad Finally Settles Down

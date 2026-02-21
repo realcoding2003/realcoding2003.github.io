@@ -26,8 +26,8 @@
       {%- endif -%}
       {%- assign date_path = page.date | date: "/%Y/%m/%d/" -%}
       <link rel="alternate" hreflang="ko" href="{{ site.url }}{{ date_path }}{{ base_slug }}/" />
-      <link rel="alternate" hreflang="en" href="{{ site.url }}{{ date_path }}{{ base_slug }}-en/" />
-      <link rel="alternate" hreflang="ja" href="{{ site.url }}{{ date_path }}{{ base_slug }}-ja/" />
+      <link rel="alternate" hreflang="en" href="{{ site.url }}/en{{ date_path }}{{ base_slug }}-en/" />
+      <link rel="alternate" hreflang="ja" href="{{ site.url }}/ja{{ date_path }}{{ base_slug }}-ja/" />
       <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ date_path }}{{ base_slug }}/" />
     {% else %}
       {%- assign base_path = page.url | remove: '/en' | remove: '/ja' -%}

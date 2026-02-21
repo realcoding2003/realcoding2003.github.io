@@ -13,6 +13,9 @@ mermaid: true
 sitemap:
   changefreq: weekly
   priority: 0.8
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2023/02/10/apache-korean-character-encoding-fix-ja/
 ---
 
 サーバー移行や新しいApacheインストール後に、ウェブサイトで韓国語が文字化けして表示される場合があります。この現象は主に**charset設定が適切に行われていないために**発生する問題です。

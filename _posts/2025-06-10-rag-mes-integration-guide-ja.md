@@ -14,6 +14,9 @@ lang: ja
 sitemap:
   changefreq: weekly
   priority: 0.8
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/10/rag-mes-integration-guide-ja/
 ---
 
 # RAG完全解説：製造業MESシステムで理解する真のデータ統合AI

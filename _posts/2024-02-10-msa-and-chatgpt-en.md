@@ -7,6 +7,9 @@ tags: [MSA, ChatGPT, Microservices, Architecture, AI]
 author: "Kevin Park"
 lang: en
 excerpt: "I tried using ChatGPT to help design a microservice architecture. It's no replacement for an architect, but as a rubber duck debugging partner, it's unbeatable."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2024/02/10/msa-and-chatgpt-en/
 ---
 
 # Using ChatGPT for MSA Design

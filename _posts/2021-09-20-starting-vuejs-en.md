@@ -7,6 +7,9 @@ tags: [Vue.js, JavaScript, jQuery, Frontend, Getting Started]
 author: "Kevin Park"
 lang: en
 excerpt: "After 10+ years of jQuery, I finally started learning Vue.js. Reactive data binding turns out to be a game changer."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2021/09/20/starting-vuejs-en/
 ---
 
 # A jQuery Developer Picks Up Vue.js
@@ -19,7 +22,7 @@ I should have picked up a frontend framework ages ago. React, Vue, Angular — e
 
 jQuery isn't bad. I've used it for over a decade and there's nothing it can't do. But recent projects show fewer and fewer places using jQuery. Client requests like "please use Vue" are becoming more common.
 
-In my [post about developer laziness](/2020/03/16/developer-laziness-burnout-en/), I said "deliberately introduce unfamiliar technology into every project." This is me putting that into practice.
+In my [post about developer laziness](/en/2020/03/16/developer-laziness-burnout-en/), I said "deliberately introduce unfamiliar technology into every project." This is me putting that into practice.
 
 ## Why Vue Over React
 
@@ -70,4 +73,4 @@ I'm planning to apply Vue to a small project first. Rebuilding an admin panel I 
 
 They say the best time to start is when you think you're too late. Honestly, I am a bit late. But I started AWS late too and it worked out fine, so Vue should be the same.
 
-There's something oddly fun about becoming a beginner again. Not knowing things makes you search, searching leads to writing code, and before you know it you're in flow. I [wrote about this being the cure for developer laziness](/2020/03/16/developer-laziness-burnout-en/), and it really does seem to work.
+There's something oddly fun about becoming a beginner again. Not knowing things makes you search, searching leads to writing code, and before you know it you're in flow. I [wrote about this being the cure for developer laziness](/en/2020/03/16/developer-laziness-burnout-en/), and it really does seem to work.

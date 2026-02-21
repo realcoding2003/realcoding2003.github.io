@@ -7,6 +7,9 @@ tags: [aws, ec2, remote-desktop, cloud, windows, cost-analysis, automation, tuto
 author: "Kevin Park"
 excerpt: "Replace a $1,000 PC with AWS EC2 remote desktop for just $50/month! Real cost analysis and setup guide"
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2024/02/01/aws-ec2-remote-desktop-en/
 ---
 
 # Building Remote Desktop with AWS EC2 - Reality and Future of Cloud Work Environment

@@ -7,13 +7,16 @@ tags: [AWS, API Gateway, Lambda, ステージ, サーバーレス]
 author: "Kevin Park"
 lang: ja
 excerpt: "API Gatewayでdev、staging、prodステージごとに異なるLambda関数を呼び出したかった。公式ドキュメントだけでは全然できなくて、かなり苦労しました。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2021/03/15/aws-api-gateway-lambda-stages-ja/
 ---
 
 # API Gatewayステージ別Lambda関数の分離
 
 ## やりたかったこと
 
-[AWSにハマって勉強し](/2020/09/10/getting-into-aws-ja/)、[資格まで取った](/2020/12/15/aws-developer-certification-ja/)後、実際のプロジェクトに本格的に適用し始めました。
+[AWSにハマって勉強し](/ja/2020/09/10/getting-into-aws-ja/)、[資格まで取った](/ja/2020/12/15/aws-developer-certification-ja/)後、実際のプロジェクトに本格的に適用し始めました。
 
 そこで必要になったのが、API Gatewayのステージごとに異なるLambda関数を呼び出すことでした。開発（dev）、ステージング（staging）、本番（prod）環境でそれぞれ異なる関数を呼び出す必要があったのですが、これが思ったより簡単ではありませんでした。
 

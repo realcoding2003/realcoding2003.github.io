@@ -7,6 +7,9 @@ tags: [Docker, Container, Deployment, DevEnvironment, DevOps]
 author: "Kevin Park"
 lang: en
 excerpt: "I switched every project to Docker two years ago. Low barrier to entry, easy deployments... but is it really all upside?"
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2020/03/15/why-i-use-docker-en/
 ---
 
 # My Honest Review After Using Docker for Every Project for 2 Years

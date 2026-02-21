@@ -7,6 +7,9 @@ tags: [mcp, playwright, automation, installation, filesystem, desktop-commander,
 author: "Kevin Park"
 excerpt: "Learn practical methods for Claude to automatically install new MCPs using already installed filesystem and desktop-commander MCPs."
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/05/mcp-easy-install-with-existing-mcp-en/
 ---
 
 # Easy MCP Installation Using Existing MCPs - Practical Guide for Installing Playwright MCP

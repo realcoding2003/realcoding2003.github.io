@@ -7,6 +7,9 @@ tags: [ChatGPT, GPT-4o, Gnuboard, AI, Side Project, Revenue Model, RAG]
 author: Kevin Park
 excerpt: "What if we create a Gnuboard-specific Q&A site using the trending generative AI technology? Let me organize my thoughts along with concerns about costs and revenue."
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2024/05/24/chatgpt-gnuboard-qa-service-idea-en/
 ---
 
 6 AM, couldn't sleep so I'm organizing various thoughts.

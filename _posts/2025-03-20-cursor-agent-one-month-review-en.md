@@ -7,6 +7,9 @@ tags: [Cursor, AI Coding, Agent, IDE, Dev Tools]
 author: "Kevin Park"
 lang: en
 excerpt: "I used Cursor's AI agent mode in production work for a month. Productivity gains are real, but blind trust will burn you."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/03/20/cursor-agent-one-month-review-en/
 ---
 
 # Cursor Agent — One Month Review
@@ -46,4 +49,4 @@ The workflow I've settled on:
 - **Core business logic** → Write myself (AI for reference only)
 - **Debugging** → Ask AI first, investigate manually if it doesn't solve it
 
-The right framing is "AI assists coding," not "AI does coding." The developer must retain ownership. Same conclusion I reached when [using ChatGPT for MSA design](/2024/02/10/msa-and-chatgpt-en/) — the tools change, the principle doesn't.
+The right framing is "AI assists coding," not "AI does coding." The developer must retain ownership. Same conclusion I reached when [using ChatGPT for MSA design](/en/2024/02/10/msa-and-chatgpt-en/) — the tools change, the principle doesn't.

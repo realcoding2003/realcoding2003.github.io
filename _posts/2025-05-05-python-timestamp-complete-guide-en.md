@@ -7,6 +7,9 @@ tags: [python, timestamp, time, datetime, database, beginner]
 author: "Kevin Park"
 excerpt: "From getting timestamp values in Python to conversion methods and real project applications. Explained with ready-to-use code examples."
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/05/05/python-timestamp-complete-guide-en/
 ---
 
 # Python Timestamp Guide - Current Time, Conversion, and Practical Usage

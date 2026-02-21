@@ -7,6 +7,9 @@ tags: [mariadb, mysql, database, server, configuration, troubleshooting]
 author: "Kevin Park"
 excerpt: "MariaDB外部接続のためのbind-address設定変更とユーザー権限設定方法を段階的に説明します。"
 lang: ja
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2023/10/10/mariadb-external-access-ja/
 ---
 
 # MariaDB外部接続許可設定完全ガイド

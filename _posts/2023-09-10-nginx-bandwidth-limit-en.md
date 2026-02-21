@@ -7,6 +7,9 @@ tags: [nginx, server, bandwidth, limit_rate, optimization, devops]
 author: "Kevin Park"
 excerpt: "Complete guide on how to effectively limit bandwidth using limit_rate and limit_rate_after directives in nginx with practical testing examples"
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/09/10/nginx-bandwidth-limit-en/
 ---
 
 # Setting up nginx Bandwidth Limiting

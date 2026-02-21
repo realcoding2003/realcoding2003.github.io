@@ -7,6 +7,9 @@ tags: [linux, htop, monitoring, system-admin, troubleshooting, beginner]
 author: "Kevin Park"
 excerpt: "Complete guide to real-time Linux system resource monitoring using htop. Efficient methods to analyze CPU, memory, and process status"
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2024/02/10/htop-linux-resource-monitoring-en/
 ---
 
 # Linux System Resource Monitoring with htop

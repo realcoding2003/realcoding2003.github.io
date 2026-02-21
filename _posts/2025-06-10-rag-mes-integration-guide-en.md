@@ -14,6 +14,9 @@ lang: en
 sitemap:
   changefreq: weekly
   priority: 0.8
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/10/rag-mes-integration-guide-en/
 ---
 
 # Complete RAG Guide: Understanding True Data Integration AI through Manufacturing MES Systems

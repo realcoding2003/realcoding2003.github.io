@@ -7,6 +7,9 @@ tags: [開発者, コミュニティ, 変化, 開発文化, エッセイ]
 author: "Kevin Park"
 lang: ja
 excerpt: "昔は開発者の掲示板が賑わっていたのに、最近はどこも静かです。コミュニティが死んだのか、形が変わったのか考えてみました。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2022/03/15/why-developer-communities-died-ja/
 ---
 
 # 開発者コミュニティが衰退した理由

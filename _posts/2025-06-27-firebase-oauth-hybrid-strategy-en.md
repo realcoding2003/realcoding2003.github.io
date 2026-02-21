@@ -8,6 +8,9 @@ author: "Kevin Park"
 excerpt: "The story of pulling an all-nighter trying to add Naver/Kakao OIDC providers to Firebase"
 image: "/assets/images/posts/firebase-oauth-hybrid-strategy/firebase-oauth-hybrid-strategy-hero.png"
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/27/firebase-oauth-hybrid-strategy-en/
 ---
 
 # Creating Naver/Kakao OIDC for Firebase? Reality Hits Different

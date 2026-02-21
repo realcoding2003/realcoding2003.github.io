@@ -7,6 +7,9 @@ tags: [git, gitignore, version-control, troubleshooting, beginner]
 author: "Kevin Park"
 excerpt: "How to configure .gitignore to ignore directories while including specific files. Instantly solvable using ** patterns"
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2024/01/10/gitignore-specific-files-in-ignored-directory-en/
 ---
 
 # Adding Specific Files from Ignored Directories in .gitignore

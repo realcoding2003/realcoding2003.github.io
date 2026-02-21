@@ -7,6 +7,9 @@ tags: [ChatGPT, GPT-4o, グニューボード, AI, サイドプロジェクト, 
 author: Kevin Park
 excerpt: "最近話題の生成型AI技術を活用してグニューボード専用の質問回答サイトを作ったらどうだろうか？費用と収益に関する悩みと共にアイデアを整理してみる。"
 lang: ja
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2024/05/24/chatgpt-gnuboard-qa-service-idea-ja/
 ---
 
 午前6時、眠れなくてあれこれ考えを整理してみる。

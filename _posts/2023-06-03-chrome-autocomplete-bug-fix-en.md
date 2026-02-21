@@ -7,6 +7,9 @@ tags: [chrome, autocomplete, bug-fix, korean-input, browser-issue, beginner]
 author: "Kevin Park"
 lang: en
 excerpt: "How to completely resolve Chrome autocomplete duplicate input bug with experimental features reset and Korean input method reconfiguration"
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/06/03/chrome-autocomplete-bug-fix-en/
 ---
 
 # Complete Guide to Fixing Chrome Yellow Autocomplete Bug

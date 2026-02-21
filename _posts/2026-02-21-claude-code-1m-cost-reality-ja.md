@@ -8,11 +8,14 @@ author: "Kevin Park"
 lang: ja
 excerpt: "1M contextモデルは素晴らしいですが...$50の無料クレジットがたった3時間で消えました。コンテキストが蓄積するほど、クエリ1回あたり$2~3ずつ消費される現実。"
 image: "/assets/images/posts/claude-code-1m-cost-reality/credit_counter_countdown_1.jpg"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2026/02/21/claude-code-1m-cost-reality-ja/
 ---
 
 ![クレジットカウンターがゼロに向かって突進する様子](/assets/images/posts/claude-code-1m-cost-reality/credit_counter_countdown_1.jpg)
 
-昨日、[Compacting地獄からの脱出](/2026/02/20/claude-code-1m-context-review-ja/)で1M contextモデルがどれだけ快適なのか紹介しました。「コストはかかるけど、あの開放感はプライスレス」みたいなことを書いたんですが...
+昨日、[Compacting地獄からの脱出](/ja/2026/02/20/claude-code-1m-context-review-ja/)で1M contextモデルがどれだけ快適なのか紹介しました。「コストはかかるけど、あの開放感はプライスレス」みたいなことを書いたんですが...
 
 で、今日本格的に使ってみました。$50の無料クレジットをもらったので。
 
@@ -90,7 +93,7 @@ Anthropicから$50の無料クレジットをもらっていたんです。$50�
 
 ## 賢く使う方法
 
-以前、[AIサブスクリプション費用について](/2026/02/05/ai-subscription-regret-ja/)書いたことがありますが、結局ツールはツールらしく使うべきなんです。
+以前、[AIサブスクリプション費用について](/ja/2026/02/05/ai-subscription-regret-ja/)書いたことがありますが、結局ツールはツールらしく使うべきなんです。
 
 1Mモデルは「常時オンにしておくモード」ではありません。
 

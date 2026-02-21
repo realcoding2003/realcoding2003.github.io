@@ -7,6 +7,9 @@ tags: [Linux, tar, 圧縮, コマンド, CLI, システム管理]
 author: Kevin Park
 lang: ja
 excerpt: "Linuxで最も多く使用されるtarコマンドのオプションと実際の使用例をまとめました。圧縮と解凍、様々なオプションまで一度にマスターしましょう。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2023/03/18/linux-tar-command-options-guide-ja/
 ---
 
 Linuxを使用していると、ファイルやディレクトリを圧縮したり解凍したりする必要がある場合がよくあります。この時最も多く使用されるコマンドが`tar`です。今日はtarコマンドの主要オプションと実際の使用例を見てみましょう。

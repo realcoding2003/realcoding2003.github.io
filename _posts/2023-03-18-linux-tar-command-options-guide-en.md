@@ -7,6 +7,9 @@ tags: [Linux, tar, compression, command, CLI, system-administration]
 author: Kevin Park
 lang: en
 excerpt: "A comprehensive guide to the most commonly used tar command options and practical examples in Linux. Master compression, extraction, and various options all at once."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/03/18/linux-tar-command-options-guide-en/
 ---
 
 When using Linux, you often need to compress or extract files and directories. The most frequently used command for this purpose is `tar`. Today, we'll explore the main options of the tar command and practical usage examples.

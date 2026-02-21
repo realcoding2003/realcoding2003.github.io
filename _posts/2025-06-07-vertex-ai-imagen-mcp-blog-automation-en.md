@@ -9,6 +9,9 @@ excerpt: "Building a complete workflow for automatically generating images for b
 image: "/assets/images/posts/vertex-ai-imagen-mcp-blog-automation/hero.png"
 mermaid: true
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/07/vertex-ai-imagen-mcp-blog-automation-en/
 ---
 
 # Automating Blog Image Generation with Vertex AI Imagen: From Python Package to MCP Server

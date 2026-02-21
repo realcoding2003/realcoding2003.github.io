@@ -7,6 +7,9 @@ tags: [Amazon Cognito, JavaScript, Authentication, AWS, Error Resolution]
 author: Kevin Park
 lang: en
 excerpt: "Learn about the most common 'client secret' related error that occurs when integrating Amazon Cognito with JavaScript and how to resolve it."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/03/18/amazon-cognito-javascript-client-secret-error-en/
 ---
 
 Amazon Cognito is a powerful user authentication and management service provided by AWS. JavaScript frontend integration is one of the most common and straightforward methods. However, there's an important configuration that many developers overlook when setting up Cognito for the first time.

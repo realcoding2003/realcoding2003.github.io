@@ -7,6 +7,9 @@ tags: [AI, Subscription, SaaS, Cost, Experience]
 author: "Kevin Park"
 lang: en
 excerpt: "The AI market moves too fast. I paid for annual subscriptions and within months, better alternatives appeared. Here's what I learned."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2026/02/05/ai-subscription-regret-en/
 ---
 
 # The Annual AI Subscription Trap
@@ -25,7 +28,7 @@ I massively underestimated how fast the AI market moves.
 
 About 3 months after signing an annual plan, a better alternative shows up. At the 6-month mark, the service itself might become irrelevant. I signed up for SkyWork annually, and a few months later a different service blew past it. Same story with ready.ai.
 
-My [one-month Cursor review](/2025/03/20/cursor-agent-one-month-review-en/) was written in this exact context. Tools change so rapidly that long-term commitments become a liability.
+My [one-month Cursor review](/en/2025/03/20/cursor-agent-one-month-review-en/) was written in this exact context. Tools change so rapidly that long-term commitments become a liability.
 
 ## My New Rules
 
@@ -35,7 +38,7 @@ After getting burned a few times, I established some personal rules.
 
 **Use the entire free trial**. Don't pay on first impression. Use it for at least 2 weeks before deciding.
 
-**Keep only one core paid tool**. With [local options like Ollama](/2025/02/15/ollama-local-llm-review-en/) available, limit paid subscriptions to what's truly essential.
+**Keep only one core paid tool**. With [local options like Ollama](/en/2025/02/15/ollama-local-llm-review-en/) available, limit paid subscriptions to what's truly essential.
 
 **Audit subscriptions quarterly**. If you're not using something, cancel immediately. Procrastination is just money leaking out.
 

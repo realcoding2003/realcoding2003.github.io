@@ -7,6 +7,9 @@ tags: [gitkraken, github, organization, repository, oauth, git-tools]
 author: "Kevin Park"
 excerpt: "GitKrakenで組織アカウントのプライベートリポジトリが表示されない問題をOAuth権限設定で解決する方法"
 lang: ja
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2023/08/10/gitkraken-github-organization-repository-ja/
 ---
 
 # GitKrakenでGitHub組織アカウントリポジトリ連携完全ガイド

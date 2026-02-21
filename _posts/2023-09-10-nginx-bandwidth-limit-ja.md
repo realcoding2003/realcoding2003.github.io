@@ -7,6 +7,9 @@ tags: [nginx, server, bandwidth, limit_rate, optimization, devops]
 author: "Kevin Park"
 excerpt: "nginxでlimit_rateとlimit_rate_after指示文を使用して効果的に帯域幅を制限する方法と実際のテストガイド"
 lang: ja
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2023/09/10/nginx-bandwidth-limit-ja/
 ---
 
 # nginx帯域幅制限設定

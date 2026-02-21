@@ -42,6 +42,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-paginate
+  - jekyll-redirect-from
 
 # Pagination
 paginate: 30

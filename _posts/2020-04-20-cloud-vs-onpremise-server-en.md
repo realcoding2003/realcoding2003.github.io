@@ -7,6 +7,9 @@ tags: [Server, Cloud, AWS, OnPremise, IDC, Migration]
 author: "Kevin Park"
 lang: en
 excerpt: "New projects go to the cloud. Old ones stay on IDC servers. I keep telling myself I'll migrate them... but somehow never do."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2020/04/20/cloud-vs-onpremise-server-en/
 ---
 
 # The Transition From On-Premise to Cloud

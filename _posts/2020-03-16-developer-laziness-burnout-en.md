@@ -7,6 +7,9 @@ tags: [Developer, Burnout, Laziness, Growth, Experience]
 author: "Kevin Park"
 lang: en
 excerpt: "I still love coding, but my hands just won't move. The architecture is all planned out in my head, yet execution feels impossible. Am I the only one?"
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2020/03/16/developer-laziness-burnout-en/
 ---
 
 # When Coding Is Fun But Your Hands Won't Move

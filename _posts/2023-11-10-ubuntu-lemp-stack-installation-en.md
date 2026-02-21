@@ -7,6 +7,9 @@ tags: [ubuntu, nginx, mariadb, php, lemp, server, hosting, tutorial, beginner]
 author: "Kevin Park"
 excerpt: "Complete guide to quickly installing LEMP stack on Ubuntu 18.04LTS. Solve everything from one-click scripts to multi-site hosting configuration at once."
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/11/10/ubuntu-lemp-stack-installation-en/
 ---
 
 # Installing LEMP Stack on Ubuntu 18.04LTS: Complete Guide to Nginx, MariaDB, PHP 7.1

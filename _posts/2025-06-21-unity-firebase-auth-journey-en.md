@@ -9,6 +9,9 @@ excerpt: "Seamless experience for both guests and members! From Firebase Anonymo
 image: "/assets/images/posts/firebase-auth-journey/hero.png"
 mermaid: true
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/21/unity-firebase-auth-journey-en/
 ---
 
 # Unity + Firebase Authentication Journey: From Anonymous to Account Linking

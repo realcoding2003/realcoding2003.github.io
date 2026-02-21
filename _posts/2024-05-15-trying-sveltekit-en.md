@@ -7,13 +7,16 @@ tags: [SvelteKit, Svelte, Frontend, JavaScript, Framework]
 author: "Kevin Park"
 lang: en
 excerpt: "I barely finished learning Vue.js and another framework caught my eye. SvelteKit claims to be faster without virtual DOM. Time to find out."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2024/05/15/trying-sveltekit-en/
 ---
 
 # Giving SvelteKit a Try
 
 ## Another New Framework?
 
-It feels like [I just started learning Vue.js](/2021/09/20/starting-vuejs-en/), and already another framework has my attention.
+It feels like [I just started learning Vue.js](/en/2021/09/20/starting-vuejs-en/), and already another framework has my attention.
 
 This time it's SvelteKit.
 
@@ -71,7 +74,7 @@ I'm genuinely conflicted.
 
 I haven't even used Vue deeply yet. Picking up another framework risks becoming a "Jack of all trades, master of none" situation — poking at everything, mastering nothing.
 
-But as I [wrote about overcoming developer laziness](/2020/03/16/developer-laziness-burnout-en/), learning new technology reignites motivation. Coding gets fun again when there's something you don't know.
+But as I [wrote about overcoming developer laziness](/en/2020/03/16/developer-laziness-burnout-en/), learning new technology reignites motivation. Coding gets fun again when there's something you don't know.
 
 The plan is to build one small side project with SvelteKit first. Too risky to introduce it into client work directly — validate it in a side project, then decide.
 

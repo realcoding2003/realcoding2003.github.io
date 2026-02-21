@@ -7,6 +7,9 @@ tags: [css, blend-mode, frontend, design, visual-effects]
 author: "Kevin Park"
 lang: ja
 excerpt: "CSSのみでPhotoshopブレンディング効果を実装する方法。background-blend-modeとmix-blend-modeの実務活用法とレスポンシブレイアウト適用例まで。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2023/07/30/css-blend-modes-ja/
 ---
 
 # CSSブレンドモードでPhotoshopエフェクトを実装する

@@ -7,6 +7,9 @@ tags: [Raspberry Pi, Kiosk, Chromium, Linux, IoT]
 author: "Kevin Park"
 lang: en
 excerpt: "I built a store kiosk using a Raspberry Pi. As a web developer, hardware was a whole new world — and the unexpected pitfalls were plenty."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/07/20/raspberry-pi-kiosk-en/
 ---
 
 # Building a Kiosk with Raspberry Pi
@@ -55,6 +58,6 @@ Going from pure web development to working with hardware felt like entering a ne
 
 Once you install it at the store, you need remote management. If SSH won't connect, you have to physically go there. Thinking about all these edge cases made me realize remote management tools are absolutely essential.
 
-But honestly, this kind of problem-solving is fun. [That feeling when you're learning something new](/2020/03/16/developer-laziness-burnout-en/). You hit a wall, search for answers, find a solution, and feel that rush of accomplishment.
+But honestly, this kind of problem-solving is fun. [That feeling when you're learning something new](/en/2020/03/16/developer-laziness-burnout-en/). You hit a wall, search for answers, find a solution, and feel that rush of accomplishment.
 
 For the price of a single Raspberry Pi, the results are impressive. Next time, I might try my hand at Arduino too.

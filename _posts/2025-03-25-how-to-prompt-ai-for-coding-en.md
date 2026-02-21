@@ -7,6 +7,9 @@ tags: [AI Coding, Prompts, Cursor, Claude, Development]
 author: "Kevin Park"
 lang: en
 excerpt: "Sloppy instructions produce sloppy code. But good prompts alone aren't enough — your project structure matters more than you think."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/03/25/how-to-prompt-ai-for-coding-en/
 ---
 
 # How to Get Good Code From AI
@@ -47,6 +50,6 @@ Ironically, using AI coding tools well requires strong development skills.
 
 You need to judge whether AI-generated code is correct. Architecture design, code review, and test writing have become *more* important in the AI era, not less.
 
-"AI handles everything, no need to learn coding" is floating around. Reality is the opposite. Using AI effectively requires a solid development foundation. I [wrote about developer laziness](/2020/03/16/developer-laziness-burnout-en/) — having AI doesn't mean you stop learning.
+"AI handles everything, no need to learn coding" is floating around. Reality is the opposite. Using AI effectively requires a solid development foundation. I [wrote about developer laziness](/en/2020/03/16/developer-laziness-burnout-en/) — having AI doesn't mean you stop learning.
 
 AI is a tool. A skilled carpenter with good tools creates masterpieces. A beginner with good tools does not.

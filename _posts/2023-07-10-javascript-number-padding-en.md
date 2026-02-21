@@ -7,6 +7,9 @@ tags: [javascript, string-manipulation, formatting, utility, beginner]
 author: "Kevin Park"
 lang: en
 excerpt: "Learn all methods to pad numbers with zeros in JavaScript! From padStart() method to custom functions with ready-to-use code and practical examples."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/07/10/javascript-number-padding-en/
 ---
 
 # JavaScript Number Padding with Zeros - Complete Guide

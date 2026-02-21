@@ -7,6 +7,9 @@ tags: [aws, ec2, remote-desktop, cloud, windows, cost-analysis, automation, tuto
 author: "Kevin Park"
 excerpt: "AWS EC2でリモートデスクトップを構築し、月5万円で10万円相当のPCを代替！実際のコスト分析と構築ガイド"
 lang: ja
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2024/02/01/aws-ec2-remote-desktop-ja/
 ---
 
 # AWS EC2でリモートデスクトップ環境を構築 - クラウド業務環境の現実と未来

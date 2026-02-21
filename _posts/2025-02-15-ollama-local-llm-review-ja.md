@@ -7,6 +7,9 @@ tags: [Ollama, LLM, ローカルAI, Llama, オフライン]
 author: "Kevin Park"
 lang: ja
 excerpt: "ローカルでLLMを動かしたくてOllamaを導入しました。思ったより簡単に動きますが、クラウドAPIと比べると限界は明確です。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2025/02/15/ollama-local-llm-review-ja/
 ---
 
 # OllamaでローカルLLMを動かしてみた

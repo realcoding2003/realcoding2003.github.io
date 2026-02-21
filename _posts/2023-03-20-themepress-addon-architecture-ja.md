@@ -7,6 +7,9 @@ tags: [architecture, microservices, addon, plugin, nodejs, system-design, docker
 author: "Kevin Park"
 lang: ja
 excerpt: "100%無料ウェブサイトストリーミングサービスのための拡張可能なアドオンアーキテクチャ設計。マイクロサービスとプラグインパターンで無限拡張"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2023/03/20/themepress-addon-architecture-ja/
 ---
 
 # テーマプレス・アドオンサーバーアーキテクチャ - マイクロサービス基盤の拡張型ウェブプラットフォーム設計

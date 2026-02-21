@@ -7,6 +7,9 @@ tags: [Claude, MCP, Jekyll, GitHub Pages, AI, PairProgramming, TechBlog, Develop
 author: Kevin Park
 excerpt: "数年間先延ばしにしていたテックブログをClaude Desktop + MCPサーバーでたった1日で完成させました。マークダウン記法の面倒さ、複雑な設定、維持管理の負担...すべての障壁をAIペアプログラミングで解決。リアルな体験を共有します。"
 lang: ja
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/04/building-tech-blog-with-claude-mcp-ja/
 ---
 
 # Claude Desktop + MCPで完全なテックブログ構築：AIペアプログラミングの現実

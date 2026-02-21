@@ -7,6 +7,9 @@ tags: [python, timestamp, time, datetime, database, beginner]
 author: "Kevin Park"
 excerpt: "Pythonでtimestamp値を取得し変換する方法から実際のプロジェクト活用まで。すぐに使えるコード例と共に説明します。"
 lang: ja
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2025/05/05/python-timestamp-complete-guide-ja/
 ---
 
 # Python timestamp値の取得 - 現在時刻、変換、活用法完全ガイド

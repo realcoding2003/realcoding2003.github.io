@@ -7,6 +7,9 @@ tags: [mysql, mariadb, database, backup, restore, console, mysqldump]
 author: "Kevin Park"
 lang: en
 excerpt: "How to backup and restore MySQL/MariaDB databases via console without GUI tools. Ready-to-use command collection for hosting environments"
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/06/20/mysql-mariadb-console-backup-restore-en/
 ---
 
 # Complete Guide to MySQL/MariaDB Database Backup and Restore via Console

@@ -7,6 +7,9 @@ tags: [mariadb, mysql, database, server, configuration, troubleshooting]
 author: "Kevin Park"
 excerpt: "Step-by-step guide to configure MariaDB for external access by modifying bind-address settings and user permissions."
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/10/10/mariadb-external-access-en/
 ---
 
 # Complete Guide to Configuring MariaDB External Access

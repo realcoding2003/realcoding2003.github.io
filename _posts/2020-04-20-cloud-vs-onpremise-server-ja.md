@@ -7,6 +7,9 @@ tags: [サーバー, クラウド, AWS, オンプレミス, IDC, マイグレー
 author: "Kevin Park"
 lang: ja
 excerpt: "新しいプロジェクトはクラウド、既存のものはIDCそのまま。毎回移行しようと思いつつ応急処置だけして先延ばしにしている。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2020/04/20/cloud-vs-onpremise-server-ja/
 ---
 
 # オンプレミスからクラウドへの過渡期

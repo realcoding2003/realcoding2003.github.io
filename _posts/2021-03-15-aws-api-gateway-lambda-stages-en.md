@@ -7,13 +7,16 @@ tags: [AWS, API Gateway, Lambda, Stages, Serverless]
 author: "Kevin Park"
 lang: en
 excerpt: "I wanted API Gateway to call different Lambda functions per stage — dev, staging, prod. The docs made it look simple. It wasn't."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2021/03/15/aws-api-gateway-lambda-stages-en/
 ---
 
 # API Gateway Stage-Specific Lambda Functions
 
 ## What I Wanted
 
-After [getting into AWS](/2020/09/10/getting-into-aws-en/) and [passing the Developer Associate cert](/2020/12/15/aws-developer-certification-en/), I started applying it to real projects.
+After [getting into AWS](/en/2020/09/10/getting-into-aws-en/) and [passing the Developer Associate cert](/en/2020/12/15/aws-developer-certification-en/), I started applying it to real projects.
 
 One thing I needed was calling different Lambda functions per API Gateway stage. Dev, staging, and production environments each needed their own function. Sounds straightforward, right?
 

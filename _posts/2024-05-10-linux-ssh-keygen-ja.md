@@ -7,6 +7,9 @@ tags: [linux, ssh, keygen, security, server, tutorial, beginner]
 author: "Kevin Park"
 excerpt: "SSHキー生成から活用まで！ssh-keygenコマンドで安全なサーバーアクセス環境を構築する完全ガイド"
 lang: ja
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2024/05/10/linux-ssh-keygen-ja/
 ---
 
 # Linux SSHキー生成 - ssh-keygen完全ガイド

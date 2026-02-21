@@ -7,6 +7,9 @@ tags: [gnuboard, php, hooks, korean-cms, web-development]
 author: "Kevin Park"
 lang: ja
 excerpt: "グヌーボード bbs フォルダを修正せずにコード挿入するフック機能の使用法と全てのイベント種類をまとめました。extend フォルダ活用から実際の実装まで"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2023/07/20/gnuboard-hooks-guide-ja/
 ---
 
 # グヌーボード フック(Hook) 使用法とイベント種類完全ガイド

@@ -8,6 +8,9 @@ author: "Kevin Park"
 lang: ja
 excerpt: "Lambda関数ごとにリポジトリを作成していた過去から脱却し、CDK + Lambda + Cursorで一人でもプロジェクト全体の開発が可能になった体験談"
 image: "/assets/images/posts/fullstack-ai-development/hero.png"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2025/07/04/fullstack-ai-development-ja/
 ---
 
 # 一人でプロジェクト全体の開発が可能？CDK + Lambda + Cursorで200% AI活用術

@@ -10,6 +10,9 @@ excerpt: "Google Vertex AIのImagen画像生成APIをより簡単に使用でき
 image: "/assets/images/posts/vertex-ai-imagen-package-hero.png"
 mermaid: true
 translation_key: "vertex-ai-imagen-package"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/07/vertex-ai-imagen-python-package-ja/
 ---
 
 ![vertex-ai-imagen パッケージ Hero画像](/assets/images/posts/vertex-ai-imagen-package-hero.png)

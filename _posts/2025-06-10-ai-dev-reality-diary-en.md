@@ -8,6 +8,9 @@ author: "Kevin Park"
 excerpt: "Real stories from building a GitHub Pages blog with AI over the past few days. The light and shadow of AI development"
 image: "/assets/images/posts/ai-dev-reality-diary/hero.png"
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/10/ai-dev-reality-diary-en/
 ---
 
 # AI Development Reality Check: Lessons from Blog Automation

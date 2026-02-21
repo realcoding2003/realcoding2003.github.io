@@ -8,6 +8,9 @@ author: "Kevin Park"
 excerpt: "FirebaseにNaver/Kakao OIDCプロバイダーを追加しようとして徹夜した話"
 image: "/assets/images/posts/firebase-oauth-hybrid-strategy/firebase-oauth-hybrid-strategy-hero.png"
 lang: ja
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/27/firebase-oauth-hybrid-strategy-ja/
 ---
 
 # FirebaseにNaver/Kakao OIDCを作る？現実は違った

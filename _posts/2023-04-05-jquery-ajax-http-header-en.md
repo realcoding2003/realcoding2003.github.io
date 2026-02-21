@@ -7,6 +7,9 @@ tags: [javascript, jquery, ajax, http-header, beforeSend, authorization]
 author: "Kevin Park"
 lang: en
 excerpt: "Learn core methods and practical examples for adding authentication tokens to HTTP headers using beforeSend and setRequestHeader in AJAX communication."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/04/05/jquery-ajax-http-header-en/
 ---
 
 # Adding Values to HTTP Headers in JavaScript jQuery AJAX Communication

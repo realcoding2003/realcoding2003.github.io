@@ -7,6 +7,9 @@ tags: [Ollama, LLM, Local AI, Llama, Offline]
 author: "Kevin Park"
 lang: en
 excerpt: "I wanted to run LLMs locally so I set up Ollama. Surprisingly easy to get running, but the gap with cloud APIs is clear when you need real capability."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/02/15/ollama-local-llm-review-en/
 ---
 
 # Running LLMs Locally With Ollama

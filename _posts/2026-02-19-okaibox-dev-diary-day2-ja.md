@@ -10,6 +10,9 @@ excerpt: "AIでワンクリックで何でもできる時代に、開発者は�
 image: "/assets/images/posts/okaibox-dev-diary-day2/hero.jpg"
 mermaid: true
 series: "OKAIBOX 開発日記"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2026/02/19/okaibox-dev-diary-day2-ja/
 ---
 
 ![Hero Image](/assets/images/posts/okaibox-dev-diary-day2/hero.jpg)
@@ -17,7 +20,7 @@ series: "OKAIBOX 開発日記"
 
 本当は今日、LattePanda IOTAの開封をするはずでした。
 
-[Day 1](/2026/02/14/okaibox-dev-diary-day1-ja/)で「次回は実物を開けてBOMを公開する」と予告までしたのに...でも、ハードウェアに触る前に、まず整理しなければならない考えがありました。
+[Day 1](/ja/2026/02/14/okaibox-dev-diary-day1-ja/)で「次回は実物を開けてBOMを公開する」と予告までしたのに...でも、ハードウェアに触る前に、まず整理しなければならない考えがありました。
 
 ## AIで何でもできる時代に、何を開発すべきか
 
@@ -163,7 +166,7 @@ HWPXはまだ良い方です。次世代フォーマットでXMLベース、構�
 
 ## OKAIBOXの方向を変えた
 
-[Day 1](/2026/02/14/okaibox-dev-diary-day1-ja/)ではOKAIBOXを「韓国版OpenClaw」として紹介しました。ハードウェアベースのAIエージェント。KakaoTalk連携、Windowsネイティブ、韓国サービス最適化。
+[Day 1](/ja/2026/02/14/okaibox-dev-diary-day1-ja/)ではOKAIBOXを「韓国版OpenClaw」として紹介しました。ハードウェアベースのAIエージェント。KakaoTalk連携、Windowsネイティブ、韓国サービス最適化。
 
 でもこれだけでは、OpenClawの韓国版に過ぎません。表面の上で遊んでいるだけです。
 
@@ -242,6 +245,6 @@ OKAIBOXも最初は「韓国版OpenClaw」という浅い方向から始まり�
 ---
 
 **シリーズ**: OKAIBOX 開発日記
-- **前回**: [Day 1 - OpenClawが話題だけど、実は韓国版をもう作り始めていた](/2026/02/14/okaibox-dev-diary-day1-ja/)
+- **前回**: [Day 1 - OpenClawが話題だけど、実は韓国版をもう作り始めていた](/ja/2026/02/14/okaibox-dev-diary-day1-ja/)
 - **今回**: Day 2 - AIで何でもできる時代に、開発者は何を作るべきか
 - **次回**: Day 3 - HWPXファイルフォーマットを解剖する（予定）

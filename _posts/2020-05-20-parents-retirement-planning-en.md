@@ -7,6 +7,9 @@ tags: [Retirement, Parents, Generation Gap, Real Estate, Life]
 author: "Kevin Park"
 lang: en
 excerpt: "For my parents, owning a house IS their retirement plan. No pension strategy, no investments. And honestly, am I really any different?"
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2020/05/20/parents-retirement-planning-en/
 ---
 
 # How My Parents' Generation Thinks About Retirement

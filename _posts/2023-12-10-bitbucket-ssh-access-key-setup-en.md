@@ -7,6 +7,9 @@ tags: [bitbucket, ssh, git, devops, setup, tutorial]
 author: "Kevin Park"
 excerpt: "Complete setup guide for securely pushing to Bitbucket Private Repository using SSH Key without password authentication"
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/12/10/bitbucket-ssh-access-key-setup-en/
 ---
 
 # Setting up SSH Push with Bitbucket Access Key

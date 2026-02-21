@@ -7,6 +7,9 @@ tags: [Amazon Cognito, JavaScript, Authentication, AWS, 認証, エラー解決]
 author: Kevin Park
 lang: ja
 excerpt: "Amazon CognitoをJavaScriptで連携する際に最も頻繁に発生する「クライアントシークレット」関連エラーと解決方法について説明します。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2023/03/18/amazon-cognito-javascript-client-secret-error-ja/
 ---
 
 Amazon CognitoはAWSが提供する強力なユーザー認証および管理サービスです。特にJavaScriptを使用したフロントエンド連携は最も一般的で簡単な方法の一つです。しかし、多くの開発者がCognitoを初めて設定する際に見落としがちな重要な設定があります。

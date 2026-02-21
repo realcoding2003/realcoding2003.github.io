@@ -9,6 +9,9 @@ excerpt: "ゲストユーザーも会員も自然に！Firebase Anonymous Auth�
 image: "/assets/images/posts/firebase-auth-journey/hero.png"
 mermaid: true
 lang: ja
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/21/unity-firebase-auth-journey-ja/
 ---
 
 # Unity + Firebase認証の苦労話：Anonymousからアカウントリンクまで

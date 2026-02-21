@@ -7,6 +7,9 @@ tags: [Career, AI, Vibe Coding, Retrospective, 20 Years]
 author: "Kevin Park"
 lang: en
 excerpt: "For 20 years I typed every line of code myself. Now I tell AI what to build and a website appears. The feelings are... complicated."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/04/10/20-years-of-development-en/
 ---
 
 # After 20 Years of Development
@@ -31,7 +34,7 @@ On the other: a hint of emptiness. Will the coding skills I've honed for two dec
 
 ## But 20 Years Weren't Wasted
 
-As I [wrote about getting good results from AI](/2025/03/25/how-to-prompt-ai-for-coding-en/), using AI well requires development knowledge.
+As I [wrote about getting good results from AI](/en/2025/03/25/how-to-prompt-ai-for-coding-en/), using AI well requires development knowledge.
 
 When I had AI build the website, 20 years of experience helped enormously. I can spot problems in AI-generated code. I can anticipate performance issues before they surface. I can redirect the architecture when it's heading the wrong way.
 
@@ -43,6 +46,6 @@ The proportion of manually typing code will shrink, but developers won't become 
 
 The role is shifting. From coder to architect. From typist to supervisor. From the person laying bricks to the person drawing blueprints.
 
-When I [first felt developer laziness creeping in](/2020/03/16/developer-laziness-burnout-en/), I thought "not writing code is the problem." Now, writing less code seems like natural evolution.
+When I [first felt developer laziness creeping in](/en/2020/03/16/developer-laziness-burnout-en/), I thought "not writing code is the problem." Now, writing less code seems like natural evolution.
 
 Twenty years of experience now serves as "the ability to judge good code" rather than "the ability to write good code." That's not a bad transition at all.

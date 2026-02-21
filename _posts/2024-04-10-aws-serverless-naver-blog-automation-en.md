@@ -7,6 +7,9 @@ tags: [aws, lambda, s3, cloudwatch, sns, naver-blog, serverless, automation, pyt
 author: "Kevin Park"
 excerpt: "A complete guide to building an automated Naver blog posting system using AWS serverless architecture, solving the complexity of existing on-premise servers"
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2024/04/10/aws-serverless-naver-blog-automation-en/
 ---
 
 # Building an Automated Naver Blog Posting System with AWS Lambda + S3 + CloudWatch + SNS

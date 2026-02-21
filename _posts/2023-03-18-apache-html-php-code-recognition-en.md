@@ -7,6 +7,9 @@ tags: [Apache, PHP, HTML, webserver, configuration, mime.conf]
 author: Kevin Park
 lang: en
 excerpt: "Learn how to configure Apache web server to execute PHP code in files with .html extension through step-by-step instructions."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/03/18/apache-html-php-code-recognition-en/
 ---
 
 Typically, Apache web server only executes PHP code in files with the `.php` extension. However, there are times when you need to execute PHP code in `.html` files as well. Today, we'll learn how to configure Apache to recognize PHP code in HTML files.

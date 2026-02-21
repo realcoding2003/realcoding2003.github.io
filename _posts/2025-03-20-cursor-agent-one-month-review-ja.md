@@ -7,6 +7,9 @@ tags: [Cursor, AIコーディング, エージェント, IDE, 開発ツール]
 author: "Kevin Park"
 lang: ja
 excerpt: "CursorのAIエージェントを1ヶ月間実務で使ってみました。生産性は確実に上がりましたが、盲信すると痛い目に遭います。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2025/03/20/cursor-agent-one-month-review-ja/
 ---
 
 # Cursorエージェント 1ヶ月使用レビュー
@@ -46,4 +49,4 @@ CursorはAIが統合されたコードエディタです。VS Codeベースな�
 - **コアビジネスロジック** → 直接作成（AIは参考のみ）
 - **デバッグ** → まずAIに聞いて、ダメなら直接調査
 
-結局「AIがコーディングする」ではなく「AIが補助する」が正しい表現です。主導権は開発者が持つべきです。[MSAにChatGPTを活用した話](/2024/02/10/msa-and-chatgpt-ja/)でも同じ結論でしたが、ツールが変わっても原則は同じです。
+結局「AIがコーディングする」ではなく「AIが補助する」が正しい表現です。主導権は開発者が持つべきです。[MSAにChatGPTを活用した話](/ja/2024/02/10/msa-and-chatgpt-ja/)でも同じ結論でしたが、ツールが変わっても原則は同じです。

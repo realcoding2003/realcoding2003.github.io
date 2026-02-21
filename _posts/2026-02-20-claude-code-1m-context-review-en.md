@@ -8,6 +8,9 @@ author: "Kevin Park"
 lang: en
 excerpt: "Claude Code now offers 1M context models. The frustration of constantly watching for compacting messages is finally gone."
 image: "/assets/images/posts/claude-code-1m-context-review/1771584253_wr6cf5Uqay.webp"
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2026/02/20/claude-code-1m-context-review-en/
 ---
 
 # Escaping Compacting Hell

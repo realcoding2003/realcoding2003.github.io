@@ -7,6 +7,9 @@ tags: [フリーランス, プレゼン, サイトリニューアル, プロジ�
 author: "Kevin Park"
 lang: ja
 excerpt: "競合プレゼンでサイトリニューアルプロジェクトを獲得しました。企画書を書くのがコーディングより難しいことを改めて実感しました。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2021/06/10/competitive-website-renewal-ja/
 ---
 
 # 競合プレゼンでサイトリニューアルを勝ち取る

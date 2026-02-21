@@ -7,6 +7,9 @@ tags: [gnuboard, php, hooks, korean-cms, web-development]
 author: "Kevin Park"
 lang: en
 excerpt: "A comprehensive guide to using Gnuboard hook features for code injection without modifying the bbs folder, covering extend folder usage and practical implementations."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/07/20/gnuboard-hooks-guide-en/
 ---
 
 # Complete Guide to Gnuboard Hook Usage and Event Types

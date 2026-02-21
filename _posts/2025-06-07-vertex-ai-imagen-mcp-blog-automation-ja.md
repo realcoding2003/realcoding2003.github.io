@@ -9,6 +9,9 @@ excerpt: "ブログポスト用の画像をAIで自動生成する完全なワ�
 image: "/assets/images/posts/vertex-ai-imagen-mcp-blog-automation/hero.png"
 mermaid: true
 lang: ja
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/07/vertex-ai-imagen-mcp-blog-automation-ja/
 ---
 
 # Vertex AI Imagenでブログ画像自動生成：Pythonパッケージ開発からMCPサーバー構築まで

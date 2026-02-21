@@ -7,6 +7,9 @@ tags: [Opencode, Claude Code, AI Coding, Terminal, Dev Tools]
 author: "Kevin Park"
 lang: en
 excerpt: "I tried Opencode, a terminal-based AI coding tool. It's good, but Claude Code already had most of the features I needed."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2026/01/20/opencode-vs-claude-code-review-en/
 ---
 
 # I Tried Opencode
@@ -38,10 +41,10 @@ Claude Code's advantages:
 
 ## The Verdict: "I'm Already Happy"
 
-Like I felt after [using Cursor for a month](/2025/03/20/cursor-agent-one-month-review-en/), AI coding tools are evolving at a breathtaking pace. There's always a temptation to try every new tool that comes out, but realistically, getting comfortable with one tool is better for productivity.
+Like I felt after [using Cursor for a month](/en/2025/03/20/cursor-agent-one-month-review-en/), AI coding tools are evolving at a breathtaking pace. There's always a temptation to try every new tool that comes out, but realistically, getting comfortable with one tool is better for productivity.
 
 Opencode is a solid project. It's a great choice for people who don't want to be locked into a specific LLM. But for someone like me who already uses Claude Code as their primary tool, there wasn't a compelling reason to switch.
 
 The power of open source is real, though. If Opencode introduces a great feature, Claude Code will likely add something similar, and vice versa. Competition benefits users in the end.
 
-One thing that does bother me is the [growing stack of AI tool subscriptions](/2026/02/05/ai-subscription-regret-en/). If open source alternatives keep maturing, that could open up more options on the cost front too.
+One thing that does bother me is the [growing stack of AI tool subscriptions](/en/2026/02/05/ai-subscription-regret-en/). If open source alternatives keep maturing, that could open up more options on the cost front too.

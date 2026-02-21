@@ -7,6 +7,9 @@ tags: [Docker, コンテナ, デプロイ, 開発環境, DevOps]
 author: "Kevin Park"
 lang: ja
 excerpt: "2年前からすべてのプロジェクトをDocker基盤に切り替えました。導入障壁が低くてデプロイも楽ですが、本当にメリットだけでしょうか？"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2020/03/15/why-i-use-docker-ja/
 ---
 
 # Dockerを2年間すべてのプロジェクトで使ってみた正直な感想

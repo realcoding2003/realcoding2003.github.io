@@ -10,6 +10,9 @@ excerpt: "Inspired by OpenClaw, I started building OKAIBOX - an AI agent optimiz
 image: "/assets/images/posts/okaibox-dev-diary-day1/okaibox_nas_device_1.jpg"
 mermaid: true
 series: "OKAIBOX Dev Diary"
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2026/02/14/okaibox-dev-diary-day1-en/
 ---
 
 # Everyone's Talking About OpenClaw, But I Was Already Building the Korean Version

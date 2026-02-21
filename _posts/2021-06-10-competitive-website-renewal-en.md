@@ -7,6 +7,9 @@ tags: [Freelance, Pitch, Website Renewal, Project, Developer]
 author: "Kevin Park"
 lang: en
 excerpt: "I won a website renewal project through a competitive pitch. Turns out writing proposals is harder than writing code."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2021/06/10/competitive-website-renewal-en/
 ---
 
 # Winning a Website Renewal Through Competitive Pitch

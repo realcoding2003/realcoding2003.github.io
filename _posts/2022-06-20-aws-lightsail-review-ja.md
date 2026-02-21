@@ -7,6 +7,9 @@ tags: [AWS, Lightsail, クラウド, サーバー, ホスティング]
 author: "Kevin Park"
 lang: ja
 excerpt: "以前Lightsailを少し使って微妙だったので辞めたのですが、最近また入ってみたら完全に別のサービスになっていました。価格も安く機能も十分です。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2022/06/20/aws-lightsail-review-ja/
 ---
 
 # AWS Lightsail、再挑戦してみたら完全に変わっていた
@@ -53,7 +56,7 @@ EC2はインスタンス費用にEBS、トラフィック、EIPまで別々に�
 - 静的サイトホスティング
 - シンプルなAPIサーバー
 
-以前[サーバー移行を先延ばしにしている話](/2020/04/20/cloud-vs-onpremise-server-ja/)を書いたことがありますが、小さなサービスはLightsailに移せばコストも節約でき、管理も楽になりそうです。
+以前[サーバー移行を先延ばしにしている話](/ja/2020/04/20/cloud-vs-onpremise-server-ja/)を書いたことがありますが、小さなサービスはLightsailに移せばコストも節約でき、管理も楽になりそうです。
 
 ## 一般的なホスティング業者は？
 

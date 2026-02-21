@@ -8,6 +8,9 @@ author: "Kevin Park"
 excerpt: "Revolutionary method to create complete Jekyll blog directly in local filesystem with MCP server without copy/paste"
 image: "/assets/images/posts/claude-desktop-blog-setup/hero.png"
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2025/06/09/claude-desktop-mcp-blog-setup-en/
 ---
 
 # Building a GitHub Pages Tech Blog with AI (1) - Creating Jekyll Blog Locally with Claude Desktop MCP
@@ -176,12 +179,12 @@ Claude Desktop's MCP goes beyond simple code generation to become **an AI assist
 ---
 
 **📚 Complete Series List**:
-1. [Building a GitHub Pages Tech Blog with AI (1) - Creating Jekyll Blog Locally with Claude Desktop MCP](/2025/06/09/claude-desktop-mcp-blog-setup-en/) ← Current post
-2. [Building a GitHub Pages Tech Blog with AI (2) - Complete Automation of SEO-Optimized Tech Posting with MCP](/2025/06/09/mcp-automated-blog-posting-en/)
-3. [Building a GitHub Pages Tech Blog with AI (3) - Setting up Giscus Comment System in 5 Minutes with MCP](/2025/06/09/mcp-giscus-comments-setup-en/)
-4. [Building a GitHub Pages Tech Blog with AI (4) - Perfect Implementation of Dark/Light Mode with MCP](/2025/06/09/mcp-dark-light-mode-implementation-en/)
-5. [Building a GitHub Pages Tech Blog with AI (5) - Completing Jekyll Multilingual Blog with MCP](/2025/06/09/mcp-jekyll-multilingual-blog-en/)
+1. [Building a GitHub Pages Tech Blog with AI (1) - Creating Jekyll Blog Locally with Claude Desktop MCP](/en/2025/06/09/claude-desktop-mcp-blog-setup-en/) ← Current post
+2. [Building a GitHub Pages Tech Blog with AI (2) - Complete Automation of SEO-Optimized Tech Posting with MCP](/en/2025/06/09/mcp-automated-blog-posting-en/)
+3. [Building a GitHub Pages Tech Blog with AI (3) - Setting up Giscus Comment System in 5 Minutes with MCP](/en/2025/06/09/mcp-giscus-comments-setup-en/)
+4. [Building a GitHub Pages Tech Blog with AI (4) - Perfect Implementation of Dark/Light Mode with MCP](/en/2025/06/09/mcp-dark-light-mode-implementation-en/)
+5. [Building a GitHub Pages Tech Blog with AI (5) - Completing Jekyll Multilingual Blog with MCP](/en/2025/06/09/mcp-jekyll-multilingual-blog-en/)
 
 ---
 
-**Next in Series**: [Building a GitHub Pages Tech Blog with AI (2) - Complete Automation of SEO-Optimized Tech Posting with MCP](/2025/06/09/mcp-automated-blog-posting-en/)
+**Next in Series**: [Building a GitHub Pages Tech Blog with AI (2) - Complete Automation of SEO-Optimized Tech Posting with MCP](/en/2025/06/09/mcp-automated-blog-posting-en/)

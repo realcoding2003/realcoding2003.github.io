@@ -7,6 +7,9 @@ tags: [architecture, microservices, addon, plugin, nodejs, system-design, docker
 author: "Kevin Park"
 lang: en
 excerpt: "Designing a scalable addon architecture for 100% free website streaming service. Infinite expansion with microservices and plugin patterns"
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2023/03/20/themepress-addon-architecture-en/
 ---
 
 # ThemePress Addon Server Architecture - Microservice-Based Scalable Web Platform Design

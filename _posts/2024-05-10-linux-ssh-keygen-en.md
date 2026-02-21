@@ -7,6 +7,9 @@ tags: [linux, ssh, keygen, security, server, tutorial, beginner]
 author: "Kevin Park"
 excerpt: "From SSH key generation to implementation! A complete guide to building secure server access environment with ssh-keygen command"
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2024/05/10/linux-ssh-keygen-en/
 ---
 
 # Linux SSH Key Generation - Complete ssh-keygen Guide

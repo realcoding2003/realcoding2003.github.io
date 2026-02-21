@@ -7,6 +7,9 @@ tags: [AI, 3D Modeling, Hardware, CAD, IoT]
 author: "Kevin Park"
 lang: en
 excerpt: "I was chatting with AI and asked for a 3D hardware case design. A complete model appeared in under 5 minutes. That was genuinely shocking."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2026/02/10/ai-generated-3d-hardware-design-en/
 ---
 
 # AI Made a 3D Blueprint in 5 Minutes
@@ -15,7 +18,7 @@ excerpt: "I was chatting with AI and asked for a 3D hardware case design. A comp
 
 I was chatting with AI about random things.
 
-I've been getting into hardware since my [Raspberry Pi kiosk project](/2025/07/20/raspberry-pi-kiosk-en/), and I mentioned wanting a custom case for an SBC (single-board computer).
+I've been getting into hardware since my [Raspberry Pi kiosk project](/en/2025/07/20/raspberry-pi-kiosk-en/), and I mentioned wanting a custom case for an SBC (single-board computer).
 
 The AI said, "Want me to make a 3D model for you?"
 
@@ -37,7 +40,7 @@ Learning CAD software alone takes months, and proper design requires mechanical 
 
 AI just obliterated that barrier. "This size, these holes, this shape" — that's all you need to say. Since it generates code, modifications are easy too. Change a parameter, instant update.
 
-I had been [pondering what services to build in the AI era](/2026/01/15/what-service-to-build-in-ai-era-en/), and this is exactly what I mean. AI is dissolving the boundary between software and hardware.
+I had been [pondering what services to build in the AI era](/en/2026/01/15/what-service-to-build-in-ai-era-en/), and this is exactly what I mean. AI is dissolving the boundary between software and hardware.
 
 ## But Can You Actually Use It?
 
@@ -45,6 +48,6 @@ I printed it on a 3D printer.
 
 Surprisingly, the basic fit was right. Not perfect — it took a few modify-and-print iterations — but the "AI draft → modify → print" cycle was significantly faster than "design from scratch."
 
-Like I wrote in [how to get AI to code well for you](/2025/03/25/how-to-prompt-ai-for-coding-en/), giving AI clear specs is the key. Not "make me a case" but exact dimensions and requirements — the quality difference is dramatic.
+Like I wrote in [how to get AI to code well for you](/en/2025/03/25/how-to-prompt-ai-for-coding-en/), giving AI clear specs is the key. Not "make me a case" but exact dimensions and requirements — the quality difference is dramatic.
 
 The era where software developers dabble in hardware design seems to have truly arrived. It's both intimidating and exciting.

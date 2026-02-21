@@ -7,6 +7,9 @@ tags: [aws, lambda, s3, cloudwatch, sns, naver-blog, serverless, automation, pyt
 author: "Kevin Park"
 excerpt: "既存のオンプレミスサーバーの複雑性を解決し、AWSサーバーレスアーキテクチャでネイバーブログ自動投稿システムを構築する完全ガイド"
 lang: ja
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2024/04/10/aws-serverless-naver-blog-automation-ja/
 ---
 
 # AWS Lambda + S3 + CloudWatch + SNSを活用したネイバーブログ自動投稿システム構築

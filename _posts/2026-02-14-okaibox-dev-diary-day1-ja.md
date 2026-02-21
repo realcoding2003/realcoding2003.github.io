@@ -10,6 +10,9 @@ excerpt: "OpenClawに触発されて、韓国環境に最適化されたAIエー
 image: "/assets/images/posts/okaibox-dev-diary-day1/okaibox_nas_device_1.jpg"
 mermaid: true
 series: "OKAIBOX 開発日記"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2026/02/14/okaibox-dev-diary-day1-ja/
 ---
 
 # OpenClawが話題だけど、実は韓国版をもう作り始めていた

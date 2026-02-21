@@ -7,6 +7,9 @@ tags: [MySQL, UUID, Security, Database, PHP]
 author: "Kevin Park"
 lang: en
 excerpt: "Using auto_increment PKs directly in URLs gets flagged in every security audit. But replacing all PKs with UUIDs is wildly impractical. Here's the realistic middle ground."
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2020/04/21/mysql-uuid-usage-en/
 ---
 
 # Why You Shouldn't Expose Auto Increment PKs in URLs

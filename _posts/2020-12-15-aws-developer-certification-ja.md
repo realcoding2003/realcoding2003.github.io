@@ -7,6 +7,9 @@ tags: [AWS, 資格, Developer Associate, クラウド, 合格体験記]
 author: "Kevin Park"
 lang: ja
 excerpt: "AWSにハマって勉強していたら、資格まで取ってしまいました。試験の準備過程と合格後に感じたことをまとめました。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2020/12/15/aws-developer-certification-ja/
 ---
 
 # AWS Certified Developer Associate 合格体験記
@@ -15,7 +18,7 @@ excerpt: "AWSにハマって勉強していたら、資格まで取ってしま�
 
 AWS Certified Developer - Associate資格に合格しました。
 
-[AWSにハマっている話](/2020/09/10/getting-into-aws-ja/)を書いたのが9月でしたが、その後3ヶ月間コツコツ勉強して、年末に試験を受けました。結果は合格。
+[AWSにハマっている話](/ja/2020/09/10/getting-into-aws-ja/)を書いたのが9月でしたが、その後3ヶ月間コツコツ勉強して、年末に試験を受けました。結果は合格。
 
 正直、落ちると思っていました。問題が思ったより曖昧なものが多くて、試験中に「これは落ちたな」と思っていたのですが、意外にも合格していました。
 

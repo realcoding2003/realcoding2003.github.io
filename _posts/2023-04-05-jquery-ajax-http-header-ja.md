@@ -7,6 +7,9 @@ tags: [javascript, jquery, ajax, http-header, beforeSend, authorization]
 author: "Kevin Park"
 lang: ja
 excerpt: "AJAX通信でbeforeSendとsetRequestHeaderを使用してHTTPヘッダーに認証トークンを追加する核心的な方法と実際の活用例について学びます。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2023/04/05/jquery-ajax-http-header-ja/
 ---
 
 # JavaScript jQuery AJAX通信でHTTPヘッダーに値を追加する方法

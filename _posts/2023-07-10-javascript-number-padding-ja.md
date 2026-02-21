@@ -7,6 +7,9 @@ tags: [javascript, string-manipulation, formatting, utility, beginner]
 author: "Kevin Park"
 lang: ja
 excerpt: "JavaScript数値の前にゼロを付ける全ての方法！padStart()メソッドからカスタム関数まで、すぐに使えるコードと実践例を提供します。"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2023/07/10/javascript-number-padding-ja/
 ---
 
 # JavaScript数値のゼロパディング - 完全ガイド

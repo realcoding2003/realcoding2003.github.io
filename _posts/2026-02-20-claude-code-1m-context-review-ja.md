@@ -8,6 +8,9 @@ author: "Kevin Park"
 lang: ja
 excerpt: "Claude Codeに1M contextモデルが追加されました。Compactingを気にしながら使っていたストレスが一気に解消されました。"
 image: "/assets/images/posts/claude-code-1m-context-review/1771584253_wr6cf5Uqay.webp"
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2026/02/20/claude-code-1m-context-review-ja/
 ---
 
 # Compacting地獄からの脱出

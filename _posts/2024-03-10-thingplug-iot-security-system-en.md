@@ -7,6 +7,9 @@ tags: [iot, thingplug, aws, lambda, dynamodb, corecrypto, security, serverless]
 author: "Kevin Park"
 excerpt: "IoT security system design based on Thingplug 2.0 platform - Implementing hybrid architecture with AWS Serverless and CoreCrypto"
 lang: en
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /2024/03/10/thingplug-iot-security-system-en/
 ---
 
 # Hardware-Based Key Management and Access Control System Design Using Thingplug

@@ -7,6 +7,9 @@ tags: [老後, 親, 世代ギャップ, 不動産, 日常]
 author: "Kevin Park"
 lang: ja
 excerpt: "親の世代にとって家一軒が老後の備えのすべて。年金？投資？そんなものはない。開発者の自分も人のことは言えないのですが..."
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /2020/05/20/parents-retirement-planning-ja/
 ---
 
 # 親世代が考える老後の備え

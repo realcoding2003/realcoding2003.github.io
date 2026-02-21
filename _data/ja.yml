@@ -11,6 +11,8 @@ posts:
   recent: "最新記事"
   view_all: "すべての記事を見る"
   date_format: "%Y年%m月%d日"
+  prev_page: "前へ"
+  next_page: "次へ"
 
 ui:
   previous_post: "← 前の記事"

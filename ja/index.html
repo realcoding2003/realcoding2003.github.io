@@ -31,7 +31,7 @@ permalink: /ja/
         <div class="posts-list">
           {% assign japanese_posts = site.posts | where: "lang", "ja" %}
           {% if japanese_posts.size > 0 %}
-            {% for post in japanese_posts limit:20 %}
+            {% for post in japanese_posts %}
             <article class="post-item">
               <h3 class="post-title">
                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -55,7 +55,61 @@ permalink: /ja/
             <p style="color: var(--text-secondary); padding: var(--spacing-xl) 0;">準備中！日本語の記事は近日公開予定です。</p>
           {% endif %}
         </div>
+
+        <nav class="pagination" id="pagination-nav" style="display:none">
+          <a href="#" class="pagination-btn pagination-prev" id="prev-btn">← {{ lang_data.posts.prev_page }}</a>
+          <span class="pagination-info" id="page-info"></span>
+          <a href="#" class="pagination-btn pagination-next" id="next-btn">{{ lang_data.posts.next_page }} →</a>
+        </nav>
       </section>
     </div>
   </div>
 </main>
+
+<script>
+(function() {
+  var POSTS_PER_PAGE = 10;
+  var posts = document.querySelectorAll('.posts-list .post-item');
+  if (posts.length <= POSTS_PER_PAGE) return;
+
+  var totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+  var params = new URLSearchParams(window.location.search);
+  var currentPage = parseInt(params.get('page')) || 1;
+  currentPage = Math.max(1, Math.min(currentPage, totalPages));
+
+  var nav = document.getElementById('pagination-nav');
+  var prevBtn = document.getElementById('prev-btn');
+  var nextBtn = document.getElementById('next-btn');
+  var pageInfo = document.getElementById('page-info');
+  var basePath = window.location.pathname;
+
+  function showPage(page) {
+    var start = (page - 1) * POSTS_PER_PAGE;
+    var end = start + POSTS_PER_PAGE;
+    for (var i = 0; i < posts.length; i++) {
+      posts[i].style.display = (i >= start && i < end) ? '' : 'none';
+    }
+    pageInfo.textContent = page + ' / ' + totalPages;
+
+    if (page > 1) {
+      prevBtn.href = page === 2 ? basePath : basePath + '?page=' + (page - 1);
+      prevBtn.classList.remove('disabled');
+    } else {
+      prevBtn.removeAttribute('href');
+      prevBtn.classList.add('disabled');
+    }
+
+    if (page < totalPages) {
+      nextBtn.href = basePath + '?page=' + (page + 1);
+      nextBtn.classList.remove('disabled');
+    } else {
+      nextBtn.removeAttribute('href');
+      nextBtn.classList.add('disabled');
+    }
+  }
+
+  nav.style.display = '';
+  showPage(currentPage);
+  window.scrollTo(0, 0);
+})();
+</script>

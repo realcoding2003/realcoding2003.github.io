@@ -11,6 +11,8 @@ posts:
   recent: "Recent Posts"
   view_all: "View All Posts"
   date_format: "%B %d, %Y"
+  prev_page: "Previous"
+  next_page: "Next"
 
 ui:
   previous_post: "← Previous"

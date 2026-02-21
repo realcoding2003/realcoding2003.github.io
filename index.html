@@ -27,10 +27,7 @@ title: Home
 
         <div class="posts-list">
           {% assign korean_posts = site.posts | where: "lang", "ko" %}
-          {% assign posts_per_page = 10 %}
-          {% assign current_page = paginator.page | default: 1 %}
-          {% assign offset_val = current_page | minus: 1 | times: posts_per_page %}
-          {% for post in korean_posts limit: posts_per_page offset: offset_val %}
+          {% for post in korean_posts %}
             <article class="post-item">
               <h3 class="post-title">
                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -52,35 +49,60 @@ title: Home
           {% endfor %}
         </div>
 
-        {% assign total_korean = korean_posts | size %}
-        {% assign total_pages = total_korean | divided_by: posts_per_page %}
-        {% assign remainder = total_korean | modulo: posts_per_page %}
-        {% if remainder > 0 %}
-          {% assign total_pages = total_pages | plus: 1 %}
-        {% endif %}
-
-        {% if total_pages > 1 %}
-        <nav class="pagination" aria-label="페이지 네비게이션">
-          {% if current_page > 1 %}
-            {% if current_page == 2 %}
-              <a href="/" class="pagination-btn pagination-prev">← {{ lang_data.posts.prev_page | default: "이전" }}</a>
-            {% else %}
-              <a href="/page{{ current_page | minus: 1 }}/" class="pagination-btn pagination-prev">← {{ lang_data.posts.prev_page | default: "이전" }}</a>
-            {% endif %}
-          {% else %}
-            <span class="pagination-btn pagination-prev disabled">← {{ lang_data.posts.prev_page | default: "이전" }}</span>
-          {% endif %}
-
-          <span class="pagination-info">{{ current_page }} / {{ total_pages }}</span>
-
-          {% if current_page < total_pages %}
-            <a href="/page{{ current_page | plus: 1 }}/" class="pagination-btn pagination-next">{{ lang_data.posts.next_page | default: "다음" }} →</a>
-          {% else %}
-            <span class="pagination-btn pagination-next disabled">{{ lang_data.posts.next_page | default: "다음" }} →</span>
-          {% endif %}
+        <nav class="pagination" id="pagination-nav" style="display:none">
+          <a href="#" class="pagination-btn pagination-prev" id="prev-btn">← {{ lang_data.posts.prev_page }}</a>
+          <span class="pagination-info" id="page-info"></span>
+          <a href="#" class="pagination-btn pagination-next" id="next-btn">{{ lang_data.posts.next_page }} →</a>
         </nav>
-        {% endif %}
       </section>
     </div>
   </div>
 </main>
+
+<script>
+(function() {
+  var POSTS_PER_PAGE = 10;
+  var posts = document.querySelectorAll('.posts-list .post-item');
+  if (posts.length <= POSTS_PER_PAGE) return;
+
+  var totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+  var params = new URLSearchParams(window.location.search);
+  var currentPage = parseInt(params.get('page')) || 1;
+  currentPage = Math.max(1, Math.min(currentPage, totalPages));
+
+  var nav = document.getElementById('pagination-nav');
+  var prevBtn = document.getElementById('prev-btn');
+  var nextBtn = document.getElementById('next-btn');
+  var pageInfo = document.getElementById('page-info');
+  var basePath = window.location.pathname;
+
+  function showPage(page) {
+    var start = (page - 1) * POSTS_PER_PAGE;
+    var end = start + POSTS_PER_PAGE;
+    for (var i = 0; i < posts.length; i++) {
+      posts[i].style.display = (i >= start && i < end) ? '' : 'none';
+    }
+    pageInfo.textContent = page + ' / ' + totalPages;
+
+    if (page > 1) {
+      prevBtn.href = page === 2 ? basePath : basePath + '?page=' + (page - 1);
+      prevBtn.classList.remove('disabled');
+    } else {
+      prevBtn.removeAttribute('href');
+      prevBtn.classList.add('disabled');
+    }
+
+    if (page < totalPages) {
+      nextBtn.href = basePath + '?page=' + (page + 1);
+      nextBtn.classList.remove('disabled');
+    } else {
+      nextBtn.removeAttribute('href');
+      nextBtn.classList.add('disabled');
+    }
+  }
+
+  nav.style.display = '';
+  showPage(currentPage);
+  window.scrollTo(0, 0);
+})();
+</script>

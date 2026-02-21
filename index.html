@@ -27,7 +27,10 @@ title: Home
 
         <div class="posts-list">
           {% assign korean_posts = site.posts | where: "lang", "ko" %}
-          {% for post in korean_posts limit:20 %}
+          {% assign posts_per_page = 10 %}
+          {% assign current_page = paginator.page | default: 1 %}
+          {% assign offset_val = current_page | minus: 1 | times: posts_per_page %}
+          {% for post in korean_posts limit: posts_per_page offset: offset_val %}
             <article class="post-item">
               <h3 class="post-title">
                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -48,6 +51,35 @@ title: Home
             </article>
           {% endfor %}
         </div>
+
+        {% assign total_korean = korean_posts | size %}
+        {% assign total_pages = total_korean | divided_by: posts_per_page %}
+        {% assign remainder = total_korean | modulo: posts_per_page %}
+        {% if remainder > 0 %}
+          {% assign total_pages = total_pages | plus: 1 %}
+        {% endif %}
+
+        {% if total_pages > 1 %}
+        <nav class="pagination" aria-label="페이지 네비게이션">
+          {% if current_page > 1 %}
+            {% if current_page == 2 %}
+              <a href="/" class="pagination-btn pagination-prev">← {{ lang_data.posts.prev_page | default: "이전" }}</a>
+            {% else %}
+              <a href="/page{{ current_page | minus: 1 }}/" class="pagination-btn pagination-prev">← {{ lang_data.posts.prev_page | default: "이전" }}</a>
+            {% endif %}
+          {% else %}
+            <span class="pagination-btn pagination-prev disabled">← {{ lang_data.posts.prev_page | default: "이전" }}</span>
+          {% endif %}
+
+          <span class="pagination-info">{{ current_page }} / {{ total_pages }}</span>
+
+          {% if current_page < total_pages %}
+            <a href="/page{{ current_page | plus: 1 }}/" class="pagination-btn pagination-next">{{ lang_data.posts.next_page | default: "다음" }} →</a>
+          {% else %}
+            <span class="pagination-btn pagination-next disabled">{{ lang_data.posts.next_page | default: "다음" }} →</span>
+          {% endif %}
+        </nav>
+        {% endif %}
       </section>
     </div>
   </div>

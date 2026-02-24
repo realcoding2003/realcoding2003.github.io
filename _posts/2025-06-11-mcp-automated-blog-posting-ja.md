@@ -1,16 +1,18 @@
 ---
 layout: post
 title: "AIでGitHub Pages技術ブログを作る (2) - MCPでSEO最適化された技術投稿完全自動化"
-date: 2025-06-09 11:00:00 +0900
+date: 2025-06-11 14:00:00 +0900
 categories: [AI, MCP, Content Creation]
 tags: [Claude, MCP, SEO, 自動化, ブログ作成, AI Writing]
 author: "Kevin Park"
 excerpt: "アイデアを提示するだけでMCPがSEOメタデータから画像まで完全な技術投稿を自動生成する革新的ワークフロー"
 image: "/assets/images/posts/mcp-automated-blog-posting/hero.png"
+last_modified_at: 2026-02-24 00:00:00 +0900
 lang: ja
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2025/06/09/mcp-automated-blog-posting-ja/
+  - /ja/2025/06/09/mcp-automated-blog-posting-ja/
 ---
 
 # AIでGitHub Pages技術ブログを作る (2) - MCPでSEO最適化された技術投稿完全自動化
@@ -230,14 +232,14 @@ MCPを活用した投稿自動化は単純な時間節約を超えて**一貫し
 ---
 
 **📚 シリーズ全体リスト**:
-1. [AIでGitHub Pages技術ブログを作る (1) - Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/09/claude-desktop-mcp-blog-setup-ja/)
-2. [AIでGitHub Pages技術ブログを作る (2) - MCPでSEO最適化された技術投稿完全自動化](/ja/2025/06/09/mcp-automated-blog-posting-ja/) ← 現在の記事
-3. [AIでGitHub Pages技術ブログを作る (3) - MCPでGiscusコメントシステムを5分で完成](/ja/2025/06/09/mcp-giscus-comments-setup-ja/)
-4. [AIでGitHub Pages技術ブログを作る (4) - MCPでダーク/ライトモード完璧実装](/ja/2025/06/09/mcp-dark-light-mode-implementation-ja/)
-5. [AIでGitHub Pages技術ブログを作る (5) - MCPでJekyll多言語ブログ完成](/ja/2025/06/09/mcp-jekyll-multilingual-blog-ja/)
+1. [AIでGitHub Pages技術ブログを作る (1) - Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/08/claude-desktop-mcp-blog-setup-ja/)
+2. [AIでGitHub Pages技術ブログを作る (2) - MCPでSEO最適化された技術投稿完全自動化](/ja/2025/06/11/mcp-automated-blog-posting-ja/) ← 現在の記事
+3. [AIでGitHub Pages技術ブログを作る (3) - MCPでGiscusコメントシステムを5分で完成](/ja/2025/06/13/mcp-giscus-comments-setup-ja/)
+4. [AIでGitHub Pages技術ブログを作る (4) - MCPでダーク/ライトモード完璧実装](/ja/2025/06/15/mcp-dark-light-mode-implementation-ja/)
+5. [AIでGitHub Pages技術ブログを作る (5) - MCPでJekyll多言語ブログ完成](/ja/2025/06/17/mcp-jekyll-multilingual-blog-ja/)
 
 ---
 
-**シリーズ前の記事**: [AIでGitHub Pages技術ブログを作る (1) - Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/09/claude-desktop-mcp-blog-setup-ja/)
+**シリーズ前の記事**: [AIでGitHub Pages技術ブログを作る (1) - Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/08/claude-desktop-mcp-blog-setup-ja/)
 
-**シリーズ次の記事**: [AIでGitHub Pages技術ブログを作る (3) - MCPでGiscusコメントシステムを5分で完成](/ja/2025/06/09/mcp-giscus-comments-setup-ja/)
+**シリーズ次の記事**: [AIでGitHub Pages技術ブログを作る (3) - MCPでGiscusコメントシステムを5分で完成](/ja/2025/06/13/mcp-giscus-comments-setup-ja/)

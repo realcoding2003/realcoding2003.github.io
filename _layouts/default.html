@@ -16,11 +16,11 @@
       {%- assign page_lang = page.lang | default: site.default_lang -%}
       {%- assign post_slug = page.slug -%}
       {%- if page_lang == "en" -%}
-        {%- assign slug_len = post_slug.size | minus: 3 -%}
-        {%- assign base_slug = post_slug | truncate: slug_len, "" -%}
+        {%- assign slug_end = post_slug.size | minus: 3 -%}
+        {%- assign base_slug = post_slug | slice: 0, slug_end -%}
       {%- elsif page_lang == "ja" -%}
-        {%- assign slug_len = post_slug.size | minus: 3 -%}
-        {%- assign base_slug = post_slug | truncate: slug_len, "" -%}
+        {%- assign slug_end = post_slug.size | minus: 3 -%}
+        {%- assign base_slug = post_slug | slice: 0, slug_end -%}
       {%- else -%}
         {%- assign base_slug = post_slug -%}
       {%- endif -%}
@@ -101,18 +101,12 @@
     <!-- Google Analytics -->
     {% include analytics.html %}
     
-    <!-- Google AdSense -->
-    <meta name="google-adsense-account" content="{{ site.adsense.client }}">
-    {% include adsense.html %}
 </head>
 
 <body>
     <!-- Header -->
     {% include header.html %}
     
-    <!-- Floating Side Ads -->
-    {% include ad-floating.html %}
-
     <!-- Main Content -->
     <main class="main-content">
         {{ content }}

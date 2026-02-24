@@ -13,12 +13,6 @@ default_lang: "ko"
 # Google Analytics
 google_analytics: G-MEFBMHM6FK
 
-# Google AdSense
-adsense:
-  client: ca-pub-9012129960393497
-  auto_ads: false
-  show_ads: true
-
 # Comments system
 comments:
   provider: utterances

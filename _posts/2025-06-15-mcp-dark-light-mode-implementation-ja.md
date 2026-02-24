@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "AIでGitHub Pages技術ブログを作る (4) - MCPでダーク/ライトモード完璧実装"
-date: 2025-06-09 13:00:00 +0900
+date: 2025-06-15 11:00:00 +0900
+last_modified_at: 2026-02-24 00:00:00 +0900
 categories: [AI, MCP, UI/UX]
 tags: [Claude, MCP, ダークモード, テーマシステム, Jekyll, CSS, JavaScript]
 author: "Kevin Park"
@@ -11,6 +12,7 @@ lang: ja
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2025/06/09/mcp-dark-light-mode-implementation-ja/
+  - /ja/2025/06/09/mcp-dark-light-mode-implementation-ja/
 ---
 
 # AIでGitHub Pages技術ブログを作る (4) - MCPでダーク/ライトモード完璧実装
@@ -300,14 +302,14 @@ MCPで構築されたテーマシステムの最終結果:
 ---
 
 **📚 シリーズ全体リスト**:
-1. [AIでGitHub Pages技術ブログを作る (1) - Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/09/claude-desktop-mcp-blog-setup-ja/)
-2. [AIでGitHub Pages技術ブログを作る (2) - MCPでSEO最適化された技術投稿完全自動化](/ja/2025/06/09/mcp-automated-blog-posting-ja/)
-3. [AIでGitHub Pages技術ブログを作る (3) - MCPでGiscusコメントシステムを5分で完成](/ja/2025/06/09/mcp-giscus-comments-setup-ja/)
-4. [AIでGitHub Pages技術ブログを作る (4) - MCPでダーク/ライトモード完璧実装](/ja/2025/06/09/mcp-dark-light-mode-implementation-ja/) ← 現在の記事
-5. [AIでGitHub Pages技術ブログを作る (5) - MCPでJekyll多言語ブログ完成](/ja/2025/06/09/mcp-jekyll-multilingual-blog-ja/)
+1. [AIでGitHub Pages技術ブログを作る (1) - Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/08/claude-desktop-mcp-blog-setup-ja/)
+2. [AIでGitHub Pages技術ブログを作る (2) - MCPでSEO最適化された技術投稿完全自動化](/ja/2025/06/11/mcp-automated-blog-posting-ja/)
+3. [AIでGitHub Pages技術ブログを作る (3) - MCPでGiscusコメントシステムを5分で完成](/ja/2025/06/13/mcp-giscus-comments-setup-ja/)
+4. [AIでGitHub Pages技術ブログを作る (4) - MCPでダーク/ライトモード完璧実装](/ja/2025/06/15/mcp-dark-light-mode-implementation-ja/) ← 現在の記事
+5. [AIでGitHub Pages技術ブログを作る (5) - MCPでJekyll多言語ブログ完成](/ja/2025/06/17/mcp-jekyll-multilingual-blog-ja/)
 
 ---
 
-**シリーズ前の記事**: [AIでGitHub Pages技術ブログを作る (3) - MCPでGiscusコメントシステムを5分で完成](/ja/2025/06/09/mcp-giscus-comments-setup-ja/)
+**シリーズ前の記事**: [AIでGitHub Pages技術ブログを作る (3) - MCPでGiscusコメントシステムを5分で完成](/ja/2025/06/13/mcp-giscus-comments-setup-ja/)
 
-**シリーズ次の記事**: [AIでGitHub Pages技術ブログを作る (5) - MCPでJekyll多言語ブログ完成](/ja/2025/06/09/mcp-jekyll-multilingual-blog-ja/)
+**シリーズ次の記事**: [AIでGitHub Pages技術ブログを作る (5) - MCPでJekyll多言語ブログ完成](/ja/2025/06/17/mcp-jekyll-multilingual-blog-ja/)

@@ -1,13 +1,16 @@
 ---
 layout: post
 title: "AI를 통해 Github Page 기술 블로그 만들기 (4) - MCP로 다크모드/라이트모드 완벽 구현하기"
-date: 2025-06-09 13:00:00 +0900
+date: 2025-06-15 11:00:00 +0900
+last_modified_at: 2026-02-24 00:00:00 +0900
 categories: [AI, MCP, UI/UX]
 tags: [Claude, MCP, 다크모드, 테마시스템, Jekyll, CSS, JavaScript]
 author: "Kevin Park"
 lang: ko
 excerpt: "CSS 변수부터 utterances 동기화까지 MCP로 완전한 테마 전환 시스템을 자동 구축하는 포괄적 가이드"
 image: "/assets/images/posts/mcp-dark-light-mode-implementation/hero.png"
+redirect_from:
+  - /2025/06/09/mcp-dark-light-mode-implementation/
 ---
 
 # AI를 통해 Github Page 기술 블로그 만들기 (4) - MCP로 다크모드/라이트모드 완벽 구현하기
@@ -297,14 +300,14 @@ MCP로 구축된 테마 시스템의 최종 결과:
 ---
 
 **📚 시리즈 전체 목록**:
-1. [AI를 통해 Github Page 기술 블로그 만들기 (1) - Claude Desktop MCP로 로컬에 직접 Jekyll 블로그 생성하기](/2025/06/09/claude-desktop-mcp-blog-setup/)
-2. [AI를 통해 Github Page 기술 블로그 만들기 (2) - MCP로 SEO 최적화된 기술 포스팅 완전 자동화하기](/2025/06/09/mcp-automated-blog-posting/)
-3. [AI를 통해 Github Page 기술 블로그 만들기 (3) - MCP로 utterances 댓글 시스템 5분 만에 완성하기](/2025/06/09/mcp-giscus-comments-setup/)
-4. [AI를 통해 Github Page 기술 블로그 만들기 (4) - MCP로 다크모드/라이트모드 완벽 구현하기](/2025/06/09/mcp-dark-light-mode-implementation/) ← 현재 글
-5. [AI를 통해 Github Page 기술 블로그 만들기 (5) - MCP로 Jekyll 다국어 블로그 완성하기](/2025/06/09/mcp-jekyll-multilingual-blog/)
+1. [AI를 통해 Github Page 기술 블로그 만들기 (1) - Claude Desktop MCP로 로컬에 직접 Jekyll 블로그 생성하기](/2025/06/08/claude-desktop-mcp-blog-setup/)
+2. [AI를 통해 Github Page 기술 블로그 만들기 (2) - MCP로 SEO 최적화된 기술 포스팅 완전 자동화하기](/2025/06/11/mcp-automated-blog-posting/)
+3. [AI를 통해 Github Page 기술 블로그 만들기 (3) - MCP로 utterances 댓글 시스템 5분 만에 완성하기](/2025/06/13/mcp-giscus-comments-setup/)
+4. [AI를 통해 Github Page 기술 블로그 만들기 (4) - MCP로 다크모드/라이트모드 완벽 구현하기](/2025/06/15/mcp-dark-light-mode-implementation/) ← 현재 글
+5. [AI를 통해 Github Page 기술 블로그 만들기 (5) - MCP로 Jekyll 다국어 블로그 완성하기](/2025/06/17/mcp-jekyll-multilingual-blog/)
 
 ---
 
-**시리즈 이전 글**: [AI를 통해 Github Page 기술 블로그 만들기 (3) - MCP로 utterances 댓글 시스템 5분 만에 완성하기](/2025/06/09/mcp-giscus-comments-setup/)
+**시리즈 이전 글**: [AI를 통해 Github Page 기술 블로그 만들기 (3) - MCP로 utterances 댓글 시스템 5분 만에 완성하기](/2025/06/13/mcp-giscus-comments-setup/)
 
-**시리즈 다음 글**: [AI를 통해 Github Page 기술 블로그 만들기 (5) - MCP로 Jekyll 다국어 블로그 완성하기](/2025/06/09/mcp-jekyll-multilingual-blog/)
+**시리즈 다음 글**: [AI를 통해 Github Page 기술 블로그 만들기 (5) - MCP로 Jekyll 다국어 블로그 완성하기](/2025/06/17/mcp-jekyll-multilingual-blog/)

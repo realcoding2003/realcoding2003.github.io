@@ -30,11 +30,15 @@
       <link rel="alternate" hreflang="ja" href="{{ site.url }}/ja{{ date_path }}{{ base_slug }}-ja/" />
       <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ date_path }}{{ base_slug }}/" />
     {% else %}
-      {%- assign base_path = page.url | remove: '/en' | remove: '/ja' -%}
-      <link rel="alternate" hreflang="ko" href="{{ site.url }}{{ base_path }}" />
-      <link rel="alternate" hreflang="en" href="{{ site.url }}/en{{ base_path }}" />
-      <link rel="alternate" hreflang="ja" href="{{ site.url }}/ja{{ base_path }}" />
-      <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ base_path }}" />
+      {% unless paginator and paginator.page > 1 %}
+        {%- assign base_path = page.url | remove: '/en' | remove: '/ja' -%}
+        <link rel="alternate" hreflang="ko" href="{{ site.url }}{{ base_path }}" />
+        <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ base_path }}" />
+        {% unless page.multilingual == false %}
+          <link rel="alternate" hreflang="en" href="{{ site.url }}/en{{ base_path }}" />
+          <link rel="alternate" hreflang="ja" href="{{ site.url }}/ja{{ base_path }}" />
+        {% endunless %}
+      {% endunless %}
     {% endif %}
 
     <!-- 페이지네이션 noindex -->

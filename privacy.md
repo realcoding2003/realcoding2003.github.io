@@ -3,6 +3,7 @@ layout: page
 title: "개인정보 처리방침"
 permalink: /privacy/
 sitemap: false
+multilingual: false
 ---
 
 # 개인정보처리방침

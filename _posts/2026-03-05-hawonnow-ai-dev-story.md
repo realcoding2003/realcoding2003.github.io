@@ -171,4 +171,4 @@ gantt
 
 **하원나우 - 학원 일정 관리**
 - [Google Play Store](https://play.google.com/store/apps/details?id=com.hawonnow)
-- [App Store](https://apps.apple.com/app/id6743440737)
+- [App Store](https://apps.apple.com/app/id6759882369)

@@ -171,4 +171,4 @@ If you're a parent juggling academy schedules, give it a try. It's free, and all
 
 **HawonNow - Academy Schedule Manager**
 - [Google Play Store](https://play.google.com/store/apps/details?id=com.hawonnow)
-- [App Store](https://apps.apple.com/app/id6743440737)
+- [App Store](https://apps.apple.com/app/id6759882369)

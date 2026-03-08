@@ -7,11 +7,11 @@ tags: [AI Development, Claude Code, SvelteKit, Hybrid App, Side Project, App Dev
 author: "Kevin Park"
 lang: en
 excerpt: "Built an academy schedule management app in half a day with Claude Code. But getting it on both app stores took 3 days."
-image: "/assets/images/posts/hawonnow-dev-story/01-now.jpg"
+image: "/assets/images/posts/hawonnow-dev-story/01-now.png"
 mermaid: true
 ---
 
-![HawonNow NOW Page](/assets/images/posts/hawonnow-dev-story/01-now.jpg)
+![HawonNow NOW Page](/assets/images/posts/hawonnow-dev-story/01-now.png)
 
 My kid goes to three after-school academies. Math, English, Taekwondo. My wife asks me every day "what time is which class again?" and I'm sitting there trying to remember. The paper schedule on the fridge is outdated. Calendar apps are overkill for tracking academy schedules.
 
@@ -111,17 +111,17 @@ flowchart LR
 
 ## What I Built
 
-![Weekly Schedule](/assets/images/posts/hawonnow-dev-story/02-schedule.jpg)
+![Weekly Schedule](/assets/images/posts/hawonnow-dev-story/02-schedule.png)
 
 **NOW Page** — The first screen when you open the app. Answers "what's happening right now?" Today's schedule cards show the current class, remaining time, and next event in real-time. Tap a phone number to call the academy directly.
 
 **Weekly Schedule** — A 7-day grid from Monday to Sunday with color-coded schedule blocks per child. Drag and drop to change times. Capture the schedule as an image and share it via messaging apps.
 
-![Academy Management and Statistics](/assets/images/posts/hawonnow-dev-story/03-academies.jpg)
+![Academy Management and Statistics](/assets/images/posts/hawonnow-dev-story/03-academies.png)
 
 **Academy Management** — Academy name, teacher contact, driver contact, monthly tuition, payment date — all in one place. "How much are we paying for academies this month?" answered by a single screen.
 
-![Statistics](/assets/images/posts/hawonnow-dev-story/04-statistics.jpg)
+![Statistics](/assets/images/posts/hawonnow-dev-story/04-statistics.png)
 
 **Statistics** — Total weekly class hours, monthly tuition totals, day-of-week and time-of-day distribution charts. Seeing that one kid spends 23 hours a week at academies... that's a sobering number.
 

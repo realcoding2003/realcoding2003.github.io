@@ -1307,6 +1307,136 @@ a:hover {
 }
 
 /* ===========================
+   13.5 PROJECT CARDS
+   =========================== */
+.project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.project-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px var(--shadow-md);
+}
+
+.project-screenshots {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    background: var(--background);
+    justify-content: center;
+}
+
+.project-screenshots::-webkit-scrollbar {
+    height: 4px;
+}
+
+.project-screenshots::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+}
+
+.project-phone-frame {
+    flex-shrink: 0;
+    width: 140px;
+    scroll-snap-align: center;
+    background: #1a1a2e;
+    border-radius: 20px;
+    padding: 8px 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.project-phone-frame img {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    display: block;
+}
+
+.project-info {
+    padding: var(--spacing-lg);
+}
+
+.project-info h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.project-description {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.project-tags span {
+    display: inline-block;
+    padding: 2px 10px;
+    background: var(--primary-muted);
+    color: var(--primary-color);
+    border-radius: var(--radius-full, 9999px);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.project-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.project-links a:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+@media (max-width: 480px) {
+    .project-phone-frame {
+        width: 120px;
+        border-radius: 16px;
+        padding: 6px 4px;
+    }
+
+    .project-phone-frame img {
+        border-radius: 12px;
+    }
+
+    .project-screenshots {
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+    }
+}
+
+/* ===========================
    14. ARCHIVE PAGE
    =========================== */
 .archive-container {

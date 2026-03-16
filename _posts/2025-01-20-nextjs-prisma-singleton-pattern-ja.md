@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Next.js, Prisma, singleton, database, TypeScript]
 author: "Kevin Park"
 lang: ja
+slug: nextjs-prisma-singleton-pattern
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/01/20/nextjs-prisma-singleton-pattern-ja/
+  - /2025/01/20/nextjs-prisma-singleton-pattern-ja/
 excerpt: "Next.jsの開発モードでPrismaクライアントの接続が増え続ける問題をシングルトンパターンで解決する方法をご紹介します。"
 ---
 

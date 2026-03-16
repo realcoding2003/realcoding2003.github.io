@@ -6,10 +6,13 @@ categories: [Development, DevOps]
 tags: [サーバー, クラウド, AWS, オンプレミス, IDC, マイグレーション]
 author: "Kevin Park"
 lang: ja
+slug: cloud-vs-onpremise-server
 excerpt: "新しいプロジェクトはクラウド、既存のものはIDCそのまま。毎回移行しようと思いつつ応急処置だけして先延ばしにしている。"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2020/04/20/cloud-vs-onpremise-server-ja/
+  - /ja/2020/04/20/cloud-vs-onpremise-server-ja/
+
 ---
 
 # オンプレミスからクラウドへの過渡期

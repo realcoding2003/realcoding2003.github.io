@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, Node.js, Deep Copy, structuredClone]
 author: "Kevin Park"
 lang: en
+slug: structuredclone-deep-copy-javascript
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/13/structuredclone-deep-copy-javascript-en/
+  - /2026/02/13/structuredclone-deep-copy-javascript-en/
 excerpt: "Stop using JSON.parse(JSON.stringify()). structuredClone is the native deep copy solution."
 ---
 

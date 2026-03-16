@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, Promise, 非同期, エラー処理]
 author: "Kevin Park"
 lang: ja
+slug: promise-allsettled-vs-all-error-handling
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/10/promise-allsettled-vs-all-error-handling-ja/
+  - /2026/03/10/promise-allsettled-vs-all-error-handling-ja/
 excerpt: "複数のAPIを同時に呼び出す時、1つの失敗で全体を失わないようにしましょう"
 ---
 

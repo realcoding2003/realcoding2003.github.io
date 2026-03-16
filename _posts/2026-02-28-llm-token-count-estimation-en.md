@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [LLM, token, estimation, Korean, NLP]
 author: "Kevin Park"
 lang: en
+slug: llm-token-count-estimation
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/28/llm-token-count-estimation-en/
+  - /2026/02/28/llm-token-count-estimation-en/
 excerpt: "A simple token estimation algorithm without a full tokenizer. Korean text consumes more tokens than English."
 ---
 

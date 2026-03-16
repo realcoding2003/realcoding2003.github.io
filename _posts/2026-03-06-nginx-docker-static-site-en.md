@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Nginx, Docker, static-site, docker-compose]
 author: "Kevin Park"
 lang: en
+slug: nginx-docker-static-site
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/06/nginx-docker-static-site-en/
+  - /2026/03/06/nginx-docker-static-site-en/
 excerpt: "The simplest way to serve a static HTML/CSS/JS site using Nginx in a Docker container with Docker Compose."
 ---
 

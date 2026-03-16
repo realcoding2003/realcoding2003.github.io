@@ -7,6 +7,12 @@ tags: [github-pages, jekyll, blog, getting-started]
 author: "Kevin Park"
 excerpt: "Learn how to create your own tech blog using GitHub Pages and Jekyll with step-by-step instructions."
 lang: en
+slug: github-pages-blog-start
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/06/03/github-pages-blog-start-en/
+  - /2025/06/03/github-pages-blog-start-en/
+  - /en/2025/06/04/github-pages-blog-start-en/
 ---
 
 Hello! Today, we'll explore how to start a tech blog using GitHub Pages.

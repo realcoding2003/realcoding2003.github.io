@@ -11,12 +11,15 @@ keywords: "RAG, MES, データ統合, VectorDB, RDS, IoT, 製造業AI, マルチ
 description: "RAGの真の意味はベクターDBを超えて、すべてのデータソースを統合することです。製造業MESシステムを通じて、VectorDB、RDS、RawData、LocalFileが協力してインテリジェントな結論を導出する過程を詳しく説明します。"
 mermaid: true
 lang: ja
+slug: rag-mes-integration-guide
 sitemap:
   changefreq: weekly
   priority: 0.8
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2025/06/10/rag-mes-integration-guide-ja/
+  - /ja/2025/06/10/rag-mes-integration-guide-ja/
+
 ---
 
 # RAG完全解説：製造業MESシステムで理解する真のデータ統合AI

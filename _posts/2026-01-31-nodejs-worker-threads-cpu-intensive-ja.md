@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, worker_threads, パフォーマンス, バックエンド]
 author: "Kevin Park"
 lang: ja
+slug: nodejs-worker-threads-cpu-intensive
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/01/31/nodejs-worker-threads-cpu-intensive-ja/
+  - /2026/01/31/nodejs-worker-threads-cpu-intensive-ja/
 excerpt: "Node.jsでCPU集約的な処理をworker_threadsで分離し、メインイベントループをブロックしない方法を解説します。"
 ---
 

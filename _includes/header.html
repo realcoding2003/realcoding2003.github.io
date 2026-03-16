@@ -53,16 +53,31 @@
             <div class="header-utilities">
                 <!-- 언어 전환 (인라인) -->
                 <div class="language-switcher">
-                    {% for lang in site.languages %}
-                        {% if lang == site.default_lang %}
-                            {% assign lang_url = '/' %}
-                        {% else %}
-                            {% assign lang_url = '/' | append: lang | append: '/' %}
-                        {% endif %}
-                        <a href="{{ lang_url | relative_url }}" class="lang-btn {% if lang == current_lang %}active{% endif %}">
-                            {{ lang | upcase }}
-                        </a>
-                    {% endfor %}
+                    {% if page.layout == "post" %}
+                        {%- assign post_date_path = page.date | date: "/%Y/%m/%d/" -%}
+                        {%- assign post_base_slug = page.slug -%}
+                        {% for lang in site.languages %}
+                            {% if lang == site.default_lang %}
+                                {% assign lang_url = post_date_path | append: post_base_slug | append: '/' %}
+                            {% else %}
+                                {% assign lang_url = '/' | append: lang | append: post_date_path | append: post_base_slug | append: '/' %}
+                            {% endif %}
+                            <a href="{{ lang_url | relative_url }}" class="lang-btn {% if lang == current_lang %}active{% endif %}">
+                                {{ lang | upcase }}
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        {% for lang in site.languages %}
+                            {% if lang == site.default_lang %}
+                                {% assign lang_url = '/' %}
+                            {% else %}
+                                {% assign lang_url = '/' | append: lang | append: '/' %}
+                            {% endif %}
+                            <a href="{{ lang_url | relative_url }}" class="lang-btn {% if lang == current_lang %}active{% endif %}">
+                                {{ lang | upcase }}
+                            </a>
+                        {% endfor %}
+                    {% endif %}
                 </div>
 
                 <!-- 다크모드 토글 -->

@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Python, dataclass, 型安全, バックエンド]
 author: "Kevin Park"
 lang: ja
+slug: python-dataclass-frozen-immutable
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/01/29/python-dataclass-frozen-immutable-ja/
+  - /2026/01/29/python-dataclass-frozen-immutable-ja/
 excerpt: "Pythonのfrozen dataclassを使って、不変オブジェクトを簡単に作成する方法を解説します。"
 ---
 

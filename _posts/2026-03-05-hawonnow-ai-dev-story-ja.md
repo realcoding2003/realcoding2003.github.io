@@ -6,6 +6,11 @@ categories: [Development, AI]
 tags: [AI開発, Claude Code, SvelteKit, ハイブリッドアプリ, サイドプロジェクト, アプリ開発]
 author: "Kevin Park"
 lang: ja
+slug: hawonnow-ai-dev-story
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/05/hawonnow-ai-dev-story-ja/
+  - /2026/03/05/hawonnow-ai-dev-story-ja/
 excerpt: "Claude Codeで半日で塾スケジュール管理アプリを作りました。でも両ストアへの登録には3日かかりました。"
 image: "/assets/images/posts/hawonnow-dev-story/01-now.png"
 mermaid: true

@@ -6,10 +6,13 @@ categories: [Development, Database]
 tags: [MySQL, UUID, セキュリティ, データベース, PHP]
 author: "Kevin Park"
 lang: ja
+slug: mysql-uuid-usage
 excerpt: "auto_incrementのPKをそのままURLに使うと、セキュリティ監査で毎回指摘される。かといってPKを全部UUIDに変えるのは非効率すぎる。現実的な妥協案をまとめました。"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2020/04/21/mysql-uuid-usage-ja/
+  - /ja/2020/04/21/mysql-uuid-usage-ja/
+
 ---
 
 # Auto Increment PKをURLに露出してはいけない理由

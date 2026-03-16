@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, satisfies, type-safety, type-inference]
 author: "Kevin Park"
 lang: ja
+slug: typescript-satisfies-operator-type-safety
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/24/typescript-satisfies-operator-type-safety-ja/
+  - /2026/02/24/typescript-satisfies-operator-type-safety-ja/
 excerpt: "asの代わりにsatisfiesを使えば、型検証と狭い型推論を同時に実現できます"
 ---
 

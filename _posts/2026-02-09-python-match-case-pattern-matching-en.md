@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Python, Pattern Matching, match-case, Python3]
 author: "Kevin Park"
 lang: en
+slug: python-match-case-pattern-matching
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/09/python-match-case-pattern-matching-en/
+  - /2026/02/09/python-match-case-pattern-matching-en/
 excerpt: "Use Python 3.10's structural pattern matching to replace messy if-elif chains."
 ---
 

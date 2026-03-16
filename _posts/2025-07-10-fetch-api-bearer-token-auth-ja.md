@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, fetch, Bearer Token, authentication, API]
 author: "Kevin Park"
 lang: ja
+slug: fetch-api-bearer-token-auth
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/07/10/fetch-api-bearer-token-auth-ja/
+  - /2025/07/10/fetch-api-bearer-token-auth-ja/
 excerpt: "毎回Authorizationヘッダーを手動で追加する代わりに、fetchラッパー関数でBearer Tokenを自動注入するパターンをご紹介します。"
 ---
 

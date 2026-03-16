@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Docker, Docker Compose, YAML, anchor, DRY]
 author: "Kevin Park"
 lang: ja
+slug: docker-compose-yaml-anchor
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/04/05/docker-compose-yaml-anchor-ja/
+  - /2025/04/05/docker-compose-yaml-anchor-ja/
 excerpt: "Docker ComposeでYAMLアンカー(&)とマージ(<<)を使って、サービス設定の重複を排除する方法をご紹介します。"
 ---
 

@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, fetch, Bearer Token, authentication, API]
 author: "Kevin Park"
 lang: en
+slug: fetch-api-bearer-token-auth
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/07/10/fetch-api-bearer-token-auth-en/
+  - /2025/07/10/fetch-api-bearer-token-auth-en/
 excerpt: "Stop repeating Authorization headers — build a fetch wrapper that auto-injects Bearer tokens."
 ---
 

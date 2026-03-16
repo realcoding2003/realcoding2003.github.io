@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [React, useOptimistic, hooks, UX]
 author: "Kevin Park"
 lang: ja
+slug: react-useoptimistic-instant-ui-update
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/13/react-useoptimistic-instant-ui-update-ja/
+  - /2026/03/13/react-useoptimistic-instant-ui-update-ja/
 excerpt: "React 19のuseOptimisticフックで、サーバーレスポンスを待たずにUIを先に更新するパターンをご紹介します。"
 ---
 

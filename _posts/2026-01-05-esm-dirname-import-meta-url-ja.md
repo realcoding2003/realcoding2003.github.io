@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, ESM, ES Modules, dirname, import.meta]
 author: "Kevin Park"
 lang: ja
+slug: esm-dirname-import-meta-url
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/01/05/esm-dirname-import-meta-url-ja/
+  - /2026/01/05/esm-dirname-import-meta-url-ja/
 excerpt: "ES Modulesで__dirnameと__filenameを使用する方法。import.meta.urlとfileURLToPathの組み合わせをご紹介します。"
 ---
 

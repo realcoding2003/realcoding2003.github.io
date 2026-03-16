@@ -6,17 +6,20 @@ categories: [Development, Database]
 tags: [Vector DB, Pinecone, AI, Embeddings, Database]
 author: "Kevin Park"
 lang: en
+slug: vector-database-thoughts
 excerpt: "Building AI services, you hear 'you need a vector database' constantly. But do you really? Or can your existing database handle it just fine?"
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2024/08/20/vector-database-thoughts-en/
+  - /en/2024/08/20/vector-database-thoughts-en/
+
 ---
 
 # Vector Databases — Do You Actually Need One?
 
 ## A New Challenge in the AI Era
 
-After [writing about using ChatGPT for MSA design](/en/2024/02/10/msa-and-chatgpt-en/), the deeper I got into AI tooling, the more I naturally started thinking about vector databases.
+After [writing about using ChatGPT for MSA design](/en/2024/02/10/msa-and-chatgpt/), the deeper I got into AI tooling, the more I naturally started thinking about vector databases.
 
 Implementing RAG (Retrieval-Augmented Generation) requires converting documents into embedding vectors, storing them, and searching for similar vectors. That's what vector databases are built for.
 
@@ -69,7 +72,7 @@ Most projects honestly fall into the first category. Before signing up for Pinec
 
 This is ultimately an appropriate technology selection problem.
 
-Same as with [cloud vs on-premise](/en/2020/04/20/cloud-vs-onpremise-server-en/) and [MySQL UUID usage](/en/2020/04/21/mysql-uuid-usage-en/). When new technology emerges, you ask "should I use this?" The answer is always "it depends."
+Same as with [cloud vs on-premise](/en/2020/04/20/cloud-vs-onpremise-server/) and [MySQL UUID usage](/en/2020/04/21/mysql-uuid-usage/). When new technology emerges, you ask "should I use this?" The answer is always "it depends."
 
 Adopting a vector DB because it's trending is over-engineering. Not using one when you need it is inefficiency. A developer's job is to assess the actual data scale and requirements objectively.
 

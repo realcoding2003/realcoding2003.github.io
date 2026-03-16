@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [CSS, Selector, has, Frontend]
 author: "Kevin Park"
 lang: ja
+slug: css-has-selector-parent-selector
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/12/css-has-selector-parent-selector-ja/
+  - /2026/02/12/css-has-selector-parent-selector-ja/
 excerpt: "CSSだけで親要素を選択できる:has()セレクターの実践的な活用法を紹介します。"
 ---
 

@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, Generics, API, Type Safety, Frontend, Backend]
 author: "Kevin Park"
 lang: en
+slug: typescript-generic-api-response-type
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/27/typescript-generic-api-response-type-en/
+  - /2026/02/27/typescript-generic-api-response-type-en/
 excerpt: "Stop using 'as' type assertions on every API call. Use generics to make your fetch wrapper truly type-safe."
 ---
 

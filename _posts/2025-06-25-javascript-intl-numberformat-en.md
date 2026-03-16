@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, Intl, NumberFormat, formatting, i18n]
 author: "Kevin Park"
 lang: en
+slug: javascript-intl-numberformat
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/06/25/javascript-intl-numberformat-en/
+  - /2025/06/25/javascript-intl-numberformat-en/
 excerpt: "Use the built-in Intl.NumberFormat API for currency, thousands separators, and percentage formatting without external libraries."
 ---
 

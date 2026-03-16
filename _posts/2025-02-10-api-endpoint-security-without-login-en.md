@@ -6,10 +6,13 @@ categories: [Development, Security]
 tags: [API, Security, CORS, Rate Limiting, Token]
 author: "Kevin Park"
 lang: en
+slug: api-endpoint-security-without-login
 excerpt: "Protecting API endpoints on public sites with no login system. CORS alone isn't enough, but you can't force authentication either. Here's the practical approach."
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2025/02/10/api-endpoint-security-without-login-en/
+  - /en/2025/02/10/api-endpoint-security-without-login-en/
+
 ---
 
 # API Endpoint Security Without Authentication

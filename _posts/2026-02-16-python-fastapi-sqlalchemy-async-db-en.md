@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Python, FastAPI, SQLAlchemy, Async, Database, Backend]
 author: "Kevin Park"
 lang: en
+slug: python-fastapi-sqlalchemy-async-db
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/16/python-fastapi-sqlalchemy-async-db-en/
+  - /2026/02/16/python-fastapi-sqlalchemy-async-db-en/
 excerpt: "Set up async SQLAlchemy sessions in FastAPI with dependency injection for non-blocking database access."
 ---
 

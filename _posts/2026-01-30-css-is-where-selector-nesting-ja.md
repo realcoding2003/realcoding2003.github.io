@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [CSS, セレクタ, フロントエンド, Web開発]
 author: "Kevin Park"
 lang: ja
+slug: css-is-where-selector-nesting
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/01/30/css-is-where-selector-nesting-ja/
+  - /2026/01/30/css-is-where-selector-nesting-ja/
 excerpt: "CSS :is()と:where()で繰り返しのセレクタをスッキリ減らす方法と、両者のspecificity の違いを解説します。"
 ---
 

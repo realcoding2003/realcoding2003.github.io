@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Electron, security, contextIsolation, preload, IPC]
 author: "Kevin Park"
 lang: en
+slug: electron-context-isolation-preload
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/12/05/electron-context-isolation-preload-en/
+  - /2025/12/05/electron-context-isolation-preload-en/
 excerpt: "Secure your Electron app by using contextIsolation and preload scripts to restrict renderer access to Node.js."
 ---
 

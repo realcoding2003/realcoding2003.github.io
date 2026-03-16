@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [CSS, layer, cascade, architecture]
 author: "Kevin Park"
 lang: en
+slug: css-layer-cascade-priority
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/04/css-layer-cascade-priority-en/
+  - /2026/02/04/css-layer-cascade-priority-en/
 excerpt: "Use CSS @layer to take explicit control over cascade priority and end specificity wars."
 ---
 

@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Docker, Docker Compose, Redis, healthcheck]
 author: "Kevin Park"
 lang: ja
+slug: docker-compose-redis-healthcheck
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/08/05/docker-compose-redis-healthcheck-ja/
+  - /2025/08/05/docker-compose-redis-healthcheck-ja/
 excerpt: "Docker ComposeでRedisが完全に準備できてからアプリを起動するように、healthcheckとdepends_onを設定する方法をご紹介します。"
 ---
 

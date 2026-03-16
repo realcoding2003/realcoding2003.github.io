@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, UTC, KST, timezone, Date]
 author: "Kevin Park"
 lang: ja
+slug: javascript-utc-korea-time-conversion
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/01/10/javascript-utc-korea-time-conversion-ja/
+  - /2025/01/10/javascript-utc-korea-time-conversion-ja/
 excerpt: "JavaScriptでUTCと韓国標準時(KST)を外部ライブラリなしで変換する方法をご紹介します。"
 ---
 

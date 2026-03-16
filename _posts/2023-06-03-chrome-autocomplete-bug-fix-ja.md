@@ -6,10 +6,13 @@ categories: [Troubleshooting, Browser]
 tags: [chrome, autocomplete, bug-fix, korean-input, browser-issue, beginner]
 author: "Kevin Park"
 lang: ja
+slug: chrome-autocomplete-bug-fix
 excerpt: "Chrome オートコンプリート重複入力バグを実験機能リセットと韓国語入力方法再設定で完全に解決する方法"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2023/06/03/chrome-autocomplete-bug-fix-ja/
+  - /ja/2023/06/03/chrome-autocomplete-bug-fix-ja/
+
 ---
 
 # Chrome黄色オートコンプリートバグ完全解決ガイド

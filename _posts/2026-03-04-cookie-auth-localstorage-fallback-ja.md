@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, cookie, localStorage, authentication]
 author: "Kevin Park"
 lang: ja
+slug: cookie-auth-localstorage-fallback
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/04/cookie-auth-localstorage-fallback-ja/
+  - /2026/03/04/cookie-auth-localstorage-fallback-ja/
 excerpt: "Cookie認証への移行時に、既存のlocalStorageユーザーとの互換性を保つパターンをご紹介します。"
 ---
 

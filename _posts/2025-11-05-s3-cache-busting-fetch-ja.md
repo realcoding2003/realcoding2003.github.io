@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [AWS, S3, cache, fetch, CDN]
 author: "Kevin Park"
 lang: ja
+slug: s3-cache-busting-fetch
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/11/05/s3-cache-busting-fetch-ja/
+  - /2025/11/05/s3-cache-busting-fetch-ja/
 excerpt: "S3から設定ファイルをfetchする際、ブラウザ/CDNキャッシュで更新が反映されない問題を解決する3つの方法をご紹介します。"
 ---
 

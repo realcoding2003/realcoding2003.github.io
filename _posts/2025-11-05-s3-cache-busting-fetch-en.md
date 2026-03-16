@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [AWS, S3, cache, fetch, CDN]
 author: "Kevin Park"
 lang: en
+slug: s3-cache-busting-fetch
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/11/05/s3-cache-busting-fetch-en/
+  - /2025/11/05/s3-cache-busting-fetch-en/
 excerpt: "Fix stale S3 config files caused by browser/CDN caching with three cache-busting techniques."
 ---
 

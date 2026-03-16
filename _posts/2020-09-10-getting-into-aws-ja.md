@@ -6,10 +6,13 @@ categories: [Development, DevOps]
 tags: [AWS, クラウド, EC2, S3, Lambda, 入門]
 author: "Kevin Park"
 lang: ja
+slug: getting-into-aws
 excerpt: "IDCに10年以上サーバーを置いていた開発者がAWSに入門しました。遅いと思っていましたが、遅かった分だけ感動が大きいです。"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2020/09/10/getting-into-aws-ja/
+  - /ja/2020/09/10/getting-into-aws-ja/
+
 ---
 
 # AWSにどっぷりハマったオンプレミス開発者
@@ -18,7 +21,7 @@ redirect_from:
 
 最近、AWSに完全にハマっています。
 
-クラウドに移行すべきだということはずっと前から分かっていました。以前[サーバー移行を先延ばしにし続ける話](/ja/2020/04/20/cloud-vs-onpremise-server-ja/)を書いたこともありますが、あの時はまだ「いつかやろう」レベルでした。
+クラウドに移行すべきだということはずっと前から分かっていました。以前[サーバー移行を先延ばしにし続ける話](/ja/2020/04/20/cloud-vs-onpremise-server/)を書いたこともありますが、あの時はまだ「いつかやろう」レベルでした。
 
 でも今年に入ってから本格的にAWSを触り始めたら...これがどうしてこんなに楽しいのでしょう。
 

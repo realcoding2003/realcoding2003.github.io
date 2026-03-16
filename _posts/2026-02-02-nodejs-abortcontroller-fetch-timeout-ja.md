@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, AbortController, fetch, timeout]
 author: "Kevin Park"
 lang: ja
+slug: nodejs-abortcontroller-fetch-timeout
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/02/nodejs-abortcontroller-fetch-timeout-ja/
+  - /2026/02/02/nodejs-abortcontroller-fetch-timeout-ja/
 excerpt: "Node.jsでAbortControllerを活用して、fetchリクエストにタイムアウトを設定するクリーンなパターンをご紹介します。"
 ---
 

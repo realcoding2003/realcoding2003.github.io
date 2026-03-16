@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, cookie, localStorage, authentication]
 author: "Kevin Park"
 lang: en
+slug: cookie-auth-localstorage-fallback
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/04/cookie-auth-localstorage-fallback-en/
+  - /2026/03/04/cookie-auth-localstorage-fallback-en/
 excerpt: "Migrate from localStorage to cookie-based auth while keeping backward compatibility for existing sessions."
 ---
 

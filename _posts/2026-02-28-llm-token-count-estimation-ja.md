@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [LLM, token, estimation, Korean, NLP]
 author: "Kevin Park"
 lang: ja
+slug: llm-token-count-estimation
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/28/llm-token-count-estimation-ja/
+  - /2026/02/28/llm-token-count-estimation-ja/
 excerpt: "正確なトークナイザーなしでLLM APIコストを推定するシンプルなトークン数推定アルゴリズムをご紹介します。"
 ---
 

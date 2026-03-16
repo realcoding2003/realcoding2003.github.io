@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [CORS, Next.js, Express, API, Security, HTTP]
 author: "Kevin Park"
 lang: en
+slug: cors-error-complete-guide-nextjs-express
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/18/cors-error-complete-guide-nextjs-express-en/
+  - /2026/02/18/cors-error-complete-guide-nextjs-express-en/
 excerpt: "When a CORS error shows up in your browser console, here's everything you need to fix it."
 ---
 

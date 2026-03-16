@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, requestAnimationFrame, FPS, performance, monitoring]
 author: "Kevin Park"
 lang: en
+slug: requestanimationframe-fps-monitor
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/25/requestanimationframe-fps-monitor-en/
+  - /2026/02/25/requestanimationframe-fps-monitor-en/
 excerpt: "Measure real-time FPS in web apps using requestAnimationFrame and detect performance degradation."
 ---
 

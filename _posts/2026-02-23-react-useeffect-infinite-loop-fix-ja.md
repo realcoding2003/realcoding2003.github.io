@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [React, useEffect, Hooks, Debugging, Performance, Frontend]
 author: "Kevin Park"
 lang: ja
+slug: react-useeffect-infinite-loop-fix
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/23/react-useeffect-infinite-loop-fix-ja/
+  - /2026/02/23/react-useeffect-infinite-loop-fix-ja/
 excerpt: "useEffectが止まらず実行され続ける3つの原因と、それぞれの解決方法をご紹介します。"
 ---
 

@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, infer, generic, type-system]
 author: "Kevin Park"
 lang: en
+slug: typescript-infer-extract-generic-type
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/14/typescript-infer-extract-generic-type-en/
+  - /2026/03/14/typescript-infer-extract-generic-type-en/
 excerpt: "How to use TypeScript's infer keyword to extract types from generics cleanly."
 ---
 

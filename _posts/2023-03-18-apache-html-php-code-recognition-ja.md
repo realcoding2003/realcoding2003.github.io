@@ -6,10 +6,14 @@ categories: [Apache, PHP, Web Server]
 tags: [Apache, PHP, HTML, ウェブサーバー, 設定, mime.conf]
 author: Kevin Park
 lang: ja
+slug: apache-html-php-code-recognition
 excerpt: "Apacheウェブサーバーで.html拡張子のファイルでもPHPコードを実行できるように設定する方法を段階的に説明します。"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2023/03/18/apache-html-php-code-recognition-ja/
+  - /ja/2023/03/18/apache-html-php-code-recognition-ja/
+  - /en/2023/03/18/apache-html-php-code-recognition-ja/
+
 ---
 
 一般的にApacheウェブサーバーでは、`.php`拡張子を持つファイルでのみPHPコードが実行されます。しかし、`.html`ファイルでもPHPコードを実行する必要がある場合があります。今日はApacheの設定を通じてHTMLファイルでPHPコードを認識させる方法について学びます。

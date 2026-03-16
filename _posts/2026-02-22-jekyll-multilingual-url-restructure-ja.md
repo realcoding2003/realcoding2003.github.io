@@ -6,11 +6,13 @@ categories: [Development, Blog]
 tags: [Jekyll, SEO, 多言語, GitHub Pages, ページネーション]
 author: "Kevin Park"
 lang: ja
+slug: jekyll-multilingual-url-restructure
 excerpt: "英語記事のURLが/slug-en/という形式だったのが気になって、/en/slug/に変更しました。140ファイル修正。そしてページネーションも全面的に作り直しました。"
 image: "/assets/images/posts/jekyll-multilingual-url-restructure/url_restructuring_diagram_1.jpg"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2026/02/22/jekyll-multilingual-url-restructure-ja/
+  - /ja/2026/02/22/jekyll-multilingual-url-restructure-ja/
 mermaid: true
 ---
 
@@ -80,7 +82,7 @@ plugins:
 [Escaping Compacting Hell](/2026/02/20/claude-code-1m-context-review-en/)
 
 <!-- 変更後 -->
-[Escaping Compacting Hell](/en/2026/02/20/claude-code-1m-context-review-en/)
+[Escaping Compacting Hell](/en/2026/02/20/claude-code-1m-context-review/)
 ```
 
 結果：**140ファイル変更、569行追加、154行削除**。かなり大がかりな作業でした。

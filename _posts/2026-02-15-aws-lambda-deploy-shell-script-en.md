@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [AWS, Lambda, shell script, deploy, CDK]
 author: "Kevin Park"
 lang: en
+slug: aws-lambda-deploy-shell-script
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/15/aws-lambda-deploy-shell-script-en/
+  - /2026/02/15/aws-lambda-deploy-shell-script-en/
 excerpt: "Shell script pattern to automatically find CDK-generated Lambda function names and deploy code."
 ---
 

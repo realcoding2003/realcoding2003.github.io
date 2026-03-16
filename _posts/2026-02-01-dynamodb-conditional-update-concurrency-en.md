@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [AWS, DynamoDB, concurrency, conditional update, race condition]
 author: "Kevin Park"
 lang: en
+slug: dynamodb-conditional-update-concurrency
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/01/dynamodb-conditional-update-concurrency-en/
+  - /2026/02/01/dynamodb-conditional-update-concurrency-en/
 excerpt: "Prevent race conditions in DynamoDB using ConditionExpression for atomic conditional updates."
 ---
 

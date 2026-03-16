@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Docker, Docker Compose, YAML, anchor, DRY]
 author: "Kevin Park"
 lang: en
+slug: docker-compose-yaml-anchor
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/04/05/docker-compose-yaml-anchor-en/
+  - /2025/04/05/docker-compose-yaml-anchor-en/
 excerpt: "Use YAML anchors (&) and merge keys (<<) in Docker Compose to eliminate duplicated service configurations."
 ---
 

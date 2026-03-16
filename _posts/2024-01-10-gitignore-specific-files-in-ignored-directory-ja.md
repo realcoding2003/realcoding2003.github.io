@@ -7,9 +7,13 @@ tags: [git, gitignore, version-control, troubleshooting, beginner]
 author: "Kevin Park"
 excerpt: "ディレクトリを無視しつつ特定ファイルのみを含める.gitignore設定方法。**パターン活用で即座に解決可能"
 lang: ja
+slug: gitignore-specific-files-in-ignored-directory
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2024/01/10/gitignore-specific-files-in-ignored-directory-ja/
+  - /ja/2024/01/10/gitignore-specific-files-in-ignored-directory-ja/
+  - /en/2024/01/10/gitignore-specific-files-in-ignored-directory-ja/
+
 ---
 
 # .gitignoreで無視されたディレクトリから特定ファイルを追加する

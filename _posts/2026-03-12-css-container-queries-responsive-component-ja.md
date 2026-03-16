@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [CSS, container queries, レスポンシブ, コンポーネント]
 author: "Kevin Park"
 lang: ja
+slug: css-container-queries-responsive-component
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/12/css-container-queries-responsive-component-ja/
+  - /2026/03/12/css-container-queries-responsive-component-ja/
 excerpt: "media queryの代わりに@containerを使えば、コンポーネントが配置される場所に関係なくレスポンシブ対応できます"
 ---
 

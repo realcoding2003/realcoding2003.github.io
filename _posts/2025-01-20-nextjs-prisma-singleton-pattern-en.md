@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Next.js, Prisma, singleton, database, TypeScript]
 author: "Kevin Park"
 lang: en
+slug: nextjs-prisma-singleton-pattern
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/01/20/nextjs-prisma-singleton-pattern-en/
+  - /2025/01/20/nextjs-prisma-singleton-pattern-en/
 excerpt: "Fix Prisma client connection leaks during Next.js hot reload with a simple singleton pattern."
 ---
 

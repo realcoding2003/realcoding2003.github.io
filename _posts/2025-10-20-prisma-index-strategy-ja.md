@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Prisma, database, index, PostgreSQL, performance]
 author: "Kevin Park"
 lang: ja
+slug: prisma-index-strategy
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/10/20/prisma-index-strategy-ja/
+  - /2025/10/20/prisma-index-strategy-ja/
 excerpt: "Prismaスキーマで単一インデックス、複合インデックス、ソート方向インデックスを設定してクエリ性能を向上させる方法をご紹介します。"
 ---
 

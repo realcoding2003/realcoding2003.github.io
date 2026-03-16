@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, Enum, Union Type, Type Safety]
 author: "Kevin Park"
 lang: en
+slug: typescript-enum-vs-union-type
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/08/typescript-enum-vs-union-type-en/
+  - /2026/03/08/typescript-enum-vs-union-type-en/
 excerpt: "A practical comparison of TypeScript Enum and Union Type to help you choose the right one."
 ---
 

@@ -6,6 +6,7 @@ categories: [Development, Package]
 tags: [python, vertex-ai, imagen, ai, image-generation, google-cloud, pypi]
 author: "Kevin Park"
 lang: ja
+slug: vertex-ai-imagen-python-package
 excerpt: "Google Vertex AIのImagen画像生成APIをより簡単に使用できるPythonパッケージをご紹介します。複雑な設定なしでシンプルなコードでAI画像生成を始めましょう。"
 image: "/assets/images/posts/vertex-ai-imagen-package-hero.png"
 mermaid: true
@@ -13,6 +14,9 @@ translation_key: "vertex-ai-imagen-package"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2025/06/07/vertex-ai-imagen-python-package-ja/
+  - /ja/2025/06/07/vertex-ai-imagen-python-package-ja/
+  - /2025/06/06/vertex-ai-imagen-python-package-ja/
+
 ---
 
 ![vertex-ai-imagen パッケージ Hero画像](/assets/images/posts/vertex-ai-imagen-package-hero.png)

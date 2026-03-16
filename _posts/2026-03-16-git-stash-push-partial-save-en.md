@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Git, git-stash, CLI, Version-Control]
 author: "Kevin Park"
 lang: en
+slug: git-stash-push-partial-save
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/16/git-stash-push-partial-save-en/
+  - /2026/03/16/git-stash-push-partial-save-en/
 excerpt: "How to stash only specific files using git stash push instead of stashing everything at once."
 ---
 

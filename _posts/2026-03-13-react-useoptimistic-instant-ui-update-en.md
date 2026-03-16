@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [React, useOptimistic, hooks, UX]
 author: "Kevin Park"
 lang: en
+slug: react-useoptimistic-instant-ui-update
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/13/react-useoptimistic-instant-ui-update-en/
+  - /2026/03/13/react-useoptimistic-instant-ui-update-en/
 excerpt: "Use React 19's useOptimistic hook to update the UI before the server responds."
 ---
 

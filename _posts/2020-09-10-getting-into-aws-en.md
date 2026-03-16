@@ -6,10 +6,13 @@ categories: [Development, DevOps]
 tags: [AWS, Cloud, EC2, S3, Lambda, Getting Started]
 author: "Kevin Park"
 lang: en
+slug: getting-into-aws
 excerpt: "After 10+ years of physical servers in data centers, I finally dove into AWS. I thought I was late to the party, but the late start made every discovery that much more impressive."
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2020/09/10/getting-into-aws-en/
+  - /en/2020/09/10/getting-into-aws-en/
+
 ---
 
 # An On-Premise Developer Falls Hard for AWS
@@ -18,7 +21,7 @@ redirect_from:
 
 I've been completely absorbed in AWS lately.
 
-I knew I should have moved to the cloud ages ago. I even [wrote about keeping postponing the server migration](/en/2020/04/20/cloud-vs-onpremise-server-en/) a while back — but at the time it was still in "someday" territory.
+I knew I should have moved to the cloud ages ago. I even [wrote about keeping postponing the server migration](/en/2020/04/20/cloud-vs-onpremise-server/) a while back — but at the time it was still in "someday" territory.
 
 This year I actually started getting hands-on with AWS, and... why is this so fun?
 

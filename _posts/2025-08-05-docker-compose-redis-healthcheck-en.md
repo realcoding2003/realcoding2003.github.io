@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Docker, Docker Compose, Redis, healthcheck]
 author: "Kevin Park"
 lang: en
+slug: docker-compose-redis-healthcheck
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/08/05/docker-compose-redis-healthcheck-en/
+  - /2025/08/05/docker-compose-redis-healthcheck-en/
 excerpt: "Use healthcheck and depends_on condition to ensure Redis is fully ready before your app starts in Docker Compose."
 ---
 

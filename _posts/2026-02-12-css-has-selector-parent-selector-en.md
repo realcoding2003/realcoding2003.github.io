@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [CSS, Selector, has, Frontend]
 author: "Kevin Park"
 lang: en
+slug: css-has-selector-parent-selector
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/12/css-has-selector-parent-selector-en/
+  - /2026/02/12/css-has-selector-parent-selector-en/
 excerpt: "Use the CSS :has() selector to style parent elements based on their children — no JavaScript needed."
 ---
 

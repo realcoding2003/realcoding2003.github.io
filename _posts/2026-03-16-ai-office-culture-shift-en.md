@@ -6,6 +6,11 @@ categories: [Life, Essay]
 tags: [AI, Workplace, Culture, Productivity]
 author: "Kevin Park"
 lang: en
+slug: ai-office-culture-shift
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/16/ai-office-culture-shift-en/
+  - /2026/03/16/ai-office-culture-shift-en/
 excerpt: "The conversations drifting from the meeting room next door have changed. AI isn't a novelty anymore — it's just how people work now."
 ---
 

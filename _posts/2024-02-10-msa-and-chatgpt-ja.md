@@ -6,10 +6,13 @@ categories: [Development, AI]
 tags: [MSA, ChatGPT, マイクロサービス, アーキテクチャ, AI]
 author: "Kevin Park"
 lang: ja
+slug: msa-and-chatgpt
 excerpt: "マイクロサービスアーキテクチャの設計にChatGPTを活用してみました。万能ではありませんが、ラバーダックデバッグの相手としては最高です。"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2024/02/10/msa-and-chatgpt-ja/
+  - /ja/2024/02/10/msa-and-chatgpt-ja/
+
 ---
 
 # MSA設計にChatGPTを活用してみた

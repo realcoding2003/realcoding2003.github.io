@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, ESM, ES Modules, dirname, import.meta]
 author: "Kevin Park"
 lang: en
+slug: esm-dirname-import-meta-url
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/01/05/esm-dirname-import-meta-url-en/
+  - /2026/01/05/esm-dirname-import-meta-url-en/
 excerpt: "Get __dirname and __filename in ES Modules using import.meta.url and fileURLToPath."
 ---
 

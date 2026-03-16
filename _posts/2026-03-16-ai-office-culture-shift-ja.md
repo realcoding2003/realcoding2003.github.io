@@ -6,6 +6,11 @@ categories: [Life, Essay]
 tags: [AI, 職場, 業務文化, 変化]
 author: "Kevin Park"
 lang: ja
+slug: ai-office-culture-shift
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/16/ai-office-culture-shift-ja/
+  - /2026/03/16/ai-office-culture-shift-ja/
 excerpt: "隣の会議室から聞こえてくるAIの話。業務スタイルが本当に変わってきていると実感しています。"
 ---
 

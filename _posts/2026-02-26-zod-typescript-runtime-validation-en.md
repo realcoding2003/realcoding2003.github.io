@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, Zod, validation, runtime-type-check]
 author: "Kevin Park"
 lang: en
+slug: zod-typescript-runtime-validation
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/26/zod-typescript-runtime-validation-en/
+  - /2026/02/26/zod-typescript-runtime-validation-en/
 excerpt: "TypeScript types vanish at runtime. Use Zod to validate API responses and external data at runtime"
 ---
 

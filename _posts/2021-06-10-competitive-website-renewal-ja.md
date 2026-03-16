@@ -6,10 +6,13 @@ categories: [Life, DevDiary]
 tags: [フリーランス, プレゼン, サイトリニューアル, プロジェクト, 開発者]
 author: "Kevin Park"
 lang: ja
+slug: competitive-website-renewal
 excerpt: "競合プレゼンでサイトリニューアルプロジェクトを獲得しました。企画書を書くのがコーディングより難しいことを改めて実感しました。"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2021/06/10/competitive-website-renewal-ja/
+  - /ja/2021/06/10/competitive-website-renewal-ja/
+
 ---
 
 # 競合プレゼンでサイトリニューアルを勝ち取る

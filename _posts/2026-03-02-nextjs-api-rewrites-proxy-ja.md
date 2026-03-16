@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Next.js, rewrites, proxy, microservice, API]
 author: "Kevin Park"
 lang: ja
+slug: nextjs-api-rewrites-proxy
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/02/nextjs-api-rewrites-proxy-ja/
+  - /2026/03/02/nextjs-api-rewrites-proxy-ja/
 excerpt: "Next.jsのrewrites機能で複数のバックエンドサービスを1つのドメインに集約するAPIプロキシの設定方法をご紹介します。"
 ---
 

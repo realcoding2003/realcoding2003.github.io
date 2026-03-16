@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [React, useDeferredValue, パフォーマンス, レンダリング]
 author: "Kevin Park"
 lang: ja
+slug: react-usedeferredvalue-rendering-optimization
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/06/react-usedeferredvalue-rendering-optimization-ja/
+  - /2026/02/06/react-usedeferredvalue-rendering-optimization-ja/
 excerpt: "入力はすぐに反映しつつ、重いリストのレンダリングだけ遅延させます"
 ---
 

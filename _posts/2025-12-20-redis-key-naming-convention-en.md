@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Redis, naming convention, key design, TypeScript]
 author: "Kevin Park"
 lang: en
+slug: redis-key-naming-convention
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/12/20/redis-key-naming-convention-en/
+  - /2025/12/20/redis-key-naming-convention-en/
 excerpt: "Organize Redis keys with a hierarchical naming convention and TypeScript helper functions."
 ---
 

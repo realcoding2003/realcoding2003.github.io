@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, Redis, singleton, reconnect, TypeScript]
 author: "Kevin Park"
 lang: ja
+slug: nodejs-redis-singleton-reconnect
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/04/20/nodejs-redis-singleton-reconnect-ja/
+  - /2025/04/20/nodejs-redis-singleton-reconnect-ja/
 excerpt: "Node.jsでRedis接続をシングルトンで管理し、指数バックオフで自動再接続するパターンをご紹介します。"
 ---
 

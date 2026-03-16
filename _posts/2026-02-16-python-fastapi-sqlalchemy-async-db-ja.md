@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Python, FastAPI, SQLAlchemy, Async, Database, Backend]
 author: "Kevin Park"
 lang: ja
+slug: python-fastapi-sqlalchemy-async-db
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/16/python-fastapi-sqlalchemy-async-db-ja/
+  - /2026/02/16/python-fastapi-sqlalchemy-async-db-ja/
 excerpt: "FastAPIでSQLAlchemyの非同期セッションを設定し、依存性注入で使用するパターンをご紹介します。"
 ---
 

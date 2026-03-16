@@ -10,10 +10,14 @@ excerpt: "Claude Desktop MCPでブログ生成から多言語対応まで - 5編
 image: "/assets/images/posts/ai-powered-blog-series/hero.png"
 series: "AIでGitHub Pages技術ブログを作る"
 lang: ja
+slug: ai-powered-github-pages-blog-series
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2025/06/09/ai-powered-github-pages-blog-series-ja/
   - /ja/2025/06/09/ai-powered-github-pages-blog-series-ja/
+  - /ja/2025/06/19/ai-powered-github-pages-blog-series-ja/
+  - /2025/06/19/ai-powered-github-pages-blog-series-ja/
+
 ---
 
 # AIでGitHub Pages技術ブログを作る - 完全シリーズガイド
@@ -46,7 +50,7 @@ graph TD
 
 ## 📚 シリーズ構成
 
-### [1編: Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/08/claude-desktop-mcp-blog-setup-ja/)
+### [1編: Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/08/claude-desktop-mcp-blog-setup/)
 
 **核心内容**: MCPの革新的価値とJekyllブログ完全自動生成
 - MCP（Model Context Protocol）紹介と設定
@@ -69,7 +73,7 @@ realcoding.github.io/
 
 ---
 
-### [2編: MCPでSEO最適化された技術投稿完全自動化](/ja/2025/06/11/mcp-automated-blog-posting-ja/)
+### [2編: MCPでSEO最適化された技術投稿完全自動化](/ja/2025/06/11/mcp-automated-blog-posting/)
 
 **核心内容**: アイデアを提示するだけで完成した技術投稿自動生成
 - スマートプロンプト設計とテンプレートシステム
@@ -87,7 +91,7 @@ realcoding.github.io/
 
 ---
 
-### [3編: MCPでGiscusコメントシステムを5分で完成](/ja/2025/06/13/mcp-giscus-comments-setup-ja/)
+### [3編: MCPでGiscusコメントシステムを5分で完成](/ja/2025/06/13/mcp-giscus-comments-setup/)
 
 **核心内容**: GitHub Issues基盤コメントシステム完全自動設定
 - Giscus vs他のコメントシステム比較分析
@@ -113,7 +117,7 @@ realcoding.github.io/
 
 ---
 
-### [4編: MCPでダーク/ライトモード完璧実装](/ja/2025/06/15/mcp-dark-light-mode-implementation-ja/)
+### [4編: MCPでダーク/ライトモード完璧実装](/ja/2025/06/15/mcp-dark-light-mode-implementation/)
 
 **核心内容**: CSS変数からコメント同期まで完全なテーマシステム
 - CSS Custom Properties基盤テーマアーキテクチャ
@@ -132,7 +136,7 @@ const theme = localStorage.getItem('theme') ||
 
 ---
 
-### [5編: MCPでJekyll多言語ブログ完成](/ja/2025/06/17/mcp-jekyll-multilingual-blog-ja/)
+### [5編: MCPでJekyll多言語ブログ完成](/ja/2025/06/17/mcp-jekyll-multilingual-blog/)
 
 **核心内容**: グローバルアクセシビリティのための完全な多言語システム構築
 - GitHub Pages互換カスタム多言語ソリューション
@@ -205,19 +209,19 @@ MCP: ツールが人間の意図を理解し自動実行
 
 ## 🎉 始める
 
-準備ができたら[1編: Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/08/claude-desktop-mcp-blog-setup-ja/)から始めてください！
+準備ができたら[1編: Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/08/claude-desktop-mcp-blog-setup/)から始めてください！
 
 各編は約10-15分の実習時間で構成されており、全体シリーズを1日以内に完走できます。
 
 ---
 
 **📚 シリーズ全体リスト**:
-1. [AIでGitHub Pages技術ブログを作る (1) - Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/08/claude-desktop-mcp-blog-setup-ja/)
-2. [AIでGitHub Pages技術ブログを作る (2) - MCPでSEO最適化された技術投稿完全自動化](/ja/2025/06/11/mcp-automated-blog-posting-ja/)
-3. [AIでGitHub Pages技術ブログを作る (3) - MCPでGiscusコメントシステムを5分で完成](/ja/2025/06/13/mcp-giscus-comments-setup-ja/)
-4. [AIでGitHub Pages技術ブログを作る (4) - MCPでダーク/ライトモード完璧実装](/ja/2025/06/15/mcp-dark-light-mode-implementation-ja/)
-5. [AIでGitHub Pages技術ブログを作る (5) - MCPでJekyll多言語ブログ完成](/ja/2025/06/17/mcp-jekyll-multilingual-blog-ja/)
+1. [AIでGitHub Pages技術ブログを作る (1) - Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/08/claude-desktop-mcp-blog-setup/)
+2. [AIでGitHub Pages技術ブログを作る (2) - MCPでSEO最適化された技術投稿完全自動化](/ja/2025/06/11/mcp-automated-blog-posting/)
+3. [AIでGitHub Pages技術ブログを作る (3) - MCPでGiscusコメントシステムを5分で完成](/ja/2025/06/13/mcp-giscus-comments-setup/)
+4. [AIでGitHub Pages技術ブログを作る (4) - MCPでダーク/ライトモード完璧実装](/ja/2025/06/15/mcp-dark-light-mode-implementation/)
+5. [AIでGitHub Pages技術ブログを作る (5) - MCPでJekyll多言語ブログ完成](/ja/2025/06/17/mcp-jekyll-multilingual-blog/)
 
 ---
 
-**シリーズ次の記事**: [AIでGitHub Pages技術ブログを作る (1) - Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/08/claude-desktop-mcp-blog-setup-ja/)
+**シリーズ次の記事**: [AIでGitHub Pages技術ブログを作る (1) - Claude Desktop MCPでローカルに直接Jekyllブログを生成](/ja/2025/06/08/claude-desktop-mcp-blog-setup/)

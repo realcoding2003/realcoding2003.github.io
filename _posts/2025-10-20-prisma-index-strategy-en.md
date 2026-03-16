@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Prisma, database, index, PostgreSQL, performance]
 author: "Kevin Park"
 lang: en
+slug: prisma-index-strategy
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/10/20/prisma-index-strategy-en/
+  - /2025/10/20/prisma-index-strategy-en/
 excerpt: "Configure single, composite, and directional indexes in Prisma schema to boost query performance."
 ---
 

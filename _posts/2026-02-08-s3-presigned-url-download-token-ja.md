@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [AWS, S3, presigned URL, download, security]
 author: "Kevin Park"
 lang: ja
+slug: s3-presigned-url-download-token
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/08/s3-presigned-url-download-token-ja/
+  - /2026/02/08/s3-presigned-url-download-token-ja/
 excerpt: "S3のPresigned URLとDynamoDB TTLを組み合わせて、有効期限とダウンロード回数制限付きのワンタイムダウンロードリンクを実装する方法をご紹介します。"
 ---
 

@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [pnpm, monorepo, workspace, Node.js]
 author: "Kevin Park"
 lang: ja
+slug: pnpm-workspace-monorepo
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/03/pnpm-workspace-monorepo-ja/
+  - /2026/03/03/pnpm-workspace-monorepo-ja/
 excerpt: "pnpm workspaceでフロントエンド、インフラ、モバイルプロジェクトを1つのリポジトリで管理するモノレポ構成法をご紹介します。"
 ---
 

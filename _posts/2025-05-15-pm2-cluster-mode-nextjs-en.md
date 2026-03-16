@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [PM2, Node.js, Next.js, cluster, production]
 author: "Kevin Park"
 lang: en
+slug: pm2-cluster-mode-nextjs
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/05/15/pm2-cluster-mode-nextjs-en/
+  - /2025/05/15/pm2-cluster-mode-nextjs-en/
 excerpt: "Use PM2 cluster mode to leverage multi-core CPUs and boost Next.js throughput in production."
 ---
 

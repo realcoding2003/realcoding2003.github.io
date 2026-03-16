@@ -6,10 +6,13 @@ categories: [Development, Tutorial]
 tags: [css, blend-mode, frontend, design, visual-effects]
 author: "Kevin Park"
 lang: en
+slug: css-blend-modes
 excerpt: "Learn how to implement Photoshop blending effects using only CSS. Practical applications of background-blend-mode and mix-blend-mode with responsive layout examples."
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2023/07/30/css-blend-modes-en/
+  - /en/2023/07/30/css-blend-modes-en/
+
 ---
 
 # Creating Photoshop Effects with CSS Blend Modes

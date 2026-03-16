@@ -6,10 +6,13 @@ categories: [Life, Essay]
 tags: [ブログ, WordPress, GitHub Pages, 開発者, 執筆]
 author: "Kevin Park"
 lang: ja
+slug: blog-nomad-finally-settled
 excerpt: "いくつものブログプラットフォームを転々として、ようやく定住しました。開発者のブログ遊牧生活の終結記です。"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2024/01/15/blog-nomad-finally-settled-ja/
+  - /ja/2024/01/15/blog-nomad-finally-settled-ja/
+
 ---
 
 # ブログ遊牧民、ついに定住する

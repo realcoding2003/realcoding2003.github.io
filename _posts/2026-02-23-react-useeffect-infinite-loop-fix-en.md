@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [React, useEffect, Hooks, Debugging, Performance, Frontend]
 author: "Kevin Park"
 lang: en
+slug: react-useeffect-infinite-loop-fix
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/23/react-useeffect-infinite-loop-fix-en/
+  - /2026/02/23/react-useeffect-infinite-loop-fix-en/
 excerpt: "Three common causes of useEffect running endlessly and the fix for each one."
 ---
 

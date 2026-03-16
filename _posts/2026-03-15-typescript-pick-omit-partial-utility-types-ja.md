@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, 型システム, Utility-Types, フロントエンド]
 author: "Kevin Park"
 lang: ja
+slug: typescript-pick-omit-partial-utility-types
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/15/typescript-pick-omit-partial-utility-types-ja/
+  - /2026/03/15/typescript-pick-omit-partial-utility-types-ja/
 excerpt: "TypeScriptのユーティリティ型を組み合わせて、APIリクエスト・レスポンスの型をスマートに作成する方法を解説します。"
 ---
 

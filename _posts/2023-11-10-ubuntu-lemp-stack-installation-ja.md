@@ -7,9 +7,13 @@ tags: [ubuntu, nginx, mariadb, php, lemp, server, hosting, tutorial, beginner]
 author: "Kevin Park"
 excerpt: "Ubuntu 18.04LTSでLEMPスタックを素早くインストールする完全ガイド。ワンクリックスクリプトからマルチサイトホスティング設定まで一気に解決。"
 lang: ja
+slug: ubuntu-lemp-stack-installation
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2023/11/10/ubuntu-lemp-stack-installation-ja/
+  - /ja/2023/11/10/ubuntu-lemp-stack-installation-ja/
+  - /en/2023/11/10/ubuntu-lemp-stack-installation-ja/
+
 ---
 
 # Ubuntu 18.04LTSでのLEMPスタック構築：Nginx、MariaDB、PHP 7.1完全ガイド

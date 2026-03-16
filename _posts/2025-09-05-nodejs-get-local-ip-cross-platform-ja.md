@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, network, IP address, cross-platform, os]
 author: "Kevin Park"
 lang: ja
+slug: nodejs-get-local-ip-cross-platform
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/09/05/nodejs-get-local-ip-cross-platform-ja/
+  - /2025/09/05/nodejs-get-local-ip-cross-platform-ja/
 excerpt: "Node.jsのos.networkInterfaces()でプラットフォーム別にローカルIPを正確に取得する方法をご紹介します。"
 ---
 

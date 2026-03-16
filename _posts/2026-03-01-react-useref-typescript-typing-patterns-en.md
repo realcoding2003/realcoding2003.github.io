@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [React, TypeScript, useRef, DOM, type]
 author: "Kevin Park"
 lang: en
+slug: react-useref-typescript-typing-patterns
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/01/react-useref-typescript-typing-patterns-en/
+  - /2026/03/01/react-useref-typescript-typing-patterns-en/
 excerpt: "Whether you include null in the useRef generic changes the entire type. Here's how to get it right"
 ---
 

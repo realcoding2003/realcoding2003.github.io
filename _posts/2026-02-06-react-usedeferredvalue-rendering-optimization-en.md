@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [React, useDeferredValue, performance, rendering]
 author: "Kevin Park"
 lang: en
+slug: react-usedeferredvalue-rendering-optimization
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/06/react-usedeferredvalue-rendering-optimization-en/
+  - /2026/02/06/react-usedeferredvalue-rendering-optimization-en/
 excerpt: "Keep input responsive while deferring expensive list rendering — no debounce needed"
 ---
 

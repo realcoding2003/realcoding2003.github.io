@@ -6,6 +6,11 @@ categories: [Development, AI]
 tags: [AI Development, Claude Code, SvelteKit, Hybrid App, Side Project, App Development]
 author: "Kevin Park"
 lang: en
+slug: hawonnow-ai-dev-story
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/05/hawonnow-ai-dev-story-en/
+  - /2026/03/05/hawonnow-ai-dev-story-en/
 excerpt: "Built an academy schedule management app in half a day with Claude Code. But getting it on both app stores took 3 days."
 image: "/assets/images/posts/hawonnow-dev-story/01-now.png"
 mermaid: true

@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [React, TypeScript, useRef, DOM, type]
 author: "Kevin Park"
 lang: ja
+slug: react-useref-typescript-typing-patterns
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/01/react-useref-typescript-typing-patterns-ja/
+  - /2026/03/01/react-useref-typescript-typing-patterns-ja/
 excerpt: "useRefのジェネリックにnullを含めるかどうかで、まったく異なる型になります"
 ---
 

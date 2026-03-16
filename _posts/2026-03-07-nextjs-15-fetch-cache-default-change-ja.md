@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Next.js, React, cache, fetch, revalidate]
 author: "Kevin Park"
 lang: ja
+slug: nextjs-15-fetch-cache-default-change
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/07/nextjs-15-fetch-cache-default-change-ja/
+  - /2026/03/07/nextjs-15-fetch-cache-default-change-ja/
 excerpt: "Next.js 15でfetchのデフォルトキャッシュがno-storeに変更され、パフォーマンスが低下する問題と解決方法を解説します"
 ---
 

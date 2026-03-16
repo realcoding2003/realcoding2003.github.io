@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [GitHub Actions, CI/CD, Docker, AWS ECR, DevOps, Automation]
 author: "Kevin Park"
 lang: ja
+slug: github-actions-docker-ecr-deploy
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/17/github-actions-docker-ecr-deploy-ja/
+  - /2026/02/17/github-actions-docker-ecr-deploy-ja/
 excerpt: "pushするだけでDockerイメージを自動ビルドしてECRにプッシュするワークフローの設定方法をご紹介します。"
 ---
 

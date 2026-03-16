@@ -6,11 +6,15 @@ categories: [Development, AI]
 tags: [CDK, Lambda, Cursor, AI-Development, Monorepo, Fullstack, Development-Productivity]
 author: "Kevin Park"
 lang: en
+slug: fullstack-ai-development
 excerpt: "From the old days of creating separate repositories for each Lambda function to developing entire projects solo with CDK + Lambda + Cursor - a journey of AI-powered development"
 image: "/assets/images/posts/fullstack-ai-development/hero.png"
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2025/07/04/fullstack-ai-development-en/
+  - /en/2025/07/04/fullstack-ai-development-en/
+  - /2025/07/03/fullstack-ai-development-en/
+
 ---
 
 # Can One Person Really Develop Entire Projects? 200% AI Utilization with CDK + Lambda + Cursor

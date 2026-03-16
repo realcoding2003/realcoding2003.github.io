@@ -6,6 +6,7 @@ categories: [Apache, Web Server, Troubleshooting]
 tags: [Apache, Korean-encoding, charset, UTF-8, encoding, server-migration]
 author: Kevin Park
 lang: en
+slug: apache-korean-character-encoding-fix
 excerpt: "Learn about the causes of Korean character corruption after Apache server migration and how to resolve it through charset configuration."
 keywords: "Apache, Korean encoding, charset, UTF-8, encoding, server migration"
 description: "Learn about the causes of Korean character corruption after Apache server migration and how to resolve it through charset configuration."
@@ -16,6 +17,8 @@ sitemap:
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2023/02/10/apache-korean-character-encoding-fix-en/
+  - /en/2023/02/10/apache-korean-character-encoding-fix-en/
+
 ---
 
 After server migration or fresh Apache installation, Korean characters on websites may appear corrupted. This issue typically occurs due to **improper charset configuration**.

@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, Generics, API, Type Safety, Frontend, Backend]
 author: "Kevin Park"
 lang: ja
+slug: typescript-generic-api-response-type
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/27/typescript-generic-api-response-type-ja/
+  - /2026/02/27/typescript-generic-api-response-type-ja/
 excerpt: "API呼び出しのたびにasで型アサーションしていませんか。ジェネリクスで一括管理する方法をご紹介します。"
 ---
 

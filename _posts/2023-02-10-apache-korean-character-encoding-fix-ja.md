@@ -6,6 +6,7 @@ categories: [Apache, Web Server, トラブルシューティング]
 tags: [Apache, 韓国語文字化け, charset, UTF-8, エンコーディング, サーバー移行]
 author: Kevin Park
 lang: ja
+slug: apache-korean-character-encoding-fix
 excerpt: "Apacheサーバー移行後に発生する韓国語文字化け現象の原因とcharset設定による解決方法について説明します。"
 keywords: "Apache, 韓国語文字化け, charset, UTF-8, エンコーディング, サーバー移行"
 description: "Apacheサーバー移行後に発生する韓国語文字化け現象の原因とcharset設定による解決方法について説明します。"
@@ -16,6 +17,9 @@ sitemap:
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2023/02/10/apache-korean-character-encoding-fix-ja/
+  - /ja/2023/02/10/apache-korean-character-encoding-fix-ja/
+  - /ja/2023/02/09/apache-korean-character-encoding-fix/
+
 ---
 
 サーバー移行や新しいApacheインストール後に、ウェブサイトで韓国語が文字化けして表示される場合があります。この現象は主に**charset設定が適切に行われていないために**発生する問題です。

@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, as const, リテラル型, 型安全性]
 author: "Kevin Park"
 lang: ja
+slug: typescript-as-const-literal-type
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/11/typescript-as-const-literal-type-ja/
+  - /2026/03/11/typescript-as-const-literal-type-ja/
 excerpt: "as constを使えばenumなしでも型安全な定数を作成できます"
 ---
 

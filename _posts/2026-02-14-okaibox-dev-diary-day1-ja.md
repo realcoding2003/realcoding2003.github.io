@@ -6,6 +6,7 @@ categories: [Development, DevDiary]
 tags: [OKAIBOX, AIエージェント, OpenClaw, NAS, LattePanda, ハードウェア開発, 韓国型AI, 開発日記, Windows11IoT]
 author: "Kevin Park"
 lang: ja
+slug: okaibox-dev-diary-day1
 excerpt: "OpenClawに触発されて、韓国環境に最適化されたAIエージェントOKAIBOXを作り始めました。ハードウェアからして違います。"
 image: "/assets/images/posts/okaibox-dev-diary-day1/okaibox_nas_device_1.jpg"
 mermaid: true
@@ -13,6 +14,8 @@ series: "OKAIBOX 開発日記"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2026/02/14/okaibox-dev-diary-day1-ja/
+  - /ja/2026/02/14/okaibox-dev-diary-day1-ja/
+
 ---
 
 # OpenClawが話題だけど、実は韓国版をもう作り始めていた

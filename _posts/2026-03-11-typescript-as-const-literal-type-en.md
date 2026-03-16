@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, as const, literal types, type safety]
 author: "Kevin Park"
 lang: en
+slug: typescript-as-const-literal-type
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/11/typescript-as-const-literal-type-en/
+  - /2026/03/11/typescript-as-const-literal-type-en/
 excerpt: "Use as const to create type-safe constants without enums and prevent type widening"
 ---
 

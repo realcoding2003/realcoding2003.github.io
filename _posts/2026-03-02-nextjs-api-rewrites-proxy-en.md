@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Next.js, rewrites, proxy, microservice, API]
 author: "Kevin Park"
 lang: en
+slug: nextjs-api-rewrites-proxy
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/02/nextjs-api-rewrites-proxy-en/
+  - /2026/03/02/nextjs-api-rewrites-proxy-en/
 excerpt: "Use Next.js rewrites to proxy multiple backend microservices behind a single domain — no CORS headaches."
 ---
 

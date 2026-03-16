@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [CSS, Selectors, Frontend, Web-Development]
 author: "Kevin Park"
 lang: en
+slug: css-is-where-selector-nesting
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/01/30/css-is-where-selector-nesting-en/
+  - /2026/01/30/css-is-where-selector-nesting-en/
 excerpt: "How to use CSS :is() and :where() to eliminate repetitive selectors, and the key specificity difference between them."
 ---
 

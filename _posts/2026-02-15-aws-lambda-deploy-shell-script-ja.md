@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [AWS, Lambda, shell script, deploy, CDK]
 author: "Kevin Park"
 lang: ja
+slug: aws-lambda-deploy-shell-script
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/15/aws-lambda-deploy-shell-script-ja/
+  - /2026/02/15/aws-lambda-deploy-shell-script-ja/
 excerpt: "CDKが生成したLambda関数名を自動的に見つけてコードをデプロイするシェルスクリプトパターンをご紹介します。"
 ---
 

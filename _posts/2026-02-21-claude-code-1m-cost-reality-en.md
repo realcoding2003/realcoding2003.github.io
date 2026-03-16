@@ -6,16 +6,19 @@ categories: [Development, AI]
 tags: [Claude Code, 1M Context, AI Coding, Anthropic, Dev Tools, Token Cost, Review]
 author: "Kevin Park"
 lang: en
+slug: claude-code-1m-cost-reality
 excerpt: "The 1M context model is great, but... my $50 free credit disappeared in just 3 hours. The cost per query grows exponentially as context accumulates."
 image: "/assets/images/posts/claude-code-1m-cost-reality/credit_counter_countdown_1.jpg"
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2026/02/21/claude-code-1m-cost-reality-en/
+  - /en/2026/02/21/claude-code-1m-cost-reality-en/
+
 ---
 
 ![Credit counter racing toward zero](/assets/images/posts/claude-code-1m-cost-reality/credit_counter_countdown_1.jpg)
 
-Yesterday I wrote about [Escaping Compacting Hell](/en/2026/02/20/claude-code-1m-context-review-en/) and how amazing the 1M context model is. I said something like "the cost is a bit steep, but the sense of freedom is hard to put a price on."
+Yesterday I wrote about [Escaping Compacting Hell](/en/2026/02/20/claude-code-1m-context-review/) and how amazing the 1M context model is. I said something like "the cost is a bit steep, but the sense of freedom is hard to put a price on."
 
 So today I went all in. Anthropic had given me $50 in free credits.
 
@@ -93,7 +96,7 @@ Both approaches have trade-offs. But if you don't understand this and just ride 
 
 ## Using It Wisely
 
-I [wrote about AI subscription costs](/en/2026/02/05/ai-subscription-regret-en/) a while back. The bottom line: a tool should be used like a tool.
+I [wrote about AI subscription costs](/en/2026/02/05/ai-subscription-regret/) a while back. The bottom line: a tool should be used like a tool.
 
 The 1M model is not an "always-on" mode.
 

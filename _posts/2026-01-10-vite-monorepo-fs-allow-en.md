@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Vite, monorepo, config, SvelteKit, fs]
 author: "Kevin Park"
 lang: en
+slug: vite-monorepo-fs-allow
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/01/10/vite-monorepo-fs-allow-en/
+  - /2026/01/10/vite-monorepo-fs-allow-en/
 excerpt: "Fix 'request url outside of Vite serving allow list' in monorepos using server.fs.allow."
 ---
 

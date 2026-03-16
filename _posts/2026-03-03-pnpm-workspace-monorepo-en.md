@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [pnpm, monorepo, workspace, Node.js]
 author: "Kevin Park"
 lang: en
+slug: pnpm-workspace-monorepo
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/03/pnpm-workspace-monorepo-en/
+  - /2026/03/03/pnpm-workspace-monorepo-en/
 excerpt: "Configure a monorepo with pnpm workspace to manage frontend, infra, and mobile projects in a single repository."
 ---
 

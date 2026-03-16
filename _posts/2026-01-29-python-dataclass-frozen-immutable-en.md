@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Python, dataclass, Type-Safety, Backend]
 author: "Kevin Park"
 lang: en
+slug: python-dataclass-frozen-immutable
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/01/29/python-dataclass-frozen-immutable-en/
+  - /2026/01/29/python-dataclass-frozen-immutable-en/
 excerpt: "Use Python's frozen dataclass to create immutable objects with built-in validation and hashability."
 ---
 

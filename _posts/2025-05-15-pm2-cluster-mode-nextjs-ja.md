@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [PM2, Node.js, Next.js, cluster, production]
 author: "Kevin Park"
 lang: ja
+slug: pm2-cluster-mode-nextjs
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/05/15/pm2-cluster-mode-nextjs-ja/
+  - /2025/05/15/pm2-cluster-mode-nextjs-ja/
 excerpt: "PM2のclusterモード設定でマルチコアを活用し、Next.jsアプリのスループットを向上させる方法をご紹介します。"
 ---
 

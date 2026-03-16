@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Redis, naming convention, key design, TypeScript]
 author: "Kevin Park"
 lang: ja
+slug: redis-key-naming-convention
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/12/20/redis-key-naming-convention-ja/
+  - /2025/12/20/redis-key-naming-convention-ja/
 excerpt: "Redisキーを体系的に管理するネーミング規則とTypeScriptヘルパー関数パターンをご紹介します。"
 ---
 

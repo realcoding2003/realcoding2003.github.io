@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Docker, Volume, Bind Mount, DevOps]
 author: "Kevin Park"
 lang: en
+slug: docker-volume-vs-bind-mount
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/11/docker-volume-vs-bind-mount-en/
+  - /2026/02/11/docker-volume-vs-bind-mount-en/
 excerpt: "Understanding the difference between Docker volumes and bind mounts, and when to use each."
 ---
 

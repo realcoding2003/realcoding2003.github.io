@@ -6,10 +6,13 @@ categories: [Life, DevDiary]
 tags: [開発者, バーンアウト, 怠惰, 自己成長, 開発経験]
 author: "Kevin Park"
 lang: ja
+slug: developer-laziness-burnout
 excerpt: "開発が嫌いになったわけじゃないのに手が動かない。頭の中では設計が完了しているのに実行できない。これって自分だけでしょうか？"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2020/03/16/developer-laziness-burnout-ja/
+  - /ja/2020/03/16/developer-laziness-burnout-ja/
+
 ---
 
 # 開発は楽しいのに手が動かない

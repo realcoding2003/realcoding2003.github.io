@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Nginx, Docker, static-site, docker-compose]
 author: "Kevin Park"
 lang: ja
+slug: nginx-docker-static-site
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/06/nginx-docker-static-site-ja/
+  - /2026/03/06/nginx-docker-static-site-ja/
 excerpt: "Docker ComposeでNginxコンテナを立ち上げ、静的HTML/CSS/JSサイトをサーブする最もシンプルな方法をご紹介します。"
 ---
 

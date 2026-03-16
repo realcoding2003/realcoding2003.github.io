@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [AWS, CDK, SES, Lambda, email, TypeScript]
 author: "Kevin Park"
 lang: en
+slug: aws-cdk-ses-lambda-email
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/01/25/aws-cdk-ses-lambda-email-en/
+  - /2026/01/25/aws-cdk-ses-lambda-email-en/
 excerpt: "Set up a serverless email sending endpoint with AWS CDK: API Gateway + Lambda + SES."
 ---
 

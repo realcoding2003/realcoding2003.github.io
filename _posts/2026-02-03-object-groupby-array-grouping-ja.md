@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, Object.groupBy, array, ES2024]
 author: "Kevin Park"
 lang: ja
+slug: object-groupby-array-grouping
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/03/object-groupby-array-grouping-ja/
+  - /2026/02/03/object-groupby-array-grouping-ja/
 excerpt: "reduceで複雑にグルーピングする時代は終わりました。Object.groupBy一つで完結します。"
 ---
 

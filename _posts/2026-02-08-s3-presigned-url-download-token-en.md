@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [AWS, S3, presigned URL, download, security]
 author: "Kevin Park"
 lang: en
+slug: s3-presigned-url-download-token
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/08/s3-presigned-url-download-token-en/
+  - /2026/02/08/s3-presigned-url-download-token-en/
 excerpt: "Combine S3 presigned URLs with DynamoDB TTL to create download links with expiration and download count limits."
 ---
 

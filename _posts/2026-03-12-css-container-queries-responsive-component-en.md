@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [CSS, container queries, responsive, component]
 author: "Kevin Park"
 lang: en
+slug: css-container-queries-responsive-component
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/12/css-container-queries-responsive-component-en/
+  - /2026/03/12/css-container-queries-responsive-component-en/
 excerpt: "Use @container instead of media queries to make components responsive based on their parent size"
 ---
 

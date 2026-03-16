@@ -6,6 +6,7 @@ categories: [Development, DevDiary]
 tags: [OKAIBOX, AIAgent, MCP, HWP, DocumentEditing, DevDiary, KoreanAI, HWPX, AIInfrastructure]
 author: "Kevin Park"
 lang: en
+slug: okaibox-dev-diary-day2
 excerpt: "In an age where AI can build almost anything with a click, what should developers actually work on? A document editing failure pointed me toward the answer."
 image: "/assets/images/posts/okaibox-dev-diary-day2/hero.jpg"
 mermaid: true
@@ -13,6 +14,8 @@ series: "OKAIBOX Dev Diary"
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2026/02/19/okaibox-dev-diary-day2-en/
+  - /en/2026/02/19/okaibox-dev-diary-day2-en/
+
 ---
 
 ![Hero Image](/assets/images/posts/okaibox-dev-diary-day2/hero.jpg)
@@ -20,7 +23,7 @@ redirect_from:
 
 I was supposed to unbox the LattePanda IOTA today.
 
-In [Day 1](/en/2026/02/14/okaibox-dev-diary-day1-en/), I even promised I'd crack open the hardware and share a detailed BOM breakdown. But before touching hardware, I need to sort out some thoughts first.
+In [Day 1](/en/2026/02/14/okaibox-dev-diary-day1/), I even promised I'd crack open the hardware and share a detailed BOM breakdown. But before touching hardware, I need to sort out some thoughts first.
 
 ## When AI Can Do Everything, What Should We Build?
 
@@ -166,7 +169,7 @@ Will any global AI company build HWP support? No. Korea is the only country that
 
 ## OKAIBOX Changes Direction
 
-In [Day 1](/en/2026/02/14/okaibox-dev-diary-day1-en/), I introduced OKAIBOX as "Korea's OpenClaw." A hardware-based AI agent. KakaoTalk integration, native Windows, Korean service optimization.
+In [Day 1](/en/2026/02/14/okaibox-dev-diary-day1/), I introduced OKAIBOX as "Korea's OpenClaw." A hardware-based AI agent. KakaoTalk integration, native Windows, Korean service optimization.
 
 But that alone would just make it a Korean version of OpenClaw. Playing on the surface.
 
@@ -245,6 +248,6 @@ Next up, I'll be dissecting actual HWPX files. It's XML-based, so it should be m
 ---
 
 **Series**: OKAIBOX Dev Diary
-- **Previous**: [Day 1 - Everyone's Talking About OpenClaw, But I Was Already Building the Korean Version](/en/2026/02/14/okaibox-dev-diary-day1-en/)
+- **Previous**: [Day 1 - Everyone's Talking About OpenClaw, But I Was Already Building the Korean Version](/en/2026/02/14/okaibox-dev-diary-day1/)
 - **Current**: Day 2 - AI Can Do Everything Now - So What Should We Build?
 - **Next**: Day 3 - Tearing Apart the HWPX File Format (Coming Soon)

@@ -9,10 +9,15 @@ author: "Kevin Park"
 excerpt: "Comprehensive guide to automatically building complete theme switching system from CSS variables to Giscus synchronization with MCP"
 image: "/assets/images/posts/mcp-dark-light-mode-implementation/hero.png"
 lang: en
+slug: mcp-dark-light-mode-implementation
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2025/06/09/mcp-dark-light-mode-implementation-en/
   - /en/2025/06/09/mcp-dark-light-mode-implementation-en/
+  - /en/2025/06/15/mcp-dark-light-mode-implementation-en/
+  - /2025/06/15/mcp-dark-light-mode-implementation-en/
+  - /en/2025/06/09/mcp-dark-light-mode-implementation/
+
 ---
 
 # Building a GitHub Pages Tech Blog with AI (4) - Perfect Implementation of Dark/Light Mode with MCP
@@ -302,14 +307,14 @@ Now that the theme system is complete, we'll cover implementing **multilingual (
 ---
 
 **📚 Complete Series List**:
-1. [Building a GitHub Pages Tech Blog with AI (1) - Creating Jekyll Blog Locally with Claude Desktop MCP](/en/2025/06/08/claude-desktop-mcp-blog-setup-en/)
-2. [Building a GitHub Pages Tech Blog with AI (2) - Complete Automation of SEO-Optimized Tech Posting with MCP](/en/2025/06/11/mcp-automated-blog-posting-en/)
-3. [Building a GitHub Pages Tech Blog with AI (3) - Setting up Giscus Comment System in 5 Minutes with MCP](/en/2025/06/13/mcp-giscus-comments-setup-en/)
-4. [Building a GitHub Pages Tech Blog with AI (4) - Perfect Implementation of Dark/Light Mode with MCP](/en/2025/06/15/mcp-dark-light-mode-implementation-en/) ← Current post
-5. [Building a GitHub Pages Tech Blog with AI (5) - Completing Jekyll Multilingual Blog with MCP](/en/2025/06/17/mcp-jekyll-multilingual-blog-en/)
+1. [Building a GitHub Pages Tech Blog with AI (1) - Creating Jekyll Blog Locally with Claude Desktop MCP](/en/2025/06/08/claude-desktop-mcp-blog-setup/)
+2. [Building a GitHub Pages Tech Blog with AI (2) - Complete Automation of SEO-Optimized Tech Posting with MCP](/en/2025/06/11/mcp-automated-blog-posting/)
+3. [Building a GitHub Pages Tech Blog with AI (3) - Setting up Giscus Comment System in 5 Minutes with MCP](/en/2025/06/13/mcp-giscus-comments-setup/)
+4. [Building a GitHub Pages Tech Blog with AI (4) - Perfect Implementation of Dark/Light Mode with MCP](/en/2025/06/15/mcp-dark-light-mode-implementation/) ← Current post
+5. [Building a GitHub Pages Tech Blog with AI (5) - Completing Jekyll Multilingual Blog with MCP](/en/2025/06/17/mcp-jekyll-multilingual-blog/)
 
 ---
 
-**Previous in Series**: [Building a GitHub Pages Tech Blog with AI (3) - Setting up Giscus Comment System in 5 Minutes with MCP](/en/2025/06/13/mcp-giscus-comments-setup-en/)
+**Previous in Series**: [Building a GitHub Pages Tech Blog with AI (3) - Setting up Giscus Comment System in 5 Minutes with MCP](/en/2025/06/13/mcp-giscus-comments-setup/)
 
-**Next in Series**: [Building a GitHub Pages Tech Blog with AI (5) - Completing Jekyll Multilingual Blog with MCP](/en/2025/06/17/mcp-jekyll-multilingual-blog-en/)
+**Next in Series**: [Building a GitHub Pages Tech Blog with AI (5) - Completing Jekyll Multilingual Blog with MCP](/en/2025/06/17/mcp-jekyll-multilingual-blog/)

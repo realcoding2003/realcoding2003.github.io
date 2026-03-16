@@ -7,9 +7,12 @@ tags: [linux, htop, monitoring, system-admin, troubleshooting, beginner]
 author: "Kevin Park"
 excerpt: "htopを活用したLinuxシステムリソースのリアルタイムモニタリング完全ガイド。CPU、メモリ、プロセス状態を効率的に分析する方法"
 lang: ja
+slug: htop-linux-resource-monitoring
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2024/02/10/htop-linux-resource-monitoring-ja/
+  - /ja/2024/02/10/htop-linux-resource-monitoring-ja/
+
 ---
 
 # htopによるLinuxシステムリソースモニタリング

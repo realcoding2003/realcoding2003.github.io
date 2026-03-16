@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, Zod, validation, runtime-type-check]
 author: "Kevin Park"
 lang: ja
+slug: zod-typescript-runtime-validation
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/26/zod-typescript-runtime-validation-ja/
+  - /2026/02/26/zod-typescript-runtime-validation-ja/
 excerpt: "TypeScriptの型はランタイムで消えます。Zodで外部データをランタイムでも検証する方法を紹介します"
 ---
 

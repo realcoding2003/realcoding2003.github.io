@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Python, Pattern Matching, match-case, Python3]
 author: "Kevin Park"
 lang: ja
+slug: python-match-case-pattern-matching
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/09/python-match-case-pattern-matching-ja/
+  - /2026/02/09/python-match-case-pattern-matching-ja/
 excerpt: "Python 3.10の構造的パターンマッチングで、複雑な条件分岐をクリーンに書く方法を紹介します。"
 ---
 

@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, Promise, async, error handling]
 author: "Kevin Park"
 lang: en
+slug: promise-allsettled-vs-all-error-handling
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/10/promise-allsettled-vs-all-error-handling-en/
+  - /2026/03/10/promise-allsettled-vs-all-error-handling-en/
 excerpt: "When calling multiple APIs concurrently, one failure shouldn't take down everything"
 ---
 

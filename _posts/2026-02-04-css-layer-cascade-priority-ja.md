@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [CSS, layer, cascade, architecture]
 author: "Kevin Park"
 lang: ja
+slug: css-layer-cascade-priority
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/04/css-layer-cascade-priority-ja/
+  - /2026/02/04/css-layer-cascade-priority-ja/
 excerpt: "CSS @layerを活用して、スタイルの優先順位の混乱を解消する方法をご紹介します。"
 ---
 

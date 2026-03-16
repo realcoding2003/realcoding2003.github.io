@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, infer, generic, type-system]
 author: "Kevin Park"
 lang: ja
+slug: typescript-infer-extract-generic-type
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/14/typescript-infer-extract-generic-type-ja/
+  - /2026/03/14/typescript-infer-extract-generic-type-ja/
 excerpt: "TypeScriptのinferキーワードを使って、ジェネリック型から必要な型だけを取り出す方法をご紹介します。"
 ---
 

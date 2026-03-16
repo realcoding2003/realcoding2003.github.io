@@ -6,6 +6,7 @@ categories: [Development, DevDiary]
 tags: [OKAIBOX, AIAgent, OpenClaw, NAS, LattePanda, HardwareDev, KoreanAI, DevDiary, Windows11IoT]
 author: "Kevin Park"
 lang: en
+slug: okaibox-dev-diary-day1
 excerpt: "Inspired by OpenClaw, I started building OKAIBOX - an AI agent optimized for the Korean environment. It starts with the hardware."
 image: "/assets/images/posts/okaibox-dev-diary-day1/okaibox_nas_device_1.jpg"
 mermaid: true
@@ -13,6 +14,8 @@ series: "OKAIBOX Dev Diary"
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2026/02/14/okaibox-dev-diary-day1-en/
+  - /en/2026/02/14/okaibox-dev-diary-day1-en/
+
 ---
 
 # Everyone's Talking About OpenClaw, But I Was Already Building the Korean Version

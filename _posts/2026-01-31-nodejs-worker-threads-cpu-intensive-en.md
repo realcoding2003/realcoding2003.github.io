@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, worker_threads, Performance, Backend]
 author: "Kevin Park"
 lang: en
+slug: nodejs-worker-threads-cpu-intensive
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/01/31/nodejs-worker-threads-cpu-intensive-en/
+  - /2026/01/31/nodejs-worker-threads-cpu-intensive-en/
 excerpt: "How to use Node.js worker_threads to run heavy computations without blocking the main event loop."
 ---
 

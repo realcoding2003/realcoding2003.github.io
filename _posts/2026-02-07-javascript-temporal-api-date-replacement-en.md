@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, Temporal API, Date, TypeScript]
 author: "Kevin Park"
 lang: en
+slug: javascript-temporal-api-date-replacement
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/07/javascript-temporal-api-date-replacement-en/
+  - /2026/02/07/javascript-temporal-api-date-replacement-en/
 excerpt: "How to use the Temporal API to replace JavaScript's broken Date object with immutable, timezone-aware date handling"
 ---
 

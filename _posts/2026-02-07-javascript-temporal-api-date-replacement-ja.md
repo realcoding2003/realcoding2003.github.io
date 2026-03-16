@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, Temporal API, Date, TypeScript]
 author: "Kevin Park"
 lang: ja
+slug: javascript-temporal-api-date-replacement
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/07/javascript-temporal-api-date-replacement-ja/
+  - /2026/02/07/javascript-temporal-api-date-replacement-ja/
 excerpt: "Dateオブジェクトの0始まりmonthやmutable問題をTemporal APIで解決する方法"
 ---
 

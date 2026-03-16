@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Next.js, health check, API, monitoring, production]
 author: "Kevin Park"
 lang: ja
+slug: nextjs-health-check-api
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/10/05/nextjs-health-check-api-ja/
+  - /2025/10/05/nextjs-health-check-api-ja/
 excerpt: "Next.js App Routerでシステム状態を確認するHealth Check APIエンドポイントの作り方をご紹介します。"
 ---
 

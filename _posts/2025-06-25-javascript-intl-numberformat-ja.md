@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, Intl, NumberFormat, formatting, i18n]
 author: "Kevin Park"
 lang: ja
+slug: javascript-intl-numberformat
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/06/25/javascript-intl-numberformat-ja/
+  - /2025/06/25/javascript-intl-numberformat-ja/
 excerpt: "JavaScript内蔵のIntl.NumberFormatで通貨、桁区切り、パーセントフォーマットをライブラリなしで処理する方法をご紹介します。"
 ---
 

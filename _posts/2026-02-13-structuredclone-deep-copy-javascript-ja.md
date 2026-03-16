@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, Node.js, Deep Copy, structuredClone]
 author: "Kevin Park"
 lang: ja
+slug: structuredclone-deep-copy-javascript
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/02/13/structuredclone-deep-copy-javascript-ja/
+  - /2026/02/13/structuredclone-deep-copy-javascript-ja/
 excerpt: "JSON.parse(JSON.stringify())の限界をstructuredCloneで解決する方法を紹介します。"
 ---
 

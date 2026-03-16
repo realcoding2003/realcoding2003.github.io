@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, satisfies, type-safety, type-inference]
 author: "Kevin Park"
 lang: en
+slug: typescript-satisfies-operator-type-safety
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/24/typescript-satisfies-operator-type-safety-en/
+  - /2026/02/24/typescript-satisfies-operator-type-safety-en/
 excerpt: "Use satisfies instead of as to get both type validation and narrow type inference"
 ---
 

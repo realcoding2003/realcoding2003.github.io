@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, memory, garbage collection, debugging, performance]
 author: "Kevin Park"
 lang: ja
+slug: nodejs-expose-gc-memory
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/11/20/nodejs-expose-gc-memory-ja/
+  - /2025/11/20/nodejs-expose-gc-memory-ja/
 excerpt: "Node.jsで--expose-gcフラグを使って手動GCをトリガーし、メモリリークを特定する方法をご紹介します。"
 ---
 

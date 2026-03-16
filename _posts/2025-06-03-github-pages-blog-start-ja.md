@@ -7,6 +7,13 @@ tags: [github-pages, jekyll, ブログ, 開始]
 author: "Kevin Park"
 excerpt: "GitHub PagesとJekyllを使用して自分だけの技術ブログを作成する方法を段階的に学びます。"
 lang: ja
+slug: github-pages-blog-start
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/06/03/github-pages-blog-start-ja/
+  - /2025/06/03/github-pages-blog-start-ja/
+  - /ja/2025/06/04/github-pages-blog-start-ja/
+  - /en/2025/06/04/github-pages-blog-start-ja/
 ---
 
 こんにちは！今日はGitHub Pagesを利用して技術ブログを始める方法について学んでみましょう。

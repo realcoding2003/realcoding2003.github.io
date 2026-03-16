@@ -6,11 +6,13 @@ categories: [Development, Blog]
 tags: [Jekyll, SEO, Multilingual, GitHub Pages, Pagination]
 author: "Kevin Park"
 lang: en
+slug: jekyll-multilingual-url-restructure
 excerpt: "The -en suffix on English post URLs was bugging me, so I restructured everything to /en/slug/. 140 files changed. Then I had to redo pagination from scratch."
 image: "/assets/images/posts/jekyll-multilingual-url-restructure/url_restructuring_diagram_1.jpg"
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2026/02/22/jekyll-multilingual-url-restructure-en/
+  - /en/2026/02/22/jekyll-multilingual-url-restructure-en/
 mermaid: true
 ---
 
@@ -80,7 +82,7 @@ The real grunt work, though, was updating 152 hardcoded links in the post bodies
 [Escaping Compacting Hell](/2026/02/20/claude-code-1m-context-review-en/)
 
 <!-- After -->
-[Escaping Compacting Hell](/en/2026/02/20/claude-code-1m-context-review-en/)
+[Escaping Compacting Hell](/en/2026/02/20/claude-code-1m-context-review/)
 ```
 
 Final tally: **140 files changed, 569 insertions, 154 deletions**. Quite the operation.

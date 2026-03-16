@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, memory, garbage collection, debugging, performance]
 author: "Kevin Park"
 lang: en
+slug: nodejs-expose-gc-memory
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/11/20/nodejs-expose-gc-memory-en/
+  - /2025/11/20/nodejs-expose-gc-memory-en/
 excerpt: "Use Node.js --expose-gc flag to trigger manual GC and identify real memory leaks."
 ---
 

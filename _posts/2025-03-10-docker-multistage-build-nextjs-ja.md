@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Docker, Next.js, multi-stage build, optimization]
 author: "Kevin Park"
 lang: ja
+slug: docker-multistage-build-nextjs
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/03/10/docker-multistage-build-nextjs-ja/
+  - /2025/03/10/docker-multistage-build-nextjs-ja/
 excerpt: "Dockerマルチステージビルドで Next.js イメージを1GBから200MB以下に削減する実践的なDockerfileをご紹介します。"
 ---
 

@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Git, git-stash, CLI, バージョン管理]
 author: "Kevin Park"
 lang: ja
+slug: git-stash-push-partial-save
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/03/16/git-stash-push-partial-save-ja/
+  - /2026/03/16/git-stash-push-partial-save-ja/
 excerpt: "git stash pushを使って特定のファイルだけをスタッシュする方法を解説します。"
 ---
 

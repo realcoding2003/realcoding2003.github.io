@@ -6,10 +6,13 @@ categories: [Development, Security]
 tags: [API, セキュリティ, CORS, Rate Limiting, トークン]
 author: "Kevin Park"
 lang: ja
+slug: api-endpoint-security-without-login
 excerpt: "ログイン機能のない公開サイトでAPIエンドポイントを安全に保護する方法。CORSだけでは不十分で、かといって認証を強制もできない状況での現実的な対策。"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2025/02/10/api-endpoint-security-without-login-ja/
+  - /ja/2025/02/10/api-endpoint-security-without-login-ja/
+
 ---
 
 # ログインなしのAPIエンドポイントセキュリティ

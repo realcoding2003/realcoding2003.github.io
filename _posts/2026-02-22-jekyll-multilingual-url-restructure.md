@@ -77,7 +77,7 @@ plugins:
 [Escaping Compacting Hell](/2026/02/20/claude-code-1m-context-review-en/)
 
 <!-- 변경 -->
-[Escaping Compacting Hell](/en/2026/02/20/claude-code-1m-context-review-en/)
+[Escaping Compacting Hell](/en/2026/02/20/claude-code-1m-context-review/)
 ```
 
 결과: **140개 파일 변경, 569줄 추가, 154줄 삭제**. 꽤 큰 작업이었다.

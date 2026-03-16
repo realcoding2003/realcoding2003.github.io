@@ -6,10 +6,13 @@ categories: [Development, DevOps]
 tags: [AWS, Lightsail, Cloud, Server, Hosting]
 author: "Kevin Park"
 lang: en
+slug: aws-lightsail-review
 excerpt: "I tried Lightsail years ago and dropped it. Recently went back and it's transformed — affordable, capable, and actually integrated with the AWS ecosystem."
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2022/06/20/aws-lightsail-review-en/
+  - /en/2022/06/20/aws-lightsail-review-en/
+
 ---
 
 # AWS Lightsail Revisited — It's Completely Different Now
@@ -56,7 +59,7 @@ But Lightsail wins for:
 - Static site hosting
 - Simple API servers
 
-I [wrote about postponing server migration](/en/2020/04/20/cloud-vs-onpremise-server-en/) before. For smaller services, Lightsail would save costs and simplify management.
+I [wrote about postponing server migration](/en/2020/04/20/cloud-vs-onpremise-server/) before. For smaller services, Lightsail would save costs and simplify management.
 
 ## What About Traditional Hosting?
 

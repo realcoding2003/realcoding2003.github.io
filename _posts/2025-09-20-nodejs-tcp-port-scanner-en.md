@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, TCP, port scanner, net, socket]
 author: "Kevin Park"
 lang: en
+slug: nodejs-tcp-port-scanner
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/09/20/nodejs-tcp-port-scanner-en/
+  - /2025/09/20/nodejs-tcp-port-scanner-en/
 excerpt: "Build an async TCP port scanner with Node.js net module — no external dependencies needed."
 ---
 

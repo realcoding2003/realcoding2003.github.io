@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [AWS, CDK, SES, Lambda, email, TypeScript]
 author: "Kevin Park"
 lang: ja
+slug: aws-cdk-ses-lambda-email
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/01/25/aws-cdk-ses-lambda-email-ja/
+  - /2026/01/25/aws-cdk-ses-lambda-email-ja/
 excerpt: "AWS CDKでSESメール送信Lambdaを構成するコード。API Gateway + Lambda + SESの組み合わせをご紹介します。"
 ---
 

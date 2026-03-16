@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, TCP, port scanner, net, socket]
 author: "Kevin Park"
 lang: ja
+slug: nodejs-tcp-port-scanner
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2025/09/20/nodejs-tcp-port-scanner-ja/
+  - /2025/09/20/nodejs-tcp-port-scanner-ja/
 excerpt: "Node.jsのnetモジュールでTCPポートが開いているか確認する非同期ポートスキャナーの作り方をご紹介します。"
 ---
 

@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [TypeScript, Type-System, Utility-Types, Frontend]
 author: "Kevin Park"
 lang: en
+slug: typescript-pick-omit-partial-utility-types
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/15/typescript-pick-omit-partial-utility-types-en/
+  - /2026/03/15/typescript-pick-omit-partial-utility-types-en/
 excerpt: "How to combine TypeScript utility types to create clean API request/response types without duplicating interfaces."
 ---
 

@@ -6,10 +6,13 @@ categories: [Development, Database]
 tags: [mysql, mariadb, database, backup, restore, console, mysqldump]
 author: "Kevin Park"
 lang: ja
+slug: mysql-mariadb-console-backup-restore
 excerpt: "GUIツールなしでコンソールからMySQL/MariaDBデータベースをバックアップ・復旧する方法。ホスティング環境ですぐに使えるコマンド集"
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2023/06/20/mysql-mariadb-console-backup-restore-ja/
+  - /ja/2023/06/20/mysql-mariadb-console-backup-restore-ja/
+
 ---
 
 # MySQL/MariaDBコンソールでのデータベースバックアップ・復旧完全ガイド

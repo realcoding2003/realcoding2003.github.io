@@ -6,10 +6,13 @@ categories: [Development, DevOps]
 tags: [AWS, Certification, Developer Associate, Cloud, Exam Review]
 author: "Kevin Park"
 lang: en
+slug: aws-developer-certification
 excerpt: "I got hooked on AWS, studied for three months, and passed the Developer Associate exam. Here's how the prep went and what I learned from the experience."
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2020/12/15/aws-developer-certification-en/
+  - /en/2020/12/15/aws-developer-certification-en/
+
 ---
 
 # AWS Certified Developer Associate - Exam Review
@@ -18,7 +21,7 @@ redirect_from:
 
 I passed the AWS Certified Developer - Associate certification.
 
-I [wrote about falling for AWS](/en/2020/09/10/getting-into-aws-en/) back in September, and after three months of steady studying, I took the exam at year's end. Result: pass.
+I [wrote about falling for AWS](/en/2020/09/10/getting-into-aws/) back in September, and after three months of steady studying, I took the exam at year's end. Result: pass.
 
 Honestly, I expected to fail. A lot of the questions were more ambiguous than I anticipated. Walking out of the exam, I was convinced I'd blown it. Turns out I hadn't.
 

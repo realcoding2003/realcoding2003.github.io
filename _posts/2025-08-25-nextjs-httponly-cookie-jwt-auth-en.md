@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Next.js, JWT, HttpOnly, cookie, authentication, security]
 author: "Kevin Park"
 lang: en
+slug: nextjs-httponly-cookie-jwt-auth
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/08/25/nextjs-httponly-cookie-jwt-auth-en/
+  - /2025/08/25/nextjs-httponly-cookie-jwt-auth-en/
 excerpt: "Store JWT in HttpOnly cookies instead of localStorage to protect tokens from XSS attacks in Next.js."
 ---
 

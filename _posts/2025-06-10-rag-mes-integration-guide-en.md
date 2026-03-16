@@ -11,12 +11,15 @@ keywords: "RAG, MES, DataIntegration, VectorDB, RDS, IoT, ManufacturingAI, Multi
 description: "The true meaning of RAG goes beyond vector databases to integrate all data sources. This article provides a detailed explanation of how VectorDB, RDS, RawData, and LocalFile collaborate to derive intelligent conclusions through manufacturing MES systems."
 mermaid: true
 lang: en
+slug: rag-mes-integration-guide
 sitemap:
   changefreq: weekly
   priority: 0.8
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2025/06/10/rag-mes-integration-guide-en/
+  - /en/2025/06/10/rag-mes-integration-guide-en/
+
 ---
 
 # Complete RAG Guide: Understanding True Data Integration AI through Manufacturing MES Systems

@@ -8,9 +8,13 @@ author: "Kevin Park"
 excerpt: "数日間GitHubページブログをAIで作成した際の現実的な話。AI開発の明と暗"
 image: "/assets/images/posts/ai-dev-reality-diary/hero.png"
 lang: ja
+slug: ai-dev-reality-diary
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /2025/06/10/ai-dev-reality-diary-ja/
+  - /ja/2025/06/10/ai-dev-reality-diary-ja/
+  - /ja/2025/06/09/ai-dev-reality-diary/
+
 ---
 
 # AI開発の現実チェック：ブログ自動化で気づいたこと

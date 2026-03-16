@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, Redis, singleton, reconnect, TypeScript]
 author: "Kevin Park"
 lang: en
+slug: nodejs-redis-singleton-reconnect
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2025/04/20/nodejs-redis-singleton-reconnect-en/
+  - /2025/04/20/nodejs-redis-singleton-reconnect-en/
 excerpt: "Manage Redis connections as a singleton in Node.js with exponential backoff reconnection."
 ---
 

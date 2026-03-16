@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [GitHub Actions, CI/CD, Docker, AWS ECR, DevOps, Automation]
 author: "Kevin Park"
 lang: en
+slug: github-actions-docker-ecr-deploy
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/17/github-actions-docker-ecr-deploy-en/
+  - /2026/02/17/github-actions-docker-ecr-deploy-en/
 excerpt: "Set up a GitHub Actions workflow that automatically builds Docker images and pushes them to ECR on every push."
 ---
 

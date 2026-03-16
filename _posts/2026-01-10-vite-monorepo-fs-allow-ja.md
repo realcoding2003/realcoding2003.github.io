@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Vite, monorepo, config, SvelteKit, fs]
 author: "Kevin Park"
 lang: ja
+slug: vite-monorepo-fs-allow
+permalink: /ja/:year/:month/:day/:title/
+redirect_from:
+  - /ja/2026/01/10/vite-monorepo-fs-allow-ja/
+  - /2026/01/10/vite-monorepo-fs-allow-ja/
 excerpt: "Viteモノレポで上位ディレクトリのファイルアクセスがブロックされる問題をserver.fs.allowで解決する方法をご紹介します。"
 ---
 

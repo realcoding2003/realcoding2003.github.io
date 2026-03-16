@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [JavaScript, Object.groupBy, array, ES2024]
 author: "Kevin Park"
 lang: en
+slug: object-groupby-array-grouping
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/02/03/object-groupby-array-grouping-en/
+  - /2026/02/03/object-groupby-array-grouping-en/
 excerpt: "Stop writing reduce boilerplate for grouping arrays. Object.groupBy does it in one line."
 ---
 

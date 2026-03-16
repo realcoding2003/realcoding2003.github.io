@@ -6,6 +6,11 @@ categories: [Development, Tips]
 tags: [Node.js, UUID, crypto, dependencies]
 author: "Kevin Park"
 lang: en
+slug: nodejs-crypto-randomuuid-native
+permalink: /en/:year/:month/:day/:title/
+redirect_from:
+  - /en/2026/03/09/nodejs-crypto-randomuuid-native-en/
+  - /2026/03/09/nodejs-crypto-randomuuid-native-en/
 excerpt: "crypto.randomUUID() is built-in — no need for the uuid package anymore"
 ---
 

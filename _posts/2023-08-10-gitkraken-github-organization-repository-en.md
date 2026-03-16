@@ -7,9 +7,12 @@ tags: [gitkraken, github, organization, repository, oauth, git-tools]
 author: "Kevin Park"
 excerpt: "How to solve the issue of organization private repositories not showing in GitKraken through OAuth permission settings"
 lang: en
+slug: gitkraken-github-organization-repository
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /2023/08/10/gitkraken-github-organization-repository-en/
+  - /en/2023/08/10/gitkraken-github-organization-repository-en/
+
 ---
 
 # Complete Guide to GitKraken GitHub Organization Repository Integration

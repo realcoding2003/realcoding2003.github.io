@@ -35,12 +35,9 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-paginate
+
   - jekyll-redirect-from
 
-# Pagination
-paginate: 30
-paginate_path: "/page:num/"
 
 # Include in processing
 include:

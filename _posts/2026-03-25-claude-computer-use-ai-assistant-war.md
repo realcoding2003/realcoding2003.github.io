@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "어제 OpenClaw 세팅기 쓰고 잤더니, 다음날 Claude가 Computer Use를 발표했다"
-date: 2026-03-25 18:00:00 +0900
+date: 2026-03-25 08:45:00 +0900
 categories: [Life, Essay]
 tags: [AI, Claude, Computer Use, OpenClaw, OpenAI, Anthropic, 개인비서, AI전쟁]
 author: "Kevin Park"

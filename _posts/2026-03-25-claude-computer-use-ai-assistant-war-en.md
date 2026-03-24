@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "I Posted an OpenClaw Setup Guide, and the Next Day Claude Announced Computer Use"
-date: 2026-03-25 18:00:00 +0900
+date: 2026-03-25 08:45:00 +0900
 categories: [Life, Essay]
 tags: [AI, Claude, Computer Use, OpenClaw, OpenAI, Anthropic, Personal Assistant, AI War]
 author: "Kevin Park"

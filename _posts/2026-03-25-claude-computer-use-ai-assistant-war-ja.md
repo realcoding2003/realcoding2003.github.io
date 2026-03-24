@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "OpenClawのセットアップ記事を書いた翌日、ClaudeがComputer Useを発表した話"
-date: 2026-03-25 18:00:00 +0900
+date: 2026-03-25 08:45:00 +0900
 categories: [Life, Essay]
 tags: [AI, Claude, Computer Use, OpenClaw, OpenAI, Anthropic, パーソナルアシスタント, AI戦争]
 author: "Kevin Park"

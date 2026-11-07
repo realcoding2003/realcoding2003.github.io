@@ -59,8 +59,9 @@ This time I captured the printing process as a quiet Short.
 No fast editing, just soft piano and the pieces slowly building up.
 It's nice to just zone out and watch.
 
-The Short will be up on my [YouTube channel](https://www.youtube.com/@realcoding2003/shorts) soon.
+<div style="position: relative; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/roiKAYF-dus" title="Printing a 15cm Bulbasaur in Six Pieces" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
 
-<!-- SHORTS_EMBED -->
-
+- YouTube: [Printing a 15cm Bulbasaur in Six Pieces](https://www.youtube.com/shorts/roiKAYF-dus)
 - Model: "#0001 Bulbasaur HQ - 15cm Multiparts" by 3D Girl on MakerWorld

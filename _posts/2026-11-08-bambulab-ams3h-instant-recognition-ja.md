@@ -9,6 +9,7 @@ lang: ja
 slug: bambulab-ams3h-instant-recognition
 permalink: /ja/:year/:month/:day/:title/
 redirect_from:
+  - /ja/2026/11/08/bambulab-ams3h-instant-recognition/
   - /ja/2026/11/08/bambulab-ams3h-instant-recognition-ja/
   - /2026/11/08/bambulab-ams3h-instant-recognition-ja/
 excerpt: "AMS 2 Proは印刷中や乾燥中に新しいフィラメントを認識できず、毎回乾燥を止めてスプールを回していました。AMS 3Hは印刷中にそのまま挿すだけで、スプールを回さなくてもすぐに認識してくれます。"

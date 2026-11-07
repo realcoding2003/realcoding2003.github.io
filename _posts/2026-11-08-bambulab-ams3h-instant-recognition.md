@@ -6,6 +6,8 @@ categories: [Life, 3D Printing]
 tags: [3D프린터, 뱀부랩, Bambu Lab, H3C, AMS 3H, AMS 2 Pro, RFID, 필라멘트 인식]
 author: "Kevin Park"
 lang: ko
+redirect_from:
+  - /2026/11/08/bambulab-ams3h-instant-recognition/
 excerpt: "AMS 2 Pro는 출력이나 건조 중엔 새 필라멘트를 인식하지 못해서 매번 건조를 끄고 스풀을 굴려야 했다. AMS 3H는 출력 중에 그냥 꽂아도 스풀을 안 굴리고 바로 인식하더라."
 image: "/assets/images/posts/bambulab-ams3h-instant-recognition/hero.jpg"
 ---

@@ -9,6 +9,7 @@ lang: en
 slug: bambulab-ams3h-instant-recognition
 permalink: /en/:year/:month/:day/:title/
 redirect_from:
+  - /en/2026/11/08/bambulab-ams3h-instant-recognition/
   - /en/2026/11/08/bambulab-ams3h-instant-recognition-en/
   - /2026/11/08/bambulab-ams3h-instant-recognition-en/
 excerpt: "The AMS 2 Pro couldn't recognize new filament during printing or drying, so I had to turn drying off and roll the spool every time. The AMS 3H recognizes it right away when I just plug it in mid-print, no spool rolling needed."

@@ -55,8 +55,9 @@ MakerWorld에 올라온 "#0001 Bulbasaur HQ - 15cm Multiparts" 모델이다.
 빠른 편집 없이, 잔잔한 피아노에 조각이 쌓여 가는 모습만.
 멍하니 보기 좋다 ㅎㅎ
 
-쇼츠는 곧 [유튜브 채널](https://www.youtube.com/@realcoding2003/shorts)에 올라간다.
+<div style="position: relative; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/roiKAYF-dus" title="이상해씨 15cm, 여섯 조각으로 출력해 봤다" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
 
-<!-- SHORTS_EMBED -->
-
+- 유튜브: [이상해씨 15cm, 여섯 조각으로 출력해 봤다](https://www.youtube.com/shorts/roiKAYF-dus)
 - 모델: MakerWorld "#0001 Bulbasaur HQ - 15cm Multiparts" by 3D Girl

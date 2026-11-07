@@ -60,8 +60,9 @@ MakerWorldで公開されている「#0001 Bulbasaur HQ - 15cm Multiparts」と�
 速い編集はなしで、穏やかなピアノとともにパーツが積み上がっていく様子だけを収めています。
 ぼんやり眺めるのにぴったりです。
 
-ショート動画は、まもなく[YouTubeチャンネル](https://www.youtube.com/@realcoding2003/shorts)で公開します。
+<div style="position: relative; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/roiKAYF-dus" title="フシギダネ15cmを6つのパーツでプリントしてみた" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
 
-<!-- SHORTS_EMBED -->
-
+- YouTube: [フシギダネ15cmを6つのパーツでプリントしてみた](https://www.youtube.com/shorts/roiKAYF-dus)
 - モデル: MakerWorld「#0001 Bulbasaur HQ - 15cm Multiparts」by 3D Girl

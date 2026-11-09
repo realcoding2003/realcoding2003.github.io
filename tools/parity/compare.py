@@ -21,6 +21,11 @@ IMPROVED_BODY = {
         ('/2025/06/07/vertex-ai-imagen-mcp-blog-automation/', 21, 'Orchestrator-approved GFM list/fence correction removes literal fences and restores __init__ and triple quotes inside code'),
     )
 }
+# 2026-11-10 사용자 결정: 원본이 없는(운영도 404) 대표 이미지 줄 삭제 — 본문 img 1 → 0, 나머지 지표는 운영과 동일해야 한다.
+IMPROVED_BODY.update({
+    prefix + '/2025/06/19/ai-powered-github-pages-blog-series/': {'img_count': 0, 'reason': 'User removed the missing hero image (404 in production too)'}
+    for prefix in ('', '/en', '/ja')
+})
 
 def compare_body_metrics(target, pm, lm):
     errors=[]; expected=[]; improved=IMPROVED_BODY.get(target)

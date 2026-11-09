@@ -7,7 +7,6 @@ categories: [AI, MCP, Blog Development]
 tags: [Claude, MCP, GitHub Pages, Jekyll, Series Guide, AI Tools]
 author: "Kevin Park"
 excerpt: "From blog creation to multilingual support with Claude Desktop MCP - Complete guide to AI-powered tech blog construction in 5 parts"
-image: "/assets/images/posts/ai-powered-blog-series/hero.png"
 series: "Building a GitHub Pages Tech Blog with AI"
 lang: en
 slug: ai-powered-github-pages-blog-series
@@ -21,8 +20,6 @@ redirect_from:
 ---
 
 # Building a GitHub Pages Tech Blog with AI - Complete Series Guide
-
-![Hero Image](/assets/images/posts/ai-powered-blog-series/hero.png)
 
 ## 🎯 Series Overview
 

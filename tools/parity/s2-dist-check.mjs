@@ -3,7 +3,7 @@ import { resolve, join, relative } from 'node:path';
 const root = resolve(process.argv[2] || 'dist');
 const failures = [], warnings = []; let pages = 0, images = 0;
 const variants = new Set(); let pictures = 0;
-const KNOWN_MISSING = new Set(['/assets/images/posts/ai-powered-blog-series/hero.png']);
+const KNOWN_MISSING = new Set(); // 2026-11-10: ai-powered-blog-series/hero.png 줄을 글에서 삭제(사용자 결정)
 const attrs = tag => Object.fromEntries([...tag.matchAll(/([\w:-]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>=]+)))?/g)].map(m => [m[1], m[2] ?? m[3] ?? m[4] ?? '']));
 function check(ok, path, message) { if (!ok) failures.push({ path, message }); }
 function* walk(dir) { for (const entry of readdirSync(dir, { withFileTypes: true })) { const path = join(dir, entry.name); if (entry.isDirectory()) yield* walk(path); else if (entry.name.endsWith('.html')) yield path; } }

@@ -17,5 +17,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- 원본이 없어 깨져 보이던 `ai-powered-github-pages-blog-series` 글(3개 언어)의 대표 이미지 제거 (posts)
 - kramdown 오류 렌더링 흉내 제거, bitbucket 글 3편의 목록 안 코드 블록 들여쓰기 수정 (reader)
 - 2026-03-15~24 영어·일본어 글 20편을 `/en/`·`/ja/` 주소로 정규화하고 옛 주소는 이동 페이지로 유지 — 한국어 글의 hreflang이 없는 주소를 가리키던 문제 해소 (site)

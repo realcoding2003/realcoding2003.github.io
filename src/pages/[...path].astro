@@ -1,0 +1,15 @@
+---
+import { getRoutes, getPosts, type Route } from '../lib/content';
+import Post from '../layouts/Post.astro';
+import Listing from '../layouts/Listing.astro';
+import Redirect from '../layouts/Redirect.astro';
+export async function getStaticPaths() {
+  return (await getRoutes()).map(route => ({ params: { path: route.path === '/' ? undefined : route.path.replace(/^\/|\/$/g, '') }, props: { route } }));
+}
+interface Props { route: Route }
+const { route } = Astro.props;
+const posts = route.kind === 'redirect' ? [] : await getPosts();
+---
+{route.kind === 'redirect' ? <Redirect path={route.target} />
+: route.kind === 'post' ? <Post post={route.post} posts={posts} />
+: <Listing page={route.page} posts={posts} />}

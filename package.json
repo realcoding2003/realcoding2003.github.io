@@ -1,0 +1,26 @@
+{
+  "name": "realcoding-astro-parity",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/sync-public.mjs",
+    "dev": "astro dev",
+    "prebuild": "node scripts/sync-public.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "node --test tools/parity/*.test.mjs"
+  },
+  "dependencies": {
+    "@astrojs/markdown-satteri": "^0.4.7",
+    "astro": "7.4.7",
+    "liquidjs": "^10.27.0",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@types/node": "^26.0.0",
+    "typescript": "^6.0.0"
+  }
+}

@@ -1,0 +1,29 @@
+---
+import Document from './Document.astro';
+import { postAlternates, type Post } from '../lib/content';
+interface Props { post: Post; posts: Post[] }
+const { post, posts } = Astro.props;
+const { data } = post;
+---
+<Document lang={post.lang} title={String(data.title || '')} description={String(data.excerpt || '')} path={post.path}
+  image={String(data.og_image || data.image || '/assets/images/og-default.jpg')} alternates={postAlternates(post, posts)}>
+  <article>
+    <header><h1>{data.title}</h1><time datetime={post.date.toISOString()}>{post.date.toISOString().slice(0,10)}</time>
+      <p>{data.author || '실전코딩'} · {(data.categories || []).join(', ')}</p>
+      <p>{(data.tags || []).join(', ')}</p>
+    </header>
+    <div class="post-content" set:html={post.html} />
+  </article>
+  {post.hasMermaid && <script is:inline type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
+    const blocks = document.querySelectorAll('pre > code.language-mermaid');
+    for (const code of blocks) {
+      const pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = code.textContent;
+      code.parentElement.replaceWith(pre);
+    }
+    await mermaid.run({ querySelector: '.mermaid' });
+  </script>}
+</Document>

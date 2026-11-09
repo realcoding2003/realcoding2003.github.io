@@ -1,0 +1,47 @@
+---
+import { absolute, translations, prefix } from '../lib/site.mjs';
+interface Props {
+  lang: string;
+  title: string;
+  description?: string;
+  path: string;
+  image?: string;
+  alternates?: Record<string, string>;
+}
+const { lang, title, description = '', path, image = '/assets/images/og-default.jpg', alternates = {} } = Astro.props;
+const data = translations[lang] || translations.ko;
+const canonical = absolute(path);
+const imageUrl = /^https?:/.test(image) ? image : absolute(image);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | {data.site.title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {Object.entries(alternates).map(([code, url]) => <link rel="alternate" hreflang={code} href={absolute(url)} />)}
+    <link rel="alternate" type="application/atom+xml" title={data.site.title} href={absolute('/feed.xml')} />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+  </head>
+  <body>
+    <header><nav aria-label="Main">
+      <a href={`${prefix(lang)}/`}>{data.nav.home}</a>{' '}
+      <a href={`${prefix(lang)}/about/`}>{data.nav.about}</a>{' '}
+      <a href={`${prefix(lang)}/archive/`}>{data.nav.archive}</a>{' '}
+      <a href={`${prefix(lang)}/categories/`}>Categories</a>{' '}
+      <a href={`${prefix(lang)}/tags/`}>Tags</a>
+    </nav></header>
+    <main><slot /></main>
+    <footer><a href="/privacy/">개인정보 처리방침</a></footer>
+  </body>
+</html>

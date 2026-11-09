@@ -1,47 +1,76 @@
 ---
-import { absolute, translations, prefix } from '../lib/site.mjs';
+import { absolute, translations, config } from '../lib/site.mjs';
+import type { Post } from '../lib/content';
+import { bodyText } from '../lib/reading-time';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Analytics from '../components/Analytics.astro';
+import '../styles/tokens.css';
+import '../styles/global.css';
 interface Props {
-  lang: string;
-  title: string;
-  description?: string;
-  path: string;
-  image?: string;
-  alternates?: Record<string, string>;
+  lang: string; title: string; description?: string; path: string; image?: string;
+  alternates?: Record<string, string>; themeMode?: 'switchable' | 'dark'; post?: Post; hasGame?: boolean; mainClass?: string;
 }
-const { lang, title, description = '', path, image = '/assets/images/og-default.jpg', alternates = {} } = Astro.props;
+const { lang, title, description = '', path, image = '/assets/images/og-default.jpg', alternates = {}, themeMode = 'switchable', post, hasGame = false, mainClass } = Astro.props;
 const data = translations[lang] || translations.ko;
 const canonical = absolute(path);
 const imageUrl = /^https?:/.test(image) ? image : absolute(image);
+const locales: Record<string, string> = { ko: 'ko_KR', en: 'en_US', ja: 'ja_JP' };
+const modified = post ? (post.data.last_modified_at ? new Date(post.data.last_modified_at).toISOString() : post.date.toISOString()) : undefined;
+const structured = post ? {
+  '@context': 'https://schema.org', '@type': 'BlogPosting', headline: title,
+  datePublished: post.date.toISOString(), dateModified: modified,
+  author: { '@type': 'Person', name: post.data.author || config.author, url: absolute('/about/') },
+  publisher: { '@type': 'Organization', name: config.title, logo: { '@type': 'ImageObject', url: absolute('/assets/images/character.png') } },
+  description: bodyText(String(post.data.excerpt || '')).slice(0, 200), inLanguage: lang,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+  ...(post.data.image ? { image: /^https?:/.test(post.data.image) ? post.data.image : absolute(post.data.image) } : {}),
+} : { '@context': 'https://schema.org', '@type': 'WebSite', name: data.site.title, url: absolute('/'), description: data.site.description, inLanguage: lang };
 ---
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} data-theme={themeMode === 'dark' ? 'dark' : undefined} data-theme-mode={themeMode}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>(()=>{const d=document.documentElement;d.classList.add('js');if(d.dataset.themeMode==='dark'){d.dataset.theme='dark';return}let t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.dataset.theme=t})()</script>
     <title>{title} | {data.site.title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {Object.entries(alternates).map(([code, url]) => <link rel="alternate" hreflang={code} href={absolute(url)} />)}
     <link rel="alternate" type="application/atom+xml" title={data.site.title} href={absolute('/feed.xml')} />
-    <meta property="og:type" content="article" />
+    <meta name="theme-color" content="#F4F5F0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0C1130" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicons/android-chrome-512x512.png" />
+    <link rel="manifest" href="/assets/favicons/manifest.webmanifest" />
+    <link rel="stylesheet" href={`/fonts/${lang}.css`} />
+    <meta property="og:type" content={post ? 'article' : 'website'} />
+    <meta property="og:site_name" content={data.site.title} />
+    <meta property="og:locale" content={locales[lang]} />
+    {Object.keys(alternates).filter(code => code !== lang && locales[code]).map(code => <meta property="og:locale:alternate" content={locales[code]} />)}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={imageUrl} />
+    {post && <>
+      <meta property="article:published_time" content={post.date.toISOString()} />
+      {post.data.last_modified_at && <meta property="article:modified_time" content={modified} />}
+      <meta property="article:section" content={post.section.toUpperCase()} />
+      {(post.data.tags || []).map((tag: string) => <meta property="article:tag" content={tag} />)}
+    </>}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structured).replace(/</g, '\\u003c')} />
   </head>
   <body>
-    <header><nav aria-label="Main">
-      <a href={`${prefix(lang)}/`}>{data.nav.home}</a>{' '}
-      <a href={`${prefix(lang)}/about/`}>{data.nav.about}</a>{' '}
-      <a href={`${prefix(lang)}/archive/`}>{data.nav.archive}</a>{' '}
-      <a href={`${prefix(lang)}/categories/`}>Categories</a>{' '}
-      <a href={`${prefix(lang)}/tags/`}>Tags</a>
-    </nav></header>
-    <main><slot /></main>
-    <footer><a href="/privacy/">개인정보 처리방침</a></footer>
+    <SiteHeader lang={lang} alternates={alternates} themeMode={themeMode} hasGame={hasGame} />
+    <main id="main" class={mainClass} tabindex="-1"><slot /></main>
+    <SiteFooter lang={lang} />
+    <Analytics />
+    <script>import '../scripts/theme';</script>
   </body>
 </html>

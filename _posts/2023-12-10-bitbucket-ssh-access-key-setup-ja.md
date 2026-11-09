@@ -24,28 +24,28 @@ redirect_from:
 
 ### 主要手順
 1. **SSHキー生成**
-```bash
-ssh-keygen -t rsa -C "your-email@example.com"
-# Enterキーのみ押してデフォルト設定で生成
-```
+   ```bash
+   ssh-keygen -t rsa -C "your-email@example.com"
+   # Enterキーのみ押してデフォルト設定で生成
+   ```
 
 2. **SSH Agent設定**
-```bash
-# SSH Agent開始
-eval "$(ssh-agent -s)"
+   ```bash
+   # SSH Agent開始
+   eval "$(ssh-agent -s)"
 
-# 生成したキーをSSH Agentに追加
-ssh-add ~/.ssh/id_rsa
+   # 生成したキーをSSH Agentに追加
+   ssh-add ~/.ssh/id_rsa
 
-# 登録確認
-ssh-add -l
-```
+   # 登録確認
+   ssh-add -l
+   ```
 
 3. **公開キーコピー**
-```bash
-cat ~/.ssh/id_rsa.pub
-# 出力された内容全体をコピー
-```
+   ```bash
+   cat ~/.ssh/id_rsa.pub
+   # 出力された内容全体をコピー
+   ```
 
 4. **Bitbucketリポジトリ設定**
    - Repository Settings → Access Keys → Add Key
@@ -53,10 +53,10 @@ cat ~/.ssh/id_rsa.pub
    - コピーした公開キーを貼り付け
 
 5. **SSHアドレスでPush**
-```bash
-git remote set-url origin ssh://git@bitbucket.org:username/repository.git
-git push origin master
-```
+   ```bash
+   git remote set-url origin ssh://git@bitbucket.org:username/repository.git
+   git push origin master
+   ```
 
 ---
 

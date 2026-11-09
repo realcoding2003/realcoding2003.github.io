@@ -1,4 +1,6 @@
 ---
 import Document from '../layouts/Document.astro';
+import { i18n } from '../lib/i18n';
+const t = i18n.ko;
 ---
-<Document lang="ko" title="404 — Page not found" path="/404.html"><h1>404</h1><p>페이지를 찾을 수 없습니다. Page not found.</p><a href="/">홈으로</a></Document>
+<Document lang="ko" title={t.notFoundTitle} path="/404.html" mainClass="listing container"><h1>{t.notFoundTitle}</h1><p>{t.notFoundBody}</p><a href="/">{t.notFoundLink}</a></Document>

@@ -1,0 +1,17 @@
+---
+import { i18n } from '../lib/i18n';
+interface Props { lang: string }
+const { lang } = Astro.props;
+---
+<button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label={i18n[lang].theme}>
+  <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+  <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 15.5A9 9 0 0 1 8.5 4 9 9 0 1 0 20 15.5Z"/></svg>
+</button>
+<style>
+  .theme-toggle { width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: transparent; padding: 10px; }
+  svg { width: 22px; height: 22px; grid-area: 1/1; transition: opacity 120ms; }
+  .moon { opacity: 0; }
+  :global([data-theme=dark]) .moon { opacity: 1; }
+  :global([data-theme=dark]) .sun { opacity: 0; }
+  @media (min-width:1100px) { .theme-toggle { width: 40px; height: 40px; padding: 8px; } }
+</style>

@@ -17,28 +17,28 @@ excerpt: "Bitbucket Private Repository에 SSH Key를 사용하여 비밀번호 �
 
 ### 핵심 단계
 1. **SSH Key 생성**
-```bash
-ssh-keygen -t rsa -C "your-email@example.com"
-# Enter 키만 눌러서 기본 설정으로 생성
-```
+   ```bash
+   ssh-keygen -t rsa -C "your-email@example.com"
+   # Enter 키만 눌러서 기본 설정으로 생성
+   ```
 
 2. **SSH Agent 설정**
-```bash
-# SSH Agent 시작
-eval "$(ssh-agent -s)"
+   ```bash
+   # SSH Agent 시작
+   eval "$(ssh-agent -s)"
 
-# 생성된 키를 SSH Agent에 추가
-ssh-add ~/.ssh/id_rsa
+   # 생성된 키를 SSH Agent에 추가
+   ssh-add ~/.ssh/id_rsa
 
-# 등록 확인
-ssh-add -l
-```
+   # 등록 확인
+   ssh-add -l
+   ```
 
 3. **Public Key 복사**
-```bash
-cat ~/.ssh/id_rsa.pub
-# 출력된 내용 전체를 복사
-```
+   ```bash
+   cat ~/.ssh/id_rsa.pub
+   # 출력된 내용 전체를 복사
+   ```
 
 4. **Bitbucket Repository 설정**
    - Repository Settings → Access Keys → Add Key
@@ -46,10 +46,10 @@ cat ~/.ssh/id_rsa.pub
    - 복사한 Public Key 붙여넣기
 
 5. **SSH 주소로 Push**
-```bash
-git remote set-url origin ssh://git@bitbucket.org:username/repository.git
-git push origin master
-```
+   ```bash
+   git remote set-url origin ssh://git@bitbucket.org:username/repository.git
+   git push origin master
+   ```
 
 ---
 

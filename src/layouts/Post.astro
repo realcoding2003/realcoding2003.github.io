@@ -1,29 +1,48 @@
 ---
 import Document from './Document.astro';
 import { postAlternates, type Post } from '../lib/content';
+import { enhanceHtml } from '../lib/html-enhance';
+import { i18n } from '../lib/i18n';
+import { prefix } from '../lib/site.mjs';
+import { getRelatedWorks } from '../lib/works';
+import Toc from '../components/Toc.astro';
+import RelatedWorks from '../components/RelatedWorks.astro';
+import PostNav from '../components/PostNav.astro';
+import Comments from '../components/Comments.astro';
+import '../styles/reader.css';
 interface Props { post: Post; posts: Post[] }
-const { post, posts } = Astro.props;
-const { data } = post;
+const { post, posts } = Astro.props; const { data } = post; const t = i18n[post.lang];
+// These three translations are explicitly excluded by the S2 brief. Their
+// comments:false text currently lives in a code example, not front matter.
+const commentsEnabled = data.comments !== false && post.baseSlug !== 'mcp-giscus-comments-setup';
+const slug = (value: string) => value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '');
+const titleLength = [...String(data.title || '')].length;
+const titleSize = titleLength > 100 ? 'longest' : titleLength > 80 ? 'longer' : titleLength > 60 ? 'long' : titleLength > 40 ? 'medium' : 'normal';
 ---
-<Document lang={post.lang} title={String(data.title || '')} description={String(data.excerpt || '')} path={post.path}
-  image={String(data.og_image || data.image || '/assets/images/og-default.jpg')} alternates={postAlternates(post, posts)}>
-  <article>
-    <header><h1>{data.title}</h1><time datetime={post.date.toISOString()}>{post.date.toISOString().slice(0,10)}</time>
-      <p>{data.author || '실전코딩'} · {(data.categories || []).join(', ')}</p>
-      <p>{(data.tags || []).join(', ')}</p>
+<Document lang={post.lang} title={String(data.title || '')} description={String(data.excerpt || '')} path={post.path} post={post}
+  image={String(data.og_image || data.image || '/assets/images/og-default.jpg')} alternates={postAlternates(post, posts)} hasGame={posts.some(p => p.lang === post.lang && p.section === 'game')}>
+  <article class="reader container" data-has-mermaid={post.hasMermaid ? '' : undefined}
+    data-copy={t.copy} data-copied={t.copied} data-zoom={t.zoom} data-dialog={t.dialog}
+    data-zoom-in={t.zoomIn} data-zoom-out={t.zoomOut} data-reset={t.reset} data-close={t.close}>
+    <div class="reader-grid">
+    <header class="reader-head" data-title-size={titleSize}>
+      <p class="reader-meta"><time datetime={post.date.toISOString()}>{post.date.toISOString().slice(0, 10).replaceAll('-', '.')}</time> · <span class="sr-only">{t.section}: </span>{post.section.toUpperCase()} · <span class="sr-only">{t.reading}: </span>{post.readingMinutes} min</p>
+      <h1>{data.title}</h1>
     </header>
-    <div class="post-content" set:html={post.html} />
+    <Toc headings={post.headings} lang={post.lang} inline />
+      <div class="post-content" set:html={await enhanceHtml(post.html)} />
+      <Toc headings={post.headings} lang={post.lang} />
+    </div>
+    {(data.tags || []).length > 0 && <p class="reader-tags">{t.tags} {(data.tags || []).map((tag: string) => <><a href={`${prefix(post.lang)}/tags/#${slug(tag)}`}>#{tag}</a>{' '}</>)}</p>}
+    <RelatedWorks works={getRelatedWorks(post)} lang={post.lang} />
+    <PostNav post={post} posts={posts} />
+    <Comments lang={post.lang} enabled={commentsEnabled} />
   </article>
-  {post.hasMermaid && <script is:inline type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
-    const blocks = document.querySelectorAll('pre > code.language-mermaid');
-    for (const code of blocks) {
-      const pre = document.createElement('pre');
-      pre.className = 'mermaid';
-      pre.textContent = code.textContent;
-      code.parentElement.replaceWith(pre);
-    }
-    await mermaid.run({ querySelector: '.mermaid' });
-  </script>}
+  <script>
+    import '../scripts/code-copy';
+    import '../scripts/toc';
+    import '../scripts/comments';
+    import '../scripts/mermaid';
+    import '../scripts/image-zoom';
+  </script>
 </Document>

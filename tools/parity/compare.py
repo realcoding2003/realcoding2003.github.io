@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Strict S1 URL/metadata/body/Atom parity check. Standard library only.
-Expected changes are derived from post language/path rules, never a hand-written
-ignore list. A different mismatch always fails, including in an expected group.
+"""Strict URL/metadata/body/Atom parity check. Standard library only.
+Expected URL changes are derived from post language/path rules. IMPROVED_BODY
+is the explicitly approved S2 Markdown correction list, with exact target metrics.
+Other mismatches still fail, including inside these groups.
 """
 import argparse, json, sys
 from pathlib import Path
@@ -9,6 +10,32 @@ from urllib.parse import urlsplit
 
 ORIGIN='https://realcoding.blog'
 LANGS=('ko','en','ja','x-default')
+# Explicit S2 acceptance values, not an unrestricted exemption.
+IMPROVED_BODY = {
+    prefix + path: {'pre_count': pres, 'table_count': 0, 'reason': reason}
+    for prefix in ('', '/en', '/ja')
+    for path, pres, reason in (
+        ('/2023/06/03/chrome-autocomplete-bug-fix/', 9, 'GFM preserves the complete nested-list fenced code block'),
+        ('/2023/12/10/bitbucket-ssh-access-key-setup/', 15, 'Indented steps preserve code blocks inside one five-item ordered list'),
+        ('/2026/11/07/bambulab-ams3h-instant-recognition/', 0, 'GFM preserves the video link with a pipe in its label instead of a headerless table'),
+        ('/2025/06/07/vertex-ai-imagen-mcp-blog-automation/', 21, 'Orchestrator-approved GFM list/fence correction removes literal fences and restores __init__ and triple quotes inside code'),
+    )
+}
+
+def compare_body_metrics(target, pm, lm):
+    errors=[]; expected=[]; improved=IMPROVED_BODY.get(target)
+    for metric in ('img_count','pre_count','h2_count','table_count','br_count'):
+        desired=improved[metric] if improved and metric in improved else pm.get(metric)
+        if desired!=lm.get(metric):
+            errors.append(('body '+metric,f'{target}: expected={desired}, prod={pm.get(metric)}, local={lm.get(metric)}'))
+    plen=pm.get('text_len',0); llen=lm.get('text_len',0)
+    delta=abs(llen-plen)/max(plen,1)
+    if improved:
+        expected.append(('Markdown 원문 교정(개선)', f'{target}: pre {pm.get("pre_count")} → {lm.get("pre_count")}, table {pm.get("table_count")} → {lm.get("table_count")}, text_len {plen} → {llen}; {improved["reason"]}'))
+    elif delta>0.03:
+        errors.append(('body text_len',f'{target}: prod={plen}, local={llen}, delta={delta:.2%}'))
+    return errors,expected
+
 def path_of(url): return urlsplit(url or '').path or '/'
 def load(root,name): return json.loads((root/name).read_text(encoding='utf-8'))
 
@@ -88,11 +115,8 @@ def compare(prod,local,comments):
             check(l.get('hreflang')==p.get('hreflang'),'hreflang parity',f'{target}: {p.get("hreflang")} != {l.get("hreflang")}')
         elif l.get('hreflang')!=p.get('hreflang'): expected.append(('Hreflang normalized group',f'{target}: {json.dumps(desired_h,ensure_ascii=False)}'))
         pm=p.get('body_metrics',{}); lm=l.get('body_metrics',{})
-        for metric in ('img_count','pre_count','h2_count','table_count','br_count'):
-            check(pm.get(metric)==lm.get(metric),'body '+metric,f'{target}: prod={pm.get(metric)}, local={lm.get(metric)}')
-        plen=pm.get('text_len',0); llen=lm.get('text_len',0)
-        delta=abs(llen-plen)/max(plen,1)
-        if delta>0.03: errors.append(('body text_len',f'{target}: prod={plen}, local={llen}, delta={delta:.2%}'))
+        body_errors,body_expected=compare_body_metrics(target,pm,lm)
+        errors.extend(body_errors); expected.extend(body_expected)
         if r['has_task_list']: expected.append(('Task-list checkbox rendering',target))
         if p.get('body_ids')!=l.get('body_ids'): expected.append(('Heading ID format',target))
         for anchor in p.get('body_anchor_targets',[]):
@@ -126,13 +150,13 @@ def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--prod',required=True,type=Path); ap.add_argument('--local',required=True,type=Path); ap.add_argument('--comments',required=True,type=Path); ap.add_argument('--out',required=True,type=Path); a=ap.parse_args()
     errors,expected,checks,comments=compare(a.prod,a.local,json.loads(a.comments.read_text()))
     def safe(s): return str(s).replace('|','&#124;').replace('\n',' ')
-    lines=['# S1 Astro parity report','',f'**Unexpected differences: {len(errors)} — {"FAIL" if errors else "PASS"}**','', 'Self-check only; not an independent reviewer verdict.','', '## Checks','', '| Check | Count |','|---|---:|']
+    lines=['# Astro parity report','',f'**Unexpected differences: {len(errors)} — {"FAIL" if errors else "PASS"}**','', 'Self-check only; not an independent reviewer verdict.','', '## Checks','', '| Check | Count |','|---|---:|']
     lines += [f'| {safe(k)} | {v} |' for k,v in checks]
     lines += ['', '## Comment URL observations', '', 'Comment counts are informational only; every URL is checked against its production behavior.', '', '| Path | Comments | Production behavior |', '|---|---:|---|']
     lines += [f'| {safe(path)} | {count} | {safe(behavior)} |' for path,count,behavior in comments]
     lines += ['',f'## Unexpected differences ({len(errors)})','', '| Type | Details |','|---|---|']
     lines += [f'| {safe(k)} | {safe(v)} |' for k,v in errors] or ['| None | — |']
-    lines += ['',f'## Expected differences ({len(expected)})','', 'Allowed categories only: normalized URLs/alternate links, task checkboxes, Mermaid loader detection, GitHub-style heading IDs. Body counts and text length are **not** exempted.','', '| Type | Details |','|---|---|']
+    lines += ['',f'## Expected differences ({len(expected)})','', 'Allowed categories only: normalized URLs/alternate links, task checkboxes, Mermaid loader detection, GitHub-style heading IDs, Markdown 원문 교정(개선). Only the explicitly approved Markdown paths use exact corrected pre/table values and report text-length changes; all other body checks remain strict.','', '| Type | Details |','|---|---|']
     lines += [f'| {safe(k)} | {safe(v)} |' for k,v in expected]
     a.out.parent.mkdir(parents=True,exist_ok=True); a.out.write_text('\n'.join(lines)+'\n',encoding='utf-8')
     a.out.with_suffix('.json').write_text(json.dumps({'unexpected':errors,'expected':expected,'checks':checks,'comments':comments},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

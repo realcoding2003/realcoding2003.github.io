@@ -1,0 +1,25 @@
+---
+import type { Post } from '../lib/content';
+import { i18n } from '../lib/i18n';
+interface Props { post: Post; posts: Post[] }
+const { post, posts } = Astro.props; const t = i18n[post.lang];
+const list = posts.filter(p => p.lang === post.lang); const index = list.findIndex(p => p.path === post.path);
+const prev = list[index + 1]; const next = list[index - 1];
+---
+<nav class="post-nav" aria-label={t.postNav}>
+  <div>{prev && <a href={prev.path}><span class="nav-label"><span class="arrow">←</span> {t.prev}</span><span class="nav-title">{prev.data.title}</span></a>}</div>
+  <div class="next">{next && <a href={next.path}><span class="nav-label">{t.next} <span class="arrow">→</span></span><span class="nav-title">{next.data.title}</span></a>}</div>
+</nav>
+<style>
+  .post-nav { display: grid; border-block: 1px solid var(--rule); margin-top: 2rem; }
+  .post-nav > div { min-width: 0; }
+  .next { text-align: right; border-top: 1px solid var(--rule); }
+  a { display: block; height: 100%; color: var(--fg); text-decoration: none; padding: 1.25rem; }
+  a:hover,a:focus-visible { background: var(--surface); }
+  .nav-label { display: block; font: .75rem/1.5 var(--mono-font); color: var(--fg-muted); margin-bottom: .5rem; }
+  .nav-title { font-family: var(--display-font); font-weight: 700; font-size: 1.0625rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .arrow { display: inline-block; transition: transform 160ms; }
+  a:hover .arrow { transform: translateX(-4px); } .next a:hover .arrow { transform: translateX(4px); }
+  @media (min-width:640px) { .post-nav { grid-template-columns: 1fr 1fr; } .next { border-top: 0; border-left: 1px solid var(--rule); } }
+  @media (prefers-reduced-motion: reduce) { a:hover .arrow { transform: none; } }
+</style>

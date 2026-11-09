@@ -3,7 +3,7 @@
 import sys, unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from compare import compare_comment_paths
+from compare import compare_comment_paths, compare_body_metrics, IMPROVED_BODY
 
 POST={'status':200,'body_selector':'.post-content','refresh_target':None}
 REDIRECT={'status':200,'refresh_target':'https://realcoding.blog/target/','canonical':'https://realcoding.blog/target/'}
@@ -28,5 +28,23 @@ class CommentPaths(unittest.TestCase):
     def test_unverified_production_path_fails(self):
         self.assertTrue(self.check_paths({'status':404},POST)[0])
         self.assertTrue(self.check_paths({'status':200},POST)[0])
+
+class ImprovedBody(unittest.TestCase):
+    def test_exact_corrected_metrics_are_expected(self):
+        path='/2023/06/03/chrome-autocomplete-bug-fix/'
+        prod={'pre_count':8,'table_count':0,'img_count':1,'h2_count':2,'br_count':0,'text_len':100}
+        local=dict(prod,pre_count=9,text_len=80)
+        errors,expected=compare_body_metrics(path,prod,local)
+        self.assertEqual(errors,[])
+        self.assertEqual(expected[0][0],'Markdown 원문 교정(개선)')
+        self.assertIn('100 → 80',expected[0][1])
+    def test_incorrect_values_and_unrelated_metrics_fail(self):
+        path='/2023/06/03/chrome-autocomplete-bug-fix/'
+        prod={'pre_count':8,'table_count':0,'img_count':1,'h2_count':2,'br_count':0,'text_len':100}
+        for key,value in [('pre_count',8),('table_count',1),('img_count',2),('h2_count',3),('br_count',1)]:
+            local=dict(prod,pre_count=9,**({key:value} if key!='pre_count' else {}))
+            if key=='pre_count': local[key]=value
+            self.assertTrue(compare_body_metrics(path,prod,local)[0],key)
+        self.assertTrue(compare_body_metrics('/other/',prod,dict(prod,text_len=80))[0])
 
 if __name__=='__main__': unittest.main()

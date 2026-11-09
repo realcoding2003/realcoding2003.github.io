@@ -1,0 +1,30 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body-font); font-size: 1rem; line-height: 1.75; }
+a { color: var(--link); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+button, input, select, textarea { font: inherit; }
+button { color: inherit; }
+button, summary { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.container { width: min(var(--container), calc(100% - 2 * var(--gutter))); margin-inline: auto; }
+h1,h2,h3,h4 { font-family: var(--display-font); font-weight: 800; line-height: 1.25; overflow-wrap: anywhere; }
+h3,h4 { font-weight: 700; }
+:lang(ja) h1,:lang(ja) h2 { font-weight: 700; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.wordmark { display: inline-flex; align-items: baseline; gap: .22em; color: var(--fg); text-decoration: none; white-space: nowrap; font-family: var(--display-font); font-weight: 800; line-height: 1.18; }
+.wordmark:lang(en),.wordmark:lang(ja) { font-family: "Archivo RC Wide", "Archivo RC Fallback", var(--system-ko); }
+.wordmark .cursor { display: inline-block; width: .55em; height: .95em; background: var(--accent); margin-left: -.14em; position: relative; top: .06em; }
+.skip-link { position: absolute; left: var(--gutter); top: .5rem; transform: translateY(-200%); z-index: 10; background: var(--bg); padding: .5rem 1rem; }
+.skip-link:focus { transform: none; }
+.listing { padding-block: 2.5rem 4rem; min-height: 65vh; }
+.listing h1 { font-size: 2.25rem; }
+.listing ul { list-style: none; padding: 0; }
+.listing li { padding-block: .75rem; border-bottom: 1px solid var(--rule); }
+.listing time { font: .8125rem/1.75 var(--mono-font); color: var(--fg-muted); margin-right: 1rem; }
+.listing li p { margin: .35rem 0 0; color: var(--fg-muted); }
+.listing nav a { display: inline-block; margin: .25rem .75rem .25rem 0; }
+.page-prose { max-width: var(--measure); }
+.page-prose img { max-width: 100%; height: auto; }
+@media (min-width:640px) { body { font-size: 1.0625rem; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }

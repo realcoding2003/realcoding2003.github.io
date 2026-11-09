@@ -13,6 +13,7 @@ class BodyParser(html.parser.HTMLParser):
         self.ids=[]; self.anchors=[]; self.mermaid_count=0; self.mermaid_script=False; self.selector=None
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
+        if 'data-has-mermaid' in a: self.mermaid_script=True
         if tag=='script' and ('mermaid' in a.get('src','')): self.mermaid_script=True
         if not self.active and 'post-content' in a.get('class','').split():
             self.active=True; self.depth=1; self.selector='.post-content'; return

@@ -1,0 +1,67 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { i18n, languageNames } from '../lib/i18n';
+import { languages, prefix } from '../lib/site.mjs';
+interface Props { lang: string; alternates?: Record<string, string>; themeMode?: 'switchable' | 'dark'; hasGame?: boolean }
+const { lang, alternates = {}, themeMode = 'switchable', hasGame = false } = Astro.props;
+const t = i18n[lang];
+const navItems = (['maker', 'dev', 'game', 'life', 'videos'] as const).filter(key => key !== 'game' || hasGame);
+---
+<a class="skip-link" href="#main">{t.skip}</a>
+<header class="site-header">
+  <div class="header-inner container">
+    <a class="wordmark" href={`${prefix(lang)}/`} aria-label={t.homeLabel}><span aria-hidden="true">&gt;|</span><span>{t.wordmark}</span><span class="cursor" aria-hidden="true"></span></a>
+    <a class="request" href={`${prefix(lang)}/request/`}>{t.request}</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="header-panel">{t.menu}</button>
+    <div class="header-panel" id="header-panel">
+      <nav class="main-nav" aria-label={t.mainNav}>{navItems.map(key => <a href={`${prefix(lang)}/${key}/`}><span>{t.nav[key]}</span></a>)}</nav>
+      <span class="utility-rule" aria-hidden="true"></span>
+      <nav class="language-nav" aria-label={t.language}>{languages.map(code => <a href={alternates[code] || `${prefix(code)}/`} hreflang={code} lang={code} aria-label={languageNames[code]} aria-current={code === lang ? 'page' : undefined}>{code.toUpperCase()}</a>)}</nav>
+      {themeMode === 'switchable' && <ThemeToggle lang={lang} />}
+    </div>
+  </div>
+</header>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const panel = document.querySelector<HTMLElement>('#header-panel');
+  if (button && panel) {
+    const close = (focus = false) => { button.setAttribute('aria-expanded', 'false'); panel.classList.remove('is-open'); if (focus) button.focus(); };
+    button.addEventListener('click', () => { const open = button.getAttribute('aria-expanded') !== 'true'; button.setAttribute('aria-expanded', String(open)); panel.classList.toggle('is-open', open); });
+    panel.addEventListener('click', event => { if ((event.target as Element).closest('a')) close(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') close(true); });
+  }
+</script>
+<style>
+  .site-header { border-bottom: 1px solid var(--rule); background: var(--bg); }
+  .header-inner { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: .5rem; }
+  .wordmark { font-size: 1.25rem; }
+  .request { display: inline-flex; align-items: center; justify-content: center; height: 2rem; padding-inline: 1.125rem; border-radius: 999px; background: var(--cta-bg); color: var(--cta-fg); text-decoration: none; font-size: .875rem; font-weight: 700; white-space: nowrap; }
+  .request:hover,.request:focus-visible { background: var(--cta-bg-hover); color: var(--cta-fg-hover); }
+  .request:active { transform: translateY(1px); }
+  .menu-toggle { width: 44px; height: 3.5rem; padding: 0; border: 0; background: none; font-size: .8125rem; }
+  .header-panel { grid-column: 1/-1; padding-bottom: 1rem; }
+  :global(html.js) .header-panel:not(.is-open) { display: none; }
+  .main-nav { display: flex; flex-direction: column; }
+  .main-nav a { display: flex; align-items: center; min-height: 3rem; border-top: 1px solid var(--rule); color: var(--fg); text-decoration: none; font-size: 1rem; font-weight: 700; position: relative; }
+  .main-nav a span { position: relative; }
+  .main-nav a span::after { content: ''; position: absolute; left: 0; right: 0; bottom: -.4rem; height: 4px; border-block: 1px solid var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 160ms; }
+  .main-nav a:hover span::after,.main-nav a:focus-visible span::after { transform: scaleX(1); }
+  .language-nav { display: flex; gap: 1rem; padding-block: .75rem; font: .875rem/1.5 var(--mono-font); }
+  .language-nav a { color: var(--fg); text-decoration: none; padding-block: .35rem; }
+  .language-nav a[aria-current] { color: var(--link); border-bottom: 2px solid var(--accent); }
+  .utility-rule { display: none; }
+  @media (min-width:640px) { .menu-toggle { height: 4rem; } .wordmark { font-size: 1.375rem; } }
+  @media (min-width:1100px) {
+    .header-inner { height: 4rem; display: flex; gap: 1rem; }
+    .wordmark { margin-right: auto; }
+    .menu-toggle { display: none; }
+    .header-panel,:global(html.js) .header-panel:not(.is-open) { display: contents; }
+    .main-nav { order: 1; flex-direction: row; gap: clamp(1.25rem,2.2vw,2.5rem); margin-right: auto; }
+    .main-nav a { border: 0; min-height: 4rem; }
+    .main-nav a span::after { bottom: -.4rem; }
+    .request { order: 2; height: 2.25rem; }
+    .utility-rule { display: block; order: 3; height: 1.25rem; border-left: 1px solid var(--rule); }
+    .language-nav { order: 4; gap: .75rem; padding: 0; }
+    .header-panel :global(.theme-toggle) { order: 5; }
+  }
+</style>

@@ -1,8 +1,11 @@
+import { sectionOf, type Section } from './sections';
+import { readingMinutes } from './reading-time';
+import { postHeadings, type Heading } from './headings';
 import { getCollection } from 'astro:content';
 import { readFileSync } from 'node:fs';
 import { postMetadata, RouteRegistry, languages, prefix, parseDocument } from './site.mjs';
 
-export type Post = ReturnType<typeof postMetadata> & { html: string; hasMermaid: boolean };
+export type Post = ReturnType<typeof postMetadata> & { html: string; hasMermaid: boolean; headings: Heading[]; section: Section; readingMinutes: number };
 export type Page = { path: string; lang: string; kind: string; data: Record<string, any>; body: string };
 export type Route = { path: string } & ({ kind: 'post'; post: Post } | { kind: 'redirect'; target: string } | { kind: 'page'; page: Page });
 
@@ -13,7 +16,7 @@ export async function getPosts(): Promise<Post[]> {
     const meta = postMetadata(entry.id + '.md', entry.data);
     const html = entry.rendered?.html;
     if (html === undefined) throw new Error(`Missing rendered Markdown: ${entry.id}`);
-    return { ...meta, html, hasMermaid: /<code\b[^>]*class="[^"]*language-mermaid/.test(html) };
+    return { ...meta, html, headings: postHeadings(html, entry.rendered?.metadata), section: sectionOf(meta), readingMinutes: readingMinutes(html, meta.lang), hasMermaid: /<code\b[^>]*class="[^"]*language-mermaid/.test(html) };
   }).filter(post => post.date.getTime() <= now)
     .sort((a,b) => b.date.getTime() - a.date.getTime() || (a.filename < b.filename ? 1 : a.filename > b.filename ? -1 : 0));
 }

@@ -54,6 +54,8 @@ export function responsiveImages() {
     // 개발 서버: 변형은 렌더 중 캐시에 만들어지지만 dist가 없으므로 캐시에서 직접 내준다(2026-11-10 — 미리보기 깨진 이미지).
     'astro:server:setup': ({ server }) => {
       server.middlewares.use(async (req, res, next) => {
+        // 2026-11-10: dev는 trailingSlash:'always'를 글꼴 엔드포인트에도 적용해 `/fonts/files/*.woff2`가 404 → 내부적으로 `/`를 붙여 넘긴다(빌드 산출물은 실제 파일이라 무관).
+        if (req.url && /^\/fonts\/files\/[^?]+\.woff2$/.test(req.url)) { req.url += '/'; return next(); }
         const match = req.url?.match(/^\/_images\/rc\/([a-f0-9]{64}-\d+\.webp)(?:\?.*)?$/);
         if (!match) return next();
         try {

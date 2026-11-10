@@ -58,7 +58,7 @@ for (const file of walk(root)) {
   check([...html.matchAll(/<a\b[^>]*>/g)].filter(([tag]) => attrs(tag).hreflang).length === 3, path, 'Language links != 3');
   check(!/<a\b[^>]*href="\/(?:en\/|ja\/)?game\/"/.test(html), path, 'Empty game menu');
 }
-check(pages === 465, '<all>', `Expected 465 reader pages, got ${pages}`);
+check(pages >= 465, '<all>', `Expected at least 465 reader pages, got ${pages}`);
 for (const lang of ['ko', 'en', 'ja']) {
   const file = join(root, 'fonts', `${lang}.css`);
   check(existsSync(file), lang, 'Font CSS missing'); if (!existsSync(file)) continue;

@@ -95,7 +95,7 @@ for (const file of walk(root)) {
   } else check(!nodes.some(n=>/realm-.*-poster/.test(n.a.src || '')),path,'Maker/game unchanged media');
  }
 }
-check(readers===465,'all','465 reader pages retained');
+check(readers>=465,'all','465 reader pages retained');
 for (const path of portals) check(existsSync(join(root,path,'index.html')),'all',`Missing portal ${path}`);
 const files = readdirSync(source); check(files.length===26,'assets','26 source files');
 for (const name of files) { const target=join(root,'assets/video/portal',name); check(existsSync(target) && statSync(target).size===statSync(join(source,name)).size,'assets',`Copied unchanged: ${name}`); }

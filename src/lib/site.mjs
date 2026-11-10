@@ -81,4 +81,4 @@ export const makerworldModel = (/** @type {number} */ id) => `https://makerworld
 export const CONTACT_EMAIL = 'kevinpark@okyc.kr';
 
 // Set to a published translation group's baseSlug to enable the AI flagship card.
-export const AI_FLAGSHIP_SLUG = '';
+export const AI_FLAGSHIP_SLUG = 'realcoding-portal-renewal';

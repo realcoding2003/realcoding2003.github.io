@@ -35,7 +35,7 @@ test('output collision fails for post/page/redirect and equivalent output filena
 test('all current source routes: unique, 20 normalized, 2 self aliases, 465 posts', () => {
   const registry = new RouteRegistry();
   const posts = readdirSync('_posts').filter(n=>n.endsWith('.md')).map(name=>post(name,parseDocument(readFileSync('_posts/'+name,'utf8')).data));
-  assert.equal(posts.length, 465);
+  assert.ok(posts.length >= 465, `기존 465편 보존: ${posts.length}`);
   assert.equal(posts.filter(p=>p.normalized).length,20);
   assert.equal(posts.flatMap(p=>p.redirects.filter(r=>r===p.path)).length,2);
   for (const p of posts) registry.add(p.path,p.filename);

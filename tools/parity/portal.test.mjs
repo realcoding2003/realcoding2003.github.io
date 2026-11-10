@@ -8,6 +8,7 @@ import { loadWorks } from '../../src/lib/works-data.mjs';
 import { validateInquiry } from '../../src/lib/inquiry-validate.mjs';
 import { buildMailto } from '../../src/lib/inquiry-mail.mjs';
 const expected = [
+ ['2026-11-10_mario-luigi-multipart-assembly',null,['mario-luigi-multipart-assembly'],['ejELZAjMKug',63],['sedkCEygUiM',403],null,[],null,null,null,'/assets/images/posts/mario-luigi-multipart-assembly/08-brothers.jpg'],
  ['2026-11-09_ams2-pro-sliding-speedrack-underrail',1,['ams2-pro-sliding-speedrack-underrail'],['cgMnIAW3yCA',60],null,3574866,['A2L'],'PLA','~22h','~700 g','/assets/images/posts/ams2-pro-sliding-speedrack-underrail/hero.jpg'],
  ['2026-11-08_bambulab-h3c-multicolor-figure',3,['bambulab-h3c-multicolor-figure'],['CcLO_yhIbOU',55],null,null,['H3C'],null,'~8h',null,'/assets/images/posts/bambulab-h3c-multicolor-figure/hero.jpg'],
  ['2026-11-08_bambulab-ams3h-instant-recognition',null,['bambulab-ams3h-instant-recognition'],['uPyB9AImuz0',62],null,null,['H3C'],null,null,null,'/assets/images/posts/bambulab-ams3h-instant-recognition/hero.jpg'],
@@ -17,7 +18,7 @@ const expected = [
  ['2026-10-28_halloween-kinder-holder',5,[],['DsGxGqEg4P4',60],null,null,[],null,null,null,null],
  ['2026-10-20_okyc-sign',2,[],null,['lRF2YkJqRrE',88],null,['X2D'],'PLA','~66h',null,null],
 ];
-test('all eight works exactly match the confirmed source table', () => {
+test('all works exactly match the confirmed source table', () => {
  const works = loadWorks();
  const rows = works.map(w => [w.id,w.home ?? null,w.posts,w.shorts ? [w.shorts.id,w.shorts.seconds] : null,w.long ? [w.long.id,w.long.seconds] : null,w.makerworld ?? null,w.printers,w.material ?? null,w.time ?? null,w.filament ?? null,w.image?.src ?? null]);
  assert.deepEqual(rows,[...expected].sort((a,b) => b[0].localeCompare(a[0]))); works.forEach(w => { assert.equal('layer' in w,false); assert.equal(w.date,w.id.slice(0,10)); });
@@ -25,7 +26,7 @@ test('all eight works exactly match the confirmed source table', () => {
 function invalid(mutator) {
  const dir = mkdtempSync(join(tmpdir(),'rc-works-'));
  try {
-  const works = loadWorks().slice(0,2).map(w => structuredClone(w)); mutator(works);
+  const works = loadWorks().filter(w => w.home !== undefined).slice(0,2).map(w => structuredClone(w)); mutator(works);
   for (const w of works) writeFileSync(join(dir,`${w.id}.yaml`),JSON.stringify(w));
   assert.throws(() => loadWorks(dir));
  } finally { rmSync(dir,{recursive:true,force:true}); }

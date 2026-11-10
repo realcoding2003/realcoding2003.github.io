@@ -19,7 +19,7 @@ const { lang, film } = Astro.props; const t = portalCopy[lang];
 </section>
 <style>
 .hero,.hero-track { width: 100%; }
-.hero-stage { height: calc(100svh - 4rem); min-height: 34rem; max-height: 62rem; position: relative; display: flex; align-items: flex-end; width: 100%; }
+.hero-stage { height: calc(100svh - var(--site-header-h)); min-height: 34rem; max-height: 62rem; position: relative; display: flex; align-items: flex-end; width: 100%; }
 .hero-poster,.hero-poster :global(picture) { position: absolute; inset: 0; z-index: 0; }
 .hero-poster :global(img),.hero-stage :global(.hero-video) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 .hero-stage :global(.hero-video) { z-index: 1; opacity: 0; }
@@ -30,8 +30,8 @@ h1,.chapter-title { font-family: var(--display-font); font-size: clamp(2.75rem,1
 h1:lang(en),.chapter-title:lang(en) { font-size: clamp(2.25rem,1rem + 4vw,5rem); }
 p { margin: .75rem 0 0; color: var(--stone-100); font-size: clamp(1.125rem,1rem + .7vw,1.75rem); }
 :global(html[data-motion="full"]) .hero-track { height: calc(100svh * 4); }
-:global(html[data-motion="full"]) .hero-stage { position: sticky; top: 0; height: 100svh; min-height: 0; max-height: none; overflow: hidden; }
-:global(html[data-motion="full"]) .hero-copy { display: grid; transform: translateY(calc(-1 * var(--hero-head,4rem))); }
+:global(html[data-motion="full"]) .hero-stage { position: sticky; top: var(--site-header-h); height: calc(100svh - var(--site-header-h)); min-height: 0; max-height: none; overflow: hidden; }
+:global(html[data-motion="full"]) .hero-copy { display: grid; transform: translateY(calc(-1 * var(--hero-head,0px))); }
 :global(html[data-motion="full"]) .hero-chapter { display: block; grid-area: 1 / 1; align-self: end; opacity: 0; transform: translateY(.75rem); pointer-events: none; transition: opacity 280ms ease,transform 280ms ease; }
 :global(html[data-motion="full"]) .hero-chapter[data-active],:global(html[data-motion="full"]) .hero-chapter[data-chapter="1"]:focus-within { opacity: 1; transform: none; pointer-events: auto; }
 :global(html[data-motion="full"]) .hero-copy:has([data-chapter="1"]:focus-within) .hero-chapter:not([data-chapter="1"]) { opacity: 0; }
@@ -47,8 +47,7 @@ p { margin: .75rem 0 0; color: var(--stone-100); font-size: clamp(1.125rem,1rem 
 
 @media (max-width:860px), (hover:none) and (pointer:coarse) { .hero-poster :global(img),.hero-stage :global(.hero-video) { object-position: 58% 50%; } }
 @media(max-width:639px) {
-.hero-stage { height: calc(100svh - 3.5rem); min-height: 30rem; }
-:global(html[data-motion="full"]) .hero-copy { transform: translateY(calc(-1 * var(--hero-head,3.5rem))); }
+.hero-stage { min-height: 30rem; }
 .hero-copy { padding-left: max(0px,calc(env(safe-area-inset-left) - var(--gutter-wide))); padding-right: max(0px,calc(env(safe-area-inset-right) - var(--gutter-wide))); }
 }
 </style>

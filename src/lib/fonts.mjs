@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { resolve, dirname, basename } from 'node:path';
-export const DISPLAY = { body: 'swap', heading: 'swap', mono: 'swap' };
+export const DISPLAY = { body: 'swap', heading: 'optional', mono: 'swap' };
 const files = new Map();
 function fileUrl(family, source) {
   const url = `/fonts/files/${family}/${basename(source)}`;
@@ -24,7 +24,7 @@ const node = path => resolve('node_modules', path);
 const pretendard = faces(node('pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css'), 'pretendard', 'body');
 const wanted = faces(node('wanted-sans/fonts/webfonts/static/split/WantedSans-ExtraBold.css'), 'wanted', 'heading');
 const line = [400, 700].map(weight => faces(node(`@fontsource/line-seed-jp/${weight}.css`), 'line-seed-jp', weight === 400 ? 'body' : 'heading')).join('\n');
-const archivoUrl = fileUrl('archivo', resolve('src/assets/fonts/archivo/archivo-rc-wide-800-latin.woff2'));
+export const archivoUrl = fileUrl('archivo', resolve('src/assets/fonts/archivo/archivo-rc-wide-800-latin.woff2'));
 const archivo = `@font-face{font-family:"Archivo RC Wide";font-style:normal;font-weight:800;font-display:${DISPLAY.heading};src:url("${archivoUrl}") format("woff2");unicode-range:U+0020-007E,U+00A0-00FF,U+2013-2014,U+2018-201F,U+2026,U+20A9,U+20AC;}`;
 // See src/assets/fonts/archivo/README.md for measured hmtx/hhea calculations.
 const fallback = '@font-face{font-family:"Archivo RC Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Arial");font-weight:800;size-adjust:132.263997%;ascent-override:66.382388%;descent-override:15.877337%;line-gap-override:0%;}';

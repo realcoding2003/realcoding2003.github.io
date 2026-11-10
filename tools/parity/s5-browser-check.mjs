@@ -11,6 +11,10 @@ export async function checkS5(browser, origin, out) {
  async function session(options={}) {
   const ctx=await browser.newContext({viewport:{width:1440,height:900},deviceScaleFactor:1,reducedMotion:'no-preference',...options});
   await ctx.route('**/*',route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+  await ctx.addInitScript(() => {
+   window.__s5CLS=0;
+   new PerformanceObserver(list=>{for(const e of list.getEntries()) if(!e.hadRecentInput) window.__s5CLS+=e.value;}).observe({type:'layout-shift',buffered:true});
+  });
   const page=await ctx.newPage(), requests=[];
   page.on('request',r=>{ if(/\.mp4(?:[?#]|$)/.test(r.url())) requests.push(r.url()); });
   page.on('console',m=>{ if(m.type()==='error' && !/net::ERR_FAILED/.test(m.text())) report.console.push({type:'console.error',message:m.text(),url:page.url()}); });
@@ -26,9 +30,9 @@ export async function checkS5(browser, origin, out) {
   report.screenshots.push(file);
  }
  async function pscroll(page,p) {
-  // 2026-11-10 메인: 컨트롤러는 scrollY 0에서 진행률 0(머리 메뉴 높이만큼 앞서 시작) — p=0은 문서 맨 위로.
+  // Map the actual pin interval: track top minus its sticky header offset.
   if(p===0) { await top(page,0); return; }
-  const y=await page.locator('[data-hero-track]').evaluate((track,p)=>track.getBoundingClientRect().top+scrollY+p*(track.offsetHeight-track.querySelector('[data-hero-stage]').offsetHeight),p);
+  const y=await page.locator('[data-hero-track]').evaluate((track,p)=>track.getBoundingClientRect().top+scrollY-parseFloat(getComputedStyle(track.querySelector('[data-hero-stage]')).top)+p*(track.offsetHeight-track.querySelector('[data-hero-stage]').offsetHeight),p);
   await top(page,y);
  }
  async function settle(page) {
@@ -45,6 +49,8 @@ export async function checkS5(browser, origin, out) {
   const samples=[];
   for(const p of points) {
    await pscroll(page,p); const s=await settle(page); samples.push({p,...s});
+   const pin=await page.locator('[data-hero-stage]').evaluate(n=>({top:n.getBoundingClientRect().top,header:document.querySelector('.site-header').getBoundingClientRect().bottom,progress:Number(document.querySelector('[data-hero]').dataset.progress)}));
+   check(Math.abs(pin.top-pin.header)<=1 && Math.abs(pin.progress-p)<=.002,{kind:'hero-header-pin',label,p,...pin});
    check(s.settled && Math.abs(s.time-timeAt(p,s.duration))<=.15,{kind:'scrub-target',label,p,...s,target:timeAt(p,s.duration)});
    if(p===0) check(s.time<=.05,{kind:'scrub-zero',label,...s});
    if(p===1) check(s.time>=.95*s.duration,{kind:'scrub-end',label,...s});
@@ -71,13 +77,14 @@ export async function checkS5(browser, origin, out) {
   const s=await page.locator('[data-hero]').evaluate(el=>{
    const stage=el.querySelector('[data-hero-stage]');
    return {mode:document.documentElement.dataset.motion,reason:document.documentElement.dataset.motionReason,position:getComputedStyle(stage).position,height:stage.getBoundingClientRect().height,
-    expected:Math.min(Math.max(innerHeight-(innerWidth<640?56:64),innerWidth<640?480:544),992),
+    expected:Math.min(Math.max(innerHeight-document.querySelector('.site-header').getBoundingClientRect().height,innerWidth<640?480:544),992),
+    top:stage.getBoundingClientRect().top,header:document.querySelector('.site-header').getBoundingClientRect().bottom,
     chapters:[...el.querySelectorAll('.hero-chapter')].slice(1).map(n=>getComputedStyle(n).display),
     bottom:el.querySelector('h1').getBoundingClientRect().bottom,poster:getComputedStyle(el.querySelector('.hero-poster img')).opacity};
   });
   if(hasJs) check(s.mode==='static' && s.reason===reason,{kind:'static-gate',label,...s});
   else check(!s.mode,{kind:'nojs-gate',label,...s});
-  check(s.position!=='sticky' && Math.abs(s.height-s.expected)<=2 && s.chapters.every(v=>v==='none') && s.poster==='1',{kind:'static-layout',label,...s});
+  check(s.position!=='sticky' && s.top>=s.header-1 && Math.abs(s.height-s.expected)<=2 && s.chapters.every(v=>v==='none') && s.poster==='1',{kind:'static-layout',label,...s});
   if(firstBottom.has(label)) check(Math.abs(firstBottom.get(label)-s.bottom)<=2,{kind:'hero-first-position',label,full:firstBottom.get(label),static:s.bottom});
   await bottom(page); await page.waitForTimeout(350);
   check(requests.length===0 && await page.locator('video').count()===0 && !await page.locator('html').evaluate(n=>n.classList.contains('lenis')),{kind:'static-no-motion',label,requests});
@@ -92,6 +99,7 @@ export async function checkS5(browser, origin, out) {
   const {ctx,page,requests}=await session();
   try {
    await goto(page,prefix+'/'); await page.waitForTimeout(3000);
+   check(await page.evaluate(()=>window.__s5CLS)<0.001,{kind:'full-home-initial-cls',prefix});
    firstBottom.set(`${prefix}:1440`,await page.locator('#hero-title').evaluate(n=>n.getBoundingClientRect().bottom));
    check(await page.locator('html').getAttribute('data-motion')==='full' && requests.length===0 && await page.locator('[data-hero]').getAttribute('data-video-state')==='idle',{kind:'initial-idle',prefix,requests});
    check(await page.locator('html').evaluate(n=>n.classList.contains('lenis')),{kind:'home-lenis',prefix});
@@ -107,7 +115,7 @@ export async function checkS5(browser, origin, out) {
     check(await page.locator('[data-hero]').getAttribute('data-chapter')===String(i+1) && chapters.every((c,j)=>c.active===(j===i) && c.opacity===(j===i?'1':'0')) && chapters[i].title===titles[prefix][i],{kind:'chapter',prefix,p,chapters});
    }
    await pscroll(page,.5);
-   const pin=await page.locator('[data-hero-stage]').evaluate(n=>n.getBoundingClientRect().top); check(Math.abs(pin)<=1,{kind:'sticky',prefix,pin});
+   const pin=await page.locator('[data-hero-stage]').evaluate(n=>({top:n.getBoundingClientRect().top,header:document.querySelector('.site-header').getBoundingClientRect().bottom})); check(Math.abs(pin.top-pin.header)<=1,{kind:'sticky',prefix,...pin});
    const end=await page.locator('[data-hero-track]').evaluate(n=>n.getBoundingClientRect().bottom+scrollY+innerHeight*.5); await top(page,end);
    check(await page.locator('[data-hero-stage]').evaluate(n=>n.getBoundingClientRect().top)<-100,{kind:'sticky-release',prefix});
    if(prefix==='') for(const p of [0,.3,.6,.9,1]) { await pscroll(page,p); await settle(page); await photo(page,`hero-ko-1440-${p}`,'[data-hero-stage]'); }
@@ -139,6 +147,9 @@ export async function checkS5(browser, origin, out) {
    await pscroll(page,.6); await page.locator('.hero-actions a').first().focus(); await page.waitForTimeout(350);
    check(await page.locator('.hero-chapter').first().evaluate(n=>getComputedStyle(n).opacity)==='1',{kind:'keyboard-hero',prefix});
    await page.locator('.hero-actions a').first().blur();
+   await top(page,0); await page.locator('.see-work').click(); await page.waitForTimeout(2500);
+   const anchor=await page.locator('#works').evaluate(n=>({top:n.getBoundingClientRect().top,header:document.querySelector('.site-header').getBoundingClientRect().bottom,padding:parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)}));
+   check(Math.abs(anchor.top-anchor.padding)<=2 && anchor.top>=anchor.header,{kind:'lenis-anchor-header',prefix,...anchor});
    await visibleTarget(page,'[data-video-rail]'); const before=await page.locator('.video-rail').evaluate(n=>n.scrollLeft);
    await page.locator('[data-video-rail] [data-next]').click(); await page.waitForTimeout(600);
    check(await page.locator('.video-rail').evaluate((n,b)=>n.scrollLeft>b,before),{kind:'full-horizontal-rail',prefix});
@@ -205,7 +216,11 @@ export async function checkS5(browser, origin, out) {
  // G: language/viewport matrix in all three motion contexts.
  for(const mode of ['full','static','touch']) for(const width of [360,390,1440]) for(const prefix of prefixes) {
   const {ctx,page}=await session({viewport:{width,height:width===1440?900:844},reducedMotion:mode==='static'?'reduce':'no-preference',...(mode==='touch'?{isMobile:true,hasTouch:true}:{})});
-  try { await goto(page,prefix+'/'); await overflow(page,`${mode}:${width}:${prefix}`); } finally { await ctx.close(); }
+  try {
+   await goto(page,prefix+'/'); await page.waitForTimeout(500); await overflow(page,`${mode}:${width}:${prefix}`);
+   const initial=await page.locator('[data-hero-stage]').evaluate(n=>({top:n.getBoundingClientRect().top,header:document.querySelector('.site-header').getBoundingClientRect().bottom,cls:window.__s5CLS,head:parseFloat(document.querySelector('[data-hero]').style.getPropertyValue('--hero-head'))||0}));
+   check(initial.cls<0.001 && Math.abs(initial.top-initial.header)<=1 && initial.head===0,{kind:'matrix-hero-initial',mode,width,prefix,...initial});
+  } finally { await ctx.close(); }
  }
  for(const realm of ['dev','life']) for(const width of [1440,390]) {
   const {ctx,page}=await session({viewport:{width,height:width===1440?900:844}});

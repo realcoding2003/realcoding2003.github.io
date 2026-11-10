@@ -22,7 +22,7 @@ const list = headings.map(h => ({ ...h, href: '#' + encodeURIComponent(h.slug) }
   summary { font-family: var(--display-font); font-weight: 800; }
   .toc-inline ol { padding-block: .5rem; }
   .toc-rail { display: none; min-width: 0; border-left: 1px solid var(--rule); padding-left: 1.25rem; }
-  .toc-rail nav { position: sticky; top: 2rem; max-height: calc(100vh - 4rem); overflow: auto; padding: 2px 4px 4px 0; }
+  .toc-rail nav { position: sticky; top: calc(var(--site-header-h) + 1rem); max-height: calc(100vh - var(--site-header-h) - 2rem); overflow: auto; padding: 2px 4px 4px 0; }
   h2 { font-size: 1.375rem; margin: 0 0 1rem; }
   @media (min-width:1200px) { .toc-inline { display: none; } .toc-rail { display: block; } }
 </style>

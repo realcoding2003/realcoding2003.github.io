@@ -1,4 +1,6 @@
 * { box-sizing: border-box; }
+/* Shared by native hash/focus navigation and Lenis (which reads scroll-padding). */
+html { scroll-padding-top: calc(var(--site-header-h) + 1rem); }
 body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body-font); font-size: 1rem; line-height: 1.75; }
 a { color: var(--link); text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
@@ -14,7 +16,7 @@ h3,h4 { font-weight: 700; }
 .wordmark { display: inline-flex; align-items: baseline; gap: .22em; color: var(--fg); text-decoration: none; white-space: nowrap; font-family: var(--display-font); font-weight: 800; line-height: 1.18; }
 .wordmark:lang(en),.wordmark:lang(ja) { font-family: "Archivo RC Wide", "Archivo RC Fallback", var(--system-ko); }
 .wordmark .cursor { display: inline-block; width: .55em; height: .95em; background: var(--accent); margin-left: -.14em; position: relative; top: .06em; }
-.skip-link { position: absolute; left: var(--gutter); top: .5rem; transform: translateY(-200%); z-index: 10; background: var(--bg); padding: .5rem 1rem; }
+.skip-link { position: fixed; left: var(--gutter); top: calc(var(--site-header-h) + .5rem); transform: translateY(calc(-100% - var(--site-header-h) - 1rem)); z-index: 20; background: var(--bg); padding: .5rem 1rem; }
 .skip-link:focus { transform: none; }
 .listing { padding-block: 2.5rem 4rem; min-height: 65vh; }
 .listing h1 { font-size: 2.25rem; }

@@ -21,7 +21,7 @@ const t = portalCopy[lang]; const list = posts.filter(p => p.lang === lang && p.
   <div class="container--wide">
     {realm === 'maker' && <><WorkGrid works={getWorks(lang,posts)} lang={lang} /><section class="portal-section"><h2 class="display section-head">{t['gear.title']}</h2><GearList lang={lang} posts={posts} /><p><a href={MAKERWORLD_PROFILE[lang as keyof typeof MAKERWORLD_PROFILE]} rel="noopener">{t['links.makerworld']} →</a></p></section></>}
     {realm === 'dev' && <TopicFilter posts={list} lang={lang} />}
-    {empty ? <section class="portal-section"><p data-copy>{t['realm.game.emptyBody']}</p><div class="other-realms mono">{realms.filter(r => r !== 'game').map(r => <a href={`${prefix(lang)}/${r}/`}>{i18n[lang].nav[r]} →</a>)}</div></section> : years(list).map(([year,items]) => <section class="year-group" data-year><h2>{year}</h2><PostIndexList posts={items} showSection={false} dateFormat="md" /></section>)}
+    {empty ? <section class="portal-section"><p data-copy>{t['realm.game.emptyBody']}</p><div class="other-realms mono">{realms.filter(r => r !== 'game').map(r => <a href={`${prefix(lang)}/${r}/`}>{i18n[lang].nav[r]} →</a>)}</div></section> : years(list).map(([year,items]) => <section id={String(year)} class="year-group" data-year><h2>{year}</h2><PostIndexList posts={items} showSection={false} dateFormat="md" /></section>)}
   </div>
 </Portal>
 <style>

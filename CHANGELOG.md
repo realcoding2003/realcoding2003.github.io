@@ -21,11 +21,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- 상단 메뉴를 화면 위에 고정하고, 모든 폭에서 메뉴 항목을 바로 보이게(767px 이하 두 줄, 768px 이상 한 줄, 접는 메뉴 제거) — 히어로·목차·앵커 오프셋을 메뉴 높이 변수 하나로 맞춤 (header)
 - 의뢰 안내: 출력 범위보다 큰 출력물(분할 출력·조립)과 출력 가능한 범위의 기구 설계를 '가능한 것'으로 옮김 (portal)
 - 배포: GitHub Pages 기본 Jekyll 빌드 → GitHub Actions의 Astro 빌드(`.github/workflows/pages.yml`) (ci)
 
 ### Fixed
 
+- 영어·일본어 홈 첫 화면 제목 글꼴 교체 밀림(제목 글꼴 미리 받기 + optional) (header)
 - 미리보기(dev) 서버에서 WebP 변형 이미지가 404로 깨져 보이던 문제 (reader)
 - 원본이 없어 깨져 보이던 `ai-powered-github-pages-blog-series` 글(3개 언어)의 대표 이미지 제거 (posts)
 - kramdown 오류 렌더링 흉내 제거, bitbucket 글 3편의 목록 안 코드 블록 들여쓰기 수정 (reader)

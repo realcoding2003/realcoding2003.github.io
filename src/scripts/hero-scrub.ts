@@ -9,8 +9,8 @@ export function initHeroScrub(root: HTMLElement): { destroy(): void } {
   const chapters = [...root.querySelectorAll<HTMLElement>('.hero-chapter')];
   const media = matchMedia(MOBILE_MEDIA), listeners = new AbortController();
   const options = { passive: true, signal: listeners.signal };
-  let trackTop = 0, range = 1, target = 0, current = 0, progress = 0;
-  let isMobile = media.matches, width = innerWidth, video: HTMLVideoElement | undefined;
+  let trackStart = 0, range = 1, target = 0, current = 0, progress = 0;
+  let isMobile = media.matches, video: HTMLVideoElement | undefined;
   let objectUrl: string | undefined, abort: AbortController | undefined;
   let ready = false, painted = false, failed = false, intent = scrollY > 0, near = false;
   let dirty = true, raf = 0, destroyed = false, gesture = false, primed = false, generation = 0;
@@ -70,14 +70,14 @@ export function initHeroScrub(root: HTMLElement): { destroy(): void } {
     }
   }
   function read() {
-    progress = Math.max(0, Math.min(1, (scrollY - trackTop) / range));
+    progress = Math.max(0, Math.min(1, (scrollY - trackStart) / range));
     root.dataset.progress = progress.toFixed(3);
     const chapter = String(chapterAt(progress));
     if (root.dataset.chapter !== chapter) {
       root.dataset.chapter = chapter;
       chapters.forEach(el => el.toggleAttribute('data-active', el.dataset.chapter === chapter));
     }
-    root.style.setProperty('--hero-head', `${Math.max(0, trackTop - scrollY)}px`);
+    root.style.setProperty('--hero-head', `${Math.max(0, trackStart - scrollY)}px`);
     if (ready && video) target = timeAt(progress, video.duration);
     if (scrollY > 0) intent = true;
     void load();
@@ -97,7 +97,8 @@ export function initHeroScrub(root: HTMLElement): { destroy(): void } {
   }
   function layout() {
     if (destroyed) return;
-    trackTop = track.getBoundingClientRect().top + scrollY;
+    // Sticky begins when the track reaches the header bottom: home starts at y=0.
+    trackStart = track.getBoundingClientRect().top + scrollY - parseFloat(getComputedStyle(stage).top);
     range = Math.max(1, track.offsetHeight - stage.offsetHeight);
     if (isMobile !== media.matches) {
       const loaded = !!abort || !!video; isMobile = media.matches;
@@ -112,7 +113,7 @@ export function initHeroScrub(root: HTMLElement): { destroy(): void } {
   for (const name of ['pointerdown', 'touchstart']) addEventListener(name, firstGesture, { ...options, once: true });
   addEventListener('scroll', scroll, options);
   addEventListener('load', layout, options);
-  addEventListener('resize', () => { if (innerWidth !== width) { width = innerWidth; layout(); } }, options);
+  addEventListener('resize', layout, options);
   addEventListener('orientationchange', layout, options);
   media.addEventListener('change', layout, { signal: listeners.signal });
   const observer = new IntersectionObserver(entries => {

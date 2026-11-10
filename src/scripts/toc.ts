@@ -1,12 +1,15 @@
 const links = [...document.querySelectorAll<HTMLAnchorElement>('.toc-rail [data-toc-id]')];
 const headings = links.map(link => document.getElementById(link.dataset.tocId || '')).filter((h): h is HTMLElement => !!h);
-if (headings.length && 'IntersectionObserver' in window) {
+if (headings.length) {
   const update = () => {
-    const passed = headings.filter(heading => heading.getBoundingClientRect().top <= 1);
-    const current = passed.at(-1) || headings[0];
-    links.forEach(link => { if (link.dataset.tocId === current.id) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current'); });
+    // Match native anchor landing: scroll-padding plus the heading's extra gap.
+    const offset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) + parseFloat(getComputedStyle(headings[0]).scrollMarginTop);
+    const current = headings.findLast(heading => heading.getBoundingClientRect().top <= offset + 1) || headings[0];
+    links.forEach(link => link.setAttribute('aria-current', link.dataset.tocId === current.id ? 'location' : 'false'));
   };
-  const observer = new IntersectionObserver(update, { rootMargin: '0px 0px -70% 0px' });
-  headings.forEach(heading => observer.observe(heading)); update();
+  // Track top crossings, not the bottom of a still-intersecting heading.
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
+  update();
 }
 export {};

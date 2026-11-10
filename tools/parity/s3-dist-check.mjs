@@ -34,6 +34,10 @@ for (const file of walk(root)) {
  const foot = nodes.find(n => n.tag === 'footer');
  const redirect = nodes.some(n => n.tag === 'meta' && n.a['http-equiv']?.toLowerCase() === 'refresh');
  if (!redirect) {
+  const lang=nodes.find(n => n.tag === 'html').a.lang;
+  const fonts=nodes.filter(n => n.tag === 'link' && n.a.rel === 'preload' && n.a.as === 'font');
+  check(fonts.length === (lang === 'en' || lang === 'ja' ? 1 : 0),path,'Archivo preload language/count');
+  for(const font of fonts) check(font.a.href === '/fonts/files/archivo/archivo-rc-wide-800-latin.woff2' && font.a.type === 'font/woff2' && 'crossorigin' in font.a && existsSync(join(root,font.a.href.slice(1))),path,'Archivo preload URL/type/crossorigin/file');
   const links = nodes.filter(n => n.tag === 'a' && ancestor(n,p => p === foot)).map(n => n.a.href);
   const profile = /^\/(en|ja)\//.test(path) ? 'https://makerworld.com/@realcoding' : 'https://makerworld.com/ko/@realcoding';
   for (const href of [profile,'https://www.youtube.com/@realcoding2003','https://github.com/realcoding2003','/feed.xml','/privacy/']) check(links.includes(href),path,`Footer missing ${href}`);

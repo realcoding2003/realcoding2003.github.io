@@ -9,6 +9,9 @@ if (document.documentElement.dataset.motion === 'full') {
   let destroyed = false, idle: number | undefined, timer: ReturnType<typeof globalThis.setTimeout> | undefined, lenis: { destroy(): void } | undefined;
   async function boot() {
     const { default: Lenis } = await import('lenis');
+    // Lenis 1.3 reads html scroll-padding + target scroll-margin in scrollTo.
+    // Keep offset at zero: adding the header here would subtract it twice,
+    // and a captured pixel offset would go stale across the 640px breakpoint.
     if (!destroyed) lenis = new Lenis({ lerp: 0.1, smoothWheel: true, syncTouch: false, anchors: true, autoRaf: true });
   }
   function schedule() {

@@ -8,7 +8,7 @@ const { lang } = Astro.props;
 <style>
 .layer-rail { display: none; }
 @media (min-width:1100px) {
-.layer-rail { display: flex; flex-direction: column; align-items: center; gap: 2.5rem; position: fixed; top: 4rem; right: 0; bottom: 0; width: var(--rail); border-left: 1px solid var(--rule); pointer-events: none; background: var(--ink-950); z-index: 3; padding-top: 1.5rem; }
+.layer-rail { display: flex; flex-direction: column; align-items: center; gap: 2.5rem; position: fixed; top: var(--site-header-h); right: 0; bottom: 0; width: var(--rail); border-left: 1px solid var(--rule); pointer-events: none; background: var(--ink-950); z-index: 3; padding-top: 1.5rem; }
 .readouts { display: flex; gap: 1.5rem; writing-mode: vertical-rl; font: .875rem/1 var(--mono-font); color: var(--stone-100); }
 .ticks { flex: 1; width: 1rem; opacity: .5; background: repeating-linear-gradient(to bottom,var(--stone-400) 0 1px,transparent 1px 1.5rem); position: relative; }
 .tick-marker { position: absolute; top: 0; width: 1.5rem; left: -.25rem; height: 2px; background: var(--accent); }

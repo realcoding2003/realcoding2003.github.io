@@ -30,7 +30,8 @@
 .post-content :is(picture,video,iframe,table,pre) { min-width: 0; max-width: 100%; }
 .post-content picture { display: block; }
 .post-content video { height: auto; }
-.post-content img[fetchpriority=high] { width: auto; max-height: min(75vh,40rem); margin: 0 auto 1.25rem; }
+/* 2026-11-10 핫픽스: width:auto는 width/height 속성의 비율 예약을 무시해 운영에서 CLS 0.30(세로 대표 사진). 너비를 칸에 맞추고 높이 제한 안에서 contain으로 가운데 정렬 — 로드 전부터 자리 확보. */
+.post-content img[fetchpriority=high] { width: 100%; height: auto; max-height: min(75vh,40rem); object-fit: contain; margin: 0 auto 1.25rem; }
 .post-content iframe { max-width: 100%; }
 .post-content :not(pre) > code,.page-prose :not(pre) > code { font: .9em/1.5 var(--mono-font); padding: .1em .35em; background: var(--surface); border-radius: 3px; overflow-wrap: anywhere; }
 .post-content blockquote,.page-prose blockquote { margin: 1.25rem 0; padding-left: 1.25rem; border-left: 3px solid var(--rule); color: var(--fg-muted); }

@@ -69,7 +69,7 @@ for (const file of walk(root)) {
   check(slices.length === 4,path,'Realm slices');
   check('data-open' in slices[0].a && nodes.some(n=>n.a.href===`${path}ai/` && ancestor(n,p=>p===slices[0])) && slices.slice(1).every(n=>!('data-open' in n.a)),path,'AI first and uniquely open by default'); check(nodes.filter(n => hasClass(n,'bento-cell')).length === 5,path,'Bento cells');
   const stats = nodes.find(n => hasClass(n,'stats-values')); check(!!stats && textOf(stats).replace(/\s+/g,' ').trim().replace(/\s*·\s*/g,' · ') === 'A2L · ~22h · ~700 g',path,'Exact stats strip');
-  const rail = nodes.find(n => hasClass(n,'video-rail')); check(nodes.filter(n => n.tag === 'li' && n.parent === rail).length === 7,path,'Shorts rail count');
+  const rail = nodes.find(n => hasClass(n,'video-rail')); check(nodes.filter(n => n.tag === 'li' && n.parent === rail).length === works.filter(w => w.shorts).length,path,'Shorts rail count = works with shorts');
   check(nodes.some(n => n.a['aria-hidden'] === 'true' && textOf(n).includes('0.20')),path,'0.20 must be decorative');
   check(nodes.some(n => n.a.href === '#works') && nodes.some(n => n.a.id === 'works'),path,'Works anchor');
   check(/출력 완료|Print complete|印刷完了/.test(html),path,'Finish copy');
@@ -102,8 +102,8 @@ for (const file of walk(root)) {
   if(path === '/request/') check(html.includes('캐릭터 피규어 등 타인 저작물의 판매용 출력 대행'),path,'Copyright restriction');
  }
  if(realm === 'dev') { const rows = nodes.filter(n => 'data-post-row' in n.a); check(rows.length === 114 && rows.every(n => 'data-c1' in n.a),path,'Dev topic row data'); check(nodes.some(n => n.a.role === 'group'),path,'Filter groups'); }
- if(realm === 'maker') { check(nodes.filter(n => hasClass(n,'work-grid-card')).length === 8,path,'Works grid count'); check(nodes.filter(n => n.tag === 'dt').length === 6,path,'Gear count'); }
+ if(realm === 'maker') { check(nodes.filter(n => hasClass(n,'work-grid-card')).length === works.length,path,'Works grid count = works data'); check(nodes.filter(n => n.tag === 'dt').length === 6,path,'Gear count'); }
 }
-check(related === 18,'all','Expected 18 related-work reader pages');
+check(related === relatedSlugs.size * 3,'all',`Expected ${relatedSlugs.size * 3} related-work reader pages (3 languages), got ${related}`);
 console.log(JSON.stringify({pages,portalPages:portalPaths.length,newPages:newPaths.length,sitemap:sitemap.length,internalLinks,related,failures:failures.length,details:failures},null,2));
 if (failures.length) process.exitCode = 1;

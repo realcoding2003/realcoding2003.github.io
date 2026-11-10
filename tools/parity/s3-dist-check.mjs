@@ -2,6 +2,7 @@ import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { resolve, join, relative } from 'node:path';
 import { parseHtml, textOf, hasClass, ancestor, decode } from './html-tree.mjs';
 import { loadWorks } from '../../src/lib/works-data.mjs';
+import { AI_FLAGSHIP_SLUG } from '../../src/lib/site.mjs';
 const root = resolve(process.argv[2] || 'dist');
 const failures = []; let pages = 0, internalLinks = 0, related = 0;
 const check = (ok,path,message) => { if (!ok) failures.push({path,message}); };
@@ -14,7 +15,7 @@ const fileFor = path => join(root,decodeURIComponent(path).replace(/^\//,''),pat
 const idCache = new Map();
 function idsFor(file) { if (!idCache.has(file)) idCache.set(file,new Set(parseHtml(readFileSync(file,'utf8')).nodes.filter(n => n.a.id).map(n => n.a.id))); return idCache.get(file); }
 function* walk(dir) { for (const e of readdirSync(dir,{withFileTypes:true})) { const file=join(dir,e.name); if(e.isDirectory()) yield* walk(file); else if(e.name.endsWith('.html')) yield file; } }
-check(sitemap.length === 498,'sitemap','URL count != 498');
+check(sitemap.length >= 498,'sitemap','URL count < 498');
 for (const path of newPaths) {
  const file = fileFor(path); check(existsSync(file),path,'Missing new page'); if (!existsSync(file)) continue;
  const nodes = parseHtml(readFileSync(file,'utf8')).nodes;
@@ -74,12 +75,13 @@ for (const file of walk(root)) {
   check(/출력 완료|Print complete|印刷完了/.test(html),path,'Finish copy');
  }
  if (realm === 'ai') {
-  check(nodes.filter(n=>'data-post-row' in n.a).length===30,path,'30 AI posts from Korean translation groups');
+  check(nodes.filter(n=>'data-post-row' in n.a).length>=30,path,'At least 30 AI posts from Korean translation groups');
   check(nodes.some(n=>n.a.href==='#posts') && nodes.some(n=>n.a.id==='posts'),path,'AI posts CTA anchor');
   check(nodes.filter(n=>n.a.href===path.replace(/ai\/$/,'request/#ax')).length===2,path,'Both AI request CTAs target AX');
   check(nodes.filter(n=>hasClass(n,'use-row')).length===4,path,'Four use rows');
   check(nodes.filter(n=>hasClass(n,'ax-diptych')).length===1,path,'AX diptych');
-  check(!nodes.some(n=>hasClass(n,'flagship')),path,'Empty flagship is not rendered');
+  if (AI_FLAGSHIP_SLUG) { const box=nodes.filter(n=>hasClass(n,'flagship')); check(box.length===1 && nodes.some(n=>n.tag==='a' && ancestor(n,a=>a===box[0]) && new RegExp(`^${path.replace(/ai\/$/,'')}\\d{4}/\\d{2}/\\d{2}/${AI_FLAGSHIP_SLUG}/$`).test(n.a.href)),path,'Flagship links to the same-language post'); }
+  else check(!nodes.some(n=>hasClass(n,'flagship')),path,'Empty flagship is not rendered');
   const years=nodes.filter(n=>hasClass(n,'year-group'));
   check(years.length>0 && years.every(n=>nodes.some(a=>a.tag==='a' && a.a.href===`#${n.a.id}`)),path,'AI year anchors');
  }

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- 리뉴얼기 글 '블로그를 포털로 갈아엎었다, 코드는 AI 에이전트들이 짰다'(한·영·일)와 AI 화면 대표 글 카드 연결 (ai)
 - AI 영역: 메뉴 1순위 'AI', 홈 작업대 첫 조각(빛이 흐르는 반복 영상), `/ai/` 화면(AX 스크롤 영화 15초·이렇게 씁니다·기업 AX·DX 전환·AI 글 30편), 의뢰 'AI 도입·AX' 탭(회사·팀명 선택, 고지 반영) (ai)
 - Astro 정적 사이트 뼈대: `_posts` 글 로더, Jekyll식 주소(UTC 날짜·slug·permalink), 이동 페이지 649건, hreflang, Atom feed, sitemap, 404 (site)
 - 운영 사이트와 주소·메타·본문 지표를 전수 비교하는 도구 `tools/parity/` (parity)
@@ -22,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- 검증 스크립트(routes·ai-realm 테스트, s2·s3·s5 dist 점검)의 글 465편·sitemap 498·AI 글 30편 고정값을 하한으로 — 새 글이 생겨도 기존 보존을 확인, AI 대표 글은 같은 언어 글로 연결되는지 확인 (parity)
 - 사이트 이름: 실전코딩 기술 블로그 → 실전코딩 작업실 / RealCoding Workshop / 実戦コーディング工房, 설명 문구·목록 화면 설명·앱 manifest 교체 (site)
 - 상단 메뉴를 화면 위에 고정하고, 모든 폭에서 메뉴 항목을 바로 보이게(767px 이하 두 줄, 768px 이상 한 줄, 접는 메뉴 제거) — 히어로·목차·앵커 오프셋을 메뉴 높이 변수 하나로 맞춤 (header)
 - 의뢰 안내: 출력 범위보다 큰 출력물(분할 출력·조립)과 출력 가능한 범위의 기구 설계를 '가능한 것'으로 옮김 (portal)

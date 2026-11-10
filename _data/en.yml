@@ -4,8 +4,8 @@ nav:
   archive: "Archive"
 
 site:
-  title: "RealCoding Tech Blog"
-  description: "Sharing practical development insights and technical know-how from real-world experience"
+  title: "RealCoding Workshop"
+  description: "AI, 3D printing, development, and game guides, built one layer at a time at the RealCoding workshop"
 
 posts:
   recent: "Recent Posts"

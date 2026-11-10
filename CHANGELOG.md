@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- 사이트 이름: 실전코딩 기술 블로그 → 실전코딩 작업실 / RealCoding Workshop / 実戦コーディング工房, 설명 문구·목록 화면 설명·앱 manifest 교체 (site)
 - 상단 메뉴를 화면 위에 고정하고, 모든 폭에서 메뉴 항목을 바로 보이게(767px 이하 두 줄, 768px 이상 한 줄, 접는 메뉴 제거) — 히어로·목차·앵커 오프셋을 메뉴 높이 변수 하나로 맞춤 (header)
 - 의뢰 안내: 출력 범위보다 큰 출력물(분할 출력·조립)과 출력 가능한 범위의 기구 설계를 '가능한 것'으로 옮김 (portal)
 - 배포: GitHub Pages 기본 Jekyll 빌드 → GitHub Actions의 Astro 빌드(`.github/workflows/pages.yml`) (ci)

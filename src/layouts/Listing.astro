@@ -3,36 +3,16 @@ import { shikiTheme } from '../lib/shiki-theme.mjs';
 import '../styles/reader.css';
 import Document from './Document.astro';
 import type { Page, Post } from '../lib/content';
-import { languages, prefix, translations } from '../lib/site.mjs';
-import { renderLiquid } from '../lib/liquid.mjs';
+import { translations } from '../lib/site.mjs';
 import { jekyllMarkdown } from '../lib/markdown.mjs';
 interface Props { page: Page; posts: Post[] }
 const { page, posts } = Astro.props;
-const { lang, kind } = page;
-const list = posts.filter(post => post.lang === lang);
-const suffix = kind === 'index' ? '' : kind + '/';
-const alternates = kind === 'privacy' ? {} : Object.fromEntries([...languages.map(code => [code, `${prefix(code)}/${suffix}`]), ['x-default', `/${suffix}`]]);
+const { lang } = page;
 const title = String(page.data.title || translations[lang].site.title);
-const groups = new Map<string, Post[]>();
-if (kind === 'archive' || kind === 'categories' || kind === 'tags') {
-  for (const post of list) {
-    const keys = kind === 'archive' ? [post.date.getUTCFullYear().toString()] : post.data[kind] || [];
-    for (const key of keys) groups.set(key, [...groups.get(key) || [], post]);
-  }
-}
-const grouped = [...groups].sort(([a], [b]) => kind === 'archive' ? b.localeCompare(a) : a.localeCompare(b));
-const slug = (value: string) => value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '');
-let html = '';
-if (kind === 'about') html = await renderLiquid(page.body, page.data);
-if (kind === 'privacy') {
-  const renderer = await jekyllMarkdown().createRenderer({ shikiConfig: { theme: shikiTheme }, syntaxHighlight: { type: 'shiki', excludeLangs: ['mermaid'] } });
-  html = (await renderer.render(page.body, { frontmatter: page.data })).code;
-}
+const renderer = await jekyllMarkdown().createRenderer({ shikiConfig: { theme: shikiTheme }, syntaxHighlight: { type: 'shiki', excludeLangs: ['mermaid'] } });
+const html = (await renderer.render(page.body, { frontmatter: page.data })).code;
 ---
-<Document lang={lang} title={title} description={String(page.data.description || translations[lang].site.description)} path={page.path} alternates={alternates} mainClass="listing container" hasGame={list.some(p => p.section === 'game')}>
-  <h1>{kind === 'index' ? translations[lang].site.title : title}</h1>
+<Document lang={lang} title={title} description={String(page.data.description || translations[lang].site.description)} path={page.path} alternates={{}} mainClass="listing container" hasGame={posts.some(p => p.lang === lang && p.section === 'game')}>
+  <h1>{title}</h1>
   {html && <div class="page-prose" set:html={html} />}
-  {kind === 'index' && <section><h2>{translations[lang].posts.recent}</h2><ul>{list.map(post => <li><time>{post.date.toISOString().slice(0,10)}</time>{' '}<a href={post.path}>{post.data.title}</a><p>{post.data.excerpt}</p></li>)}</ul></section>}
-  {grouped.length > 0 && <nav aria-label={kind}>{grouped.map(([key, items]) => <a href={`#${slug(key)}`}>{key} ({items.length}){' '}</a>)}</nav>}
-  {grouped.map(([key, items]) => <section id={slug(key)}><h2>{key}</h2><ul>{items.map(post => <li><time>{post.date.toISOString().slice(0,10)}</time>{' '}<a href={post.path}>{post.data.title}</a></li>)}</ul></section>)}
 </Document>

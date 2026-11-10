@@ -2,6 +2,12 @@
 import { getRoutes, getPosts, type Route } from '../lib/content';
 import Post from '../layouts/Post.astro';
 import Listing from '../layouts/Listing.astro';
+import Home from '../components/portal/Home.astro';
+import About from '../components/portal/About.astro';
+import RealmPage from '../components/portal/RealmPage.astro';
+import Videos from '../components/portal/Videos.astro';
+import Request from '../components/portal/Request.astro';
+import ListPage from '../layouts/ListPage.astro';
 import Redirect from '../layouts/Redirect.astro';
 export async function getStaticPaths() {
   return (await getRoutes()).map(route => ({ params: { path: route.path === '/' ? undefined : route.path.replace(/^\/|\/$/g, '') }, props: { route } }));
@@ -12,4 +18,8 @@ const posts = route.kind === 'redirect' ? [] : await getPosts();
 ---
 {route.kind === 'redirect' ? <Redirect path={route.target} />
 : route.kind === 'post' ? <Post post={route.post} posts={posts} />
-: <Listing page={route.page} posts={posts} />}
+: route.kind === 'portal' ? (route.portal.page === 'request' ? <Request page={route.portal} posts={posts} /> : route.portal.page === 'videos' ? <Videos page={route.portal} posts={posts} /> : <RealmPage page={route.portal} posts={posts} />)
+: route.page.kind === 'index' ? <Home page={route.page} posts={posts} />
+: route.page.kind === 'about' ? <About page={route.page} posts={posts} />
+: route.page.kind === 'privacy' ? <Listing page={route.page} posts={posts} />
+: <ListPage page={route.page} posts={posts} />}

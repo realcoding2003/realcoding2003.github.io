@@ -1,0 +1,24 @@
+---
+import type { Work } from '../../lib/works';
+import { portalCopy } from '../../lib/portal-copy';
+import VideoCard from './VideoCard.astro';
+interface Props { works: Work[]; lang: string }
+const { works,lang } = Astro.props; const t = portalCopy[lang];
+---
+<section class="portal-section video-section" data-layer="5" aria-labelledby="video-title"><div class="container--wide" data-video-rail>
+  <h2 class="display section-head" id="video-title" data-copy>{t['video.title']}</h2>
+  <ul class="video-rail" tabindex="0" aria-label={t['video.railLabel']}>{works.filter(w => w.shorts).map(work => <li><VideoCard work={work} lang={lang} /></li>)}</ul>
+  <div class="rail-controls"><button type="button" data-prev aria-label={t['video.prev']} disabled>←</button><button type="button" data-next aria-label={t['video.next']}>→</button></div>
+</div></section>
+<script>import '../../scripts/video-rail';</script>
+<style>
+h2 { text-align: center; }
+.video-rail { display: flex; gap: 1rem; list-style: none; padding: 0 0 .75rem; margin: 0 calc(-1 * var(--gutter-wide)) 0 0; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; }
+li { flex: 0 0 clamp(13rem,18vw,17.5rem); min-width: 0; scroll-snap-align: start; }
+.rail-controls { display: none; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem; }
+:global(html.js) .rail-controls { display: flex; }
+button { height: 3rem; width: 3rem; border: 1px solid var(--fg-muted); color: var(--fg-muted); background: none; font: 1.5rem/1 var(--mono-font); }
+button[data-next] { border-color: var(--accent); color: var(--accent); }
+button:disabled { opacity: .35; cursor: default; }
+@media(min-width:1100px) { .video-rail { margin-right: calc(-1 * max(var(--gutter-wide),calc((100vw - var(--rail) - var(--container-wide))/2))); } }
+</style>

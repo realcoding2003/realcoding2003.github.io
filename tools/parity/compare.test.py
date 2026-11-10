@@ -3,7 +3,7 @@
 import sys, unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from compare import compare_comment_paths, compare_body_metrics, IMPROVED_BODY
+from compare import compare_comment_paths, compare_body_metrics, IMPROVED_BODY, compare_sitemap, NEW_PAGES, ORIGIN, LANGS
 
 POST={'status':200,'body_selector':'.post-content','refresh_target':None}
 REDIRECT={'status':200,'refresh_target':'https://realcoding.blog/target/','canonical':'https://realcoding.blog/target/'}
@@ -46,5 +46,27 @@ class ImprovedBody(unittest.TestCase):
             if key=='pre_count': local[key]=value
             self.assertTrue(compare_body_metrics(path,prod,local)[0],key)
         self.assertTrue(compare_body_metrics('/other/',prod,dict(prod,text_len=80))[0])
+
+class NewPages(unittest.TestCase):
+    def setUp(self):
+        self.pages={}
+        for path in NEW_PAGES:
+            suffix=path.removeprefix('/en').removeprefix('/ja')
+            self.pages[path]={'status':200,'canonical':ORIGIN+path,'hreflang':{lang:ORIGIN+(suffix if lang in ('ko','x-default') else '/'+lang+suffix) for lang in LANGS}}
+    def test_explicit_new_pages_are_expected_only(self):
+        errors,expected=compare_sitemap({'/'},{'/'}|NEW_PAGES,self.pages)
+        self.assertEqual(errors,[])
+        self.assertEqual(len(expected),15)
+        self.assertEqual({kind for kind,_ in expected},{'신규 페이지'})
+    def test_unknown_extra_fails(self):
+        errors,_=compare_sitemap({'/'},{'/','/surprise/'}|NEW_PAGES,self.pages)
+        self.assertIn(('sitemap extra','/surprise/'),errors)
+    def test_missing_new_page_fails(self):
+        errors,_=compare_sitemap({'/'},({'/'}|NEW_PAGES)-{'/maker/'},self.pages)
+        self.assertIn(('sitemap missing','/maker/'),errors)
+    def test_new_metadata_is_strict(self):
+        for key in ('status','canonical','hreflang'):
+            pages={k:dict(v) for k,v in self.pages.items()}; pages['/maker/'][key]=None
+            self.assertTrue(compare_sitemap(set(),NEW_PAGES,pages)[0])
 
 if __name__=='__main__': unittest.main()

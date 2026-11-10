@@ -1,0 +1,22 @@
+---
+import type { PortalPage, Post } from '../../lib/content';
+import { getWorks } from '../../lib/works';
+import { portalCopy } from '../../lib/portal-copy';
+import { alternatesFor } from '../../lib/portal';
+import { LINKS } from '../../lib/site.mjs';
+import Portal from '../../layouts/Portal.astro';
+import VideoCard from './VideoCard.astro';
+interface Props { page: PortalPage; posts: Post[] }
+const { page,posts } = Astro.props; const { lang } = page; const t = portalCopy[lang]; const works = getWorks(lang,posts);
+---
+<Portal lang={lang} title={t['video.title']} path={page.path} alternates={alternatesFor('videos/')} current="videos" hasGame={posts.some(p => p.lang === lang && p.section === 'game')}>
+<div class="container--wide"><header class="page-head"><h1 class="display" data-copy>{t['video.title']}</h1><p class="mono"><a href={LINKS.youtube} rel="noopener">{t['links.youtube']} →</a></p></header>
+{(['shorts','long'] as const).map(kind => <section class="video-group"><h2 class="section-head" data-copy>{t[`video.${kind}`]}</h2><div class:list={['video-grid',kind]}>{works.filter(w => w[kind]).map((work,i) => <VideoCard work={work} kind={kind} lang={lang} meta eager={kind === 'shorts' && i < 4} />)}</div></section>)}
+</div></Portal>
+<style>
+header { text-align: center; }
+h2 { font-size: clamp(2rem,1rem + 3vw,4rem); }
+.video-group { padding-bottom: clamp(4rem,6vw,8rem); }
+.video-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill,minmax(min(100%,11.5rem),1fr)); }
+.video-grid.long { grid-template-columns: repeat(auto-fill,minmax(min(100%,22rem),1fr)); }
+</style>

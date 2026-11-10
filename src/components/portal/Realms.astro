@@ -1,0 +1,68 @@
+---
+import type { Post } from '../../lib/content';
+import { realms } from '../../lib/portal';
+import { portalCopy } from '../../lib/portal-copy';
+import { i18n } from '../../lib/i18n';
+import { prefix } from '../../lib/site.mjs';
+import WorkImage from './WorkImage.astro';
+interface Props { posts: Post[]; lang: string }
+const { posts, lang } = Astro.props; const t = portalCopy[lang];
+const slices = realms.map(realm => ({realm, posts: posts.filter(p => p.lang === lang && p.section === realm)})).filter(s => s.posts.length);
+const latest = posts.find(p => p.lang === lang)?.section;
+---
+<section class="portal-section container--wide" data-layer="2" aria-labelledby="realms-title">
+  <h2 class="display section-head" id="realms-title" data-copy>{t[slices.length === 4 ? 'realms.title4' : 'realms.title3']}</h2>
+  <div class="realms">{slices.map(({realm,posts: list}) => <article class:list={['slice', { photographic: realm === 'maker' }]} data-open={realm === latest ? '' : undefined}>
+    {realm === 'maker' && <WorkImage src="/assets/images/posts/bulbasaur-15cm-multipart-print/03-body-supports.jpg" alt="" sizes="(min-width:1100px) 75vw, 100vw" />}
+    <div class="slice-inner"><h3><a class="slice-link" href={`${prefix(lang)}/${realm}/`}>{i18n[lang].nav[realm]}</a></h3>
+    <div class="slice-detail"><p class="count mono">{t['count.posts'].replace('{n}',String(list.length))}</p><span class="yellow-rule" aria-hidden="true"></span>
+    <ul>{list.slice(0,3).map(post => <li><time datetime={post.date.toISOString()}>{post.date.toISOString().slice(0,10)}</time><a href={post.path}>{post.data.title}</a></li>)}</ul></div></div>
+  </article>)}</div>
+</section>
+<style>
+.realms { border: 1px solid var(--rule); }
+.slice { position: relative; background: var(--surface); background-image: repeating-linear-gradient(to bottom,transparent 0 7px,rgb(38 48 107 / .35) 7px 8px); min-width: 0; border-top: 4px solid transparent; }
+.slice[data-open] { border-top-color: var(--accent); }
+.slice + .slice { border-left: 1px solid var(--rule); }
+.slice :global(picture) { position: absolute; inset: 0; }
+.slice :global(img) { width: 100%; height: 100%; object-fit: cover; }
+.photographic::after { content: ''; position: absolute; inset: 0; background: rgb(12 17 48 / .55); }
+.slice-inner { position: relative; z-index: 1; padding: clamp(2rem,3vw,3.5rem); height: 100%; display: flex; flex-direction: column; }
+h3 { font-size: clamp(2.5rem,8vw,4rem); font-weight: 800; line-height: 1.05; }
+.slice-link { text-decoration: none; color: var(--fg); }
+.slice-link::after { content: ''; position: absolute; inset: 0; }
+.slice-link:focus-visible { outline: none; }
+.slice-link:focus-visible::after { outline: 2px solid var(--focus); outline-offset: -4px; }
+.slice-detail { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.count { font-size: clamp(1.125rem,1rem + .5vw,1.625rem); margin: .75rem 0 0; }
+.yellow-rule { display: block; width: 3.5rem; height: 4px; background: var(--accent); margin-block: 1.5rem; }
+ul { list-style: none; padding: 0; margin: auto 0 0; max-width: 40rem; }
+li { display: grid; grid-template-columns: auto minmax(0,1fr); gap: 1.25rem; align-items: center; min-height: 3.5rem; border-bottom: 1px solid var(--rule); padding-block: .5rem; }
+time { font: .9375rem/1.5 var(--mono-font); }
+li a { position: relative; z-index: 2; font-size: 1.0625rem; font-weight: 600; line-height: 1.4; color: var(--fg); text-decoration: none; }
+li a:hover { text-decoration: underline; }
+@media(min-width:1100px) {
+.realms { display: flex; height: clamp(30rem,36vw,38rem); }
+.slice { flex: 0 0 clamp(5rem,7vw,7.5rem); }
+.slice-inner { padding: 2rem 1rem; }
+h3 { flex-shrink: 0; align-self: flex-start; inline-size: max-content; white-space: nowrap; overflow-wrap: normal; writing-mode: vertical-rl; text-orientation: upright; letter-spacing: .05em; font-size: clamp(2rem,1.2rem + 2.2vw,3.5rem); }
+h3:lang(en) { text-orientation: mixed; }
+.slice-detail { visibility: hidden; }
+.slice[data-open] { flex: 1 1 0; }
+.slice[data-open] .slice-inner { padding: clamp(2rem,3vw,3.5rem); }
+.slice[data-open] h3 { align-self: stretch; inline-size: auto; white-space: normal; writing-mode: horizontal-tb; font-size: clamp(3.5rem,2rem + 4.5vw,7rem); }
+.slice[data-open] .slice-detail { visibility: visible; }
+@supports selector(:has(*)) {
+.realms:has(.slice:hover,.slice:focus-within) .slice[data-open] { flex: 0 0 clamp(5rem,7vw,7.5rem); border-top-color: transparent; }
+.realms:has(.slice:hover,.slice:focus-within) .slice[data-open] .slice-inner { padding: 2rem 1rem; }
+.realms:has(.slice:hover,.slice:focus-within) .slice[data-open] h3 { align-self: flex-start; inline-size: max-content; white-space: nowrap; writing-mode: vertical-rl; font-size: clamp(2rem,1.2rem + 2.2vw,3.5rem); }
+.realms:has(.slice:hover,.slice:focus-within) .slice[data-open] .slice-detail { visibility: hidden; }
+.realms .slice:is(:hover,:focus-within) { flex: 1 1 0 !important; border-top-color: var(--accent) !important; }
+.realms .slice:is(:hover,:focus-within) .slice-inner { padding: clamp(2rem,3vw,3.5rem) !important; }
+.realms .slice:is(:hover,:focus-within) h3 { align-self: stretch !important; inline-size: auto !important; white-space: normal !important; writing-mode: horizontal-tb !important; font-size: clamp(3.5rem,2rem + 4.5vw,7rem) !important; }
+.realms .slice:is(:hover,:focus-within) .slice-detail { visibility: visible !important; }
+}
+}
+@media(prefers-reduced-motion:no-preference) and (min-width:1100px) { .slice { transition: flex-basis 300ms; } }
+@media(max-width:639px) { li { grid-template-columns: 1fr; gap: .25rem; } }
+</style>

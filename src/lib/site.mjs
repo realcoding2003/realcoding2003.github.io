@@ -69,3 +69,13 @@ export class RouteRegistry {
 export function sortPosts(posts) {
   return posts.sort((a,b) => b.date.getTime() - a.date.getTime() || (a.filename < b.filename ? 1 : a.filename > b.filename ? -1 : 0));
 }
+
+export const LINKS = {
+  youtube: 'https://www.youtube.com/@realcoding2003',
+  github: 'https://github.com/realcoding2003',
+  linkedin: 'https://www.linkedin.com/in/realcoding/',
+};
+// MakerWorld blocks server checks; the verifier must open all language links in a browser.
+export const MAKERWORLD_PROFILE = { ko: 'https://makerworld.com/ko/@realcoding', en: 'https://makerworld.com/@realcoding', ja: 'https://makerworld.com/@realcoding' };
+export const makerworldModel = (/** @type {number} */ id) => `https://makerworld.com/models/${id}`;
+export const CONTACT_EMAIL = 'kevinpark@okyc.kr';

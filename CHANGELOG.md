@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 새 디자인의 글 읽기 페이지: 공통 머리·바닥, 밝은/어두운 테마, 목차, 잉크 코드 패널, 코드 복사, 이미지 확대, 언어별 자체 호스팅 글꼴 (reader)
 - 본문 이미지 WebP 반응형 변형(480/768/960/1440)과 빌드 캐시 (reader)
 - 댓글·GA4·mermaid 화면 근접 지연 로드 (reader)
+- 포털 화면: 홈 6섹션, 메이커·개발·게임·생활 영역, 영상 모음, 의뢰 화면(폼 UI·메일 대체), 소개, 목록 화면 재디자인 ×3언어 (portal)
+- 작업물 데이터 8건(`src/data/works/`)과 글 하단 관련 작업 카드 (portal)
 
 ### Fixed
 

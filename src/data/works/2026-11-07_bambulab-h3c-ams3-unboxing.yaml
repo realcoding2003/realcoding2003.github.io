@@ -1,0 +1,10 @@
+id: "2026-11-07_bambulab-h3c-ams3-unboxing"
+date: "2026-11-07"
+title: {"ko": "H3C 첫 출력, 카피바라 키링", "en": "H3C First Print: Capybara Keyring", "ja": "H3C 初プリント カピバラキーホルダー"}
+summary: {"ko": "노즐 9개 툴 체인저로 뽑은 첫 출력물.", "en": "The first print off a nine-nozzle tool changer.", "ja": "ノズル9本のツールチェンジャーで最初のプリント。"}
+posts: ["bambulab-h3c-ams3-unboxing"]
+image: {"src": "/assets/images/posts/bambulab-h3c-ams3-unboxing/08-capybara-keyring.jpg", "alt": {"ko": "완성된 카피바라 키링", "en": "The finished capybara keychain", "ja": "完成したカピバラのキーホルダー"}}
+shorts: {"id": "wdej-f_pGgM", "seconds": 86}
+printers: ["H3C"]
+time: "1h 25m"
+filament: "24.7 g"

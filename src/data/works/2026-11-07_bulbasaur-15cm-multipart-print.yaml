@@ -1,0 +1,8 @@
+id: "2026-11-07_bulbasaur-15cm-multipart-print"
+date: "2026-11-07"
+title: {"ko": "이상해씨 15cm", "en": "15cm Bulbasaur", "ja": "フシギダネ 15cm"}
+summary: {"ko": "여섯 조각으로 나눠 출력해 맞췄다.", "en": "Printed in six pieces and fitted together.", "ja": "6つのパーツに分けてプリント。"}
+posts: ["bulbasaur-15cm-multipart-print"]
+image: {"src": "/assets/images/posts/bulbasaur-15cm-multipart-print/hero.jpg", "alt": {"ko": "완성된 이상해씨", "en": "The finished Bulbasaur", "ja": "完成したフシギダネ"}}
+shorts: {"id": "roiKAYF-dus", "seconds": 46}
+printers: ["X2D", "P2S"]

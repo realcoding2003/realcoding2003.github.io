@@ -34,7 +34,7 @@ const titleSize = titleLength > 100 ? 'longest' : titleLength > 80 ? 'longer' : 
       <Toc headings={post.headings} lang={post.lang} />
     </div>
     {(data.tags || []).length > 0 && <p class="reader-tags">{t.tags} {(data.tags || []).map((tag: string) => <><a href={`${prefix(post.lang)}/tags/#${slug(tag)}`}>#{tag}</a>{' '}</>)}</p>}
-    <RelatedWorks works={getRelatedWorks(post)} lang={post.lang} />
+    <RelatedWorks works={getRelatedWorks(post, posts)} lang={post.lang} />
     <PostNav post={post} posts={posts} />
     <Comments lang={post.lang} enabled={commentsEnabled} />
   </article>

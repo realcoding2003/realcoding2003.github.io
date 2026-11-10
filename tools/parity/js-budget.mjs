@@ -15,7 +15,7 @@ export function imports(code) {
   }
   walk(source); return { staticImports, dynamicImports };
 }
-export function measure(root, path) {
+export function measure(root, path, limit = 51200) {
   const html = readFileSync(resolve(root, '.' + path, path.endsWith('/') ? 'index.html' : ''), 'utf8');
   const files = new Map(), inlines = [], dynamics = new Set(), external = new Set();
   function visit(specifier, parent) {
@@ -41,12 +41,16 @@ export function measure(root, path) {
   const gzip = [...files.values(), ...inlines].reduce((sum, code) => sum + gzipSync(code, { level: 9 }).length, 0);
   const staticFiles = [...files.keys()].map(file => relative(root, file));
   const forbidden = staticFiles.filter(file => /mermaid|utteranc|gtag|googletagmanager/i.test(file));
-  return { path, gzip, limit: 51200, staticFiles, inlineScripts: inlines.length, dynamicImports: [...dynamics], external: [...external], pass: gzip <= 51200 && !forbidden.length && !external.size };
+  return { path, gzip, limit, staticFiles, inlineScripts: inlines.length, dynamicImports: [...dynamics], external: [...external], pass: gzip <= limit && !forbidden.length && !external.size };
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const [dist, ...paths] = process.argv.slice(2);
+  const args = process.argv.slice(2);
+  const option = args.find(arg => arg.startsWith('--limit='));
+  const limit = option ? Number(option.slice(8)) : 51200;
+  if (!Number.isInteger(limit) || limit < 1) throw new Error('Invalid --limit');
+  const [dist, ...paths] = args.filter(arg => arg !== option);
   if (!dist || !paths.length) throw new Error('Usage: js-budget.mjs <dist> <path>...');
   let failed = false;
-  for (const path of paths) { const result = measure(resolve(dist), path); console.log(JSON.stringify(result, null, 2)); if (!result.pass) failed = true; }
+  for (const path of paths) { const result = measure(resolve(dist), path, limit); console.log(JSON.stringify(result, null, 2)); if (!result.pass) failed = true; }
   if (failed) process.exitCode = 1;
 }

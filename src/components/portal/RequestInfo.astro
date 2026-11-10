@@ -1,0 +1,40 @@
+---
+import { portalCopy } from '../../lib/portal-copy';
+import WorkImage from './WorkImage.astro';
+import LineIcon from './LineIcon.astro';
+interface Props { lang: string; type: 'print'|'dev' }
+const { lang,type } = Astro.props; const t = portalCopy[lang];
+---
+<div class:list={['request-info',type]} id={type} role="tabpanel" aria-labelledby={`tab-${type}`} tabindex="0">
+  <header class:list={['request-poster',{ 'line-field': type === 'dev' }]}>
+    {type === 'print' && <WorkImage src="/assets/images/posts/ams2-pro-sliding-speedrack-underrail/05-a2l-plate.jpg" alt={t['print.alt']} sizes="(min-width:1100px) 55vw, 100vw" loading="eager" />}
+    <div class="poster-copy"><h2 data-copy>{t[`${type}.title`]}</h2><p data-copy>{t[`${type}.sub`]}</p></div>
+  </header>
+  <h3 class="steps-title" data-copy>{t['steps.title']}<span class="mono">{t['steps.badge']}</span></h3>
+  <ol class="steps">{[1,2,3].map((n) => <li><LineIcon name={n === 1 ? 'chat' : n === 2 ? 'document' : type === 'print' ? 'box' : 'code'} /><div><h4><span class="mono">0{n}</span> {t[`${type}.step${n}.name`]}</h4><p data-copy>{t[`${type}.step${n}.description`]}</p></div></li>)}</ol>
+  <div class="capabilities">{['can','cannot'].map(kind => <section><h3 data-copy>{t[`${kind}.title`]}</h3><ul>{t[`${type}.${kind}`].split(' · ').map(value => <li><LineIcon name={kind === 'can' ? 'check' : 'cross'} /><span data-copy>{value}</span></li>)}</ul></section>)}</div>
+</div>
+<style>
+.request-poster { height: clamp(18rem,28vw,26rem); position: relative; display: flex; align-items: flex-end; }
+.request-poster :global(picture),.request-poster :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.print .request-poster::after { content: ''; position: absolute; inset: 0; background: rgb(12 17 48 / .5); }
+.poster-copy { position: relative; z-index: 1; padding: clamp(1.25rem,2vw,2rem); }
+h2 { font-size: clamp(2.25rem,1rem + 4vw,5rem); font-weight: 800; line-height: 1.05; }
+.poster-copy p { margin-bottom: 0; color: var(--stone-100); font-size: 1.0625rem; }
+.steps-title { display: flex; align-items: center; gap: 1.5rem; font-size: 1.75rem; margin: 2.5rem 0 1.25rem !important; }
+.steps-title span { border-left: 1px solid var(--fg-muted); padding-left: 1.5rem; font-size: 1rem; font-weight: 400; color: var(--fg-muted); }
+.steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .25rem; list-style: none; margin: 0 0 2rem; padding: 0; }
+.steps li { display: flex; align-items: flex-start; gap: .75rem; background: var(--surface); border: 1px solid var(--rule); padding: 1.25rem clamp(1rem,1.5vw,1.75rem); clip-path: polygon(0 0,calc(100% - 1.25rem) 0,100% 50%,calc(100% - 1.25rem) 100%,0 100%,1.25rem 50%); }
+.steps li:first-child { clip-path: polygon(0 0,calc(100% - 1.25rem) 0,100% 50%,calc(100% - 1.25rem) 100%,0 100%,0 50%); }
+.steps :global(svg) { width: 2.25rem; height: 2.25rem; flex-shrink: 0; color: var(--accent); }
+h4 { margin: 0 0 .75rem; font-size: 1.25rem; font-weight: 800; }
+.steps p { font-size: .875rem; color: var(--stone-100); line-height: 1.6; margin: 0; }
+.capabilities { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.capabilities section { padding: 1.5rem; border: 1px solid var(--rule); }
+.capabilities h3 { font-size: 1.5rem; font-weight: 800; }
+.capabilities ul { list-style: none; padding: 0; margin: 1rem 0 0; }
+.capabilities li { display: flex; gap: .75rem; margin-block: .75rem; font-size: .9375rem; line-height: 1.6; }
+.capabilities :global(svg) { width: 1.5rem; height: 1.5rem; color: var(--accent); flex-shrink: 0; }
+.capabilities section + section :global(svg) { color: var(--fg-muted); }
+@media(max-width:639px) { .steps,.capabilities { grid-template-columns: 1fr; } .steps li,.steps li:first-child { clip-path: none; display: flex; gap: 1rem; padding: 1.25rem; } .steps :global(svg) { flex-shrink: 0; } h4 { margin-top: 0; } }
+</style>

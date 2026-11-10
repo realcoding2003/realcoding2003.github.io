@@ -1,0 +1,29 @@
+---
+import type { Work } from '../../lib/works';
+import { portalCopy } from '../../lib/portal-copy';
+import { duration } from '../../lib/portal';
+interface Props { work: Work; kind?: 'shorts'|'long'; lang: string; meta?: boolean; eager?: boolean }
+const { work,kind = 'shorts',lang,meta = false,eager = false } = Astro.props;
+const video = work[kind]!; const t = portalCopy[lang];
+---
+<div class:list={['video-card',kind]}>
+  <a class="video-link" href={video.url} rel="noopener" aria-label={`${work.title}, ${duration(video.seconds)}`}>
+    <div class="video-photo"><img src={`https://i.ytimg.com/vi/${video.id}/${kind === 'long' ? 'maxresdefault' : 'hqdefault'}.jpg`} alt="" width={kind === 'long' ? 1280 : 480} height={kind === 'long' ? 720 : 360} loading={eager ? 'eager' : 'lazy'} decoding="async" referrerpolicy="no-referrer" /><span class="length"><span class="sr-only">{t['video.length']}: </span>{duration(video.seconds)}</span></div>
+    <div class="caption">{work.title}</div>
+  </a>
+  {meta && <p class="video-meta"><time datetime={work.date}>{work.date.replaceAll('-','.')}</time>{work.posts[0] && <a href={work.posts[0].path}>{t['work.read']}</a>}</p>}
+</div>
+<style>
+.video-card { min-width: 0; }
+.video-link { display: block; border: 1px solid var(--rule); text-decoration: none; color: var(--fg); }
+.video-link:focus-visible { outline-offset: -4px; }
+.video-photo { position: relative; aspect-ratio: 9/16; }
+.long .video-photo { aspect-ratio: 16/9; }
+img { width: 100%; height: 100%; object-fit: cover; }
+.video-photo::after { content: ''; position: absolute; inset: 0; background: rgb(12 17 48 / .45); }
+.video-link:is(:hover,:focus-visible) .video-photo::after { background: rgb(12 17 48 / .15); }
+.length { position: absolute; z-index: 1; top: .75rem; left: .75rem; background: rgb(12 17 48 / .85); padding: .15rem .5rem; font: .9375rem/1.5 var(--mono-font); }
+.caption { height: 3.5rem; padding: 1rem .75rem; background: var(--surface); font-weight: 700; font-size: 1rem; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
+.video-meta { display: flex; flex-wrap: wrap; gap: .75rem; font: .875rem/1.5 var(--mono-font); color: var(--fg-muted); }
+@media(prefers-reduced-motion:no-preference) { .video-photo::after { transition: background 200ms; } }
+</style>

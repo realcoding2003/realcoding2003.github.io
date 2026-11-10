@@ -1,0 +1,23 @@
+---
+import type { Work } from '../../lib/works';
+import { portalCopy } from '../../lib/portal-copy';
+import { i18n } from '../../lib/i18n';
+import WorkImage from './WorkImage.astro';
+interface Props { works: Work[]; lang: string }
+const { works,lang } = Astro.props; const t = portalCopy[lang];
+---
+<section class="portal-section" id="works" aria-labelledby="work-grid-title"><h2 class="display section-head" id="work-grid-title">{t['works.title']}</h2><div class="works-grid">
+{works.map(w => <article class="work-grid-card"><WorkImage {...w.thumb} alt={w.image?.alt || w.title} sizes="(min-width:1100px) 33vw, (min-width:640px) 50vw, 100vw" /><div class="work-detail"><p class="meta mono"><time datetime={w.date}>{w.date.replaceAll('-','.')}</time>{w.printers.length > 0 && ` · ${w.printers.join(' · ')}`}</p><h3>{w.title}</h3><p class="summary">{w.summary}</p><p class="stats mono">{[w.material,w.time,w.filament,w.layer].filter(Boolean).join(' · ')}</p><div class="work-links">{w.posts[0] && <a href={w.posts[0].path}>{t['work.read']}</a>}{(w.shorts || w.long) && <a href={(w.shorts || w.long)!.url} rel="noopener">{t['work.watch']}</a>}{w.makerworld && <a href={w.makerworld.url} rel="noopener">{i18n[lang].relatedLink}</a>}</div></div></article>)}
+</div></section>
+<style>
+.works-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(min(100%,20rem),1fr)); gap: 1.5rem; }
+.work-grid-card { border: 1px solid var(--rule); border-radius: 2px; min-width: 0; }
+.work-grid-card :global(img) { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
+.work-detail { padding: 1.25rem; }
+.meta,.stats { font-size: .8125rem; }
+.meta,.summary { color: var(--fg-muted); }
+.meta { margin-top: 0; }
+h3 { font-size: 1.375rem; font-weight: 800; }
+.summary { font-size: .9375rem; }
+.work-links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; font-size: .9375rem; }
+</style>

@@ -32,3 +32,4 @@
 }
 :lang(en) { --display-font: "Archivo RC Wide", "Archivo RC Fallback", var(--system-ko); }
 :lang(ja) { --body-font: "LINE Seed JP", var(--system-ja); --display-font: "LINE Seed JP", var(--system-ja); }
+:root { --container-wide: 90rem; --gutter-wide: clamp(1.25rem, 3.5vw, 3rem); --rail: 3.5rem; }

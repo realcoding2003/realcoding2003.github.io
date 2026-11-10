@@ -1,0 +1,43 @@
+---
+import type { Work } from '../../lib/works';
+import { portalCopy } from '../../lib/portal-copy';
+import { prefix } from '../../lib/site.mjs';
+import WorkImage from './WorkImage.astro';
+interface Props { works: Work[]; lang: string }
+const { works, lang } = Astro.props; const t = portalCopy[lang];
+const home = works.filter(w => w.home).sort((a,b) => a.home! - b.home!);
+const stats = [home[0].printers.join(' · '),home[0].time,home[0].filament,home[0].layer].filter(Boolean);
+---
+<section class="portal-section container--wide" id="works" data-layer="3" aria-labelledby="works-title">
+  <div class="bento-heading section-head"><h2 class="display" id="works-title" data-copy>{t['works.title']}</h2><a class="all-builds" href={`${prefix(lang)}/maker/#works`} data-copy>{t['works.all']} <span>→</span></a></div>
+  <div class="bento">{home.map((w,i) => <a class="bento-cell" style={`grid-area:${'abcde'[i]}`} href={w.posts[0]?.path || (w.shorts || w.long)!.url} rel="noopener">
+    <WorkImage {...w.thumb} alt={w.image?.alt || w.title} sizes="(min-width:1100px) 50vw, 100vw" />
+    <div class="cell-copy"><span class="mono">[{String(i+1).padStart(2,'0')}] {w.printers.join(' · ')}</span><h3>{w.title}</h3><p>{w.summary}</p></div>
+  </a>)}</div>
+  <div class="stats-strip"><span class="sr-only">{t['works.statsLabel']}</span><div class="stats-values">{stats.map((v,i) => <>{i > 0 && <span aria-hidden="true"> · </span>}<span>{v}</span></>)}</div></div><p class="stats-caption mono">{home[0].title}</p>
+</section>
+<style>
+.bento-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 1.5rem 3rem; }
+.all-builds { font-size: clamp(1rem,.8rem + .6vw,1.5rem); font-weight: 700; text-decoration: underline 2px var(--accent); text-underline-offset: 6px; color: var(--fg); }
+.all-builds span { color: var(--accent); display: inline-block; }
+.all-builds:hover span { transform: translateX(4px); }
+.bento { display: grid; grid-template-areas: 'a' 'b' 'c' 'd' 'e'; grid-template-rows: 28rem repeat(4,18rem); gap: 3px; background: var(--rule); }
+.bento-cell { position: relative; min-width: 0; color: var(--stone-100); text-decoration: none; }
+.bento-cell :global(picture),.bento-cell :global(img) { width: 100%; height: 100%; object-fit: cover; }
+.bento-cell::after { content: ''; position: absolute; inset: 0; background: rgb(12 17 48 / .45); }
+.bento-cell:hover::after,.bento-cell:focus-visible::after { background: rgb(12 17 48 / .15); }
+.bento-cell:focus-visible { outline-offset: -4px; z-index: 1; }
+.cell-copy { position: absolute; z-index: 1; top: 0; left: 0; padding: clamp(1rem,2vw,1.75rem); max-width: 26rem; }
+.cell-copy::before { content: ''; position: absolute; z-index: -1; inset: 0 0 -3rem; pointer-events: none; background: linear-gradient(to bottom,rgb(12 17 48 / .92),rgb(12 17 48 / .85) calc(100% - 3rem),transparent); }
+.cell-copy > span { font-size: .8125rem; }
+h3 { font-size: clamp(1.25rem,1rem + .9vw,1.875rem); font-weight: 800; margin-top: .5rem !important; }
+.bento-cell:first-child h3 { font-size: clamp(1.75rem,1.2rem + 1.8vw,2.75rem); }
+p { font-size: .9375rem; margin: .5rem 0 0; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.bento-cell:first-child p { font-size: 1.0625rem; }
+.stats-strip { border-block: 1px solid var(--rule); padding-block: clamp(1.25rem,2.5vw,2.25rem); margin-top: 1rem; }
+.stats-values { display: flex; align-items: center; flex-wrap: wrap; gap: .2em .35em; justify-content: space-between; font: 800 clamp(1.75rem,.8rem + 3.6vw,4.75rem)/1.2 'Archivo RC Wide',sans-serif; font-variant-numeric: tabular-nums; max-width: 100%; }
+.stats-caption { font-size: .8125rem; color: var(--fg-muted); }
+@media(min-width:640px) and (max-width:1099px) { .bento { grid-template-areas: 'a a' 'b b' 'c d' 'e e'; grid-template-columns: 1fr 1fr; grid-template-rows: 26rem repeat(3,15rem); } }
+@media(min-width:1100px) { .bento { grid-template-columns: 40fr 28fr 32fr; grid-template-rows: 15rem 12rem 12rem; grid-template-areas: 'a b b' 'a c d' 'a c e'; } }
+@media(prefers-reduced-motion:no-preference) { .bento-cell::after { transition: background 200ms; } .all-builds span { transition: transform 160ms; } }
+</style>

@@ -3,6 +3,7 @@
 Expected URL changes are derived from post language/path rules. IMPROVED_BODY
 is the explicitly approved S2 Markdown correction list, with exact target metrics.
 Other mismatches still fail, including inside these groups.
+The only additional sitemap category is 신규 페이지 (the explicit S3 NEW_PAGES).
 """
 import argparse, json, sys
 from pathlib import Path
@@ -10,6 +11,28 @@ from urllib.parse import urlsplit
 
 ORIGIN='https://realcoding.blog'
 LANGS=('ko','en','ja','x-default')
+
+NEW_PAGES = {
+    '/maker/', '/dev/', '/life/', '/videos/', '/request/',
+    '/en/maker/', '/en/dev/', '/en/life/', '/en/videos/', '/en/request/',
+    '/ja/maker/', '/ja/dev/', '/ja/life/', '/ja/videos/', '/ja/request/',
+}
+NEW_PAGE_REASON = 'S3 포털 신규 화면'
+
+def compare_sitemap(desired, local, pages):
+    errors=[]; expected=[]
+    for missing in sorted((desired | NEW_PAGES)-local): errors.append(('sitemap missing',missing))
+    for extra in sorted(local-desired):
+        if extra in NEW_PAGES: expected.append(('신규 페이지', f'{extra}: {NEW_PAGE_REASON}'))
+        else: errors.append(('sitemap extra',extra))
+    for path in sorted(NEW_PAGES):
+        page=pages.get(path,{})
+        suffix=path.removeprefix('/en').removeprefix('/ja')
+        hreflang={lang:ORIGIN+(suffix if lang in ('ko','x-default') else '/'+lang+suffix) for lang in LANGS}
+        for ok,kind in ((page.get('status')==200,'new page status'), (page.get('canonical')==ORIGIN+path,'new page canonical'), (page.get('hreflang')==hreflang,'new page hreflang')):
+            if not ok: errors.append((kind,path))
+    return errors,expected
+
 # Explicit S2 acceptance values, not an unrestricted exemption.
 IMPROVED_BODY = {
     prefix + path: {'pre_count': pres, 'table_count': 0, 'reason': reason}
@@ -73,10 +96,11 @@ def compare(prod,local,comments):
     posts=load(prod,'posts.json'); normalized={r['expected_path']:r['canonical_path'] for r in posts if r['normalized']}
     ps={r['path'] for r in load(prod,'sitemap-urls.json')}; ls={r['path'] for r in load(local,'sitemap-urls.json')}
     check(len(ps)==480,'baseline',f'Production sitemap count {len(ps)} != 480')
-    check(len(ls)==480,'sitemap',f'Local sitemap count {len(ls)} != 480')
+    check(len(ls)==480+len(NEW_PAGES),'sitemap',f'Local sitemap count {len(ls)} != {480+len(NEW_PAGES)}')
     desired=(ps-set(normalized))|set(normalized.values())
-    for missing in sorted(desired-ls): errors.append(('sitemap missing',missing))
-    for extra in sorted(ls-desired): errors.append(('sitemap extra',extra))
+    sitemap_errors,sitemap_expected=compare_sitemap(desired,ls,lp)
+    errors.extend(sitemap_errors); expected.extend(sitemap_expected)
+    checks.append(('S3 new pages, canonical and hreflang',len(NEW_PAGES)))
     for path in sorted(ps): check(lp.get(path,{}).get('status')==200,'missing URL',f'{path}: {lp.get(path,{}).get("status")}')
     checks.append(('Production sitemap URLs returning local 200',len(ps)))
     for path,target in normalized.items():
@@ -161,7 +185,7 @@ def main():
     lines += [f'| {safe(path)} | {count} | {safe(behavior)} |' for path,count,behavior in comments]
     lines += ['',f'## Unexpected differences ({len(errors)})','', '| Type | Details |','|---|---|']
     lines += [f'| {safe(k)} | {safe(v)} |' for k,v in errors] or ['| None | — |']
-    lines += ['',f'## Expected differences ({len(expected)})','', 'Allowed categories only: normalized URLs/alternate links, task checkboxes, Mermaid loader detection, GitHub-style heading IDs, Markdown 원문 교정(개선). Only the explicitly approved Markdown paths use exact corrected pre/table values and report text-length changes; all other body checks remain strict.','', '| Type | Details |','|---|---|']
+    lines += ['',f'## Expected differences ({len(expected)})','', 'Allowed categories only: normalized URLs/alternate links, task checkboxes, Mermaid loader detection, GitHub-style heading IDs, Markdown 원문 교정(개선), 신규 페이지 (S3 포털 신규 화면). Only the explicitly approved Markdown paths use exact corrected pre/table values and report text-length changes; all other body checks remain strict.','', '| Type | Details |','|---|---|']
     lines += [f'| {safe(k)} | {safe(v)} |' for k,v in expected]
     a.out.parent.mkdir(parents=True,exist_ok=True); a.out.write_text('\n'.join(lines)+'\n',encoding='utf-8')
     a.out.with_suffix('.json').write_text(json.dumps({'unexpected':errors,'expected':expected,'checks':checks,'comments':comments},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

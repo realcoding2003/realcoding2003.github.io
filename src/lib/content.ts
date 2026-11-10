@@ -7,7 +7,8 @@ import { postMetadata, RouteRegistry, languages, prefix, parseDocument } from '.
 
 export type Post = ReturnType<typeof postMetadata> & { html: string; hasMermaid: boolean; headings: Heading[]; section: Section; readingMinutes: number };
 export type Page = { path: string; lang: string; kind: string; data: Record<string, any>; body: string };
-export type Route = { path: string } & ({ kind: 'post'; post: Post } | { kind: 'redirect'; target: string } | { kind: 'page'; page: Page });
+export type PortalPage = { path: string; lang: string; page: 'maker'|'dev'|'game'|'life'|'videos'|'request'; indexable: boolean };
+export type Route = { path: string } & ({ kind: 'post'; post: Post } | { kind: 'redirect'; target: string } | { kind: 'page'; page: Page } | { kind: 'portal'; portal: PortalPage });
 
 export async function getPosts(): Promise<Post[]> {
   const entries = await getCollection('posts');
@@ -32,6 +33,10 @@ export function getPages(): Page[] {
   const privacy = parseDocument(readFileSync('privacy.md','utf8'));
   pages.push({ path: '/privacy/', lang: 'ko', kind: 'privacy', ...privacy });
   return pages;
+}
+
+export function getPortalPages(posts: Post[]): PortalPage[] {
+  return languages.flatMap(lang => (['maker','dev','game','life','videos','request'] as const).map(page => ({path: `${prefix(lang)}/${page}/`, lang, page, indexable: page !== 'game' || posts.some(p => p.lang === lang && p.section === 'game')})));
 }
 
 /** This is the sole HTML route plan. Fail before Astro can overwrite a page. */
@@ -61,6 +66,10 @@ export async function getRoutes(): Promise<Route[]> {
       registry.add(from, `redirect from ${page.kind}`);
       routes.push({ path: from, kind: 'redirect', target: page.path });
     }
+  }
+  for (const portal of getPortalPages(posts)) {
+    registry.add(portal.path, `portal ${portal.page} ${portal.lang}`);
+    routes.push({path:portal.path,kind:'portal',portal});
   }
   return routes;
 }

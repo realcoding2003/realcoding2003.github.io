@@ -3,6 +3,19 @@ import { resolve, sep } from 'node:path';
 import { imageSize } from 'image-size';
 import { responsiveImage } from './responsive-images.mjs';
 const dimensions = new Map<string, { width: number; height: number } | null>();
+export function imageDimensions(src: string) {
+  if (!dimensions.has(src)) {
+    try {
+      const path = resolve(decodeURIComponent(src.slice(1)));
+      if (!path.startsWith(resolve('assets') + sep)) throw new Error('Outside assets');
+      const { width, height } = imageSize(readFileSync(path));
+      dimensions.set(src, { width, height });
+    } catch (error) { dimensions.set(src, null); console.warn(`[image-size] ${src}: ${String(error)}`); }
+  }
+  const size = dimensions.get(src);
+  if (!size) throw new Error(`Missing image dimensions: ${src}`);
+  return size;
+}
 function attribute(tag: string, name: string): string | undefined {
   return tag.match(new RegExp('\\s' + name + '\\s*=\\s*(?:"([^"]*)"|\'([^\']*)\'|([^\\s>]+))', 'i'))?.slice(1).find(v => v !== undefined);
 }
@@ -23,15 +36,7 @@ export async function enhanceHtml(html: string): Promise<string> {
     } else tag = tag.replace(/\sfetchpriority\s*=\s*(["'])high\1/gi, '');
     const src = attribute(tag, 'src');
     if (src?.startsWith('/assets/') && (!attribute(tag, 'width') || !attribute(tag, 'height'))) {
-      if (!dimensions.has(src)) {
-        try {
-          const path = resolve(decodeURIComponent(src.slice(1)));
-          if (!path.startsWith(resolve('assets') + sep)) throw new Error('Outside assets');
-          const { width, height } = imageSize(readFileSync(path));
-          dimensions.set(src, { width, height });
-        } catch (error) { dimensions.set(src, null); console.warn(`[image-size] ${src}: ${String(error)}`); }
-      }
-      const size = dimensions.get(src);
+      const size = imageDimensions(src);
       if (size) {
         if (!attribute(tag, 'width')) tag = setAttribute(tag, 'width', String(size.width));
         if (!attribute(tag, 'height')) tag = setAttribute(tag, 'height', String(size.height));

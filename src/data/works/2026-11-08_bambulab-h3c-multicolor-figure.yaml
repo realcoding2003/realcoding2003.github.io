@@ -1,0 +1,10 @@
+id: "2026-11-08_bambulab-h3c-multicolor-figure"
+date: "2026-11-08"
+home: 3
+title: {"ko": "H3C 다색 피규어", "en": "Multicolor Figures on the H3C", "ja": "H3C マルチカラーフィギュア"}
+summary: {"ko": "후드 입은 도널드와 굼바를 색이 입혀진 채 한 번에 출력했다.", "en": "A hooded Donald and a Goomba, printed in full color in one go.", "ja": "フード姿のドナルドとクリボーを、色付きのまま一度にプリント。"}
+posts: ["bambulab-h3c-multicolor-figure"]
+image: {"src": "/assets/images/posts/bambulab-h3c-multicolor-figure/hero.jpg", "alt": {"ko": "H3C로 뽑은 도널드와 굼바", "en": "Donald and Goomba printed on the H3C", "ja": "H3Cで出力したドナルドとクリボー"}}
+shorts: {"id": "CcLO_yhIbOU", "seconds": 55}
+printers: ["H3C"]
+time: "~8h"

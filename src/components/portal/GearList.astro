@@ -1,0 +1,15 @@
+---
+import type { Post } from '../../lib/content';
+import { gear } from '../../lib/gear';
+import { portalCopy } from '../../lib/portal-copy';
+interface Props { lang: string; posts: Post[] }
+const { lang,posts } = Astro.props;
+---
+<dl class="gear-list">{gear.map(g => <div><dt>{g.name}</dt><dd>{g.description[lang as keyof typeof g.description]}{' '}<a href={posts.find(p => p.lang === lang && p.baseSlug === g.baseSlug)!.path}>{portalCopy[lang]['gear.post']}</a></dd></div>)}</dl>
+<style>
+.gear-list { margin: 0; }
+.gear-list > div { display: grid; grid-template-columns: 12rem minmax(0,1fr); border-bottom: 1px solid var(--rule); padding-block: 1.5rem; gap: 1rem; }
+dt { font: 700 1rem/1.6 var(--mono-font); }
+dd { margin: 0; color: var(--fg-muted); }
+@media(max-width:639px) { .gear-list > div { grid-template-columns: 1fr; gap: .5rem; } }
+</style>

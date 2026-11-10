@@ -1,0 +1,32 @@
+---
+import WorkImage from './WorkImage.astro';
+import { portalCopy } from '../../lib/portal-copy';
+import { prefix } from '../../lib/site.mjs';
+interface Props { lang: string; poster: {src: string; alt: string}; sources?: {src: string; type: string; media?: string}[] }
+const { lang, poster } = Astro.props; const t = portalCopy[lang];
+---
+<section class="hero" data-layer="1" aria-labelledby="hero-title">
+  <WorkImage {...poster} sizes="100vw" loading="eager" priority />
+  <div class="hero-content container--wide">
+    <h1 id="hero-title" data-copy>{t['hero.title']}</h1><p data-copy>{t['hero.sub']}</p>
+    <div class="hero-actions"><a class="see-work" href="#works" data-copy>{t['hero.works']}<span aria-hidden="true"></span></a><a class="hero-request" href={`${prefix(lang)}/request/`} data-copy>{t.request}</a></div>
+  </div>
+</section>
+<style>
+.hero { height: calc(100svh - 4rem); min-height: 34rem; max-height: 62rem; position: relative; display: flex; align-items: flex-end; }
+.hero :global(picture) { position: absolute; inset: 0; }
+.hero :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+.hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(35deg,rgb(12 17 48 / .94) 0%,rgb(12 17 48 / .65) 30%,transparent 70%),rgb(12 17 48 / .25); }
+.hero-content { position: relative; z-index: 1; padding-bottom: clamp(2.5rem,6vh,5rem); }
+h1 { font-size: clamp(2.75rem,1.25rem + 5vw,6rem); font-weight: 800; line-height: 1.05; max-width: 15ch; }
+h1:lang(en) { font-size: clamp(2.25rem,1rem + 4vw,5rem); }
+p { margin: .75rem 0 0; color: var(--stone-100); font-size: clamp(1.125rem,1rem + .7vw,1.75rem); }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(1.5rem,3vw,3rem); margin-top: clamp(1.5rem,3vh,2.5rem); }
+.see-work { display: inline-flex; align-items: center; gap: .2em; color: var(--fg); font: 800 clamp(1.5rem,1.1rem + 1.6vw,2.75rem)/1.2 var(--display-font); text-decoration: none; }
+.see-work span { display: inline-block; width: .55em; height: .95em; background: var(--accent); }
+.see-work:hover span,.see-work:focus-visible span { background: var(--stone-100); }
+.hero-request { display: inline-flex; align-items: center; justify-content: center; height: clamp(3rem,2.6rem + 1vw,4rem); padding-inline: clamp(1.25rem,2vw,2rem); border: 2px solid var(--accent); font-size: clamp(1rem,.9rem + .5vw,1.5rem); font-weight: 700; text-decoration: none; background-image: repeating-linear-gradient(to top,var(--accent) 0 3px,transparent 3px 5px); background-position: bottom; background-size: 100% 0%; background-repeat: no-repeat; }
+.hero-request:hover,.hero-request:focus-visible { background-size: 100% 100%; background-color: var(--accent); color: var(--ink-950); }
+@media(prefers-reduced-motion:no-preference) { .hero-request { transition: background-size 260ms,color 260ms,background-color 260ms; } .see-work:hover span,.see-work:focus-visible span { animation: cursor-blink 1s steps(1) infinite; } @keyframes cursor-blink { 50% { opacity: 0; } } }
+@media(max-width:639px) { .hero { height: calc(100svh - 3.5rem); min-height: 30rem; } }
+</style>

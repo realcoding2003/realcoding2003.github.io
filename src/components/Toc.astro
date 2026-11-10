@@ -1,0 +1,28 @@
+---
+import type { Heading } from '../lib/headings';
+import { i18n } from '../lib/i18n';
+interface Props { headings: Heading[]; lang: string; inline?: boolean }
+const { headings, lang, inline = false } = Astro.props;
+const t = i18n[lang];
+const list = headings.map(h => ({ ...h, href: '#' + encodeURIComponent(h.slug) }));
+---
+{headings.length >= 2 && (inline ?
+  <details class="toc-inline"><summary>{t.toc}</summary><nav aria-label={t.toc}><ol>{list.map(h => <li class:list={{ subheading: h.depth === 3 }}><a href={h.href}>{h.text}</a></li>)}</ol></nav></details> :
+  <aside class="toc-rail"><nav aria-label={t.toc}><h2>{t.toc}</h2><ol>{list.map(h => <li class:list={{ subheading: h.depth === 3 }}><a href={h.href} data-toc-id={h.slug}>{h.text}</a></li>)}</ol></nav></aside>
+)}
+<style>
+  ol { list-style: none; padding: 0; margin: 0; }
+  li { margin-top: .5rem; }
+  a { display: block; text-decoration: none; color: var(--fg); font-size: .9375rem; line-height: 1.5; padding: .2rem .25rem .2rem 1rem; position: relative; overflow-wrap: anywhere; }
+  .subheading a { padding-left: 2rem; }
+  a[aria-current=location] { color: var(--toc-active); font-weight: 700; }
+  a::before { content: ''; position: absolute; left: 0; top: .2rem; bottom: .2rem; width: 4px; background: var(--accent); transform: scaleY(0); transition: transform 120ms; }
+  a[aria-current=location]::before { transform: scaleY(1); }
+  .toc-inline { max-width: var(--measure); margin: 0 auto 1.25rem; border-block: 1px solid var(--rule); padding-block: .5rem; }
+  summary { font-family: var(--display-font); font-weight: 800; }
+  .toc-inline ol { padding-block: .5rem; }
+  .toc-rail { display: none; min-width: 0; border-left: 1px solid var(--rule); padding-left: 1.25rem; }
+  .toc-rail nav { position: sticky; top: 2rem; max-height: calc(100vh - 4rem); overflow: auto; padding: 2px 4px 4px 0; }
+  h2 { font-size: 1.375rem; margin: 0 0 1rem; }
+  @media (min-width:1200px) { .toc-inline { display: none; } .toc-rail { display: block; } }
+</style>

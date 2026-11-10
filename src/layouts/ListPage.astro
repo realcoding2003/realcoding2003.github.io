@@ -1,0 +1,22 @@
+---
+import type { Page, Post } from '../lib/content';
+import { translations } from '../lib/site.mjs';
+import { pageAlternates, slug, years } from '../lib/portal';
+import Portal from './Portal.astro';
+import PostIndexList from '../components/portal/PostIndexList.astro';
+interface Props { page: Page; posts: Post[] }
+const { page,posts } = Astro.props; const { lang,kind } = page; const list = posts.filter(p => p.lang === lang);
+const title = String(page.data.title); const map = new Map<string,Post[]>();
+if (kind !== 'archive') for (const p of list) for (const key of p.data[kind] || []) map.set(key,[...map.get(key) || [],p]);
+const grouped = kind === 'archive' ? years(list) : [...map].sort(([a],[b]) => a.localeCompare(b));
+---
+<Portal lang={lang} title={title} description={String(page.data.description || translations[lang].site.description)} path={page.path} alternates={pageAlternates(page)} hasGame={list.some(p => p.section === 'game')}>
+<div class="container--wide"><header class="page-head"><h1 class="display">{title}</h1><p class="post-count">{list.length} posts</p></header>
+{kind !== 'archive' && <nav class="taxonomy-index mono" aria-label={title}>{grouped.map(([key,items]) => <a href={`#${slug(key)}`}>{kind === 'tags' ? '#' : ''}{key} <span>{items.length}</span></a>)}</nav>}
+{grouped.map(([key,items]) => <section id={slug(key)} class="year-group"><h2>{kind === 'tags' ? '#' : ''}{key}{kind !== 'archive' && <span class="group-count"> {items.length}</span>}</h2><PostIndexList posts={items} showSection dateFormat="md" /></section>)}
+</div></Portal>
+<style>
+.taxonomy-index { display: flex; flex-wrap: wrap; gap: .75rem 1rem; font-size: .875rem; }
+.taxonomy-index span,.group-count { color: var(--fg-muted); }
+.group-count { font-size: 1rem; }
+</style>

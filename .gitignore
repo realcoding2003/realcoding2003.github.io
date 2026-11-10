@@ -63,3 +63,12 @@ Icon
 
 # Linux
 *~
+
+# Astro migration generated files
+.agent/
+dist/
+.astro/
+public/
+
+# Astro portal
+__pycache__/

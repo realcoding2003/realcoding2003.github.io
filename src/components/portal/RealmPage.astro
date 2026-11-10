@@ -1,0 +1,38 @@
+---
+import type { PortalPage, Post } from '../../lib/content';
+import { getWorks } from '../../lib/works';
+import { portalCopy } from '../../lib/portal-copy';
+import { i18n } from '../../lib/i18n';
+import { alternatesFor, years, realms } from '../../lib/portal';
+import { MAKERWORLD_PROFILE, prefix } from '../../lib/site.mjs';
+import Portal from '../../layouts/Portal.astro';
+import WorkImage from './WorkImage.astro';
+import WorkGrid from './WorkGrid.astro';
+import GearList from './GearList.astro';
+import TopicFilter from './TopicFilter.astro';
+import PostIndexList from './PostIndexList.astro';
+interface Props { page: PortalPage; posts: Post[] }
+const { page,posts } = Astro.props; const { lang } = page; const realm = page.page as typeof realms[number];
+const t = portalCopy[lang]; const list = posts.filter(p => p.lang === lang && p.section === realm); const empty = realm === 'game' && !list.length;
+---
+<Portal lang={lang} title={i18n[lang].nav[realm]} path={page.path} description={t[`realm.${realm}.intro`]} alternates={alternatesFor(realm+'/')} current={realm} noindex={empty} hasGame={posts.some(p => p.lang === lang && p.section === 'game')}>
+  <header class:list={['page-head', { 'line-field': realm !== 'dev' && realm !== 'life', 'poster-head': realm === 'dev' || realm === 'life' }]}>
+    {(realm === 'dev' || realm === 'life') && <div class="realm-poster"><WorkImage src={`/assets/video/portal/realm-${realm}-poster.jpg`} alt="" sizes="100vw" loading="eager" priority /></div>}<div class:list={['container--wide','realm-head',{ maker: realm === 'maker' }]}><div><h1 class="display">{i18n[lang].nav[realm]}</h1><p data-copy>{t[`realm.${realm}.intro`]}</p><p class="post-count" data-copy>{empty ? t['realm.game.empty'] : t['count.posts'].replace('{n}',String(list.length))}</p></div>{realm === 'maker' && <WorkImage {...getWorks(lang,posts)[0].image!} sizes="(min-width:1100px) 36vw, 100vw" loading="eager" priority />}</div></header>
+  <div class="container--wide">
+    {realm === 'maker' && <><WorkGrid works={getWorks(lang,posts)} lang={lang} /><section class="portal-section"><h2 class="display section-head">{t['gear.title']}</h2><GearList lang={lang} posts={posts} /><p><a href={MAKERWORLD_PROFILE[lang as keyof typeof MAKERWORLD_PROFILE]} rel="noopener">{t['links.makerworld']} →</a></p></section></>}
+    {realm === 'dev' && <TopicFilter posts={list} lang={lang} />}
+    {empty ? <section class="portal-section"><p data-copy>{t['realm.game.emptyBody']}</p><div class="other-realms mono">{realms.filter(r => r !== 'game').map(r => <a href={`${prefix(lang)}/${r}/`}>{i18n[lang].nav[r]} →</a>)}</div></section> : years(list).map(([year,items]) => <section class="year-group" data-year><h2>{year}</h2><PostIndexList posts={items} showSection={false} dateFormat="md" /></section>)}
+  </div>
+</Portal>
+<style>
+.poster-head { position: relative; overflow: hidden; }
+.realm-poster,.realm-poster :global(picture),.realm-poster :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.realm-poster::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg,rgb(12 17 48 / .9) 0%,rgb(12 17 48 / .7) 45%,rgb(12 17 48 / .45) 100%); }
+.poster-head .realm-head { position: relative; z-index: 1; }
+.realm-head { display: flex; align-items: center; gap: 3rem; }
+.realm-head > div { flex: 1; min-width: 0; }
+.maker :global(picture) { width: min(36%,30rem); flex-shrink: 0; }
+.maker :global(img) { width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; }
+.other-realms { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+@media(max-width:639px) { .realm-head { flex-direction: column; align-items: stretch; } .maker :global(picture) { width: 100%; } .maker :global(img) { aspect-ratio: 4/3; } }
+</style>

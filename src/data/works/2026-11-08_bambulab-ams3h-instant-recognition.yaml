@@ -1,0 +1,8 @@
+id: "2026-11-08_bambulab-ams3h-instant-recognition"
+date: "2026-11-08"
+title: {"ko": "AMS 3H 필라멘트 즉시 인식", "en": "AMS 3H Instant Filament Detection", "ja": "AMS 3H フィラメント即時認識"}
+summary: {"ko": "출력 중에 꽂아도 스풀을 굴리지 않고 바로 인식한다.", "en": "Load a spool mid-print and it is recognized right away, no spinning.", "ja": "印刷中に挿しても、スプールを回さずすぐ認識。"}
+posts: ["bambulab-ams3h-instant-recognition"]
+image: {"src": "/assets/images/posts/bambulab-ams3h-instant-recognition/hero.jpg", "alt": {"ko": "AMS 3H에 걸려 있는 필라멘트들", "en": "Filament hanging in the AMS 3H", "ja": "AMS 3Hに掛かっているフィラメント"}}
+shorts: {"id": "uPyB9AImuz0", "seconds": 62}
+printers: ["H3C"]

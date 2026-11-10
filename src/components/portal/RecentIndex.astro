@@ -1,0 +1,22 @@
+---
+import type { Post } from '../../lib/content';
+import { portalCopy } from '../../lib/portal-copy';
+import { prefix } from '../../lib/site.mjs';
+import PostIndexList from './PostIndexList.astro';
+interface Props { posts: Post[]; lang: string }
+const { posts,lang } = Astro.props; const t = portalCopy[lang];
+---
+<section class="portal-section line-field" data-layer="4" aria-labelledby="recent-title"><div class="container--wide recent-grid">
+  <div class="recent-heading" data-reveal><span aria-hidden="true"></span><h2 class="display" id="recent-title" data-copy>{t['recent.title']}</h2></div>
+  <div class="recent-panel" data-reveal data-reveal-delay><PostIndexList posts={posts.filter(p => p.lang === lang).slice(0,5)} size="lg" /><a class="all-posts" href={`${prefix(lang)}/archive/`} data-copy>{t['recent.all']} <span>→</span></a></div>
+</div></section>
+<style>
+.recent-grid { display: grid; gap: 2rem; }
+.recent-heading > span { display: block; width: 6rem; height: 6px; background: var(--accent); margin-bottom: 1.5rem; }
+.recent-panel { min-width: 0; background: var(--surface); border: 1px solid var(--rule); padding: clamp(1.5rem,3vw,2.75rem); }
+.all-posts { display: inline-block; color: var(--fg); font: 800 clamp(1.25rem,1rem + 1vw,2rem)/1.3 var(--display-font); text-decoration: underline 2px var(--accent); text-underline-offset: 6px; margin-top: 2rem; }
+.all-posts span { display: inline-block; color: var(--accent); }
+.all-posts:hover span { transform: translateX(4px); }
+@media(min-width:1100px) { .recent-grid { grid-template-columns: minmax(0,1fr) minmax(0,2fr); } }
+@media(prefers-reduced-motion:no-preference) { .all-posts span { transition: transform 160ms; } }
+</style>

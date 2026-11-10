@@ -1,0 +1,5 @@
+---
+import { applyMotionGate } from '../../lib/motion-math.mjs';
+const code = `(${applyMotionGate.toString()})(document, window);`;
+---
+<script is:inline data-motion-gate set:html={code} />

@@ -1,0 +1,16 @@
+---
+import { portalCopy } from '../../lib/portal-copy';
+interface Props { lang: string; hidden?: boolean }
+const { lang,hidden = false } = Astro.props;
+---
+<button class="submit-bar" type="submit" data-state="idle" style="--progress:1" hidden={hidden}><span class="submit-label">{portalCopy[lang]['form.state.idle']}</span><span class="submit-percent" hidden></span></button>
+<span class="sr-only" data-progress role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden></span>
+<style>
+.submit-bar { display: flex; align-items: center; justify-content: center; gap: .75rem; position: relative; width: 100%; min-height: 3.75rem; padding: .75rem 1rem; border: 1px solid var(--stone-100); border-radius: 0; background: var(--ink-950); color: var(--ink-950); font: 800 1.375rem/1.25 var(--display-font); isolation: isolate; }
+.submit-bar::before { content: ''; position: absolute; inset: 0 auto 0 0; width: calc(var(--progress) * 100%); background: var(--accent); z-index: -1; }
+.submit-bar[data-state=uploading] { justify-content: space-between; }
+.submit-percent { color: var(--stone-100); font: 1.125rem/1 var(--mono-font); }
+.submit-bar[data-state=error] { border-color: var(--accent); color: var(--accent); }
+.submit-bar:active:not(:disabled) { transform: translateY(1px); }
+@media(prefers-reduced-motion:no-preference) { .submit-bar::before { transition: width 120ms; } }
+</style>

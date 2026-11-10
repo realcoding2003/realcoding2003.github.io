@@ -1,0 +1,13 @@
+id: "2026-11-09_ams2-pro-sliding-speedrack-underrail"
+date: "2026-11-09"
+home: 1
+title: {"ko": "AMS 2 Pro 슬라이딩 수납", "en": "Sliding AMS 2 Pro Mount", "ja": "AMS 2 Pro スライド収納"}
+summary: {"ko": "스피드랙과 언더레일 위에 출력한 덮개를 씌워 서랍처럼 꺼내 쓴다.", "en": "A printed cover over a steel shelf and drawer slides, so the AMS pulls out like a drawer.", "ja": "スチールラックと引き出しレールにプリントしたカバーをかぶせ、引き出しのように使う。"}
+posts: ["ams2-pro-sliding-speedrack-underrail"]
+image: {"src": "/assets/images/posts/ams2-pro-sliding-speedrack-underrail/hero.jpg", "alt": {"ko": "스피드랙 아래 칸에서 서랍처럼 빠져나온 AMS 2 Pro", "en": "AMS 2 Pro pulled out like a drawer from the lower shelf of a Speedrack", "ja": "Speedrackの下段から引き出しのように出てきたAMS 2 Pro"}}
+shorts: {"id": "cgMnIAW3yCA", "seconds": 60}
+makerworld: 3574866
+printers: ["A2L"]
+material: "PLA"
+time: "~22h"
+filament: "~700 g"

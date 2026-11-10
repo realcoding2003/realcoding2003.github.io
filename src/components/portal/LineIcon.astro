@@ -1,0 +1,6 @@
+---
+interface Props { name: string }
+const { name } = Astro.props;
+const paths: Record<string,string> = { layers: 'M3 8l9-5 9 5-9 5-9-5zm0 5l9 5 9-5M3 18l9 5 9-5', code: 'M8 5L2 12l6 7M16 5l6 7-6 7M14 2l-4 20', chat: 'M4 3h16v14H9l-5 4V3zM8 8h8M8 12h5', document: 'M5 2h10l4 4v16H5V2zm10 0v5h4M8 11h8M8 15h8M8 19h5', box: 'M2 7l10-5 10 5v12l-10 5-10-5V7zm0 0l10 5 10-5M12 12v12', check: 'M3 12l6 6L21 5', cross: 'M5 5l14 14M19 5L5 19', upload: 'M12 16V2m-6 6l6-6 6 6M3 15v7h18v-7' };
+---
+<svg viewBox="0 0 24 26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d={paths[name] || paths.layers} /></svg>

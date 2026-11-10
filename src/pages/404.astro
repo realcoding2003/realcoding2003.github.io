@@ -1,0 +1,6 @@
+---
+import Document from '../layouts/Document.astro';
+import { i18n } from '../lib/i18n';
+const t = i18n.ko;
+---
+<Document lang="ko" title={t.notFoundTitle} path="/404.html" mainClass="listing container"><h1>{t.notFoundTitle}</h1><p>{t.notFoundBody}</p><a href="/">{t.notFoundLink}</a></Document>

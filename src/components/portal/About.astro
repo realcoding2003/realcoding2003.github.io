@@ -1,0 +1,39 @@
+---
+import type { Page, Post } from '../../lib/content';
+import { aboutCopy } from '../../lib/about';
+import { portalCopy } from '../../lib/portal-copy';
+import { i18n } from '../../lib/i18n';
+import { pageAlternates, realms, slug } from '../../lib/portal';
+import { translations, prefix, LINKS, CONTACT_EMAIL, MAKERWORLD_PROFILE } from '../../lib/site.mjs';
+import Portal from '../../layouts/Portal.astro';
+import WorkImage from './WorkImage.astro';
+import GearList from './GearList.astro';
+interface Props { page: Page; posts: Post[] }
+const { page,posts } = Astro.props; const { lang } = page; const t = portalCopy[lang], a = aboutCopy[lang]; const list = posts.filter(p => p.lang === lang);
+const tags = new Map<string,number>(); for (const p of list.filter(p => p.section === 'dev')) for (const tag of p.data.tags || []) tags.set(tag,(tags.get(tag) || 0)+1);
+const stack = [...tags].sort(([a,n],[b,m]) => m-n || a.localeCompare(b)).slice(0,12);
+---
+<Portal lang={lang} title={String(page.data.title)} description={String(page.data.description || translations[lang].site.description)} path={page.path} alternates={pageAlternates(page)} hasGame={list.some(p => p.section === 'game')}>
+<div class="container--wide"><header class="page-head about-head"><WorkImage src="/assets/images/character.png" alt="Kevin Park" sizes="10rem" loading="eager" /><div><h1 class="display">Kevin Park</h1><p>{a.sub}</p><p>{a.intro}</p></div></header>
+<section class="about-section"><h2 class="display section-head">{t['about.work']}</h2><dl class="realm-list">{realms.map(realm => { const n = list.filter(p => p.section === realm).length; return <div><dt><span class="mono">{realm.toUpperCase()}</span> {i18n[lang].nav[realm]}</dt><dd>{t[`realm.${realm}.intro`]}</dd><dd class="mono">{n ? `${n} posts` : t['realm.game.empty']}</dd><dd>{n > 0 && <a href={`${prefix(lang)}/${realm}/`}>{i18n[lang].nav[realm]} →</a>}</dd></div>; })}</dl></section>
+<section class="about-section"><h2 class="display section-head">{t['gear.title']}</h2><GearList lang={lang} posts={posts} /></section>
+<section class="about-section"><h2 class="display section-head">{t['about.stack']}</h2><div class="stack mono">{stack.map(([tag]) => <a href={`${prefix(lang)}/tags/#${slug(tag)}`}>#{tag}</a>)}</div></section>
+<section class="about-section"><h2 class="display section-head">{a.projects}</h2><div class="screenshots">{a.images.map(img => <WorkImage {...img} sizes="9rem" />)}</div><h3>{a.title}</h3><p>{a.description}</p><p class="mono">{a.tags.join(' · ')}</p><div class="project-links">{a.links.map((link,i) => <a href={i === 2 ? list.find(p => p.baseSlug === 'hawonnow-ai-dev-story')!.path : link.href} rel="noopener">{link.label}</a>)}</div></section>
+<section class="about-section"><h2 class="display section-head">{a.contact}</h2><ul class="contacts mono"><li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li><li><a href={LINKS.github} rel="noopener">GitHub</a></li><li><a href={LINKS.linkedin} rel="noopener">LinkedIn</a></li><li><a href={LINKS.youtube} rel="noopener">{t['links.youtube']}</a></li><li><a href={MAKERWORLD_PROFILE[lang as keyof typeof MAKERWORLD_PROFILE]} rel="noopener">{t['links.makerworld']}</a></li><li><a href="/feed.xml">RSS</a></li></ul></section>
+</div></Portal>
+<style>
+.about-head { display: flex; align-items: center; gap: clamp(2rem,4vw,4rem); }
+.about-head :global(img) { width: 10rem; height: 10rem; }
+.about-head > div { flex: 1; min-width: 0; }
+.about-section { padding-bottom: clamp(4rem,6vw,8rem); }
+.realm-list > div { display: grid; grid-template-columns: 1.3fr 2fr 1fr 1fr; gap: 1rem; align-items: center; border-bottom: 1px solid var(--rule); padding-block: 1.5rem; }
+dt { font-weight: 700; } dd { margin: 0; color: var(--fg-muted); }
+dt span { display: block; color: var(--accent); }
+.stack,.project-links { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; font-size: .9375rem; }
+.screenshots { display: flex; gap: 1.5rem; overflow-x: auto; margin-bottom: 2rem; }
+.screenshots :global(picture) { flex: 0 0 9rem; }
+.screenshots :global(img) { width: 9rem; height: auto; }
+h3 { font-size: 2rem; }
+.contacts { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 1rem 2rem; }
+@media(max-width:639px) { .about-head { flex-direction: column; align-items: flex-start; } .realm-list > div { grid-template-columns: 1fr; gap: .5rem; } }
+</style>

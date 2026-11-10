@@ -1,0 +1,23 @@
+---
+import type { Page, Post } from '../../lib/content';
+import { translations } from '../../lib/site.mjs';
+import { pageAlternates } from '../../lib/portal';
+import { portalCopy } from '../../lib/portal-copy';
+import { getWorks } from '../../lib/works';
+import Portal from '../../layouts/Portal.astro';
+import HeroStage from './HeroStage.astro';
+import Realms from './Realms.astro';
+import WorksBento from './WorksBento.astro';
+import RecentIndex from './RecentIndex.astro';
+import VideoRail from './VideoRail.astro';
+import MakeTogether from './MakeTogether.astro';
+interface Props { page: Page; posts: Post[] }
+const { page,posts } = Astro.props; const { lang } = page;
+const works = getWorks(lang, posts);
+---
+<Portal lang={lang} title={String(page.data.title || translations[lang].site.title)} description={String(page.data.description || translations[lang].site.description)} path={page.path} alternates={pageAlternates(page)} hasGame={posts.some(p => p.lang === lang && p.section === 'game')} finish>
+  <HeroStage lang={lang} film={{desktop: '/assets/video/portal/hero-desktop.mp4', mobile: '/assets/video/portal/hero-mobile.mp4', poster: '/assets/video/portal/hero-desktop-poster.jpg', posterAlt: portalCopy[lang]['hero.alt']}} />
+  <Realms lang={lang} posts={posts} /><WorksBento lang={lang} works={works} /><RecentIndex lang={lang} posts={posts} /><VideoRail lang={lang} works={works} /><MakeTogether lang={lang} />
+</Portal>
+
+<script>import '../../scripts/portal-motion';</script>

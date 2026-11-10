@@ -121,14 +121,19 @@ layout: post
 title: "[제목]"
 date: YYYY-MM-DD HH:MM:00 +0900
 categories: [카테고리1, 카테고리2]
+section: maker   # 포털 영역: maker | dev | game | life (생략 시 categories로 자동 판정)
 tags: [태그1, 태그2, ...]
 author: "Kevin Park"
 lang: ko
 excerpt: "[1-2문장 요약]"
-image: "/assets/images/posts/[slug]/hero.png"
-mermaid: true  # Mermaid 사용 시에만
+image: "/assets/images/posts/[slug]/hero.png"   # 공유 미리보기(OG) 전용 — 본문 첫 사진은 본문에 따로 넣는다
 ---
 ```
+
+- `section`: 3D 프린팅 = `maker`, 개발 = `dev`, 게임 공략 = `game`(+ `game: "<게임 이름>"`, 시리즈면 `series: "<시리즈 이름>"`), 일상·에세이 = `life`. 생략하면 `[Life, 3D Printing]`→maker, `[Life, …]`→life, 그 외→dev로 판정된다.
+- `date`가 지금보다 미래면 빌드에서 빠진다(게시 직전 실제 시각 이전으로).
+- mermaid는 코드 블록만 있으면 자동으로 그려진다(`mermaid: true` 불필요).
+- 3D 작업 글이면 쇼케이스 데이터 `src/data/works/<YYYY-MM-DD>_<slug>.yaml`도 추가한다(기존 파일 형식 그대로 — 3언어 제목·요약, posts, 대표 이미지, 쇼츠 id, 프린터, 출력 시간·필라멘트 g는 실제 값만).
 
 사용자 리뷰 후 수정사항을 반영한다.
 
@@ -145,11 +150,11 @@ mermaid: true  # Mermaid 사용 시에만
 - 코드 블록: 원본 그대로 유지, **코드 주석만 해당 언어로 번역**
 - Mermaid 다이어그램: 구조 유지, 텍스트 레이블만 번역
 - URL/이미지 경로: 원본 그대로 보존 (이미지는 언어별 공유)
-- Front Matter: `lang` 값만 변경, `image` 경로는 동일하게 유지
+- Front Matter: `lang` 값만 변경(`en`/`ja`), `image`·`section` 등은 동일하게 유지. 주소는 `/en/…`·`/ja/…`로 자동 생성된다(`slug`·`permalink`를 따로 적지 않아도 됨)
 
 ### 5단계: 발행
 
 사용자가 발행을 요청하면:
 1. 모든 파일 확인 (ko, en, ja + 이미지)
-2. Jekyll 로컬 빌드 테스트: `bundle exec jekyll build`
+2. 로컬 빌드 테스트: `npm run build`(미리보기는 `npm run dev` → http://localhost:4321). 처음이면 `npm install`
 3. 사용자에게 커밋 요청 안내 (`/git-commit` 사용)

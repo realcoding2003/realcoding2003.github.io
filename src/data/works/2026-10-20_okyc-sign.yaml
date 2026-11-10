@@ -1,0 +1,10 @@
+id: "2026-10-20_okyc-sign"
+date: "2026-10-20"
+home: 2
+title: {"ko": "물결 띠 회사 간판", "en": "Wavy-Strip Company Sign", "ja": "波模様の帯の会社看板"}
+summary: {"ko": "물결 띠 108개를 하나씩 출력해 쌓은 500 × 380 mm 간판.", "en": "A 500 × 380 mm sign built from 108 printed wavy strips.", "ja": "波模様の帯108本を一本ずつプリントして積み上げた500 × 380 mmの看板。"}
+posts: []
+long: {"id": "lRF2YkJqRrE", "seconds": 88}
+printers: ["X2D"]
+material: "PLA"
+time: "~66h"

@@ -1,0 +1,25 @@
+---
+import type { Post } from '../../lib/content';
+import { slug } from '../../lib/portal';
+import { portalCopy } from '../../lib/portal-copy';
+interface Props { lang: string; posts: Post[] }
+const { lang,posts } = Astro.props; const t = portalCopy[lang];
+const count = (list: string[]) => [...new Set(list)].map(name => ({ name,slug:slug(name),n:list.filter(v => v === name).length })).sort((a,b) => b.n-a.n || a.name.localeCompare(b.name));
+const topics = count(posts.map(p => p.data.categories?.[0] || '').filter(Boolean));
+---
+<div class="topic-filter" data-topic-filter data-count={t['filter.count']}>
+  <div role="group" aria-label={t['filter.topic']} class="filter-group" data-primary><button type="button" aria-pressed="true" data-topic="">{t['filter.all']} <span>{posts.length}</span></button>{topics.map(topic => <button type="button" aria-pressed="false" data-topic={topic.slug}>{topic.name} <span>{topic.n}</span></button>)}</div>
+  {topics.map(topic => { const subset = posts.filter(p => slug(p.data.categories?.[0] || '') === topic.slug); const subs = count(subset.map(p => p.data.categories?.[1] || '').filter(Boolean)); return subs.length >= 2 && <div role="group" aria-label={t['filter.subtopic']} class="filter-group" data-subtopics={topic.slug} hidden><button type="button" aria-pressed="true" data-sub="">{t['filter.all']} <span>{subset.length}</span></button>{subs.map(sub => <button type="button" data-sub={sub.slug} aria-pressed="false">{sub.name} <span>{sub.n}</span></button>)}</div>; })}
+  <p class="mono" aria-live="polite" data-filter-count>{t['filter.count'].replace('{n}',String(posts.length))}</p>
+</div>
+<script>import '../../scripts/topic-filter';</script>
+<style>
+.topic-filter { display: none; padding-top: 2rem; }
+:global(html.js) .topic-filter { display: block; }
+.filter-group { display: flex; flex-wrap: wrap; gap: .25rem; margin-bottom: .75rem; }
+button { background: none; border: 0; min-height: 2.75rem; padding: .5rem 1rem; color: var(--fg-muted); position: relative; }
+button span { font-family: var(--mono-font); color: var(--fg-muted); font-size: .8125rem; }
+button[aria-pressed=true] { color: var(--fg); }
+button[aria-pressed=true]::before,button[aria-pressed=true]::after { content: ''; position: absolute; inset: .15rem; pointer-events: none; background: linear-gradient(var(--accent),var(--accent)) left top/8px 1px no-repeat,linear-gradient(var(--accent),var(--accent)) left top/1px 8px no-repeat,linear-gradient(var(--accent),var(--accent)) right bottom/8px 1px no-repeat,linear-gradient(var(--accent),var(--accent)) right bottom/1px 8px no-repeat; }
+button[aria-pressed=true]::after { transform: scaleX(-1); }
+</style>

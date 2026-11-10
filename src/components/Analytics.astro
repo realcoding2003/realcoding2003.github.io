@@ -1,0 +1,14 @@
+<script is:inline>
+  if (location.hostname === 'realcoding.blog') {
+    window.addEventListener('load', function () {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-MEFBMHM6FK');
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-MEFBMHM6FK';
+      document.head.appendChild(script);
+    }, { once: true });
+  }
+</script>

@@ -1,0 +1,28 @@
+---
+import WorkImage from './portal/WorkImage.astro';
+import type { RelatedWork } from '../lib/works';
+import { i18n } from '../lib/i18n';
+interface Props { works: RelatedWork[]; lang: string }
+const { works, lang } = Astro.props;
+const labels = { printer: 'Printer', material: 'Material', layer: 'Layer', infill: 'Infill', time: 'Time', filament: 'Filament' };
+---
+{works.length > 0 && <section class="related-works" aria-labelledby="related-heading">
+  <h2 id="related-heading">{i18n[lang].related}</h2>
+  {works.map(work => <div class="work-card">
+    <WorkImage {...work.image} sizes="(min-width:640px) 15rem, 100vw" />
+    <div><h3>{work.title}</h3><p>{work.summary}</p>{work.link && <a href={work.link.href}>{work.link.label || i18n[lang].relatedLink} →</a>}</div>
+    <div class="work-stats"><span>PRINT STATS</span><dl>{Object.entries(work.stats).filter(([, value]) => value).map(([key, value]) => <><dt>{labels[key as keyof typeof labels]}</dt><dd>{value}</dd></>)}</dl></div>
+  </div>)}
+</section>}
+<style>
+  .related-works { border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 2rem; }
+  h2 { font-size: 1.625rem; margin: 0 0 .75rem; }
+  .work-card { border: 1px solid var(--rule); border-radius: 2px; padding: .75rem; display: grid; gap: 1rem; }
+  :global(.work-card img) { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
+  h3 { font-size: 1.125rem; margin: 0; }
+  p { font-size: .9375rem; color: var(--fg-muted); margin: .5rem 0; }
+  .work-stats { font: .8125rem/1.5 var(--mono-font); }
+  dl { display: grid; grid-template-columns: auto auto; gap: 0 .75rem; margin: 0; }
+  dd { margin: 0; } dd::before { content: ': '; }
+  @media (min-width:640px) { .work-card { grid-template-columns: 15rem minmax(0,1fr) auto; } .work-stats { border-left: 1px solid var(--rule); padding-left: 1rem; } }
+</style>

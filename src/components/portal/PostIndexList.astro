@@ -1,0 +1,28 @@
+---
+import type { Post } from '../../lib/content';
+import { i18n } from '../../lib/i18n';
+import { slug } from '../../lib/portal';
+interface Props { posts: Post[]; size?: 'lg'|'md'; showSection?: boolean; dateFormat?: 'full'|'md' }
+const { posts, size = 'md', showSection = true, dateFormat = 'full' } = Astro.props;
+---
+<ul class:list={['post-index',size, { 'with-section': showSection }]}>
+  {posts.map(post => <li data-post-row data-c1={slug(post.data.categories?.[0] || '')} data-c2={slug(post.data.categories?.[1] || '')}>
+    <time datetime={post.date.toISOString()}>{post.date.toISOString().slice(dateFormat === 'md' ? 5 : 0,10).replaceAll('-','.')}</time>
+    {showSection && <span class="realm-tag"><span class="sr-only">{i18n[post.lang].section}: </span>{post.section.toUpperCase()}</span>}
+    <a href={post.path}>{post.data.title}</a>
+  </li>)}
+</ul>
+<style>
+.post-index { list-style: none; padding: 0; margin: 0; }
+li { display: grid; grid-template-columns: 6rem minmax(0,1fr); gap: .75rem; min-height: 3.75rem; align-items: center; border-bottom: 1px solid var(--rule); padding-block: 1rem; }
+.with-section li { grid-template-columns: 8rem 5rem minmax(0,1fr); }
+time { font: .875rem/1.5 var(--mono-font); }
+.realm-tag { font: 700 .875rem/1.5 var(--mono-font); color: var(--accent); }
+a { font-family: var(--display-font); font-size: clamp(1rem,.9rem + .4vw,1.375rem); font-weight: 800; color: var(--fg); text-decoration: none; line-height: 1.4; }
+a:hover,a:focus-visible { text-decoration: underline 2px var(--accent); }
+.lg li { min-height: 4.5rem; }
+.lg.with-section li { grid-template-columns: 9.5rem 6.5rem minmax(0,1fr); }
+.lg time { font-size: clamp(.875rem,.8rem + .3vw,1.125rem); }
+.lg a { font-size: clamp(1.125rem,.9rem + 1vw,1.875rem); }
+@media(max-width:639px) { .with-section li,.lg.with-section li { grid-template-columns: auto 1fr; } .with-section a { grid-column: 1/-1; } li { grid-template-columns: 4rem minmax(0,1fr); } }
+</style>

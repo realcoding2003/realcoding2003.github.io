@@ -1,0 +1,18 @@
+---
+import { shikiTheme } from '../lib/shiki-theme.mjs';
+import '../styles/reader.css';
+import Document from './Document.astro';
+import type { Page, Post } from '../lib/content';
+import { translations } from '../lib/site.mjs';
+import { jekyllMarkdown } from '../lib/markdown.mjs';
+interface Props { page: Page; posts: Post[] }
+const { page, posts } = Astro.props;
+const { lang } = page;
+const title = String(page.data.title || translations[lang].site.title);
+const renderer = await jekyllMarkdown().createRenderer({ shikiConfig: { theme: shikiTheme }, syntaxHighlight: { type: 'shiki', excludeLangs: ['mermaid'] } });
+const html = (await renderer.render(page.body, { frontmatter: page.data })).code;
+---
+<Document lang={lang} title={title} description={String(page.data.description || translations[lang].site.description)} path={page.path} alternates={{}} mainClass="listing container" hasGame={posts.some(p => p.lang === lang && p.section === 'game')}>
+  <h1>{title}</h1>
+  {html && <div class="page-prose" set:html={html} />}
+</Document>

@@ -1,0 +1,11 @@
+---
+import { i18n } from '../lib/i18n';
+interface Props { lang: string; enabled?: boolean }
+const { lang, enabled = true } = Astro.props;
+---
+{enabled && <section id="comments" aria-labelledby="comments-heading"><h2 id="comments-heading">{i18n[lang].comments}</h2><div class="comments-container" data-comments></div></section>}
+<style>
+  section { margin-top: 2.5rem; }
+  h2 { font-size: 1.625rem; margin: 0 0 1rem; }
+  .comments-container { min-height: 16rem; }
+</style>

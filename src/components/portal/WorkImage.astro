@@ -1,0 +1,10 @@
+---
+import { imageDimensions } from '../../lib/html-enhance';
+import { responsiveImage } from '../../lib/responsive-images.mjs';
+interface Props { src: string; alt: string; width?: number; height?: number; sizes: string; loading?: 'lazy'|'eager'; priority?: boolean; external?: boolean }
+const { src, alt, sizes, loading = 'lazy', priority = false, external = false } = Astro.props;
+const size = external ? { width: Astro.props.width!, height: Astro.props.height! } : imageDimensions(src);
+const image = external ? undefined : await responsiveImage(src);
+---
+{image ? <picture><source type="image/webp" srcset={image.variants.map((v: {src: string; width: number}) => `${v.src} ${v.width}w`).join(', ')} sizes={sizes} /><img src={src} alt={alt} {...size} loading={loading} decoding="async" fetchpriority={priority ? 'high' : undefined} /></picture>
+: <img src={src} alt={alt} {...size} loading={loading} decoding="async" fetchpriority={priority ? 'high' : undefined} referrerpolicy={external ? 'no-referrer' : undefined} />}

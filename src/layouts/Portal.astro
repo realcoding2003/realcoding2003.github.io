@@ -1,6 +1,6 @@
 ---
 import Document from './Document.astro';
 import '../styles/portal.css';
-interface Props { lang: string; title: string; description?: string; path: string; alternates?: Record<string,string>; hasGame?: boolean; current?: 'maker'|'dev'|'game'|'life'|'videos'|'request'; noindex?: boolean; finish?: boolean }
+interface Props { lang: string; title: string; description?: string; path: string; alternates?: Record<string,string>; hasGame?: boolean; current?: 'ai'|'maker'|'dev'|'game'|'life'|'videos'|'request'; noindex?: boolean; finish?: boolean }
 ---
 <Document {...Astro.props} themeMode="dark" wide layerRail motionGate mainClass="portal"><slot /></Document>

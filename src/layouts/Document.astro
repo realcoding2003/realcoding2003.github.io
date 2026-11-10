@@ -12,7 +12,7 @@ import '../styles/tokens.css';
 import '../styles/global.css';
 interface Props {
   lang: string; title: string; description?: string; path: string; image?: string;
-  alternates?: Record<string, string>; themeMode?: 'switchable' | 'dark'; post?: Post; hasGame?: boolean; mainClass?: string; wide?: boolean; current?: 'maker'|'dev'|'game'|'life'|'videos'|'request'; noindex?: boolean; finish?: boolean; layerRail?: boolean; motionGate?: boolean;
+  alternates?: Record<string, string>; themeMode?: 'switchable' | 'dark'; post?: Post; hasGame?: boolean; mainClass?: string; wide?: boolean; current?: 'ai'|'maker'|'dev'|'game'|'life'|'videos'|'request'; noindex?: boolean; finish?: boolean; layerRail?: boolean; motionGate?: boolean;
 }
 const { lang, title, description = '', path, image = '/assets/images/og-default.jpg', alternates = {}, themeMode = 'switchable', post, hasGame = false, mainClass, wide = false, current, noindex = false, finish = false, layerRail = false, motionGate = false } = Astro.props;
 const data = translations[lang] || translations.ko;

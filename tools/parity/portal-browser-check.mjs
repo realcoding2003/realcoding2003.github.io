@@ -8,15 +8,15 @@ import { checkS5 } from './s5-browser-check.mjs';
 const origin = process.argv[2] || 'http://127.0.0.1:4325';
 const out = resolve(process.argv[3] || '/private/tmp/rc-portal-browser');
 await mkdir(out,{recursive:true});
-// Brief's "24" does not cover its enumerated screens. Check all 33 portals,
+// Brief's "24" does not cover its enumerated screens. Check all 36 portals,
 // including the three noindex game placeholders, rather than omitting screens.
 const prefixes = ['', '/en','/ja'];
-const portals = prefixes.flatMap(p => ['', 'maker/','dev/','game/','life/','videos/','request/','about/','archive/','tags/','categories/'].map(s => `${p}/${s}`));
+const portals = prefixes.flatMap(p => ['', 'ai/', 'maker/','dev/','game/','life/','videos/','request/','about/','archive/','tags/','categories/'].map(s => `${p}/${s}`));
 const slugs = ['ams2-pro-sliding-speedrack-underrail','bambulab-h3c-multicolor-figure','bowser-multipart-assembly'];
 const days = ['09','08','07'];
 const related = ['', '/en'].flatMap(p => slugs.map((s,i) => `${p}/2026/11/${days[i]}/${s}/`));
 const paths = [...portals,...related,'/privacy/','/404.html'];
-const report = {pages:paths.length,portalPages:portals.length,checks:0,failures:[],screenshots:[],blocked:null};
+const report = {pages:paths.length,portalPages:portals.length,checks:0,failures:[],screenshots:[],console:[],blocked:null};
 let browser;
 const check = (ok,detail) => { report.checks++; if(!ok) report.failures.push(detail); };
 const filename = path => path === '/' ? 'ko-home' : path.replace(/^\/|\/$/g,'').replaceAll('/','-');
@@ -28,6 +28,8 @@ try {
  // No live analytics, comments, MakerWorld, YouTube, or thumbnails are requested.
  await context.route('**/*',route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
  const page = await context.newPage();
+ page.on('pageerror',e=>report.console.push({path:page.url(),message:String(e)}));
+ page.on('console',m=>{if(m.type()==='error' && !/net::ERR_FAILED/.test(m.text())) report.console.push({path:page.url(),message:m.text()});});
  if (!await page.evaluate(() => document.createElement('video').canPlayType('video/mp4; codecs="avc1.640028"'))) throw new Error('H.264 미지원 브라우저 — RC_CHROME_PATH로 Chrome을 지정');
  for (const width of [360,390,1440]) {
   await page.setViewportSize({width,height:width === 1440 ? 1000 : 844});
@@ -37,6 +39,22 @@ try {
    check(result.width === result.scroll,{kind:'overflow',path,...result});
    if (portals.includes(path) && width !== 360) { const file = `${filename(path)}-${width}.png`; await page.screenshot({path:join(out,file),fullPage:true}); report.screenshots.push(file); }
   }
+ }
+ // AX deep links must select both the panel and form before any interaction.
+ for(const width of [360,1440]) for(const prefix of prefixes) {
+  await page.setViewportSize({width,height:width===1440?1000:844});
+  await page.goto(origin+prefix+'/request/#ax');
+  check(await page.locator('#tab-ax').getAttribute('aria-selected')==='true' && await page.locator('#ax').isVisible() && !await page.locator('#print').isVisible() && !await page.locator('#dev').isVisible(),{kind:'ax-deep-link',width,prefix});
+  check(await page.locator('[data-inquiry-form]').getAttribute('data-type')==='ax' && await page.locator('#inquiry-company').isVisible() && await page.locator('#inquiry-company').isEnabled() && await page.locator('#inquiry-files').isDisabled() && !await page.locator('[data-file-section]').isVisible(),{kind:'ax-form-fields',width,prefix});
+  const copy=JSON.parse(await page.locator('[data-inquiry-copy]').textContent());
+  check(await page.locator('#consent-required-detail').textContent()===copy['consent.requiredDetail.ax'].replace('{retention}',copy['consent.retention']),{kind:'ax-consent',width,prefix});
+  await page.locator('#tab-dev').click();
+  check(await page.locator('#consent-required-detail').textContent()===copy['consent.requiredDetail'].replace('{retention}',copy['consent.retention']) && await page.locator('#inquiry-company').isDisabled(),{kind:'ax-consent-restored',width,prefix});
+  await page.goto(origin+prefix+'/ai/');
+  check(await page.locator('.hero-request').getAttribute('href')===prefix+'/request/#ax' && await page.locator('.ax-request').getAttribute('href')===prefix+'/request/#ax',{kind:'ai-request-ctas',width,prefix});
+  await page.locator('.see-work').click();
+  const anchor=await page.locator('#posts').evaluate(n=>({top:n.getBoundingClientRect().top,header:document.querySelector('.site-header').getBoundingClientRect().bottom}));
+  check(anchor.top>=anchor.header-1,{kind:'ai-posts-anchor',width,prefix,...anchor});
  }
  // Round 2 M4 regression: all collapsed labels must remain a single vertical
  // column inside their own slice, including the maker label after opening others.
@@ -110,13 +128,13 @@ try {
   check(await devTab.getAttribute('aria-selected') === 'true' && new URL(page.url()).hash === '#dev',{kind:'request-right',prefix});
   await page.keyboard.press('ArrowLeft');
   check(await printTab.getAttribute('aria-selected') === 'true' && new URL(page.url()).hash === '#print',{kind:'request-left',prefix});
-  await page.keyboard.press('End'); check(await devTab.getAttribute('aria-selected') === 'true',{kind:'request-end',prefix});
+  await page.keyboard.press('End'); check(await page.locator('#tab-ax').getAttribute('aria-selected') === 'true',{kind:'request-end',prefix});
   await page.keyboard.press('Home'); check(await printTab.getAttribute('aria-selected') === 'true',{kind:'request-home',prefix});
   await page.locator('[data-mail]').click();
   check(await page.locator('[role=alert]').isVisible() && await page.locator('#inquiry-name').evaluate(n => n === document.activeElement),{kind:'empty-form',prefix});
-  await page.goto(origin+prefix+'/dev/?topic=development&sub=ai');
+  await page.goto(origin+prefix+'/dev/?topic=development&sub=tips');
   const source = await readFile(join('dist',prefix.slice(1),'dev/index.html'),'utf8');
-  const expected = parseHtml(source).nodes.filter(n => 'data-post-row' in n.a && n.a['data-c1'] === 'development' && n.a['data-c2'] === 'ai').length;
+  const expected = parseHtml(source).nodes.filter(n => 'data-post-row' in n.a && n.a['data-c1'] === 'development' && n.a['data-c2'] === 'tips').length;
   const count = await page.locator('[data-post-row]:visible').count();
   check(count === expected && expected > 0,{kind:'topic-query',prefix,count,expected});
  }
@@ -136,8 +154,9 @@ try {
  const nojs = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
  await nojs.route('**/*',route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
  const fallback = await nojs.newPage(); await fallback.goto(origin+'/request/');
- check(await fallback.locator('[role=tabpanel]:visible').count() === 2 && await fallback.locator('.type-radios').isVisible() && await fallback.locator('noscript a[href^="mailto:"]').isVisible(),{kind:'no-js-request'});
+ check(await fallback.locator('[role=tabpanel]:visible').count() === 3 && await fallback.locator('.type-radios').isVisible() && await fallback.locator('noscript a[href^="mailto:"]').isVisible(),{kind:'no-js-request'});
  await nojs.close();
+ check(report.console.length===0,{kind:'portal-console',errors:report.console});
  await context.close();
  report.stickyHeader = await checkStickyHeader(browser,origin);
  report.s5 = await checkS5(browser,origin,out);

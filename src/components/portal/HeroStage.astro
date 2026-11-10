@@ -2,18 +2,26 @@
 import WorkImage from './WorkImage.astro';
 import { portalCopy } from '../../lib/portal-copy';
 import { prefix } from '../../lib/site.mjs';
-interface Props { lang: string; film: { desktop: string; mobile: string; poster: string; posterAlt: string } }
-const { lang, film } = Astro.props; const t = portalCopy[lang];
+import { CHAPTER_STARTS } from '../../lib/motion-math.mjs';
+interface Props {
+  lang: string;
+  film: { desktop: string; mobile: string; poster: string; mobilePoster?: string; posterAlt: string };
+  chapters?: { title: string; line?: string; start: number }[];
+  primary?: { label: string; href: string };
+  requestHref?: string;
+}
+const { lang, film, primary, requestHref } = Astro.props; const t = portalCopy[lang];
+const chapters = Astro.props.chapters || CHAPTER_STARTS.map((start, i) => ({start, title: t[i ? `hero.ch${i+1}.title` : 'hero.title'], line: t[i ? `hero.ch${i+1}.line` : 'hero.sub']}));
 ---
-<section class="hero" data-layer="1" aria-labelledby="hero-title" data-hero data-src-desktop={film.desktop} data-src-mobile={film.mobile} data-video-state="idle" data-chapter="1">
+<section class="hero" data-layer="1" aria-labelledby="hero-title" data-hero data-chapter-starts={chapters.map(ch => ch.start).join(',')} data-src-desktop={film.desktop} data-src-mobile={film.mobile} data-video-state="idle" data-chapter="1">
   <div class="hero-track" data-hero-track><div class="hero-stage" data-hero-stage>
-    <div class="hero-poster"><WorkImage src={film.poster} alt={film.posterAlt} sizes="100vw" loading="eager" priority /></div>
+    <div class="hero-poster"><WorkImage src={film.poster} mobileSrc={film.mobilePoster} alt={film.posterAlt} sizes="100vw" loading="eager" priority /></div>
     <div class="hero-copy container--wide">
       <div class="hero-chapter" data-chapter="1" data-active>
-        <h1 id="hero-title" data-copy>{t['hero.title']}</h1><p data-copy>{t['hero.sub']}</p>
-        <div class="hero-actions"><a class="see-work" href="#works" data-copy>{t['hero.works']}<span aria-hidden="true"></span></a><a class="hero-request" href={`${prefix(lang)}/request/`} data-copy>{t.request}</a></div>
+        <h1 id="hero-title" data-copy>{chapters[0].title}</h1><p data-copy>{chapters[0].line}</p>
+        <div class="hero-actions"><a class="see-work" href={primary?.href || '#works'} data-copy>{primary?.label || t['hero.works']}<span aria-hidden="true"></span></a><a class="hero-request" href={requestHref || `${prefix(lang)}/request/`} data-copy>{t.request}</a></div>
       </div>
-      {[2,3,4].map(n => <div class="hero-chapter" data-chapter={n} aria-hidden="true"><p class="chapter-title" data-copy>{t[`hero.ch${n}.title`]}</p><p class="chapter-line" data-copy>{t[`hero.ch${n}.line`]}</p></div>)}
+      {chapters.slice(1).map((chapter,i) => <div class="hero-chapter" data-chapter={i+2} aria-hidden="true"><p class="chapter-title" data-copy>{chapter.title}</p>{chapter.line && <p class="chapter-line" data-copy>{chapter.line}</p>}</div>)}
     </div>
   </div></div>
 </section>

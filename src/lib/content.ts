@@ -1,4 +1,4 @@
-import { sectionOf, type Section } from './sections';
+import { sectionsForPosts, type Section } from './sections';
 import { readingMinutes } from './reading-time';
 import { postHeadings, type Heading } from './headings';
 import { getCollection } from 'astro:content';
@@ -7,17 +7,19 @@ import { postMetadata, RouteRegistry, languages, prefix, parseDocument } from '.
 
 export type Post = ReturnType<typeof postMetadata> & { html: string; hasMermaid: boolean; headings: Heading[]; section: Section; readingMinutes: number };
 export type Page = { path: string; lang: string; kind: string; data: Record<string, any>; body: string };
-export type PortalPage = { path: string; lang: string; page: 'maker'|'dev'|'game'|'life'|'videos'|'request'; indexable: boolean };
+export type PortalPage = { path: string; lang: string; page: 'ai'|'maker'|'dev'|'game'|'life'|'videos'|'request'; indexable: boolean };
 export type Route = { path: string } & ({ kind: 'post'; post: Post } | { kind: 'redirect'; target: string } | { kind: 'page'; page: Page } | { kind: 'portal'; portal: PortalPage });
 
 export async function getPosts(): Promise<Post[]> {
   const entries = await getCollection('posts');
   const now = Date.now();
-  return entries.map(entry => {
-    const meta = postMetadata(entry.id + '.md', entry.data);
+  const metadata = entries.map(entry => postMetadata(entry.id + '.md', entry.data));
+  const sections = sectionsForPosts(metadata);
+  return entries.map((entry, index) => {
+    const meta = metadata[index];
     const html = entry.rendered?.html;
     if (html === undefined) throw new Error(`Missing rendered Markdown: ${entry.id}`);
-    return { ...meta, html, headings: postHeadings(html, entry.rendered?.metadata), section: sectionOf(meta), readingMinutes: readingMinutes(html, meta.lang), hasMermaid: /<code\b[^>]*class="[^"]*language-mermaid/.test(html) };
+    return { ...meta, html, headings: postHeadings(html, entry.rendered?.metadata), section: sections[index], readingMinutes: readingMinutes(html, meta.lang), hasMermaid: /<code\b[^>]*class="[^"]*language-mermaid/.test(html) };
   }).filter(post => post.date.getTime() <= now)
     .sort((a,b) => b.date.getTime() - a.date.getTime() || (a.filename < b.filename ? 1 : a.filename > b.filename ? -1 : 0));
 }
@@ -36,7 +38,7 @@ export function getPages(): Page[] {
 }
 
 export function getPortalPages(posts: Post[]): PortalPage[] {
-  return languages.flatMap(lang => (['maker','dev','game','life','videos','request'] as const).map(page => ({path: `${prefix(lang)}/${page}/`, lang, page, indexable: page !== 'game' || posts.some(p => p.lang === lang && p.section === 'game')})));
+  return languages.flatMap(lang => (['ai','maker','dev','game','life','videos','request'] as const).map(page => ({path: `${prefix(lang)}/${page}/`, lang, page, indexable: page !== 'game' || posts.some(p => p.lang === lang && p.section === 'game')})));
 }
 
 /** This is the sole HTML route plan. Fail before Astro can overwrite a page. */

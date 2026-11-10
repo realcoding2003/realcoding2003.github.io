@@ -13,6 +13,7 @@ ORIGIN='https://realcoding.blog'
 LANGS=('ko','en','ja','x-default')
 
 NEW_PAGES = {
+    '/ai/', '/en/ai/', '/ja/ai/',
     '/maker/', '/dev/', '/life/', '/videos/', '/request/',
     '/en/maker/', '/en/dev/', '/en/life/', '/en/videos/', '/en/request/',
     '/ja/maker/', '/ja/dev/', '/ja/life/', '/ja/videos/', '/ja/request/',

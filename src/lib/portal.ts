@@ -1,6 +1,6 @@
 import { languages, prefix } from './site.mjs';
 import type { Post, Page } from './content';
-export const realms = ['maker','dev','game','life'] as const;
+export const realms = ['ai','maker','dev','game','life'] as const;
 export const slug = (value: string) => value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '');
 export const alternatesFor = (suffix: string) => Object.fromEntries([...languages.map(lang => [lang,`${prefix(lang)}/${suffix}`]), ['x-default',`/${suffix}`]]);
 export const pageAlternates = (page: Page) => alternatesFor(page.kind === 'index' ? '' : page.kind + '/');

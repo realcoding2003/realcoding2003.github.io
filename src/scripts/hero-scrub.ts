@@ -7,6 +7,7 @@ export function initHeroScrub(root: HTMLElement): { destroy(): void } {
   const track = root.querySelector<HTMLElement>('[data-hero-track]')!;
   const stage = root.querySelector<HTMLElement>('[data-hero-stage]')!;
   const chapters = [...root.querySelectorAll<HTMLElement>('.hero-chapter')];
+  const starts = root.dataset.chapterStarts?.split(',').map(Number);
   const media = matchMedia(MOBILE_MEDIA), listeners = new AbortController();
   const options = { passive: true, signal: listeners.signal };
   let trackStart = 0, range = 1, target = 0, current = 0, progress = 0;
@@ -72,7 +73,7 @@ export function initHeroScrub(root: HTMLElement): { destroy(): void } {
   function read() {
     progress = Math.max(0, Math.min(1, (scrollY - trackStart) / range));
     root.dataset.progress = progress.toFixed(3);
-    const chapter = String(chapterAt(progress));
+    const chapter = String(chapterAt(progress, starts));
     if (root.dataset.chapter !== chapter) {
       root.dataset.chapter = chapter;
       chapters.forEach(el => el.toggleAttribute('data-active', el.dataset.chapter === chapter));

@@ -1,0 +1,57 @@
+---
+import type { PortalPage, Post } from '../../lib/content';
+import { portalCopy } from '../../lib/portal-copy';
+import { alternatesFor } from '../../lib/portal';
+import { AI_FLAGSHIP_SLUG, prefix } from '../../lib/site.mjs';
+import { AX_CHAPTER_STARTS } from '../../lib/motion-math.mjs';
+import { bodyText } from '../../lib/reading-time';
+import Portal from '../../layouts/Portal.astro';
+import HeroStage from './HeroStage.astro';
+import WorkImage from './WorkImage.astro';
+import YearIndex from './YearIndex.astro';
+interface Props { page: PortalPage; posts: Post[] }
+const { page, posts } = Astro.props; const { lang } = page; const t = portalCopy[lang];
+const list = posts.filter(p => p.lang === lang && p.section === 'ai');
+const flagship = AI_FLAGSHIP_SLUG ? posts.find(p => p.lang === lang && p.baseSlug === AI_FLAGSHIP_SLUG) : undefined;
+const requestHref = `${prefix(lang)}/request/#ax`;
+const chapters = ['ai.hero.title','ai.hero.ch2','ai.hero.ch3'].map((key,i) => ({title:t[key],start:AX_CHAPTER_STARTS[i],line:i === 0 ? t['ai.hero.sub'] : undefined}));
+---
+<Portal lang={lang} title="AI" description={t['realm.ai.intro']} path={page.path} alternates={alternatesFor('ai/')} current="ai" hasGame={posts.some(p => p.lang === lang && p.section === 'game')}>
+  <HeroStage lang={lang} film={{desktop:'/assets/video/portal/ax-hero-desktop.mp4',mobile:'/assets/video/portal/ax-hero-mobile.mp4',poster:'/assets/video/portal/ax-hero-desktop-poster.jpg',mobilePoster:'/assets/video/portal/ax-hero-mobile-poster.jpg',posterAlt:t['ai.hero.alt']}} chapters={chapters} primary={{label:t['ai.read'],href:'#posts'}} requestHref={requestHref} />
+  <section class="ai-use portal-section line-field" aria-labelledby="ai-use-title" data-layer="2"><div class="container--wide use-grid">
+    <h2 class="display" id="ai-use-title" data-copy>{t['ai.use']}</h2>
+    <dl>{['TEAM','CREATE','VERIFY','MEMORY'].map((label,i) => <div class="use-row"><dt><span class="mono">{label}</span><strong data-copy>{t[`ai.use${i+1}.title`]}</strong></dt><dd data-copy>{t[`ai.use${i+1}.body`]}</dd></div>)}</dl>
+  </div></section>
+  <section class="ax-diptych" aria-labelledby="ax-title" data-layer="3">
+    <div class="ax-photo"><WorkImage src="/assets/video/portal/ax-hero-desktop-poster.jpg" alt="" sizes="(min-width:900px) 50vw, 100vw" /></div>
+    <div class="ax-copy"><h2 class="display" id="ax-title" data-copy>{t['ai.ax.title']}</h2><p data-copy>{t['ai.ax.body']}</p><a class="ax-request" href={requestHref} data-copy>{t.request}</a></div>
+  </section>
+  <div class="container--wide">
+    {flagship && <aside class="flagship portal-section"><h2 class="display section-head" data-copy>{t['ai.flagship']}</h2><a href={flagship.path}><h3>{flagship.data.title}</h3><p>{bodyText(String(flagship.data.excerpt || '') || flagship.html).slice(0,200)}</p></a></aside>}
+    <section class="portal-section" id="posts" aria-labelledby="ai-posts-title" data-layer="4"><h2 class="display" id="ai-posts-title" data-copy>{t['ai.posts']}</h2><p class="mono" data-copy>{t['count.posts'].replace('{n}',String(list.length))}</p><YearIndex lang={lang} posts={list} /></section>
+  </div>
+</Portal>
+<script>import '../../scripts/portal-motion';</script>
+<style>
+.use-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2fr); gap: clamp(2rem,5vw,6rem); }
+dl { margin: 0; min-width: 0; }
+.use-row { padding-block: 1.75rem; border-top: 1px solid var(--rule); }
+.use-row:last-child { border-bottom: 1px solid var(--rule); }
+dt { display: grid; grid-template-columns: 7rem minmax(0,1fr); gap: 1rem; align-items: baseline; }
+dt span { color: var(--accent); font-size: .875rem; }
+dt strong { font-family: var(--display-font); font-size: clamp(1.5rem,1.2rem + 1vw,2.5rem); line-height: 1.2; }
+dd { margin: 1rem 0 0 8rem; color: var(--fg-muted); font-size: 1.0625rem; line-height: 1.7; }
+.ax-diptych { display: grid; grid-template-columns: 1fr 1fr; margin-right: var(--rail,0px); }
+.ax-photo { position: relative; min-height: 28rem; }
+.ax-photo :global(picture),.ax-photo :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ax-copy { background: var(--accent); color: var(--ink-950); padding: clamp(2rem,4vw,5rem); }
+.ax-copy h2 { text-align: right; }
+.ax-copy p { font-size: clamp(1.125rem,1rem + .4vw,1.5rem); line-height: 1.7; margin-block: 2rem; }
+.ax-request { display: flex; min-height: 5.5rem; align-items: center; justify-content: center; border: 2px solid var(--ink-950); color: var(--ink-950); font: 800 clamp(1.75rem,1rem + 2vw,3rem)/1.2 var(--display-font); text-decoration: none; background: repeating-linear-gradient(to top,var(--ink-950) 0 1px,transparent 1px 4px) bottom / 100% .75rem no-repeat; padding: 1rem 1rem 1.75rem; }
+.ax-request:hover,.ax-request:focus-visible { background-color: var(--ink-950); color: var(--accent); }
+.flagship a { display: block; padding-block: 2rem; border-block: 1px solid var(--rule); color: var(--fg); text-decoration: none; }
+.flagship h3 { font-size: clamp(1.5rem,3vw,3rem); }.flagship p { color: var(--fg-muted); }
+@media(max-width:1099px) { .use-grid { grid-template-columns: 1fr; }.ax-diptych { margin-right: 0; } }
+@media(max-width:899px) { .ax-diptych { grid-template-columns: 1fr; }.ax-photo { min-height: 18rem; } }
+@media(max-width:639px) { dt { grid-template-columns: 5rem minmax(0,1fr); gap: .75rem; }dd { margin-left: 0; } }
+</style>

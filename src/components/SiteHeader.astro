@@ -2,10 +2,10 @@
 import ThemeToggle from './ThemeToggle.astro';
 import { i18n, languageNames } from '../lib/i18n';
 import { languages, prefix } from '../lib/site.mjs';
-interface Props { lang: string; alternates?: Record<string, string>; themeMode?: 'switchable' | 'dark'; hasGame?: boolean; wide?: boolean; current?: 'maker'|'dev'|'game'|'life'|'videos'|'request' }
+interface Props { lang: string; alternates?: Record<string, string>; themeMode?: 'switchable' | 'dark'; hasGame?: boolean; wide?: boolean; current?: 'ai'|'maker'|'dev'|'game'|'life'|'videos'|'request' }
 const { lang, alternates = {}, themeMode = 'switchable', hasGame = false, wide = false, current } = Astro.props;
 const t = i18n[lang];
-const navItems = (['maker', 'dev', 'game', 'life', 'videos'] as const).filter(key => key !== 'game' || hasGame);
+const navItems = (['ai', 'maker', 'dev', 'game', 'life', 'videos'] as const).filter(key => key !== 'game' || hasGame);
 ---
 <a class="skip-link" href="#main">{t.skip}</a>
 <header class="site-header">

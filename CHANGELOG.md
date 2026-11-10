@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- AI 영역: 메뉴 1순위 'AI', 홈 작업대 첫 조각(빛이 흐르는 반복 영상), `/ai/` 화면(AX 스크롤 영화 15초·이렇게 씁니다·기업 AX·DX 전환·AI 글 30편), 의뢰 'AI 도입·AX' 탭(회사·팀명 선택, 고지 반영) (ai)
 - Astro 정적 사이트 뼈대: `_posts` 글 로더, Jekyll식 주소(UTC 날짜·slug·permalink), 이동 페이지 649건, hreflang, Atom feed, sitemap, 404 (site)
 - 운영 사이트와 주소·메타·본문 지표를 전수 비교하는 도구 `tools/parity/` (parity)
 - 새 디자인의 글 읽기 페이지: 공통 머리·바닥, 밝은/어두운 테마, 목차, 잉크 코드 패널, 코드 복사, 이미지 확대, 언어별 자체 호스팅 글꼴 (reader)

@@ -23,9 +23,10 @@ export async function checkStickyHeader(browser, origin) {
   check(result.top >= result.header-1,{kind,path,width,id,...result});
  };
  try {
-  for(const width of [360,390,1440]) for(const prefix of ['','/en','/ja']) for(const suffix of ['/',post,'/maker/','/request/']) {
+  for(const width of [360,390,1440]) for(const prefix of ['','/en','/ja']) for(const suffix of ['/',post,'/ai/','/maker/','/request/#ax']) {
    const path=prefix+suffix;
    await page.setViewportSize({width,height:width===1440?1000:844}); await go(path);
+   if(suffix==='/request/#ax') check(await page.locator('#tab-ax').getAttribute('aria-selected')==='true' && await page.locator('#ax').isVisible(),{kind:'sticky-ax-deep-link',path,width});
    if(suffix==='/') {
     await page.waitForTimeout(500);
     const cls=await page.evaluate(() => window.__headerCLS);
@@ -90,9 +91,9 @@ export async function checkStickyHeader(browser, origin) {
    await page.waitForTimeout(200); await visibleAnchor(path,width,'sticky-skip-link','main');
   }
   // Non-post anchors: year headings, category groups and tag groups.
-  for(const width of [360,1440]) for(const prefix of ['','/en','/ja']) for(const suffix of ['/maker/','/categories/','/tags/']) {
+  for(const width of [360,1440]) for(const prefix of ['','/en','/ja']) for(const suffix of ['/ai/','/maker/','/categories/','/tags/']) {
    const path=prefix+suffix; await page.setViewportSize({width,height:width===1440?1000:844}); await go(path);
-   if(suffix==='/maker/') {
+   if(suffix==='/maker/' || suffix==='/ai/') {
     const id=await page.locator('.year-group[id]').first().getAttribute('id');
     check(!!id,{kind:'sticky-year-anchor-present',path,width});
     if(id) { await go(path+'#'+encodeURIComponent(id)); await visibleAnchor(path,width,'sticky-year-hash',id); }

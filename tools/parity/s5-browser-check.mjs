@@ -122,8 +122,8 @@ export async function checkS5(browser, origin, out) {
    await page.mouse.move(0,0); await visibleTarget(page,'.realms');
    await page.waitForFunction(()=>document.querySelector('[data-ambient-group=realms]').dataset.ambientState==='playing',null,{timeout:20000});
    const initial=await page.locator('[data-ambient-group=realms]').evaluateAll(nodes=>nodes.map(n=>({state:n.dataset.ambientState,paused:n.querySelector('video')?.paused ?? true,src:n.dataset.srcDesktop})));
-   check(initial[0].state==='playing' && !initial[0].paused && initial.slice(1).every(s=>s.paused) && requests.filter(u=>/realm-.*\.mp4$/.test(u)).every(u=>u.endsWith('realm-maker-desktop.mp4')),{kind:'ambient-default',prefix,initial,requests});
-   if(prefix==='') await photo(page,'realms-maker','.realms');
+   check(initial[0].state==='playing' && !initial[0].paused && initial.slice(1).every(s=>s.paused) && requests.filter(u=>/realm-.*\.mp4$/.test(u)).every(u=>u.endsWith('realm-ai-desktop.mp4')),{kind:'ambient-default',prefix,initial,requests});
+   if(prefix==='') await photo(page,'realms-ai','.realms');
    const dev=page.locator('.slice').filter({has:page.locator('a.slice-link[href$="/dev/"]')}); await dev.hover(); await page.waitForTimeout(500);
    const devMedia=dev.locator('[data-ambient]');
    await page.waitForFunction(()=>document.querySelector('[data-src-desktop$="realm-dev-desktop.mp4"]').dataset.ambientState==='playing',null,{timeout:20000});
@@ -170,14 +170,14 @@ export async function checkS5(browser, origin, out) {
   try { await ctx.addInitScript(connection=>Object.defineProperty(navigator,'connection',{configurable:true,value:connection}),connection); await goto(page,'/'); await staticChecks(page,requests,reason,reason); }
   finally { await ctx.close(); }
  }
- // D: no-JS SSR remains usable, including both request panels.
- for(const width of [1440,390]) for(const path of ['/','/request/#dev']) {
+ // D: no-JS SSR remains usable, including all three request panels.
+ for(const width of [1440,390]) for(const path of ['/','/ai/','/request/#dev']) {
   const {ctx,page,requests}=await session({javaScriptEnabled:false,viewport:{width,height:width===1440?900:844}});
   try {
    await goto(page,path);
-   if(path==='/') await staticChecks(page,requests,`nojs:${width}`,null,false);
+   if(path!=='/request/#dev') await staticChecks(page,requests,`nojs:${width}`,null,false);
    else {
-    await bottom(page); check(await page.locator('[role=tabpanel]:visible').count()===2 && await page.locator('#dev .request-poster img').isVisible() && !await page.locator('html').getAttribute('data-motion') && requests.length===0 && await page.locator('video').count()===0,{kind:'nojs-request-s5',width,requests});
+    await bottom(page); check(await page.locator('[role=tabpanel]:visible').count()===3 && await page.locator('#dev .request-poster img').isVisible() && !await page.locator('html').getAttribute('data-motion') && requests.length===0 && await page.locator('video').count()===0,{kind:'nojs-request-s5',width,requests});
    }
   } finally { await ctx.close(); }
  }
@@ -189,7 +189,7 @@ export async function checkS5(browser, origin, out) {
    check(requests.filter(u=>u.endsWith('/hero-mobile.mp4')).length===1 && !requests.some(u=>u.endsWith('/hero-desktop.mp4')),{kind:'mobile-source',requests});
    await scrub(page,[0,.5,1,.5,0],'mobile');
    for(const p of [0,.6]) { await pscroll(page,p); await settle(page); await photo(page,`hero-mobile-${p}`,'[data-hero-stage]'); }
-   for(const realm of ['maker','dev','life']) {
+   for(const realm of ['ai','maker','dev','life']) {
     const selector=`[data-src-mobile$="realm-${realm}-mobile.mp4"]`; await visibleTarget(page,selector);
     await page.waitForFunction(selector=>document.querySelector(selector).dataset.ambientState==='playing',selector,{timeout:20000});
     const states=await page.locator('[data-ambient-group=realms]').evaluateAll(nodes=>nodes.map(el=>{const r=el.getBoundingClientRect(),visible=Math.max(0,Math.min(r.bottom,innerHeight)-Math.max(r.top,0))/r.height;return{state:el.dataset.ambientState,paused:el.querySelector('video')?.paused ?? true,visible};}));
@@ -225,6 +225,42 @@ export async function checkS5(browser, origin, out) {
  for(const realm of ['dev','life']) for(const width of [1440,390]) {
   const {ctx,page}=await session({viewport:{width,height:width===1440?900:844}});
   try { await goto(page,`/${realm}/`); await photo(page,`${realm}-head-${width}`,'.page-head'); } finally { await ctx.close(); }
+ }
+ // AI: same controller and fallbacks, distinct film and three chapters.
+ const axTitles={ '':['AI로 일합니다.','업무를 한 층씩 다시 쌓습니다.','기업의 AX·DX 전환까지.'], '/en':['I work with AI.','Rebuilding work, layer by layer.','All the way to AX and DX.'], '/ja':['AIと働く。','業務を一層ずつ積み直す。','企業のAX・DX転換まで。'] };
+ for(const width of [360,1440]) for(const prefix of prefixes) {
+  const mobile=width===360;
+  const {ctx,page,requests}=await session({viewport:{width,height:mobile?844:900},...(mobile?{isMobile:true,hasTouch:true}:{})});
+  try {
+   await goto(page,prefix+'/ai/'); await page.waitForTimeout(2000);
+   check(requests.length===0 && await page.locator('[data-hero]').getAttribute('data-video-state')==='idle',{kind:'ax-initial-idle',prefix,width,requests});
+   const initial=await page.locator('[data-hero-stage]').evaluate(n=>({top:n.getBoundingClientRect().top,header:document.querySelector('.site-header').getBoundingClientRect().bottom,cls:window.__s5CLS}));
+   check(Math.abs(initial.top-initial.header)<=1 && initial.cls<.001,{kind:'ax-initial-pin-cls',prefix,width,...initial});
+   await top(page,80);
+   await page.waitForFunction(()=>['ready','painted'].includes(document.querySelector('[data-hero]').dataset.videoState),null,{timeout:20000});
+   check(requests.length===1 && requests[0].endsWith(`/ax-hero-${mobile?'mobile':'desktop'}.mp4`),{kind:'ax-source',prefix,width,requests});
+   await scrub(page,[0,.2,.4,.6,.8,1,.8,.6,.4,.2,0],`ax:${prefix}:${width}`);
+   for(const [i,p] of [.1,.35,.8].entries()) {
+    await pscroll(page,p); await page.waitForTimeout(350);
+    const chapters=await page.locator('.hero-chapter').evaluateAll(nodes=>nodes.map(n=>({active:n.hasAttribute('data-active'),opacity:getComputedStyle(n).opacity,title:n.querySelector('h1,.chapter-title').textContent})));
+    check(chapters.length===3 && await page.locator('[data-hero]').getAttribute('data-chapter')===String(i+1) && chapters.every((c,j)=>c.active===(j===i) && c.opacity===(j===i?'1':'0')) && chapters[i].title===axTitles[prefix][i],{kind:'ax-chapter',prefix,width,p,chapters});
+    if(prefix==='') await photo(page,`ax-hero-${width}-${i+1}`,'[data-hero-stage]');
+   }
+   await overflow(page,`ax:${prefix}:${width}`);
+   await top(page,0); await page.locator('.see-work').click(); await page.waitForTimeout(2500);
+   const anchor=await page.locator('#posts').evaluate(n=>({top:n.getBoundingClientRect().top,padding:parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop),header:document.querySelector('.site-header').getBoundingClientRect().bottom}));
+   check(Math.abs(anchor.top-anchor.padding)<=2 && anchor.top>=anchor.header,{kind:'ax-posts-anchor',prefix,width,...anchor});
+  } finally { await ctx.close(); }
+ }
+ for(const width of [360,1440]) for(const prefix of prefixes) {
+  const {ctx,page,requests}=await session({reducedMotion:'reduce',viewport:{width,height:width===360?844:900}});
+  try { await goto(page,prefix+'/ai/'); await staticChecks(page,requests,`ax-static:${prefix}:${width}`); await overflow(page,`ax-static:${prefix}:${width}`); }
+  finally { await ctx.close(); }
+ }
+ for(const [connection,reason] of [[{saveData:true,effectiveType:'4g'},'save-data'],[{saveData:false,effectiveType:'3g'},'slow-connection']]) for(const prefix of prefixes) {
+  const {ctx,page,requests}=await session();
+  try { await ctx.addInitScript(connection=>Object.defineProperty(navigator,'connection',{configurable:true,value:connection}),connection); await goto(page,prefix+'/ai/'); await staticChecks(page,requests,`ax:${prefix}:${reason}`,reason); }
+  finally { await ctx.close(); }
  }
  // H: reading pages remain entirely outside the portal graph.
  {

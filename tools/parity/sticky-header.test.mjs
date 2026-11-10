@@ -22,12 +22,12 @@ function events() {
  };
 }
 test('hero pin interval starts at document zero and ends at sticky release for both header sizes', async () => {
- for(const [header,viewport] of [[96,844],[64,900]]) {
+ for(const [header,viewport,starts] of [[96,844],[64,900],[96,844,motion.AX_CHAPTER_STARTS],[64,900,motion.AX_CHAPTER_STARTS]]) {
   const ev=events(), style=new Map(); let h=header, v=viewport, context;
   const stage={get offsetHeight(){return v-h;}};
   const track={get offsetHeight(){return v*4;},getBoundingClientRect:()=>({top:h-context.scrollY})};
-  const chapters=[1,2,3,4].map(n=>({dataset:{chapter:String(n)},toggleAttribute(name,value){this.active=value;}}));
-  const root={dataset:{chapter:'1'},style:{setProperty:(key,value)=>style.set(key,value)},querySelector:s=>s==='[data-hero-track]'?track:stage,querySelectorAll:()=>chapters};
+  const chapters=Array.from({length:starts?.length || 4},(_,i)=>i+1).map(n=>({dataset:{chapter:String(n)},toggleAttribute(name,value){this.active=value;}}));
+  const root={dataset:{chapter:'1',...(starts ? {chapterStarts:starts.join(',')} : {})},style:{setProperty:(key,value)=>style.set(key,value)},querySelector:s=>s==='[data-hero-track]'?track:stage,querySelectorAll:()=>chapters};
   context=script('src/scripts/hero-scrub.ts',{
    ...ev,scrollY:0,AbortController,document:{documentElement:{dataset:{motion:'full'}},fonts:{ready:Promise.resolve()}},
    matchMedia:()=>({matches:header===96,addEventListener(){}}),getComputedStyle:()=>({top:h+'px'}),
@@ -36,11 +36,11 @@ test('hero pin interval starts at document zero and ends at sticky release for b
   const controller=context.exports.initHeroScrub(root); await Promise.resolve(); ev.flush();
   assert.equal(root.dataset.progress,'0.000'); assert.equal(style.get('--hero-head'),'0px');
   const range=4*v-stage.offsetHeight;
-  for(const p of [0,.1,.19,.47,.69,1,.69,.47,.19,0]) {
+  for(const p of [0,.1,.19,.47,.56,.69,1,.69,.56,.47,.19,0]) {
    // Scroll positions are pixels; land on/after chapter boundaries, not a floating-point ulp before them.
    context.scrollY=Math.ceil(p*range); ev.dispatch('scroll'); ev.flush();
    assert.equal(Number(root.dataset.progress),p);
-   assert.equal(Number(root.dataset.chapter),motion.chapterAt(p));
+   assert.equal(Number(root.dataset.chapter),motion.chapterAt(p,starts));
    assert.equal(style.get('--hero-head'),'0px');
   }
   context.scrollY=range+200; ev.dispatch('scroll'); ev.flush(); assert.equal(root.dataset.progress,'1.000');

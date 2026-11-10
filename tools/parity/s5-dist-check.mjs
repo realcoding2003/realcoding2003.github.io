@@ -5,7 +5,7 @@ const root = resolve(process.argv[2] || 'dist'), source = resolve('assets/video/
 const failures = []; let pages = 0, readers = 0;
 const check = (ok, path, message) => { if (!ok) failures.push({ path, message }); };
 const prefixes = ['', '/en', '/ja'];
-const portals = prefixes.flatMap(p => ['', 'maker/', 'dev/', 'game/', 'life/', 'videos/', 'request/', 'about/', 'archive/', 'tags/', 'categories/'].map(s => `${p}/${s}`));
+const portals = prefixes.flatMap(p => ['', 'ai/', 'maker/', 'dev/', 'game/', 'life/', 'videos/', 'request/', 'about/', 'archive/', 'tags/', 'categories/'].map(s => `${p}/${s}`));
 const copy = {
  ko: ['한 층씩 쌓는다.','만들고,','3D 프린터로 직접 만든 것들.','코딩하고,','실무에서 배운 개발 이야기.','플레이한다.','게임 공략과 일상까지.','빈 빌드판 위에서 노즐이 첫 층을 그리는 3D 프린터','출력 완료'],
  en: ['Layer by layer.','Make,','Things I make with 3D printers.','Code,','Development lessons from real work.','Play.','Game guides and everyday life, too.','A 3D printer nozzle drawing the first layer on an empty build plate','Print complete'],
@@ -50,9 +50,10 @@ for (const file of walk(root)) {
   check(poster?.a.fetchpriority === 'high' && poster.a.loading === 'eager' && poster.a.width === '1920' && poster.a.height === '1072' && poster.a.alt === t[7],path,'Hero poster attributes');
   const picture = poster && ancestor(poster,n=>n.tag==='picture'); check(picture && below(nodes,picture).some(n=>n.tag==='source' && n.a.type==='image/webp'),path,'Hero responsive WebP');
   check(nodes.filter(n=>n.a.fetchpriority==='high').length === 1,path,'One high priority');
-  const slices = nodes.filter(n=>hasClass(n,'slice')); check(slices.length === 3,path,'Three populated realm slices');
+  const slices = nodes.filter(n=>hasClass(n,'slice')); check(slices.length === 4,path,'Four populated realm slices');
+  check('data-open' in slices[0].a && below(nodes,slices[0]).some(n=>n.a['data-src-desktop']==='/assets/video/portal/realm-ai-desktop.mp4'),path,'AI default ambient slice');
   for (const slice of slices) {
-   const children = below(nodes,slice), realm = children.find(n=>hasClass(n,'slice-link'))?.a.href.match(/\/(maker|dev|game|life)\/$/)?.[1];
+   const children = below(nodes,slice), realm = children.find(n=>hasClass(n,'slice-link'))?.a.href.match(/\/(ai|maker|dev|game|life)\/$/)?.[1];
    const ambient = get(children,'data-ambient');
    check(ambient.length === 1 && ambient[0].a['data-ambient-group'] === 'realms' && ambient[0].a['data-src-desktop'] === `/assets/video/portal/realm-${realm}-desktop.mp4` && ambient[0].a['data-src-mobile'] === `/assets/video/portal/realm-${realm}-mobile.mp4`,path,'Matching slice sources');
    check(children.some(n=>n.tag==='img' && n.a.src===`/assets/video/portal/realm-${realm}-poster.jpg` && n.a.alt==='' && n.a.loading==='lazy'),path,'Matching decorative slice poster');
@@ -62,14 +63,28 @@ for (const file of walk(root)) {
   check(get(children,'data-ambient').length === 1 && children.some(n=>n.a['data-src-desktop']==='/assets/video/portal/request-desktop.mp4') && !children.some(n=>/02-original-parts-printed/.test(n.a.src || '')),path,'Diptych request footage');
   check(get(nodes,'data-finish').filter(n=>n.tag==='h2').length===1,path,'Footer finish heading');
  }
+ if (/\/ai\/$/.test(path)) {
+  const heroes=get(nodes,'data-hero'),hero=heroes[0],chapters=nodes.filter(n=>hasClass(n,'hero-chapter'));
+  const titles={ko:['AI로 일합니다.','업무를 한 층씩 다시 쌓습니다.','기업의 AX·DX 전환까지.'],en:['I work with AI.','Rebuilding work, layer by layer.','All the way to AX and DX.'],ja:['AIと働く。','業務を一層ずつ積み直す。','企業のAX・DX転換まで。']}[lang];
+  check(heroes.length===1 && hero.a['data-src-desktop']==='/assets/video/portal/ax-hero-desktop.mp4' && hero.a['data-src-mobile']==='/assets/video/portal/ax-hero-mobile.mp4',path,'AX hero sources');
+  check(hero?.a['data-chapter-starts']==='0,0.19,0.56' && get(nodes,'data-hero-track').length===1 && get(nodes,'data-hero-stage').length===1,path,'AX pin/chapter boundaries');
+  check(chapters.length===3 && chapters.every((n,i)=>n.a['data-chapter']===String(i+1) && below(nodes,n).some(c=>(c.tag==='h1' || hasClass(c,'chapter-title')) && textOf(c)===titles[i]) && (i===0 ? 'data-active' in n.a : n.a['aria-hidden']==='true')),path,'AX three localized chapters');
+  const poster=nodes.find(n=>n.tag==='img' && n.a.fetchpriority==='high');
+  check(poster?.a.src==='/assets/video/portal/ax-hero-desktop-poster.jpg' && poster.a.loading==='eager' && poster.a.width==='1920' && poster.a.height==='1072',path,'AX hero desktop poster');
+  const picture=poster && ancestor(poster,n=>n.tag==='picture');
+  check(picture && below(nodes,picture).some(n=>n.tag==='source' && n.a.type==='image/webp' && n.a.media) && below(nodes,picture).some(n=>n.tag==='source' && n.a.srcset==='/assets/video/portal/ax-hero-mobile-poster.jpg'),path,'AX mobile art direction and WebP');
+  check(nodes.filter(n=>n.a.fetchpriority==='high').length===1,path,'AX single LCP priority');
+ }
  if (/\/request\/$/.test(path)) {
   const dev = nodes.find(n=>n.a.id==='dev'), print = nodes.find(n=>n.a.id==='print');
   const children = dev ? below(nodes,dev) : [], ambient = get(children,'data-ambient');
   check(ambient.length===1 && hasClass(ambient[0],'request-poster') && ambient[0].a['data-src-desktop']==='/assets/video/portal/request-desktop.mp4' && ambient[0].a['data-src-mobile']==='/assets/video/portal/request-mobile.mp4',path,'Request dev ambient');
   check(!children.some(n=>hasClass(n,'line-field')),path,'No dev texture');
+  const ax=nodes.find(n=>n.a.id==='ax');
+  check(ax && below(nodes,ax).some(n=>n.tag==='img' && n.a.src==='/assets/video/portal/ax-hero-desktop-poster.jpg') && get(below(nodes,ax),'data-ambient').length===0,path,'AX static tab poster');
   check(print && below(nodes,print).some(n=>/05-a2l-plate/.test(n.a.src || '')),path,'Print photo retained');
  }
- const realm = path.match(/\/(maker|dev|game|life)\/$/)?.[1];
+ const realm = path.match(/\/(ai|maker|dev|game|life)\/$/)?.[1];
  if (realm) {
   check(get(nodes,'data-ambient').length===0,path,'No realm ambient');
   if (realm==='dev' || realm==='life') {
@@ -82,11 +97,11 @@ for (const file of walk(root)) {
 }
 check(readers===465,'all','465 reader pages retained');
 for (const path of portals) check(existsSync(join(root,path,'index.html')),'all',`Missing portal ${path}`);
-const files = readdirSync(source); check(files.length===19,'assets','19 source files');
+const files = readdirSync(source); check(files.length===26,'assets','26 source files');
 for (const name of files) { const target=join(root,'assets/video/portal',name); check(existsSync(target) && statSync(target).size===statSync(join(source,name)).size,'assets',`Copied unchanged: ${name}`); }
 const bytes = name => statSync(join(source,name)).size;
-const sums = {heroDesktop:bytes('hero-desktop.mp4'),heroMobile:bytes('hero-mobile.mp4'),loopsDesktop:files.filter(n=>/^(realm-.*|request)-desktop\.mp4$/.test(n)).reduce((s,n)=>s+bytes(n),0),loopsMobile:files.filter(n=>/^(realm-.*|request)-mobile\.mp4$/.test(n)).reduce((s,n)=>s+bytes(n),0)};
-for (const [name,limit] of Object.entries({heroDesktop:20,heroMobile:8,loopsDesktop:12,loopsMobile:6})) check(sums[name]<=limit*1024*1024,'assets',`${name} <= ${limit} MiB`);
+const sums = {heroDesktop:bytes('hero-desktop.mp4'),heroMobile:bytes('hero-mobile.mp4'),axHeroDesktop:bytes('ax-hero-desktop.mp4'),axHeroMobile:bytes('ax-hero-mobile.mp4'),loopsDesktop:files.filter(n=>/^(realm-.*|request)-desktop\.mp4$/.test(n)).reduce((s,n)=>s+bytes(n),0),loopsMobile:files.filter(n=>/^(realm-.*|request)-mobile\.mp4$/.test(n)).reduce((s,n)=>s+bytes(n),0)};
+for (const [name,limit] of Object.entries({heroDesktop:20,heroMobile:8,axHeroDesktop:20,axHeroMobile:8,loopsDesktop:12,loopsMobile:6})) check(sums[name]<=limit*1024*1024,'assets',`${name} <= ${limit} MiB`);
 const pkg=JSON.parse(readFileSync('package.json','utf8')); check(!!pkg.dependencies.lenis && !pkg.dependencies.gsap && !pkg.devDependencies.gsap,'package','Lenis only, no GSAP');
 console.log(JSON.stringify({pages,readers,portalPages:portals.length,assetBytes:sums,failures:failures.length,details:failures},null,2));
 if(failures.length) process.exitCode=1;

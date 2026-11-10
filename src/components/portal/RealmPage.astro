@@ -3,14 +3,14 @@ import type { PortalPage, Post } from '../../lib/content';
 import { getWorks } from '../../lib/works';
 import { portalCopy } from '../../lib/portal-copy';
 import { i18n } from '../../lib/i18n';
-import { alternatesFor, years, realms } from '../../lib/portal';
+import { alternatesFor, realms } from '../../lib/portal';
 import { MAKERWORLD_PROFILE, prefix } from '../../lib/site.mjs';
 import Portal from '../../layouts/Portal.astro';
 import WorkImage from './WorkImage.astro';
 import WorkGrid from './WorkGrid.astro';
 import GearList from './GearList.astro';
 import TopicFilter from './TopicFilter.astro';
-import PostIndexList from './PostIndexList.astro';
+import YearIndex from './YearIndex.astro';
 interface Props { page: PortalPage; posts: Post[] }
 const { page,posts } = Astro.props; const { lang } = page; const realm = page.page as typeof realms[number];
 const t = portalCopy[lang]; const list = posts.filter(p => p.lang === lang && p.section === realm); const empty = realm === 'game' && !list.length;
@@ -21,7 +21,7 @@ const t = portalCopy[lang]; const list = posts.filter(p => p.lang === lang && p.
   <div class="container--wide">
     {realm === 'maker' && <><WorkGrid works={getWorks(lang,posts)} lang={lang} /><section class="portal-section"><h2 class="display section-head">{t['gear.title']}</h2><GearList lang={lang} posts={posts} /><p><a href={MAKERWORLD_PROFILE[lang as keyof typeof MAKERWORLD_PROFILE]} rel="noopener">{t['links.makerworld']} →</a></p></section></>}
     {realm === 'dev' && <TopicFilter posts={list} lang={lang} />}
-    {empty ? <section class="portal-section"><p data-copy>{t['realm.game.emptyBody']}</p><div class="other-realms mono">{realms.filter(r => r !== 'game').map(r => <a href={`${prefix(lang)}/${r}/`}>{i18n[lang].nav[r]} →</a>)}</div></section> : years(list).map(([year,items]) => <section id={String(year)} class="year-group" data-year><h2>{year}</h2><PostIndexList posts={items} showSection={false} dateFormat="md" /></section>)}
+    {empty ? <section class="portal-section"><p data-copy>{t['realm.game.emptyBody']}</p><div class="other-realms mono">{realms.filter(r => r !== 'game').map(r => <a href={`${prefix(lang)}/${r}/`}>{i18n[lang].nav[r]} →</a>)}</div></section> : <YearIndex posts={list} lang={lang} />}
   </div>
 </Portal>
 <style>

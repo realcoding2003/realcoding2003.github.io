@@ -38,3 +38,6 @@ html[data-motion="full"] .portal [data-ambient] > picture,html[data-motion="full
 html[data-motion="full"][data-reveal-armed] [data-reveal] { opacity: 1; transform: none; transition: opacity 600ms cubic-bezier(.2,.7,.2,1),transform 600ms cubic-bezier(.2,.7,.2,1); }
 html[data-motion="full"][data-reveal-armed] [data-reveal-delay] { transition-delay: 90ms; }
 html[data-motion="full"][data-reveal-armed] [data-reveal]:not([data-revealed]) { opacity: 0; transform: translateY(2rem); }
+/* 2026-11-10: /request/#ax 등 탭 해시로 들어오면 브라우저가 왼쪽 칸 패널로 스크롤해 오른쪽 폼 제목이 고정 메뉴에 가렸다.
+   패널 스크롤 여백을 화면보다 크게 두면 해시 이동 위치가 0으로 잘려 탭 줄(페이지 맨 위)에서 멈춘다. */
+.request-page :is(#print,#dev,#ax) { scroll-margin-top: 200vh; }

@@ -8,10 +8,10 @@ import WorkImage from './WorkImage.astro';
 interface Props { posts: Post[]; lang: string }
 const { posts, lang } = Astro.props; const t = portalCopy[lang];
 const slices = realms.map(realm => ({realm, posts: posts.filter(p => p.lang === lang && p.section === realm)})).filter(s => s.posts.length);
-const latest = posts.find(p => p.lang === lang)?.section;
+const latest = slices[0]?.realm;
 ---
 <section class="portal-section container--wide" data-layer="2" aria-labelledby="realms-title">
-  <h2 class="display section-head" id="realms-title" data-reveal data-copy>{t[slices.length === 4 ? 'realms.title4' : 'realms.title3']}</h2>
+  <h2 class="display section-head" id="realms-title" data-reveal data-copy>{t[`realms.title${slices.length}`]}</h2>
   <div class="realms" data-reveal data-reveal-delay>{slices.map(({realm,posts: list}) => <article class="slice" data-open={realm === latest ? '' : undefined}>
     <div class="slice-media" data-ambient data-ambient-group="realms" data-src-desktop={`/assets/video/portal/realm-${realm}-desktop.mp4`} data-src-mobile={`/assets/video/portal/realm-${realm}-mobile.mp4`}>
       <WorkImage src={`/assets/video/portal/realm-${realm}-poster.jpg`} alt="" sizes="(min-width:1100px) 75vw, 100vw" />

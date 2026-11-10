@@ -56,7 +56,7 @@ class NewPages(unittest.TestCase):
     def test_explicit_new_pages_are_expected_only(self):
         errors,expected=compare_sitemap({'/'},{'/'}|NEW_PAGES,self.pages)
         self.assertEqual(errors,[])
-        self.assertEqual(len(expected),15)
+        self.assertEqual(len(expected),18)
         self.assertEqual({kind for kind,_ in expected},{'신규 페이지'})
     def test_unknown_extra_fails(self):
         errors,_=compare_sitemap({'/'},{'/','/surprise/'}|NEW_PAGES,self.pages)

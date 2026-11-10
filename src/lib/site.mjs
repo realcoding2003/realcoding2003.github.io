@@ -79,3 +79,6 @@ export const LINKS = {
 export const MAKERWORLD_PROFILE = { ko: 'https://makerworld.com/ko/@realcoding', en: 'https://makerworld.com/@realcoding', ja: 'https://makerworld.com/@realcoding' };
 export const makerworldModel = (/** @type {number} */ id) => `https://makerworld.com/models/${id}`;
 export const CONTACT_EMAIL = 'kevinpark@okyc.kr';
+
+// Set to a published translation group's baseSlug to enable the AI flagship card.
+export const AI_FLAGSHIP_SLUG = '';

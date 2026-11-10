@@ -23,7 +23,9 @@ export function applyMotionGate(doc, win) {
   doc.documentElement.dataset.motionReason = reason;
   return { mode: mode, reason: reason };
 }
-export function chapterAt(p) { return CHAPTER_STARTS.filter(start => clamp(p) >= start).length; }
+// AX: first frame, workflow construction (~3s), office pullback (~9s).
+export const AX_CHAPTER_STARTS = [0, 0.19, 0.56];
+export function chapterAt(p, starts = CHAPTER_STARTS) { return starts.filter(start => clamp(p) >= start).length; }
 export function timeAt(p, duration) { return Math.min(0.999, clamp(p / FILM_END)) * duration; }
 export function layerReadout(p) {
   const layer = 1 + Math.round(clamp(p) * (LAYER_COUNT - 1)), z = layer * 20;

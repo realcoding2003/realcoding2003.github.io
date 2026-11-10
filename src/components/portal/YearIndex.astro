@@ -1,0 +1,11 @@
+---
+import type { Post } from '../../lib/content';
+import { years } from '../../lib/portal';
+import { portalCopy } from '../../lib/portal-copy';
+import PostIndexList from './PostIndexList.astro';
+interface Props { posts: Post[]; lang: string }
+const { posts, lang } = Astro.props; const groups = years(posts);
+---
+<nav class="year-nav mono" aria-label={portalCopy[lang]['index.years']}>{groups.map(([year]) => <a href={`#${year}`}>{year}</a>)}</nav>
+{groups.map(([year,items]) => <section id={year} class="year-group" data-year><h2>{year}</h2><PostIndexList posts={items} showSection={false} dateFormat="md" /></section>)}
+<style>.year-nav { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; margin-block: 2rem; }</style>

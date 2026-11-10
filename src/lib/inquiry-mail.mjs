@@ -2,10 +2,10 @@
 export function buildMailto({ contact, subject, values, files = [], copy }) {
   const body = [
     `${copy['form.type']}: ${copy[`tab.${values.type || 'print'}`]}`,
-    ...['name','email','phone','message'].map(key => `${copy[`label.${key}`]}: ${String(values[key] || '').trim()}`),
+    ...['name','email','phone',...(values.type === 'ax' ? ['company'] : []),'message'].map(key => `${copy[`label.${key}`]}: ${String(values[key] || '').trim()}`),
     `${copy['consent.required']}: ${values.consent_required ? '✓' : '✕'}`,
     `${copy['consent.optional']}: ${values.consent_optional ? '✓' : '✕'}`,
-    ...(values.type !== 'dev' && files.length ? [files.map(f => f.name).join('\n'),copy['form.offlineFiles']] : []),
+    ...((values.type || 'print') === 'print' && files.length ? [files.map(f => f.name).join('\n'),copy['form.offlineFiles']] : []),
   ].join('\n');
   return `mailto:${contact}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }

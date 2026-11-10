@@ -14,11 +14,11 @@ if (form) {
   const status = form.querySelector<HTMLElement>('[data-form-status]')!;
   const api = form.dataset.api || '';
   let files: File[] = [];
-  let type = location.hash === '#dev' ? 'dev' : 'print';
+  let type = ['dev','ax'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'print';
   const preview = new URLSearchParams(location.search).get('inquiry-preview');
   const fixedPreview = !!preview && /^(idle|uploading:(?:100|\d{1,2})|done|error)$/.test(preview);
   function values() {
-    return { type, name:input('name').value,email:input('email').value,phone:input('phone').value,message:input('message').value,consent_required:(input('consent_required') as HTMLInputElement).checked,consent_optional:(input('consent_optional') as HTMLInputElement).checked };
+    return { type, company:type === 'ax' ? input('company').value : '', name:input('name').value,email:input('email').value,phone:input('phone').value,message:input('message').value,consent_required:(input('consent_required') as HTMLInputElement).checked,consent_optional:(input('consent_optional') as HTMLInputElement).checked };
   }
   const fieldFor = (key: string) => key.startsWith('file') ? 'files' : key === 'phoneConsent' ? 'consent_optional' : key === 'consent' ? 'consent_required' : key;
   function clear(name: string) {
@@ -58,10 +58,13 @@ if (form) {
   drop.addEventListener('dragleave', () => { delete drop.dataset.drag; });
   drop.addEventListener('drop', event => { event.preventDefault(); delete drop.dataset.drag; files = [...files,...Array.from(event.dataTransfer?.files || [])]; renderFiles(); });
   function changeType(next: string) {
-    type = next === 'dev' ? 'dev' : 'print';
+    type = ['dev','ax'].includes(next) ? next : 'print';
+    form!.dataset.type = type;
+    (input('company') as HTMLInputElement).disabled = type !== 'ax';
     form!.querySelector('[data-form-title]')!.textContent = t[`form.title.${type}`];
     form!.querySelector('[data-form-sub]')!.textContent = t[`form.sub.${type}`];
     input('message').placeholder = t[`ph.message.${type}`];
+    form!.querySelector('#consent-required-detail')!.textContent = t[type === 'ax' ? 'consent.requiredDetail.ax' : 'consent.requiredDetail'].replace('{retention}',t['consent.retention']);
     form!.querySelector<HTMLElement>('[data-file-section]')!.hidden = type !== 'print'; fileInput.disabled = type !== 'print';
     form!.querySelectorAll<HTMLInputElement>('[name=type]').forEach(r => { r.checked = r.value === type; });
     clear('files');

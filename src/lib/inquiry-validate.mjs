@@ -10,7 +10,7 @@ export function validateInquiry(values, files = []) {
     if (!values.consent_optional) errors.push('phoneConsent');
   }
   if (!values.message?.trim() || values.message.trim().length > 5000) errors.push('message');
-  if (values.type !== 'dev') {
+  if ((values.type || 'print') === 'print') {
     if (files.some(f => !/\.(3mf|stl)$/i.test(f.name))) errors.push('fileType');
     if (files.length > 5) errors.push('fileCount');
     if (files.reduce((sum,f) => sum + f.size,0) > 209715200) errors.push('fileSize');

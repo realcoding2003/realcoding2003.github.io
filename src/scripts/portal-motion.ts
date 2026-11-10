@@ -1,8 +1,7 @@
 import { initHeroScrub } from './hero-scrub';
 import { initAmbient } from './ambient-video';
 import { initReveal } from './reveal';
-const hero = document.querySelector<HTMLElement>('[data-hero]');
-if (hero) initHeroScrub(hero);
+document.querySelectorAll<HTMLElement>('[data-hero]').forEach(hero => initHeroScrub(hero));
 initAmbient(document);
 if (document.documentElement.dataset.motion === 'full') {
   initReveal();

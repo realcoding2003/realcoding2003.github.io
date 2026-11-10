@@ -4,6 +4,7 @@ import Post from '../layouts/Post.astro';
 import Listing from '../layouts/Listing.astro';
 import Home from '../components/portal/Home.astro';
 import About from '../components/portal/About.astro';
+import AiPage from '../components/portal/AiPage.astro';
 import RealmPage from '../components/portal/RealmPage.astro';
 import Videos from '../components/portal/Videos.astro';
 import Request from '../components/portal/Request.astro';
@@ -18,7 +19,7 @@ const posts = route.kind === 'redirect' ? [] : await getPosts();
 ---
 {route.kind === 'redirect' ? <Redirect path={route.target} />
 : route.kind === 'post' ? <Post post={route.post} posts={posts} />
-: route.kind === 'portal' ? (route.portal.page === 'request' ? <Request page={route.portal} posts={posts} /> : route.portal.page === 'videos' ? <Videos page={route.portal} posts={posts} /> : <RealmPage page={route.portal} posts={posts} />)
+: route.kind === 'portal' ? (route.portal.page === 'ai' ? <AiPage page={route.portal} posts={posts} /> : route.portal.page === 'request' ? <Request page={route.portal} posts={posts} /> : route.portal.page === 'videos' ? <Videos page={route.portal} posts={posts} /> : <RealmPage page={route.portal} posts={posts} />)
 : route.page.kind === 'index' ? <Home page={route.page} posts={posts} />
 : route.page.kind === 'about' ? <About page={route.page} posts={posts} />
 : route.page.kind === 'privacy' ? <Listing page={route.page} posts={posts} />

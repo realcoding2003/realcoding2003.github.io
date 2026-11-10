@@ -3,6 +3,7 @@ import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { parseHtml } from './html-tree.mjs';
+import { checkStickyHeader } from './sticky-header-browser-check.mjs';
 import { checkS5 } from './s5-browser-check.mjs';
 const origin = process.argv[2] || 'http://127.0.0.1:4325';
 const out = resolve(process.argv[3] || '/private/tmp/rc-portal-browser');
@@ -138,9 +139,10 @@ try {
  check(await fallback.locator('[role=tabpanel]:visible').count() === 2 && await fallback.locator('.type-radios').isVisible() && await fallback.locator('noscript a[href^="mailto:"]').isVisible(),{kind:'no-js-request'});
  await nojs.close();
  await context.close();
+ report.stickyHeader = await checkStickyHeader(browser,origin);
  report.s5 = await checkS5(browser,origin,out);
 } catch(error) { report.blocked=String(error); }
 finally { await browser?.close(); }
 await writeFile(join(out,'browser-report.json'),JSON.stringify(report,null,2));
 console.log(JSON.stringify(report,null,2));
-if(report.blocked || report.failures.length || report.s5?.failures.length) process.exitCode=1;
+if(report.blocked || report.failures.length || report.s5?.failures.length || report.stickyHeader?.failures.length) process.exitCode=1;

@@ -25,7 +25,7 @@
 .post-content h2,.page-prose h2 { font-size: 1.625rem; margin: 2.25rem 0 .75rem; }
 .post-content h3,.page-prose h3 { font-size: 1.25rem; margin: 1.75rem 0 .65rem; }
 .post-content h4,.page-prose h4 { font-size: 1.0625rem; }
-.post-content :is(h1,h2,h3,h4),.page-prose :is(h1,h2,h3,h4) { scroll-margin-top: 1.5rem; }
+.post-content :is(h1,h2,h3,h4),.page-prose :is(h1,h2,h3,h4) { /* Added to html scroll-padding: header + 1.5rem, not two header heights. */ scroll-margin-top: .5rem; }
 .post-content img { display: block; max-width: 100%; height: auto; margin: 1.25rem auto; border-radius: 0; }
 .post-content :is(picture,video,iframe,table,pre) { min-width: 0; max-width: 100%; }
 .post-content picture { display: block; }
@@ -54,7 +54,7 @@ pre.astro-code:has(.line ~ .line) .line::before { counter-increment: line; conte
 .zoom-trigger img { margin-inline: auto; }
 .mermaid-figure { margin: 1.25rem 0; max-width: 100%; overflow-x: auto; text-align: center; }
 .mermaid-figure svg { max-width: 100%; height: auto; }
-.image-viewer { position: fixed; inset: 0; width: 100vw; max-width: none; height: 100dvh; max-height: none; padding: 0; border: 0; background: var(--ink-950); color: var(--stone-100); }
+.image-viewer { position: fixed; z-index: 30; inset: 0; width: 100vw; max-width: none; height: 100dvh; max-height: none; padding: 0; border: 0; background: var(--ink-950); color: var(--stone-100); }
 .image-viewer::backdrop { background: var(--ink-950); }
 .zoom-controls { position: absolute; right: 1rem; top: 1rem; z-index: 1; display: flex; gap: .5rem; }
 .zoom-controls button { width: 44px; height: 44px; border: 1px solid var(--ink-700); background: var(--ink-900); color: var(--stone-100); font: 1.25rem/1 var(--mono-font); }

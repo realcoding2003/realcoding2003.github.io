@@ -2,6 +2,7 @@
 import { absolute, translations, config } from '../lib/site.mjs';
 import type { Post } from '../lib/content';
 import { bodyText } from '../lib/reading-time';
+import { archivoUrl } from '../lib/fonts.mjs';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import LayerRail from '../components/portal/LayerRail.astro';
@@ -49,6 +50,7 @@ const structured = post ? {
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/android-chrome-192x192.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicons/android-chrome-512x512.png" />
     <link rel="manifest" href="/assets/favicons/manifest.webmanifest" />
+    {(lang === 'en' || lang === 'ja') && <link rel="preload" href={archivoUrl} as="font" type="font/woff2" crossorigin />}
     <link rel="stylesheet" href={`/fonts/${lang}.css`} />
     <meta property="og:type" content={post ? 'article' : 'website'} />
     <meta property="og:site_name" content={data.site.title} />

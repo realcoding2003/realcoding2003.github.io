@@ -13,7 +13,7 @@ const navItems = (['maker', 'dev', 'game', 'life', 'videos'] as const).filter(ke
     <a class="wordmark" href={`${prefix(lang)}/`} aria-label={t.homeLabel}><span aria-hidden="true">&gt;|</span><span>{t.wordmark}</span><span class="cursor" aria-hidden="true"></span></a>
     <a class="request" href={`${prefix(lang)}/request/`} aria-current={current === 'request' ? 'page' : undefined}>{t.request}</a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="header-panel">{t.menu}</button>
-    <div class="header-panel" id="header-panel">
+    <div class="header-panel" id="header-panel" data-lenis-prevent>
       <nav class="main-nav" aria-label={t.mainNav}>{navItems.map(key => <a href={`${prefix(lang)}/${key}/`} aria-current={current === key ? 'page' : undefined}><span>{t.nav[key]}</span></a>)}</nav>
       <span class="utility-rule" aria-hidden="true"></span>
       <nav class="language-nav" aria-label={t.language}>{languages.map(code => <a href={alternates[code] || `${prefix(code)}/`} hreflang={code} lang={code} aria-label={languageNames[code]} aria-current={code === lang ? 'page' : undefined}>{code.toUpperCase()}</a>)}</nav>
@@ -32,14 +32,14 @@ const navItems = (['maker', 'dev', 'game', 'life', 'videos'] as const).filter(ke
   }
 </script>
 <style>
-  .site-header { border-bottom: 1px solid var(--rule); background: var(--bg); }
-  .header-inner { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: .5rem; }
+  .site-header { position: sticky; top: 0; height: var(--site-header-h); z-index: 10; border-bottom: 1px solid var(--rule); background: var(--bg); }
+  .header-inner { height: calc(var(--site-header-h) - 1px); display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: .5rem; }
   .wordmark { font-size: 1.25rem; }
   .request { display: inline-flex; align-items: center; justify-content: center; height: 2rem; padding-inline: 1.125rem; border-radius: 999px; background: var(--cta-bg); color: var(--cta-fg); text-decoration: none; font-size: .875rem; font-weight: 700; white-space: nowrap; }
   .request:hover,.request:focus-visible { background: var(--cta-bg-hover); color: var(--cta-fg-hover); }
   .request:active { transform: translateY(1px); }
-  .menu-toggle { width: 44px; height: 3.5rem; padding: 0; border: 0; background: none; font-size: .8125rem; font-weight: 700; }
-  .header-panel { grid-column: 1/-1; padding-bottom: 1rem; }
+  .menu-toggle { width: 44px; height: 100%; padding: 0; border: 0; background: none; font-size: .8125rem; font-weight: 700; }
+  .header-panel { position: absolute; top: var(--site-header-h); left: 0; right: 0; z-index: 11; max-height: calc(100dvh - var(--site-header-h)); overflow-y: auto; overscroll-behavior: contain; padding: 0 var(--gutter) 1rem; border-bottom: 1px solid var(--rule); background: var(--bg); }
   :global(html.js) .header-panel:not(.is-open) { display: none; }
   .main-nav { display: flex; flex-direction: column; }
   .main-nav a { display: flex; align-items: center; min-height: 3rem; border-top: 1px solid var(--rule); color: var(--fg); text-decoration: none; font-size: 1rem; font-weight: 700; position: relative; }
@@ -51,18 +51,45 @@ const navItems = (['maker', 'dev', 'game', 'life', 'videos'] as const).filter(ke
   .language-nav a[aria-current] { color: var(--link); border-bottom: 2px solid var(--accent); }
   .utility-rule { display: none; }
   @media (prefers-reduced-motion: no-preference) { .main-nav a span::after { transition: transform 160ms; } }
-  @media (min-width:640px) { .menu-toggle { height: 4rem; } .wordmark { font-size: 1.375rem; } }
-  @media (min-width:1100px) {
-    .header-inner { height: 4rem; display: flex; gap: 1rem; }
+  /* 2026-11-10 사용자 요청: 어느 폭에서도 메뉴 항목을 상단에 바로 보인다(접는 메뉴 없음). 767px 이하 두 줄, 768px 이상 한 줄. */
+  @media (max-width:767px) {
+    /* Reserve both rows in CSS before paint; all sticky/anchor offsets share this height. */
+    .header-inner { grid-template-columns: minmax(0,1fr) auto auto auto; grid-template-rows: minmax(0,1fr) 2.5rem; column-gap: .25rem; row-gap: 0; }
+    .wordmark { grid-area: 1 / 1; font-size: 1.125rem; min-height: 2.5rem; align-items: center; }
+    .wordmark:lang(en),.wordmark:lang(ja) { font-size: 1rem; letter-spacing: -.025em; }
+    .request { grid-area: 1 / 4; height: 2.5rem; padding-inline: .625rem; font-size: .75rem; }
+    .menu-toggle { display: none; }
+    .header-panel,:global(html.js) .header-panel:not(.is-open) { display: contents; }
+    .language-nav { grid-area: 1 / 2; gap: .25rem; padding: 0; font-size: .6875rem; }
+    .language-nav a { display: flex; align-items: center; height: 2.5rem; padding: 0; border-bottom: 2px solid transparent; }
+    .language-nav a[aria-current] { border-color: var(--accent); }
+    .header-panel :global(.theme-toggle) { grid-area: 1 / 3; width: 40px; height: 40px; padding: 8px; }
+    .main-nav { grid-area: 2 / 1 / 3 / -1; min-width: 0; height: 2.5rem; flex-direction: row; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; }
+    .main-nav::-webkit-scrollbar { display: none; }
+    .main-nav a { flex: 1 0 auto; justify-content: center; min-height: 2.5rem; padding-inline: .5rem; border: 0; font-size: .875rem; white-space: nowrap; }
+    .main-nav a span::after { bottom: -.25rem; }
+  }
+  @media (min-width:768px) { .wordmark { font-size: 1.375rem; } }
+  @media (min-width:768px) {
+    .header-inner { display: flex; gap: 1rem; }
     .wordmark { margin-right: auto; }
     .menu-toggle { display: none; }
     .header-panel,:global(html.js) .header-panel:not(.is-open) { display: contents; }
     .main-nav { order: 1; flex-direction: row; gap: clamp(1.25rem,2.2vw,2.5rem); margin-right: auto; }
-    .main-nav a { border: 0; min-height: 4rem; }
+    .main-nav a { border: 0; min-height: calc(var(--site-header-h) - 1px); }
     .main-nav a span::after { bottom: -.4rem; }
     .request { order: 2; height: 2.25rem; }
     .utility-rule { display: block; order: 3; height: 1.25rem; border-left: 1px solid var(--rule); }
     .language-nav { order: 4; gap: .75rem; padding: 0; }
     .header-panel :global(.theme-toggle) { order: 5; }
+  }
+  @media (min-width:768px) and (max-width:1099px) {
+    /* 태블릿 폭: 한 줄을 유지하도록 간격·글자를 줄이고, 그래도 넘치면 메뉴만 가로 스크롤 */
+    .header-inner { gap: .75rem; }
+    .wordmark { font-size: 1.25rem; }
+    .main-nav { gap: 1rem; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+    .main-nav::-webkit-scrollbar { display: none; }
+    .main-nav a { white-space: nowrap; font-size: .9375rem; }
+    .language-nav { gap: .5rem; }
   }
 </style>

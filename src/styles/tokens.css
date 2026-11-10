@@ -6,6 +6,7 @@
   --link: #7A6100; --toc-active: #7A6100; --focus: #7A6100;
   --cta-bg: #7A6100; --cta-fg: #F4F5F0; --cta-bg-hover: #0C1130; --cta-fg-hover: #E8C552;
   --code-bg: #0C1130; --code-border: transparent; --code-fg: #E7E9E2; --code-muted: #A2A7BD;
+  --site-header-h: 6rem;
   --container: 60rem; --measure: 41rem; --gutter: clamp(1.25rem, 4vw, 2rem);
   --system-ko: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
   --system-ja: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
@@ -33,3 +34,5 @@
 :lang(en) { --display-font: "Archivo RC Wide", "Archivo RC Fallback", var(--system-ko); }
 :lang(ja) { --body-font: "LINE Seed JP", var(--system-ja); --display-font: "LINE Seed JP", var(--system-ja); }
 :root { --container-wide: 90rem; --gutter-wide: clamp(1.25rem, 3.5vw, 3rem); --rail: 3.5rem; }
+
+@media (min-width:768px) { :root { --site-header-h: 4rem; } }

@@ -380,5 +380,18 @@ AI가 일을 하고, 사람은 방향을 정하고 확인한다.
 비슷하게 블로그를 옮겨 본 분 있으면 댓글로 얘기해 주세요.
 특히 주소 지키기 쪽 삽질은 다들 비슷할 것 같은데...
 
-P.S. 이 리뉴얼 과정은 영상으로도 만드는 중이다.
-나오면 여기 붙여 놓을 예정 ㅎㅎ
+## 영상으로도 만들었다
+
+이 리뉴얼 과정을 영상으로도 만들었다.
+영상도 같은 방식이다. 내레이션은 내 목소리 음색만 가져온 AI 음성이고, 조립은 Codex가 했다.
+영어가 기본이라 한국어 자막이 같이 나온다.
+
+<div style="position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/a74rXmOkw3s?cc_lang_pref=ko&cc_load_policy=1" title="블로그를 12시간 만에 포털로, 코드는 AI 에이전트가 짰습니다" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
+
+1분짜리 쇼츠도 있다.
+
+<div style="position: relative; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/IrJNWTfm8oM?cc_lang_pref=ko&cc_load_policy=1" title="AI 에이전트가 12시간 만에 블로그를 갈아엎었다" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>

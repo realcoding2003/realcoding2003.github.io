@@ -385,5 +385,16 @@ Some things are still left.
 If you've moved a blog like this, tell me about it in the comments.
 I bet the URL-preservation misery is similar for everyone...
 
-P.S. I'm also turning this renewal into a video.
-I'll attach it here when it's out.
+## The video version
+
+I turned this renewal into a video, too — made the same way. The narration is an AI voice that borrows only the timbre of my own voice, and Codex assembled the edit.
+
+<div style="position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/a74rXmOkw3s" title="I Rebuilt My Blog Into a Portal in 12 Hours With AI Agents" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
+
+And a one-minute Short:
+
+<div style="position: relative; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/IrJNWTfm8oM" title="AI Agents Rebuilt My Blog in 12 Hours" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>

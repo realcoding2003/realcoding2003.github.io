@@ -27,6 +27,9 @@ html.lenis,html.lenis body { height: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
 .portal [data-ambient] > picture,.portal [data-ambient] > img,.portal [data-ambient] > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* 2026-11-10 핫픽스: picture 안의 img가 고유 크기로 늘어나 접힌 작업대 조각 밖으로 넘치던 문제 */
+.portal [data-ambient] { overflow: hidden; }
+.portal [data-ambient] > picture > img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .portal [data-ambient] > video { z-index: 0; }
 .portal [data-ambient] > picture,.portal [data-ambient] > img { z-index: 1; }
 .portal [data-ambient]::after { z-index: 2; pointer-events: none; }

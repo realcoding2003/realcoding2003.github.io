@@ -1,10 +1,10 @@
-# 🚀 실전코딩 기술 블로그
+# 실전코딩 작업실
 
 [![Website](https://img.shields.io/website?url=https%3A//realcoding.blog&up_message=online&up_color=brightgreen)](https://realcoding.blog)
 [![GitHub Stars](https://img.shields.io/github/stars/realcoding2003/realcoding2003.github.io?style=social)](https://github.com/realcoding2003/realcoding2003.github.io/stargazers)
 [![GitHub Followers](https://img.shields.io/github/followers/realcoding2003?style=social)](https://github.com/realcoding2003)
 
-> **실무에서 배운 개발 노하우와 기술적 인사이트를 공유하는 개발자 Kevin Park의 기술 블로그입니다.**
+> **AI·3D 프린팅·개발·게임 공략을 한 층씩 쌓아 가는 Kevin Park의 개인 포털입니다.** (2026-11 블로그 → 포털 리뉴얼)
 
 ## 🌐 [📖 블로그 바로가기 →](https://realcoding.blog)
 

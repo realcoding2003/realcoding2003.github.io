@@ -4,8 +4,8 @@ nav:
   archive: "アーカイブ"
 
 site:
-  title: "RealCoding技術ブログ"
-  description: "実務で学んだ開発ノウハウと技術的な洞察を共有します"
+  title: "実戦コーディング工房"
+  description: "AI・3Dプリント・開発・ゲーム攻略を一層ずつ積み上げる実戦コーディング工房"
 
 posts:
   recent: "最新記事"

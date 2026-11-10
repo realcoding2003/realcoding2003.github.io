@@ -1,7 +1,7 @@
 {
-  "name": "실전코딩 기술 블로그",
+  "name": "실전코딩 작업실",
   "short_name": "실전코딩",
-  "description": "실무에서 배운 개발 노하우와 기술적 인사이트를 공유합니다",
+  "description": "AI·3D 프린팅·개발·게임 공략을 한 층씩 쌓아 가는 실전코딩 작업실",
   "icons": [
     {
       "src": "/assets/favicons/android-chrome-192x192.png",

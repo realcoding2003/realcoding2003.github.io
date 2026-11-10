@@ -385,5 +385,17 @@ AIが仕事をして、人は方向を決めて確認する。
 似たようなブログの引っ越しをされた方がいたら、ぜひコメントで教えてください。
 特にURLを守るあたりの苦労は、みなさん似ているのではないでしょうか。
 
-P.S. このリニューアルの過程は、動画にもしている最中です。
-できたらここに貼る予定です。
+## 動画版も作りました
+
+このリニューアルの過程を動画にもしました。作り方も同じで、ナレーションは私の声の音色だけを使ったAI音声、編集の組み立てはCodexです。
+英語版が基本なので、日本語字幕が一緒に表示されます。
+
+<div style="position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/a74rXmOkw3s?cc_lang_pref=ja&cc_load_policy=1" title="ブログを12時間でポータルに作り変えた話｜コードはAIエージェントが書きました" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
+
+1分のショート動画もあります。
+
+<div style="position: relative; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/IrJNWTfm8oM?cc_lang_pref=ja&cc_load_policy=1" title="AIエージェントが12時間でブログを作り変えた" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>

@@ -6,7 +6,7 @@ interface Props { lang: string; wide?: boolean; finish?: boolean }
 const { lang, wide = false, finish = false } = Astro.props; const t = i18n[lang];
 ---
 <footer class="site-footer">
-  {finish && <section class="container--wide finish" data-layer="7" aria-labelledby="finish-heading"><h2 id="finish-heading" data-copy><span aria-hidden="true"></span>{portalCopy[lang]['footer.finish']}</h2></section>}
+  {finish && <section class="container--wide finish" data-layer="7" aria-labelledby="finish-heading"><h2 id="finish-heading" data-finish data-copy><span aria-hidden="true"></span>{portalCopy[lang]['footer.finish']}</h2></section>}
   <div class:list={[wide ? 'container--wide' : 'container', 'footer-inner']}>
     <div class="footer-brand"><a class="wordmark" href={`${prefix(lang)}/`} aria-label={t.homeLabel}><span aria-hidden="true">&gt;|</span><span>{t.wordmark}</span><span class="cursor" aria-hidden="true"></span></a><span>© {new Date().getFullYear()} {t.copyright}</span></div>
     <div class="footer-links"><a href={LINKS.youtube} rel="noopener">YouTube</a><a href={LINKS.github} rel="noopener">GitHub</a><a href={MAKERWORLD_PROFILE[lang as keyof typeof MAKERWORLD_PROFILE]} rel="noopener">{portalCopy[lang]['links.makerworld']}</a><a href="/feed.xml">RSS</a><a href="/privacy/">{t.privacy}</a></div>
@@ -22,5 +22,6 @@ const { lang, wide = false, finish = false } = Astro.props; const t = i18n[lang]
   .footer-links a { color: var(--fg); }
   .finish { margin-bottom: 3rem; }
   .finish h2 { font: .875rem/1.5 var(--mono-font); display: flex; gap: .75rem; align-items: center; }
+  :global(html.js) .finish h2:not([data-complete]) span { background: var(--stone-400); opacity: .6; }
   .finish span { display: inline-block; width: .5em; height: .9em; background: var(--accent); }
 </style>

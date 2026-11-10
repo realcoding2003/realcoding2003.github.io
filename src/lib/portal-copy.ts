@@ -112,9 +112,14 @@ export const portalCopy: Record<string, Record<string, string>> = {
     "errors.fileSize": "파일은 모두 합쳐 200MB까지 올릴 수 있어요.",
     "errors.fileCount": "파일은 5개까지 올릴 수 있어요.",
     "errors.consent": "개인정보 수집·이용에 동의해 주세요.",
-    "hero.alt": "툴 도크에 노즐 9개가 걸려 있는 H3C 챔버",
-    "together.alt": "뽑다가 멈춘 원본 랙 부품들",
-    "print.alt": "A2L 한 판에 뽑은 덮개 전체"
+    "hero.alt": "빈 빌드판 위에서 노즐이 첫 층을 그리는 3D 프린터",
+    "print.alt": "A2L 한 판에 뽑은 덮개 전체",
+    "hero.ch2.title": "만들고,",
+    "hero.ch2.line": "3D 프린터로 직접 만든 것들.",
+    "hero.ch3.title": "코딩하고,",
+    "hero.ch3.line": "실무에서 배운 개발 이야기.",
+    "hero.ch4.title": "플레이한다.",
+    "hero.ch4.line": "게임 공략과 일상까지."
   },
   "en": {
     "hero.title": "Layer by layer.",
@@ -229,9 +234,14 @@ export const portalCopy: Record<string, Record<string, string>> = {
     "errors.fileSize": "Attachments can total up to 200 MB.",
     "errors.fileCount": "You can attach up to 5 files.",
     "errors.consent": "Please agree to the collection and use of personal information.",
-    "hero.alt": "The H3C chamber with 9 nozzles parked in the tool dock",
-    "together.alt": "Parts of the original rack, printed before I stopped",
-    "print.alt": "The whole cover set printed on a single A2L plate"
+    "hero.alt": "A 3D printer nozzle drawing the first layer on an empty build plate",
+    "print.alt": "The whole cover set printed on a single A2L plate",
+    "hero.ch2.title": "Make,",
+    "hero.ch2.line": "Things I make with 3D printers.",
+    "hero.ch3.title": "Code,",
+    "hero.ch3.line": "Development lessons from real work.",
+    "hero.ch4.title": "Play.",
+    "hero.ch4.line": "Game guides and everyday life, too."
   },
   "ja": {
     "hero.title": "一層ずつ積み上げる。",
@@ -346,8 +356,13 @@ export const portalCopy: Record<string, Record<string, string>> = {
     "errors.fileSize": "添付ファイルは合計200MBまでです。",
     "errors.fileCount": "添付できるファイルは5つまでです。",
     "errors.consent": "個人情報の収集・利用に同意してください。",
-    "hero.alt": "ツールドックにノズル9本が並ぶH3Cのチャンバー",
-    "together.alt": "途中まで出力した元のラックの部品",
-    "print.alt": "A2L 1枚で出力したカバー一式"
+    "hero.alt": "空のビルドプレートに最初の層を描く3Dプリンターのノズル",
+    "print.alt": "A2L 1枚で出力したカバー一式",
+    "hero.ch2.title": "作って、",
+    "hero.ch2.line": "3Dプリンターで自作したもの。",
+    "hero.ch3.title": "コードを書いて、",
+    "hero.ch3.line": "実務で学んだ開発の話。",
+    "hero.ch4.title": "遊ぶ。",
+    "hero.ch4.line": "ゲーム攻略と日常まで。"
   }
 };

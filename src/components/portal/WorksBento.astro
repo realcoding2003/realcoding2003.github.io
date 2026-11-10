@@ -9,12 +9,12 @@ const home = works.filter(w => w.home).sort((a,b) => a.home! - b.home!);
 const stats = [home[0].printers.join(' · '),home[0].time,home[0].filament,home[0].layer].filter(Boolean);
 ---
 <section class="portal-section container--wide" id="works" data-layer="3" aria-labelledby="works-title">
-  <div class="bento-heading section-head"><h2 class="display" id="works-title" data-copy>{t['works.title']}</h2><a class="all-builds" href={`${prefix(lang)}/maker/#works`} data-copy>{t['works.all']} <span>→</span></a></div>
-  <div class="bento">{home.map((w,i) => <a class="bento-cell" style={`grid-area:${'abcde'[i]}`} href={w.posts[0]?.path || (w.shorts || w.long)!.url} rel="noopener">
+  <div class="bento-heading section-head" data-reveal><h2 class="display" id="works-title" data-copy>{t['works.title']}</h2><a class="all-builds" href={`${prefix(lang)}/maker/#works`} data-copy>{t['works.all']} <span>→</span></a></div>
+  <div class="bento" data-reveal data-reveal-delay>{home.map((w,i) => <a class="bento-cell" style={`grid-area:${'abcde'[i]}`} href={w.posts[0]?.path || (w.shorts || w.long)!.url} rel="noopener">
     <WorkImage {...w.thumb} alt={w.image?.alt || w.title} sizes="(min-width:1100px) 50vw, 100vw" />
     <div class="cell-copy"><span class="mono">[{String(i+1).padStart(2,'0')}] {w.printers.join(' · ')}</span><h3>{w.title}</h3><p>{w.summary}</p></div>
   </a>)}</div>
-  <div class="stats-strip"><span class="sr-only">{t['works.statsLabel']}</span><div class="stats-values">{stats.map((v,i) => <>{i > 0 && <span aria-hidden="true"> · </span>}<span>{v}</span></>)}</div></div><p class="stats-caption mono">{home[0].title}</p>
+  <div class="stats-strip" data-reveal data-reveal-delay><span class="sr-only">{t['works.statsLabel']}</span><div class="stats-values">{stats.map((v,i) => <>{i > 0 && <span aria-hidden="true"> · </span>}<span>{v}</span></>)}</div></div><p class="stats-caption mono">{home[0].title}</p>
 </section>
 <style>
 .bento-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 1.5rem 3rem; }

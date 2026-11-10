@@ -6,14 +6,14 @@ import LineIcon from './LineIcon.astro';
 interface Props { lang: string }
 const { lang } = Astro.props; const t = portalCopy[lang];
 ---
-<section class="portal-section container--wide" data-layer="6" aria-labelledby="together-title"><div class="diptych">
-  <div class="photo"><WorkImage src="/assets/images/posts/ams2-pro-sliding-speedrack-underrail/02-original-parts-printed.jpg" alt={t['together.alt']} sizes="(min-width:900px) 50vw, 100vw" /></div>
+<section class="portal-section container--wide" data-layer="6" aria-labelledby="together-title"><div class="diptych" data-reveal>
+  <div class="photo" data-ambient data-src-desktop="/assets/video/portal/request-desktop.mp4" data-src-mobile="/assets/video/portal/request-mobile.mp4"><WorkImage src="/assets/video/portal/request-poster.jpg" alt="" sizes="(min-width:900px) 50vw, 100vw" /></div>
   <div class="yellow"><h2 id="together-title" data-copy>{t['together.title']}</h2><ul>{['print','dev'].map((type) => <li><LineIcon name={type === 'print' ? 'layers' : 'code'} /><a href={`${prefix(lang)}/request/#${type}`} data-copy>{t[`together.${type}`]}</a></li>)}</ul><a class="together-request" href={`${prefix(lang)}/request/`} data-copy>{t.request}</a></div>
   <div class="layer-number" aria-hidden="true"><span>0.20</span><span>0.20</span></div>
 </div></section>
 <style>
 .diptych { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: clamp(30rem,42vw,42rem); }
-.photo { position: relative; min-width: 0; }
+.photo { position: relative; isolation: isolate; min-width: 0; }
 .photo :global(picture),.photo :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .photo::after { content: ''; position: absolute; inset: 0; background: rgb(12 17 48 / .35); }
 .yellow { min-width: 0; background: var(--accent); color: var(--ink-950); padding: clamp(2rem,4vw,4.5rem); display: flex; flex-direction: column; align-items: flex-end; }

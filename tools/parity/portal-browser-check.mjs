@@ -3,6 +3,7 @@ import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { parseHtml } from './html-tree.mjs';
+import { checkS5 } from './s5-browser-check.mjs';
 const origin = process.argv[2] || 'http://127.0.0.1:4325';
 const out = resolve(process.argv[3] || '/private/tmp/rc-portal-browser');
 await mkdir(out,{recursive:true});
@@ -26,6 +27,7 @@ try {
  // No live analytics, comments, MakerWorld, YouTube, or thumbnails are requested.
  await context.route('**/*',route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
  const page = await context.newPage();
+ if (!await page.evaluate(() => document.createElement('video').canPlayType('video/mp4; codecs="avc1.640028"'))) throw new Error('H.264 미지원 브라우저 — RC_CHROME_PATH로 Chrome을 지정');
  for (const width of [360,390,1440]) {
   await page.setViewportSize({width,height:width === 1440 ? 1000 : 844});
   for (const path of paths) {
@@ -135,8 +137,10 @@ try {
  const fallback = await nojs.newPage(); await fallback.goto(origin+'/request/');
  check(await fallback.locator('[role=tabpanel]:visible').count() === 2 && await fallback.locator('.type-radios').isVisible() && await fallback.locator('noscript a[href^="mailto:"]').isVisible(),{kind:'no-js-request'});
  await nojs.close();
+ await context.close();
+ report.s5 = await checkS5(browser,origin,out);
 } catch(error) { report.blocked=String(error); }
 finally { await browser?.close(); }
 await writeFile(join(out,'browser-report.json'),JSON.stringify(report,null,2));
 console.log(JSON.stringify(report,null,2));
-if(report.blocked || report.failures.length) process.exitCode=1;
+if(report.blocked || report.failures.length || report.s5?.failures.length) process.exitCode=1;

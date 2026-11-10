@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 댓글·GA4·mermaid 화면 근접 지연 로드 (reader)
 - 포털 화면: 홈 6섹션, 메이커·개발·게임·생활 영역, 영상 모음, 의뢰 화면(폼 UI·메일 대체), 소개, 목록 화면 재디자인 ×3언어 (portal)
 - 작업물 데이터 8건(`src/data/works/`)과 글 하단 관련 작업 카드 (portal)
+- 홈 히어로 스크롤 영화(생성 영상 15초, 스크롤 진행률로 앞뒤 재생)와 챕터 전환, 층 레일 진행률 연동 (motion)
+- 작업대·의뢰 섹션 반복 배경 영상, 홈 전용 부드러운 스크롤(Lenis), 움직임 줄이기·데이터 절약 시 포스터 폴백 (motion)
 
 ### Fixed
 

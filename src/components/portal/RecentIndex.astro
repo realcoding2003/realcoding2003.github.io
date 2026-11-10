@@ -7,8 +7,8 @@ interface Props { posts: Post[]; lang: string }
 const { posts,lang } = Astro.props; const t = portalCopy[lang];
 ---
 <section class="portal-section line-field" data-layer="4" aria-labelledby="recent-title"><div class="container--wide recent-grid">
-  <div class="recent-heading"><span aria-hidden="true"></span><h2 class="display" id="recent-title" data-copy>{t['recent.title']}</h2></div>
-  <div class="recent-panel"><PostIndexList posts={posts.filter(p => p.lang === lang).slice(0,5)} size="lg" /><a class="all-posts" href={`${prefix(lang)}/archive/`} data-copy>{t['recent.all']} <span>→</span></a></div>
+  <div class="recent-heading" data-reveal><span aria-hidden="true"></span><h2 class="display" id="recent-title" data-copy>{t['recent.title']}</h2></div>
+  <div class="recent-panel" data-reveal data-reveal-delay><PostIndexList posts={posts.filter(p => p.lang === lang).slice(0,5)} size="lg" /><a class="all-posts" href={`${prefix(lang)}/archive/`} data-copy>{t['recent.all']} <span>→</span></a></div>
 </div></section>
 <style>
 .recent-grid { display: grid; gap: 2rem; }

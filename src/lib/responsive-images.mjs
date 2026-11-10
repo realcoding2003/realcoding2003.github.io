@@ -11,14 +11,14 @@ const pending = new Map();
 
 // Content and encoder settings, not pathname or mtime, identify reusable output.
 export function responsiveImage(src) {
-  if (!src.startsWith('/assets/images/posts/')) return Promise.resolve(null);
+  if (!src.startsWith('/assets/images/posts/') && !/^\/assets\/video\/portal\/[^/]+-poster\.jpg$/.test(src)) return Promise.resolve(null);
   if (!pending.has(src)) pending.set(src, generate(src));
   return pending.get(src);
 }
 async function generate(src) {
   try {
     const path = resolve(decodeURIComponent(src.slice(1)));
-    if (!path.startsWith(resolve('assets/images/posts') + sep)) throw new Error('Outside post images');
+    if (!path.startsWith(resolve('assets/images/posts') + sep) && !(path.startsWith(resolve('assets/video/portal') + sep) && basename(path).endsWith('-poster.jpg'))) throw new Error('Outside responsive images');
     const input = await readFile(path);
     const meta = await sharp(input).metadata();
     // Preserve animation/vector originals rather than flattening their content.

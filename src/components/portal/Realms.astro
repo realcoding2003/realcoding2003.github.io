@@ -11,9 +11,11 @@ const slices = realms.map(realm => ({realm, posts: posts.filter(p => p.lang === 
 const latest = posts.find(p => p.lang === lang)?.section;
 ---
 <section class="portal-section container--wide" data-layer="2" aria-labelledby="realms-title">
-  <h2 class="display section-head" id="realms-title" data-copy>{t[slices.length === 4 ? 'realms.title4' : 'realms.title3']}</h2>
-  <div class="realms">{slices.map(({realm,posts: list}) => <article class:list={['slice', { photographic: realm === 'maker' }]} data-open={realm === latest ? '' : undefined}>
-    {realm === 'maker' && <WorkImage src="/assets/images/posts/bulbasaur-15cm-multipart-print/03-body-supports.jpg" alt="" sizes="(min-width:1100px) 75vw, 100vw" />}
+  <h2 class="display section-head" id="realms-title" data-reveal data-copy>{t[slices.length === 4 ? 'realms.title4' : 'realms.title3']}</h2>
+  <div class="realms" data-reveal data-reveal-delay>{slices.map(({realm,posts: list}) => <article class="slice" data-open={realm === latest ? '' : undefined}>
+    <div class="slice-media" data-ambient data-ambient-group="realms" data-src-desktop={`/assets/video/portal/realm-${realm}-desktop.mp4`} data-src-mobile={`/assets/video/portal/realm-${realm}-mobile.mp4`}>
+      <WorkImage src={`/assets/video/portal/realm-${realm}-poster.jpg`} alt="" sizes="(min-width:1100px) 75vw, 100vw" />
+    </div>
     <div class="slice-inner"><h3><a class="slice-link" href={`${prefix(lang)}/${realm}/`}>{i18n[lang].nav[realm]}</a></h3>
     <div class="slice-detail"><p class="count mono">{t['count.posts'].replace('{n}',String(list.length))}</p><span class="yellow-rule" aria-hidden="true"></span>
     <ul>{list.slice(0,3).map(post => <li><time datetime={post.date.toISOString()}>{post.date.toISOString().slice(0,10)}</time><a href={post.path}>{post.data.title}</a></li>)}</ul></div></div>
@@ -21,12 +23,11 @@ const latest = posts.find(p => p.lang === lang)?.section;
 </section>
 <style>
 .realms { border: 1px solid var(--rule); }
-.slice { position: relative; background: var(--surface); background-image: repeating-linear-gradient(to bottom,transparent 0 7px,rgb(38 48 107 / .35) 7px 8px); min-width: 0; border-top: 4px solid transparent; }
+.slice { position: relative; background: var(--surface); min-width: 0; border-top: 4px solid transparent; }
 .slice[data-open] { border-top-color: var(--accent); }
 .slice + .slice { border-left: 1px solid var(--rule); }
-.slice :global(picture) { position: absolute; inset: 0; }
-.slice :global(img) { width: 100%; height: 100%; object-fit: cover; }
-.photographic::after { content: ''; position: absolute; inset: 0; background: rgb(12 17 48 / .55); }
+.slice-media { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.slice-media::after { content: ''; position: absolute; inset: 0; background: rgb(12 17 48 / .55); }
 .slice-inner { position: relative; z-index: 1; padding: clamp(2rem,3vw,3.5rem); height: 100%; display: flex; flex-direction: column; }
 h3 { font-size: clamp(2.5rem,8vw,4rem); font-weight: 800; line-height: 1.05; }
 .slice-link { text-decoration: none; color: var(--fg); }

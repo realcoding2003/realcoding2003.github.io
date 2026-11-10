@@ -1,10 +1,17 @@
-<aside class="layer-rail" aria-hidden="true"><div class="readouts"><span>L 001</span><span>Z 0.20</span></div><div class="ticks"></div></aside>
+---
+import { portalCopy } from '../../lib/portal-copy';
+interface Props { lang: string }
+const { lang } = Astro.props;
+---
+<aside class="layer-rail" aria-hidden="true" data-layer-rail data-state="printing"><div class="readouts"><span data-rail-layer>L 001</span><span data-rail-z>Z 0.20</span><span class="rail-finish" data-rail-finish hidden>{portalCopy[lang]['footer.finish']}</span></div><div class="ticks"><span class="tick-marker" data-rail-marker></span></div></aside>
+<script>import '../../scripts/layer-rail';</script>
 <style>
 .layer-rail { display: none; }
 @media (min-width:1100px) {
 .layer-rail { display: flex; flex-direction: column; align-items: center; gap: 2.5rem; position: fixed; top: 4rem; right: 0; bottom: 0; width: var(--rail); border-left: 1px solid var(--rule); pointer-events: none; background: var(--ink-950); z-index: 3; padding-top: 1.5rem; }
 .readouts { display: flex; gap: 1.5rem; writing-mode: vertical-rl; font: .875rem/1 var(--mono-font); color: var(--stone-100); }
 .ticks { flex: 1; width: 1rem; opacity: .5; background: repeating-linear-gradient(to bottom,var(--stone-400) 0 1px,transparent 1px 1.5rem); position: relative; }
-.ticks::before { content: ''; position: absolute; top: 0; width: 1.5rem; left: -.25rem; height: 2px; background: var(--accent); }
+.tick-marker { position: absolute; top: 0; width: 1.5rem; left: -.25rem; height: 2px; background: var(--accent); }
+.layer-rail[data-state="complete"] .readouts { color: var(--accent); }
 }
 </style>

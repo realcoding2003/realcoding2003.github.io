@@ -10,7 +10,7 @@ const { page,posts } = Astro.props; const { lang } = page; const t = portalCopy[
 ---
 <Portal lang={lang} title={t.request} path={page.path} alternates={alternatesFor('request/')} current="request" hasGame={posts.some(p => p.lang === lang && p.section === 'game')}>
 <div class="request-page container--wide"><h1 class="sr-only" data-copy>{t['request.title']}</h1><div class="request-columns"><div class="information"><div role="tablist" aria-label={t['form.type']} class="request-tabs">{['print','dev'].map(type => <button type="button" role="tab" id={`tab-${type}`} aria-controls={type} aria-selected={type === 'print' ? 'true' : 'false'} tabindex={type === 'print' ? 0 : -1}>{t[`tab.${type}`]}</button>)}</div><RequestInfo lang={lang} type="print" /><RequestInfo lang={lang} type="dev" /></div><InquiryForm lang={lang} /></div></div>
-<script>import '../../scripts/request-tabs';</script>
+<script>import '../../scripts/request-tabs'; import '../../scripts/ambient-video-boot';</script>
 </Portal>
 <style>
 .request-page { padding-block: clamp(2rem,4vw,4rem) clamp(4rem,6vw,8rem); }

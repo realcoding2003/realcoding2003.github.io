@@ -5,14 +5,15 @@ import { bodyText } from '../lib/reading-time';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import LayerRail from '../components/portal/LayerRail.astro';
+import MotionGate from '../components/portal/MotionGate.astro';
 import Analytics from '../components/Analytics.astro';
 import '../styles/tokens.css';
 import '../styles/global.css';
 interface Props {
   lang: string; title: string; description?: string; path: string; image?: string;
-  alternates?: Record<string, string>; themeMode?: 'switchable' | 'dark'; post?: Post; hasGame?: boolean; mainClass?: string; wide?: boolean; current?: 'maker'|'dev'|'game'|'life'|'videos'|'request'; noindex?: boolean; finish?: boolean; layerRail?: boolean;
+  alternates?: Record<string, string>; themeMode?: 'switchable' | 'dark'; post?: Post; hasGame?: boolean; mainClass?: string; wide?: boolean; current?: 'maker'|'dev'|'game'|'life'|'videos'|'request'; noindex?: boolean; finish?: boolean; layerRail?: boolean; motionGate?: boolean;
 }
-const { lang, title, description = '', path, image = '/assets/images/og-default.jpg', alternates = {}, themeMode = 'switchable', post, hasGame = false, mainClass, wide = false, current, noindex = false, finish = false, layerRail = false } = Astro.props;
+const { lang, title, description = '', path, image = '/assets/images/og-default.jpg', alternates = {}, themeMode = 'switchable', post, hasGame = false, mainClass, wide = false, current, noindex = false, finish = false, layerRail = false, motionGate = false } = Astro.props;
 const data = translations[lang] || translations.ko;
 const canonical = absolute(path);
 const imageUrl = /^https?:/.test(image) ? image : absolute(image);
@@ -35,6 +36,7 @@ const structured = post ? {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {noindex && <meta name="robots" content="noindex" />}
     <script is:inline>(()=>{const d=document.documentElement;d.classList.add('js');if(d.dataset.themeMode==='dark'){d.dataset.theme='dark';return}let t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.dataset.theme=t})()</script>
+    {motionGate && <MotionGate />}
     <title>{title} | {data.site.title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -72,7 +74,7 @@ const structured = post ? {
     <SiteHeader lang={lang} alternates={alternates} themeMode={themeMode} hasGame={hasGame} wide={wide} current={current} />
     <main id="main" class={mainClass} tabindex="-1"><slot /></main>
     <SiteFooter lang={lang} wide={wide} finish={finish} />
-    {layerRail && <LayerRail />}
+    {layerRail && <LayerRail lang={lang} />}
     <Analytics />
     <script>import '../scripts/theme';</script>
   </body>

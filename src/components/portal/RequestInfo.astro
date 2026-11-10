@@ -6,7 +6,8 @@ interface Props { lang: string; type: 'print'|'dev' }
 const { lang,type } = Astro.props; const t = portalCopy[lang];
 ---
 <div class:list={['request-info',type]} id={type} role="tabpanel" aria-labelledby={`tab-${type}`} tabindex="0">
-  <header class:list={['request-poster',{ 'line-field': type === 'dev' }]}>
+  <header class="request-poster" data-ambient={type === 'dev' ? '' : undefined} data-src-desktop={type === 'dev' ? '/assets/video/portal/request-desktop.mp4' : undefined} data-src-mobile={type === 'dev' ? '/assets/video/portal/request-mobile.mp4' : undefined}>
+    {type === 'dev' && <WorkImage src="/assets/video/portal/request-poster.jpg" alt="" sizes="(min-width:1100px) 55vw, 100vw" />}
     {type === 'print' && <WorkImage src="/assets/images/posts/ams2-pro-sliding-speedrack-underrail/05-a2l-plate.jpg" alt={t['print.alt']} sizes="(min-width:1100px) 55vw, 100vw" loading="eager" />}
     <div class="poster-copy"><h2 data-copy>{t[`${type}.title`]}</h2><p data-copy>{t[`${type}.sub`]}</p></div>
   </header>
@@ -17,8 +18,8 @@ const { lang,type } = Astro.props; const t = portalCopy[lang];
 <style>
 .request-poster { height: clamp(18rem,28vw,26rem); position: relative; display: flex; align-items: flex-end; }
 .request-poster :global(picture),.request-poster :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.print .request-poster::after { content: ''; position: absolute; inset: 0; background: rgb(12 17 48 / .5); }
-.poster-copy { position: relative; z-index: 1; padding: clamp(1.25rem,2vw,2rem); }
+.request-poster::after { content: ''; position: absolute; inset: 0; background: rgb(12 17 48 / .5); }
+.poster-copy { position: relative; z-index: 3; padding: clamp(1.25rem,2vw,2rem); }
 h2 { font-size: clamp(2.25rem,1rem + 4vw,5rem); font-weight: 800; line-height: 1.05; }
 .poster-copy p { margin-bottom: 0; color: var(--stone-100); font-size: 1.0625rem; }
 .steps-title { display: flex; align-items: center; gap: 1.5rem; font-size: 1.75rem; margin: 2.5rem 0 1.25rem !important; }

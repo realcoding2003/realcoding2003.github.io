@@ -2,25 +2,41 @@
 import WorkImage from './WorkImage.astro';
 import { portalCopy } from '../../lib/portal-copy';
 import { prefix } from '../../lib/site.mjs';
-interface Props { lang: string; poster: {src: string; alt: string}; sources?: {src: string; type: string; media?: string}[] }
-const { lang, poster } = Astro.props; const t = portalCopy[lang];
+interface Props { lang: string; film: { desktop: string; mobile: string; poster: string; posterAlt: string } }
+const { lang, film } = Astro.props; const t = portalCopy[lang];
 ---
-<section class="hero" data-layer="1" aria-labelledby="hero-title">
-  <WorkImage {...poster} sizes="100vw" loading="eager" priority />
-  <div class="hero-content container--wide">
-    <h1 id="hero-title" data-copy>{t['hero.title']}</h1><p data-copy>{t['hero.sub']}</p>
-    <div class="hero-actions"><a class="see-work" href="#works" data-copy>{t['hero.works']}<span aria-hidden="true"></span></a><a class="hero-request" href={`${prefix(lang)}/request/`} data-copy>{t.request}</a></div>
-  </div>
+<section class="hero" data-layer="1" aria-labelledby="hero-title" data-hero data-src-desktop={film.desktop} data-src-mobile={film.mobile} data-video-state="idle" data-chapter="1">
+  <div class="hero-track" data-hero-track><div class="hero-stage" data-hero-stage>
+    <div class="hero-poster"><WorkImage src={film.poster} alt={film.posterAlt} sizes="100vw" loading="eager" priority /></div>
+    <div class="hero-copy container--wide">
+      <div class="hero-chapter" data-chapter="1" data-active>
+        <h1 id="hero-title" data-copy>{t['hero.title']}</h1><p data-copy>{t['hero.sub']}</p>
+        <div class="hero-actions"><a class="see-work" href="#works" data-copy>{t['hero.works']}<span aria-hidden="true"></span></a><a class="hero-request" href={`${prefix(lang)}/request/`} data-copy>{t.request}</a></div>
+      </div>
+      {[2,3,4].map(n => <div class="hero-chapter" data-chapter={n} aria-hidden="true"><p class="chapter-title" data-copy>{t[`hero.ch${n}.title`]}</p><p class="chapter-line" data-copy>{t[`hero.ch${n}.line`]}</p></div>)}
+    </div>
+  </div></div>
 </section>
 <style>
-.hero { height: calc(100svh - 4rem); min-height: 34rem; max-height: 62rem; position: relative; display: flex; align-items: flex-end; }
-.hero :global(picture) { position: absolute; inset: 0; }
-.hero :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
-.hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(35deg,rgb(12 17 48 / .94) 0%,rgb(12 17 48 / .65) 30%,transparent 70%),rgb(12 17 48 / .25); }
-.hero-content { position: relative; z-index: 1; padding-bottom: clamp(2.5rem,6vh,5rem); }
-h1 { font-size: clamp(2.75rem,1.25rem + 5vw,6rem); font-weight: 800; line-height: 1.05; max-width: 15ch; }
-h1:lang(en) { font-size: clamp(2.25rem,1rem + 4vw,5rem); }
+.hero,.hero-track { width: 100%; }
+.hero-stage { height: calc(100svh - 4rem); min-height: 34rem; max-height: 62rem; position: relative; display: flex; align-items: flex-end; width: 100%; }
+.hero-poster,.hero-poster :global(picture) { position: absolute; inset: 0; z-index: 0; }
+.hero-poster :global(img),.hero-stage :global(.hero-video) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.hero-stage :global(.hero-video) { z-index: 1; opacity: 0; }
+.hero-stage::after { content: ''; position: absolute; inset: 0; z-index: 2; background: linear-gradient(35deg,rgb(12 17 48 / .94) 0%,rgb(12 17 48 / .65) 30%,transparent 70%),rgb(12 17 48 / .25); pointer-events: none; }
+.hero-copy { position: relative; z-index: 3; padding-bottom: clamp(2.5rem,6vh,5rem); }
+.hero-chapter:not([data-chapter="1"]) { display: none; }
+h1,.chapter-title { font-family: var(--display-font); font-size: clamp(2.75rem,1.25rem + 5vw,6rem); font-weight: 800; line-height: 1.05; max-width: 15ch; color: var(--fg); margin: 0; }
+h1:lang(en),.chapter-title:lang(en) { font-size: clamp(2.25rem,1rem + 4vw,5rem); }
 p { margin: .75rem 0 0; color: var(--stone-100); font-size: clamp(1.125rem,1rem + .7vw,1.75rem); }
+:global(html[data-motion="full"]) .hero-track { height: calc(100svh * 4); }
+:global(html[data-motion="full"]) .hero-stage { position: sticky; top: 0; height: 100svh; min-height: 0; max-height: none; overflow: hidden; }
+:global(html[data-motion="full"]) .hero-copy { display: grid; transform: translateY(calc(-1 * var(--hero-head,4rem))); }
+:global(html[data-motion="full"]) .hero-chapter { display: block; grid-area: 1 / 1; align-self: end; opacity: 0; transform: translateY(.75rem); pointer-events: none; transition: opacity 280ms ease,transform 280ms ease; }
+:global(html[data-motion="full"]) .hero-chapter[data-active],:global(html[data-motion="full"]) .hero-chapter[data-chapter="1"]:focus-within { opacity: 1; transform: none; pointer-events: auto; }
+:global(html[data-motion="full"]) .hero-copy:has([data-chapter="1"]:focus-within) .hero-chapter:not([data-chapter="1"]) { opacity: 0; }
+.hero[data-video-state="painted"] :global(.hero-video) { opacity: 1; }
+.hero[data-video-state="painted"] .hero-poster :global(img) { opacity: 0; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(1.5rem,3vw,3rem); margin-top: clamp(1.5rem,3vh,2.5rem); }
 .see-work { display: inline-flex; align-items: center; gap: .2em; color: var(--fg); font: 800 clamp(1.5rem,1.1rem + 1.6vw,2.75rem)/1.2 var(--display-font); text-decoration: none; }
 .see-work span { display: inline-block; width: .55em; height: .95em; background: var(--accent); }
@@ -28,5 +44,11 @@ p { margin: .75rem 0 0; color: var(--stone-100); font-size: clamp(1.125rem,1rem 
 .hero-request { display: inline-flex; align-items: center; justify-content: center; height: clamp(3rem,2.6rem + 1vw,4rem); padding-inline: clamp(1.25rem,2vw,2rem); border: 2px solid var(--accent); font-size: clamp(1rem,.9rem + .5vw,1.5rem); font-weight: 700; text-decoration: none; background-image: repeating-linear-gradient(to top,var(--accent) 0 3px,transparent 3px 5px); background-position: bottom; background-size: 100% 0%; background-repeat: no-repeat; }
 .hero-request:hover,.hero-request:focus-visible { background-size: 100% 100%; background-color: var(--accent); color: var(--ink-950); }
 @media(prefers-reduced-motion:no-preference) { .hero-request { transition: background-size 260ms,color 260ms,background-color 260ms; } .see-work:hover span,.see-work:focus-visible span { animation: cursor-blink 1s steps(1) infinite; } @keyframes cursor-blink { 50% { opacity: 0; } } }
-@media(max-width:639px) { .hero { height: calc(100svh - 3.5rem); min-height: 30rem; } }
+
+@media (max-width:860px), (hover:none) and (pointer:coarse) { .hero-poster :global(img),.hero-stage :global(.hero-video) { object-position: 58% 50%; } }
+@media(max-width:639px) {
+.hero-stage { height: calc(100svh - 3.5rem); min-height: 30rem; }
+:global(html[data-motion="full"]) .hero-copy { transform: translateY(calc(-1 * var(--hero-head,3.5rem))); }
+.hero-copy { padding-left: max(0px,calc(env(safe-area-inset-left) - var(--gutter-wide))); padding-right: max(0px,calc(env(safe-area-inset-right) - var(--gutter-wide))); }
+}
 </style>

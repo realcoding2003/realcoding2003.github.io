@@ -51,6 +51,17 @@ async function* htmlFiles(dir) {
 }
 export function responsiveImages() {
   return { name: 'rc-responsive-images', hooks: {
+    // 개발 서버: 변형은 렌더 중 캐시에 만들어지지만 dist가 없으므로 캐시에서 직접 내준다(2026-11-10 — 미리보기 깨진 이미지).
+    'astro:server:setup': ({ server }) => {
+      server.middlewares.use(async (req, res, next) => {
+        const match = req.url?.match(/^\/_images\/rc\/([a-f0-9]{64}-\d+\.webp)(?:\?.*)?$/);
+        if (!match) return next();
+        try {
+          const body = await readFile(join(cache, match[1]));
+          res.setHeader('Content-Type', 'image/webp'); res.setHeader('Cache-Control', 'no-cache'); res.end(body);
+        } catch { res.statusCode = 404; res.end(); }
+      });
+    },
     'astro:build:done': async ({ dir, logger }) => {
       const root = fileURLToPath(dir), names = new Set();
       for await (const file of htmlFiles(root)) {

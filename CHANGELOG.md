@@ -19,8 +19,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 홈 히어로 스크롤 영화(생성 영상 15초, 스크롤 진행률로 앞뒤 재생)와 챕터 전환, 층 레일 진행률 연동 (motion)
 - 작업대·의뢰 섹션 반복 배경 영상, 홈 전용 부드러운 스크롤(Lenis), 움직임 줄이기·데이터 절약 시 포스터 폴백 (motion)
 
+### Changed
+
+- 의뢰 안내: 출력 범위보다 큰 출력물(분할 출력·조립)과 출력 가능한 범위의 기구 설계를 '가능한 것'으로 옮김 (portal)
+- 배포: GitHub Pages 기본 Jekyll 빌드 → GitHub Actions의 Astro 빌드(`.github/workflows/pages.yml`) (ci)
+
 ### Fixed
 
+- 미리보기(dev) 서버에서 WebP 변형 이미지가 404로 깨져 보이던 문제 (reader)
 - 원본이 없어 깨져 보이던 `ai-powered-github-pages-blog-series` 글(3개 언어)의 대표 이미지 제거 (posts)
 - kramdown 오류 렌더링 흉내 제거, bitbucket 글 3편의 목록 안 코드 블록 들여쓰기 수정 (reader)
 - 2026-03-15~24 영어·일본어 글 20편을 `/en/`·`/ja/` 주소로 정규화하고 옛 주소는 이동 페이지로 유지 — 한국어 글의 hreflang이 없는 주소를 가리키던 문제 해소 (site)

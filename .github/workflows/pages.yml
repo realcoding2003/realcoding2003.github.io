@@ -1,0 +1,57 @@
+# realcoding.blog — Astro 빌드 → GitHub Pages 배포
+# master에 push하면 게시된다(전환 후: 저장소 Settings → Pages → Source = GitHub Actions).
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      ASTRO_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # 본문 이미지 WebP 변형 캐시(첫 빌드만 인코딩, 이후 재사용). npm ci가 node_modules를 지우므로 설치 뒤에 복원한다.
+      - uses: actions/cache@v4
+        with:
+          path: node_modules/.cache/rc-images
+          key: rc-images-${{ hashFiles('src/lib/responsive-images.mjs') }}-${{ hashFiles('assets/images/**') }}
+          restore-keys: |
+            rc-images-${{ hashFiles('src/lib/responsive-images.mjs') }}-
+
+      - run: npm run build
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

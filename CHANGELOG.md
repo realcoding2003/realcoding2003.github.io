@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- 글·목록·404 화면이 OS 설정에 따라 밝은 테마로 바뀌던 문제 — 모든 화면을 어두운 테마로 고정(테마 전환 버튼 숨김, 저장된 밝은 테마 무시), 주소창 색(theme-color) #0C1130 하나로 통일 (reader)
 - 영어·일본어 홈 첫 화면 제목 글꼴 교체 밀림(제목 글꼴 미리 받기 + optional) (header)
 - 미리보기(dev) 서버에서 WebP 변형 이미지가 404로 깨져 보이던 문제 (reader)
 - 원본이 없어 깨져 보이던 `ai-powered-github-pages-blog-series` 글(3개 언어)의 대표 이미지 제거 (posts)

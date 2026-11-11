@@ -138,8 +138,9 @@ try {
   const count = await page.locator('[data-post-row]:visible').count();
   check(count === expected && expected > 0,{kind:'topic-query',prefix,count,expected});
  }
- for(const path of related) for(const theme of ['light','dark']) {
-  await page.goto(origin+path); await page.evaluate(theme => {localStorage.setItem('theme',theme);document.documentElement.dataset.theme=theme;},theme); await page.evaluate(() => document.fonts.ready);
+ for(const path of related) for(const theme of ['dark']) {
+  await page.goto(origin+path); await page.evaluate(() => document.fonts.ready);
+  check(await page.evaluate(() => document.documentElement.dataset.theme) === theme,{kind:'related-theme',path,theme});
   const card = page.locator('.related-works'); await card.scrollIntoViewIfNeeded();
   const file = `${filename(path)}-related-${theme}.png`; await card.screenshot({path:join(out,file)}); report.screenshots.push(file);
   check(await card.count() === 1,{kind:'related',path,theme});

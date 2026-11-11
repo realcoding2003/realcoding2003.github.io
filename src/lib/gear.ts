@@ -28,11 +28,11 @@ export const gear = [
   },
   {
     "name": "Bambu Lab A2L",
-    "baseSlug": "ams2-pro-sliding-speedrack-underrail",
+    "baseSlug": "bambulab-a2l-unboxing-review",
     "description": {
-      "ko": "AMS 2 Pro 슬라이딩 덮개 전체를 한 판에 출력.",
-      "en": "Printed the full AMS 2 Pro sliding cover set on one plate.",
-      "ja": "AMS 2 Proスライドカバー一式を1枚のプレートでプリント。"
+      "ko": "330 mm 큰 베드. 큰 단색 출력을 한 판에.",
+      "en": "Big 330 mm bed for large single-color prints in one go.",
+      "ja": "330 mmの大きなベッド。大きな単色プリントを1枚で。"
     }
   },
   {

@@ -1,0 +1,9 @@
+id: "2026-11-11_chiikawa-ice-cream-keychain"
+date: "2026-11-11"
+title: {"ko": "치이카와 3인방 아이스크림콘 키링 18개", "en": "18 Chiikawa Ice Cream Keychains", "ja": "ちいかわアイスクリームキーホルダー18個"}
+summary: {"ko": "선물용으로 콘은 X2D, 머리는 H3C로 뽑았다.", "en": "Gifts: cones on the X2D, multicolor heads on the H3C.", "ja": "プレゼント用に、コーンはX2D、頭はH3Cで出力。"}
+posts: ["chiikawa-ice-cream-keychain"]
+image: {"src": "/assets/images/posts/chiikawa-ice-cream-keychain/hero.jpg", "alt": {"ko": "보울에 담긴 치이카와 아이스크림콘 키링", "en": "Chiikawa ice cream cone keychains in a bowl", "ja": "ボウルに入ったちいかわアイスクリームキーホルダー"}}
+printers: ["X2D", "H3C"]
+material: "PLA"
+shorts: {"id": "RseZJz4l1g4", "seconds": 56}

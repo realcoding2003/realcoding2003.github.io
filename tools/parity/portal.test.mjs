@@ -8,6 +8,7 @@ import { loadWorks } from '../../src/lib/works-data.mjs';
 import { validateInquiry } from '../../src/lib/inquiry-validate.mjs';
 import { buildMailto } from '../../src/lib/inquiry-mail.mjs';
 const expected = [
+ ['2026-11-11_chiikawa-ice-cream-keychain',null,['chiikawa-ice-cream-keychain'],['RseZJz4l1g4',56],null,null,['X2D','H3C'],'PLA',null,null,'/assets/images/posts/chiikawa-ice-cream-keychain/hero.jpg'],
  ['2026-11-10_mario-luigi-multipart-assembly',null,['mario-luigi-multipart-assembly'],['ejELZAjMKug',63],['sedkCEygUiM',403],null,[],null,null,null,'/assets/images/posts/mario-luigi-multipart-assembly/08-brothers.jpg'],
  ['2026-11-09_ams2-pro-sliding-speedrack-underrail',1,['ams2-pro-sliding-speedrack-underrail'],['cgMnIAW3yCA',60],null,3574866,['A2L'],'PLA','~22h','~700 g','/assets/images/posts/ams2-pro-sliding-speedrack-underrail/hero.jpg'],
  ['2026-11-08_bambulab-h3c-multicolor-figure',3,['bambulab-h3c-multicolor-figure'],['CcLO_yhIbOU',55],null,null,['H3C'],null,'~8h',null,'/assets/images/posts/bambulab-h3c-multicolor-figure/hero.jpg'],

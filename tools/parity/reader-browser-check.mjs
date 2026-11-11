@@ -50,16 +50,19 @@ try {
     if (result.lines > 3 || !result.aligned || result.measure !== 656) report.failures.push({ path, ...result });
   }
   const samples = ['/2026/11/09/ams2-pro-sliding-speedrack-underrail/', '/2025/06/10/rag-mes-integration-guide/', '/2026/03/11/typescript-as-const-literal-type/'];
-  for (const width of [390, 1440]) for (const lang of ['ko','en','ja']) for (const theme of ['light','dark']) {
+  // Posts are fixed dark: neither a light OS nor an old saved light toggle may switch them.
+  for (const width of [390, 1440]) for (const lang of ['ko','en','ja']) for (const scheme of ['light','dark']) {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 1000 });
+    await page.emulateMedia({ colorScheme: scheme });
     await page.goto(origin + (lang === 'ko' ? '' : '/' + lang) + samples[0]);
-    await page.evaluate(theme => { localStorage.setItem('theme', theme); document.documentElement.dataset.theme = theme; }, theme);
+    await page.evaluate(() => localStorage.setItem('theme', 'light')); await page.reload();
     await page.evaluate(() => document.fonts.ready);
-    const filename = `${lang}-${width}-${theme}.png`; await page.screenshot({ path: join(out, filename) }); report.screenshots.push(filename);
+    const filename = `${lang}-${width}-os-${scheme}.png`; await page.screenshot({ path: join(out, filename) }); report.screenshots.push(filename);
+    const state = await page.evaluate(() => ({ theme: document.documentElement.dataset.theme, toggles: document.querySelectorAll('[data-theme-toggle]').length, bg: getComputedStyle(document.body).backgroundColor }));
     const links = await page.locator('.post-content a').evaluateAll(links => links.map(a => getComputedStyle(a).color));
-    const expected = theme === 'light' ? 'rgb(122, 97, 0)' : 'rgb(232, 197, 82)';
-    report.checks++; if (links.some(color => color !== expected)) report.failures.push({ lang, width, theme, links });
+    report.checks++; if (state.theme !== 'dark' || state.toggles || links.some(color => color !== 'rgb(232, 197, 82)')) report.failures.push({ lang, width, scheme, ...state, links });
   }
+  await page.emulateMedia({ colorScheme: null });
   // Also exercise in-body panels/media after their lazy content has appeared.
   for (const width of [360, 390]) for (const path of samples) {
     await page.setViewportSize({ width, height: 844 }); await page.goto(origin + path);

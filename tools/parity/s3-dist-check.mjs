@@ -48,9 +48,15 @@ for (const file of walk(root)) {
   check(sections.length === (relatedSlugs.has(slug) ? 1 : 0),path,'Related works selection'); if(sections.length) related++;
   if (slug === 'ams2-pro-sliding-speedrack-underrail') check(nodes.some(n => n.tag === 'a' && n.a.href === 'https://makerworld.com/models/3574866' && ancestor(n,p => hasClass(p,'related-works'))),path,'Related model link');
  }
+ // 2026-11-11: every rendered page is fixed dark (posts, listings, 404 included), no theme toggle.
+ // Legacy redirect stubs (meta refresh, no layout) are skipped.
+ const htmlNode = nodes.find(n => n.tag === 'html');
+ if (!nodes.some(n => n.tag === 'meta' && (n.a['http-equiv'] || '').toLowerCase() === 'refresh')) {
+  check(htmlNode.a['data-theme'] === 'dark' && htmlNode.a['data-theme-mode'] === 'dark',path,'Page must be fixed dark');
+  check(nodes.filter(n => 'data-theme-toggle' in n.a).length === 0,path,'Theme toggle present');
+  check(nodes.filter(n => n.tag === 'meta' && n.a.name === 'theme-color').map(n => n.a.content).join() === '#0C1130',path,'theme-color must be single ink');
+ }
  if (!portalPaths.includes(path)) continue;
- const htmlNode = nodes.find(n => n.tag === 'html'); check(htmlNode.a['data-theme'] === 'dark' && htmlNode.a['data-theme-mode'] === 'dark',path,'Portal must be dark');
- check(nodes.filter(n => 'data-theme-toggle' in n.a).length === 0,path,'Theme toggle on portal');
  check(nodes.filter(n => n.tag === 'h1').length === 1,path,'H1 count != 1');
  for (const n of nodes.filter(n => n.tag === 'img')) check('alt' in n.a && Number(n.a.width)>0 && Number(n.a.height)>0,path,`Image dimensions/alt ${n.a.src}`);
  check(nodes.filter(n => n.a.fetchpriority === 'high').length <= 1,path,'More than one high priority');

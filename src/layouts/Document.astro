@@ -14,7 +14,7 @@ interface Props {
   lang: string; title: string; description?: string; path: string; image?: string;
   alternates?: Record<string, string>; themeMode?: 'switchable' | 'dark'; post?: Post; hasGame?: boolean; mainClass?: string; wide?: boolean; current?: 'ai'|'maker'|'dev'|'game'|'life'|'videos'|'request'; noindex?: boolean; finish?: boolean; layerRail?: boolean; motionGate?: boolean;
 }
-const { lang, title, description = '', path, image = '/assets/images/og-default.jpg', alternates = {}, themeMode = 'switchable', post, hasGame = false, mainClass, wide = false, current, noindex = false, finish = false, layerRail = false, motionGate = false } = Astro.props;
+const { lang, title, description = '', path, image = '/assets/images/og-default.jpg', alternates = {}, themeMode = 'dark', post, hasGame = false, mainClass, wide = false, current, noindex = false, finish = false, layerRail = false, motionGate = false } = Astro.props;
 const data = translations[lang] || translations.ko;
 const canonical = absolute(path);
 const imageUrl = /^https?:/.test(image) ? image : absolute(image);
@@ -43,8 +43,7 @@ const structured = post ? {
     <link rel="canonical" href={canonical} />
     {Object.entries(alternates).map(([code, url]) => <link rel="alternate" hreflang={code} href={absolute(url)} />)}
     <link rel="alternate" type="application/atom+xml" title={data.site.title} href={absolute('/feed.xml')} />
-    <meta name="theme-color" content="#F4F5F0" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0C1130" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0C1130" />
     <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/android-chrome-192x192.png" />

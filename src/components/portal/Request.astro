@@ -18,10 +18,10 @@ const { page,posts } = Astro.props; const { lang } = page; const t = portalCopy[
 .information { min-width: 0; }
 .request-tabs { display: none; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: 1rem; }
 :global(html.js) .request-tabs { display: flex; }
-button { flex: 0 0 auto; min-width: 0; max-width: 100%; white-space: normal; overflow-wrap: anywhere; background: none; border: 0; border-bottom: 3px solid transparent; color: var(--fg-muted); padding: .75rem .5rem; font: 800 clamp(1.25rem,1rem + 1vw,2rem)/1.25 var(--display-font); }
+button { flex: 0 0 auto; min-width: 0; max-width: 100%; white-space: normal; overflow-wrap: normal; word-break: keep-all; hyphens: none; background: none; border: 0; border-bottom: 3px solid transparent; color: var(--fg-muted); padding: .75rem .5rem; font: 800 clamp(1.125rem,.9rem + .6vw,1.625rem)/1.25 var(--display-font); }
 button + button { position: relative; margin-left: .5rem; }
 button + button::before { content: ''; position: absolute; left: -.5rem; top: 50%; transform: translateY(-50%); height: 1.5rem; border-left: 1px solid var(--fg-muted); }
 button[aria-selected=true] { color: var(--accent); border-bottom-color: var(--accent); }
 @media(max-width:1099px) { .request-columns { grid-template-columns: minmax(0,1fr); } }
-@media(max-width:639px) { :global(html.js) .request-tabs { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: stretch; } button + button { margin-left: 0; } button + button::before { display: none; } }
+@media(max-width:639px) { :global(html.js) .request-tabs { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: stretch; } button + button { margin-left: 0; } button + button::before { display: none; } button { font-size: 1.125rem; } }
 </style>

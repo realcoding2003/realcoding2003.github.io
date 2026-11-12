@@ -2,7 +2,8 @@ import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { resolve, join, relative } from 'node:path';
 import { parseHtml, textOf, hasClass, ancestor, decode } from './html-tree.mjs';
 import { loadWorks } from '../../src/lib/works-data.mjs';
-import { AI_FLAGSHIP_SLUG } from '../../src/lib/site.mjs';
+import { loadGallery } from '../../src/lib/gallery-data.mjs';
+import { AI_FLAGSHIP_SLUG, parseDocument, postMetadata } from '../../src/lib/site.mjs';
 const root = resolve(process.argv[2] || 'dist');
 const failures = []; let pages = 0, internalLinks = 0, related = 0;
 const check = (ok,path,message) => { if (!ok) failures.push({path,message}); };
@@ -11,6 +12,8 @@ const portalPaths = prefixes.flatMap(p => ['', 'ai/', 'maker/','dev/','game/','l
 const newPaths = prefixes.flatMap(p => ['ai','maker','dev','game','life','videos','request'].map(s => `${p}/${s}/`));
 const sitemap = [...readFileSync(join(root,'sitemap.xml'),'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => new URL(decode(m[1])).pathname);
 const works = loadWorks(); const relatedSlugs = new Set(works.flatMap(w => w.posts));
+const gallery = loadGallery();
+const posts = readdirSync('_posts').filter(file => file.endsWith('.md')).map(file => postMetadata(file,parseDocument(readFileSync(join('_posts',file),'utf8')).data)).filter(post => post.date.getTime() <= Date.now());
 const fileFor = path => join(root,decodeURIComponent(path).replace(/^\//,''),path.endsWith('/') ? 'index.html' : '');
 const idCache = new Map();
 function idsFor(file) { if (!idCache.has(file)) idCache.set(file,new Set(parseHtml(readFileSync(file,'utf8')).nodes.filter(n => n.a.id).map(n => n.a.id))); return idCache.get(file); }
@@ -73,8 +76,24 @@ for (const file of walk(root)) {
   const layers = nodes.filter(n => n.tag === 'section' && 'data-layer' in n.a).map(n => n.a['data-layer']); check(layers.join(',') === '1,2,3,4,5,6,7',path,'Home layers');
   const slices=nodes.filter(n => hasClass(n,'slice'));
   check(slices.length === 4,path,'Realm slices');
-  check('data-open' in slices[0].a && nodes.some(n=>n.a.href===`${path}ai/` && ancestor(n,p=>p===slices[0])) && slices.slice(1).every(n=>!('data-open' in n.a)),path,'AI first and uniquely open by default'); check(nodes.filter(n => hasClass(n,'bento-cell')).length === 5,path,'Bento cells');
-  const stats = nodes.find(n => hasClass(n,'stats-values')); check(!!stats && textOf(stats).replace(/\s+/g,' ').trim().replace(/\s*·\s*/g,' · ') === 'A2L · ~22h · ~700 g',path,'Exact stats strip');
+  check('data-open' in slices[0].a && nodes.some(n=>n.a.href===`${path}ai/` && ancestor(n,p=>p===slices[0])) && slices.slice(1).every(n=>!('data-open' in n.a)),path,'AI first and uniquely open by default');
+  const cells = nodes.filter(n => hasClass(n,'gallery-cell'));
+  check(cells.length === gallery.length,path,`Gallery cells = curated photos (${gallery.length})`);
+  check(!nodes.some(n => hasClass(n,'bento-cell') || hasClass(n,'stats-strip')),path,'No bento cells or stats strip');
+  const lang = htmlNode.a.lang;
+  gallery.forEach((item,i) => {
+   const cell = cells[i]; const work = works.find(w => w.id === item.work);
+   check(cell?.tag === 'a' && !!cell.a.href?.trim(),path,`Gallery link ${i}`);
+   if (!cell) return;
+   const images = nodes.filter(n => n.tag === 'img' && ancestor(n,p => p === cell));
+   check(images.length === 1 && !!images[0].a.alt?.trim() && images[0].a.alt === item.alt[lang] && images[0].a.src === item.src && images[0].a.loading === 'lazy',path,`Gallery image/alt/order ${i}`);
+   const titles = nodes.filter(n => n.tag === 'h3' && ancestor(n,p => hasClass(p,'gallery-caption')) && ancestor(n,p => p === cell));
+   check(titles.length === 1 && textOf(titles[0]).trim() === work.title[lang] && cell.a['aria-label'] === work.title[lang],path,`Gallery caption/accessibility title ${i}`);
+   const matches = work.posts.length ? posts.filter(p => p.baseSlug === work.posts[0] && p.lang === lang) : [];
+   if (work.posts.length) check(matches.length === 1,path,`Gallery first-post translation ${item.work} ${lang}`);
+   const href = work.posts.length ? matches[0]?.path : work.long ? `https://www.youtube.com/watch?v=${work.long.id}` : `https://www.youtube.com/shorts/${work.shorts.id}`;
+   check(cell.a.href === href,path,`Gallery same-language first-post link ${i}: expected ${href}, got ${cell.a.href}`);
+  });
   const rail = nodes.find(n => hasClass(n,'video-rail')); check(nodes.filter(n => n.tag === 'li' && n.parent === rail).length === works.filter(w => w.shorts).length,path,'Shorts rail count = works with shorts');
   check(nodes.some(n => n.a['aria-hidden'] === 'true' && textOf(n).includes('0.20')),path,'0.20 must be decorative');
   check(nodes.some(n => n.a.href === '#works') && nodes.some(n => n.a.id === 'works'),path,'Works anchor');

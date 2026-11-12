@@ -56,7 +56,26 @@ for (const [name,values,files,key] of [
  ['name',{name:'  '},[],'name'], ['email',{email:'not-an-email'},[],'email'], ['phone format',{phone:'not phone',consent_optional:true},[],'phone'], ['phone consent',{phone:'+82 10-1234-5678'},[],'phoneConsent'], ['message',{message:' '},[],'message'],
  ['file extension',{},[file('evil.stl.exe')],'fileType'], ['six files',{},Array.from({length:6},() => file()),'fileCount'], ['file total',{},[file('a.stl',209715200),file('b.stl',1)],'fileSize'], ['required consent',{consent_required:false},[],'consent'],
 ]) test(`form rejects ${name}`, () => assert.ok(validateInquiry({...good,...values},files).includes(key)));
-test('dev tab excludes retained print files from validation', () => assert.deepEqual(validateInquiry({...good,type:'dev'},[file('bad.exe',999999999)]),[]));
+for (const type of ['dev','ax','etc']) test(`${type} tab excludes retained print files from validation`, () => assert.deepEqual(validateInquiry({...good,type},[file('bad.exe',999999999)]),[]));
+test('etc keeps required fields and optional phone consent validation', () => {
+ assert.deepEqual(validateInquiry({...good,type:'etc'}),[]);
+ for(const key of ['name','email','message']) assert.ok(validateInquiry({...good,type:'etc',[key]:''}).includes(key));
+ assert.ok(validateInquiry({...good,type:'etc',consent_required:false}).includes('consent'));
+ assert.ok(validateInquiry({...good,type:'etc',phone:'010-1234-5678'}).includes('phoneConsent'));
+ assert.deepEqual(validateInquiry({...good,type:'etc',phone:'010-1234-5678',consent_optional:true}),[]);
+});
+test('etc mail uses the exact localized subject and excludes company and retained files', async () => {
+ const {portalCopy} = await sourceModule('portal-copy.ts');
+ for (const lang of ['ko','en','ja']) {
+  const copy=portalCopy[lang],subject={ko:'[문의] 기타',en:'[Inquiry] Other',ja:'[お問い合わせ] その他'}[lang];
+  assert.equal(copy['form.mailSubject.etc'],subject);
+  const url=new URL(buildMailto({contact:'kevinpark@okyc.kr',subject:copy['form.mailSubject.etc'],values:{...good,type:'etc',company:'Retained company',message:'A collaboration & interview?'},files:[file('retained.stl')],copy}));
+  assert.equal(url.searchParams.get('subject'),subject);
+  const body=url.searchParams.get('body');
+  for(const text of [copy['tab.etc'],copy['label.name']+': Kevin',copy['label.email']+': a@example.com','A collaboration & interview?',copy['consent.required']+': ✓']) assert.ok(body.includes(text));
+  for(const text of [copy['label.company'],'Retained company','retained.stl',copy['form.offlineFiles']]) assert.ok(!body.includes(text));
+ }
+});
 test('mailto encodes subject, body, consent and filenames without attaching files', async () => {
  const {portalCopy} = await sourceModule('portal-copy.ts');
  for (const lang of ['ko','en','ja']) {

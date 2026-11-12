@@ -9,18 +9,19 @@ interface Props { page: PortalPage; posts: Post[] }
 const { page,posts } = Astro.props; const { lang } = page; const t = portalCopy[lang];
 ---
 <Portal lang={lang} title={t.request} path={page.path} alternates={alternatesFor('request/')} current="request" hasGame={posts.some(p => p.lang === lang && p.section === 'game')}>
-<div class="request-page container--wide"><h1 class="sr-only" data-copy>{t['request.title']}</h1><div class="request-columns"><div class="information"><div role="tablist" aria-label={t['form.type']} class="request-tabs">{['print','dev','ax'].map(type => <button type="button" role="tab" id={`tab-${type}`} aria-controls={type} aria-selected={type === 'print' ? 'true' : 'false'} tabindex={type === 'print' ? 0 : -1}>{t[`tab.${type}`]}</button>)}</div><RequestInfo lang={lang} type="print" /><RequestInfo lang={lang} type="dev" /><RequestInfo lang={lang} type="ax" /></div><InquiryForm lang={lang} /></div></div>
+<div class="request-page container--wide"><h1 class="sr-only" data-copy>{t['request.title']}</h1><div class="request-columns"><div class="information"><div role="tablist" aria-label={t['form.type']} class="request-tabs">{['print','dev','ax','etc'].map(type => <button type="button" role="tab" id={`tab-${type}`} aria-controls={type} aria-selected={type === 'print' ? 'true' : 'false'} tabindex={type === 'print' ? 0 : -1}>{t[`tab.${type}`]}</button>)}</div><RequestInfo lang={lang} type="print" /><RequestInfo lang={lang} type="dev" /><RequestInfo lang={lang} type="ax" /><RequestInfo lang={lang} type="etc" /></div><InquiryForm lang={lang} /></div></div>
 <script>import '../../scripts/request-tabs'; import '../../scripts/ambient-video-boot';</script>
 </Portal>
 <style>
 .request-page { padding-block: clamp(2rem,4vw,4rem) clamp(4rem,6vw,8rem); }
 .request-columns { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: clamp(2rem,3vw,3.5rem); }
 .information { min-width: 0; }
-.request-tabs { display: none; align-items: center; gap: .5rem; margin-bottom: 1rem; overflow-x: auto; scrollbar-width: none; }
+.request-tabs { display: none; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: 1rem; }
 :global(html.js) .request-tabs { display: flex; }
-button { flex: 0 0 auto; white-space: nowrap; background: none; border: 0; border-bottom: 3px solid transparent; color: var(--fg-muted); padding: .75rem .5rem; font: 800 clamp(1.25rem,1rem + 1vw,2rem)/1.25 var(--display-font); }
+button { flex: 0 0 auto; min-width: 0; max-width: 100%; white-space: normal; overflow-wrap: anywhere; background: none; border: 0; border-bottom: 3px solid transparent; color: var(--fg-muted); padding: .75rem .5rem; font: 800 clamp(1.25rem,1rem + 1vw,2rem)/1.25 var(--display-font); }
 button + button { position: relative; margin-left: .5rem; }
 button + button::before { content: ''; position: absolute; left: -.5rem; top: 50%; transform: translateY(-50%); height: 1.5rem; border-left: 1px solid var(--fg-muted); }
 button[aria-selected=true] { color: var(--accent); border-bottom-color: var(--accent); }
 @media(max-width:1099px) { .request-columns { grid-template-columns: minmax(0,1fr); } }
+@media(max-width:639px) { :global(html.js) .request-tabs { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: stretch; } button + button { margin-left: 0; } button + button::before { display: none; } }
 </style>

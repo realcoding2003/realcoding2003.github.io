@@ -170,14 +170,14 @@ export async function checkS5(browser, origin, out) {
   try { await ctx.addInitScript(connection=>Object.defineProperty(navigator,'connection',{configurable:true,value:connection}),connection); await goto(page,'/'); await staticChecks(page,requests,reason,reason); }
   finally { await ctx.close(); }
  }
- // D: no-JS SSR remains usable, including all three request panels.
+ // D: no-JS SSR remains usable, including all four request panels.
  for(const width of [1440,390]) for(const path of ['/','/ai/','/request/#dev']) {
   const {ctx,page,requests}=await session({javaScriptEnabled:false,viewport:{width,height:width===1440?900:844}});
   try {
    await goto(page,path);
    if(path!=='/request/#dev') await staticChecks(page,requests,`nojs:${width}`,null,false);
    else {
-    await bottom(page); check(await page.locator('[role=tabpanel]:visible').count()===3 && await page.locator('#dev .request-poster img').isVisible() && !await page.locator('html').getAttribute('data-motion') && requests.length===0 && await page.locator('video').count()===0,{kind:'nojs-request-s5',width,requests});
+    await bottom(page); check(await page.locator('[role=tabpanel]:visible').count()===4 && await page.locator('#dev .request-poster img').isVisible() && await page.locator('#etc .request-poster img').isVisible() && await page.locator('noscript a[href^="mailto:"]').isVisible() && !await page.locator('html').getAttribute('data-motion') && requests.length===0 && await page.locator('video').count()===0,{kind:'nojs-request-s5',width,requests});
    }
   } finally { await ctx.close(); }
  }

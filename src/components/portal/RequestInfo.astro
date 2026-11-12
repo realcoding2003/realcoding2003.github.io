@@ -2,19 +2,21 @@
 import { portalCopy } from '../../lib/portal-copy';
 import WorkImage from './WorkImage.astro';
 import LineIcon from './LineIcon.astro';
-interface Props { lang: string; type: 'print'|'dev'|'ax' }
+interface Props { lang: string; type: 'print'|'dev'|'ax'|'etc' }
 const { lang,type } = Astro.props; const t = portalCopy[lang];
 ---
 <div class:list={['request-info',type]} id={type} role="tabpanel" aria-labelledby={`tab-${type}`} tabindex="0">
   <header class="request-poster" data-ambient={type === 'dev' ? '' : undefined} data-src-desktop={type === 'dev' ? '/assets/video/portal/request-desktop.mp4' : undefined} data-src-mobile={type === 'dev' ? '/assets/video/portal/request-mobile.mp4' : undefined}>
-    {type === 'dev' && <WorkImage src="/assets/video/portal/request-poster.jpg" alt="" sizes="(min-width:1100px) 55vw, 100vw" />}
+    {(type === 'dev' || type === 'etc') && <WorkImage src="/assets/video/portal/request-poster.jpg" alt="" sizes="(min-width:1100px) 55vw, 100vw" />}
     {type === 'ax' && <WorkImage src="/assets/video/portal/ax-hero-desktop-poster.jpg" alt="" sizes="(min-width:1100px) 55vw, 100vw" />}
     {type === 'print' && <WorkImage src="/assets/images/posts/ams2-pro-sliding-speedrack-underrail/05-a2l-plate.jpg" alt={t['print.alt']} sizes="(min-width:1100px) 55vw, 100vw" loading="eager" />}
     <div class="poster-copy"><h2 data-copy>{t[`${type}.title`]}</h2><p data-copy>{t[`${type}.sub`]}</p></div>
   </header>
+  {type !== 'etc' && <>
   <h3 class="steps-title" data-copy>{t['steps.title']}<span class="mono">{t['steps.badge']}</span></h3>
   <ol class="steps">{[1,2,3].map((n) => <li><LineIcon name={n === 1 ? 'chat' : n === 2 ? 'document' : type === 'print' ? 'box' : 'code'} /><div><h4><span class="mono">0{n}</span> {t[`${type}.step${n}.name`]}</h4><p data-copy>{t[`${type}.step${n}.description`]}</p></div></li>)}</ol>
   <div class="capabilities">{['can','cannot'].map(kind => <section><h3 data-copy>{t[`${kind}.title`]}</h3><ul>{t[`${type}.${kind}`].split(' · ').map(value => <li><LineIcon name={kind === 'can' ? 'check' : 'cross'} /><span data-copy>{value}</span></li>)}</ul></section>)}</div>
+  </>}
 </div>
 <style>
 .request-poster { height: clamp(18rem,28vw,26rem); position: relative; display: flex; align-items: flex-end; }

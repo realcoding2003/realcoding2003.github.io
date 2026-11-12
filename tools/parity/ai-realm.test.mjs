@@ -69,19 +69,21 @@ test('AX has three monotone chapters and keeps the home chapter defaults',()=>{
  for(let i=1;i<=100;i++) assert.ok(timeAt(i/100,15)>=timeAt((i-1)/100,15));
 });
 test('all request hashes, keyboard navigation and history hashchange select the matching panel and radio',()=>{
- for(const hash of ['#print','#dev','#ax','#unknown']) {
-  const events=new Map(), docEvents=[], panels=Object.fromEntries(['print','dev','ax'].map(id=>[id,{hidden:false}]));
-  const tabs=['print','dev','ax'].map(id=>({attrs:{'aria-controls':id},events:{},setAttribute(k,v){this.attrs[k]=v},getAttribute(k){return this.attrs[k]},addEventListener(k,fn){this.events[k]=fn},focus(){this.focused=true}}));
-  const radios=['print','dev','ax'].map(value=>({value,checked:false}));
+ for(const hash of ['#print','#dev','#ax','#etc','#unknown']) {
+  const events=new Map(), docEvents=[], panels=Object.fromEntries(['print','dev','ax','etc'].map(id=>[id,{hidden:false}]));
+  const tabs=['print','dev','ax','etc'].map(id=>({attrs:{'aria-controls':id},events:{},setAttribute(k,v){this.attrs[k]=v},getAttribute(k){return this.attrs[k]},addEventListener(k,fn){this.events[k]=fn},focus(){this.focused=true}}));
+  const radios=['print','dev','ax','etc'].map(value=>({value,checked:false}));
   const location={hash,pathname:'/en/request/',search:''};const history=[];
   const context=vm.createContext({document:{querySelectorAll:s=>s.startsWith('.request-tabs')?tabs:radios,getElementById:id=>panels[id],dispatchEvent:e=>docEvents.push(e.detail)},location,history:{replaceState:(_,__,url)=>history.push(url)},CustomEvent:class{constructor(_,v){this.detail=v.detail}},addEventListener:(k,fn)=>events.set(k,fn)});
   vm.runInContext(ts.transpileModule(source('src/scripts/request-tabs.ts'),{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText,context);
   const check=type=>{assert.equal(tabs.find(t=>t.attrs['aria-selected']==='true').attrs['aria-controls'],type);assert.deepEqual(Object.keys(panels).filter(id=>!panels[id].hidden),[type]);assert.equal(radios.find(r=>r.checked).value,type);assert.equal(docEvents.at(-1),type);};
   check(hash==='#unknown'?'print':hash.slice(1));assert.equal(history.length,0);
-  tabs[0].events.keydown({key:'End',preventDefault(){}});check('ax');assert.equal(history.at(-1),'/en/request/#ax');
-  tabs[2].events.keydown({key:'ArrowRight',preventDefault(){}});check('print');
-  tabs[0].events.keydown({key:'ArrowLeft',preventDefault(){}});check('ax');
-  location.hash='#dev';events.get('hashchange')();check('dev');
+  tabs[0].events.keydown({key:'End',preventDefault(){}});check('etc');assert.equal(history.at(-1),'/en/request/#etc');
+  tabs[3].events.keydown({key:'ArrowRight',preventDefault(){}});check('print');
+  tabs[0].events.keydown({key:'ArrowLeft',preventDefault(){}});check('etc');
+  tabs[3].events.keydown({key:'Home',preventDefault(){}});check('print');
+  for(const tab of tabs) {tab.events.click();check(tab.attrs['aria-controls']);}
+  for(const type of ['dev','ax','etc','print']) {location.hash='#'+type;events.get('hashchange')();check(type);}
  }
 });
 test('AX mail includes optional company, exact prefix and no retained print files',()=>{
@@ -96,14 +98,19 @@ test('AX mail includes optional company, exact prefix and no retained print file
  assert.match(script,/fileInput.disabled = type !== 'print'/);assert.match(script,/disabled = type !== 'ax'/);
 });
 
-test('AX consent discloses optional company in all languages without changing purpose or retention',()=>{
+test('print, AX and default consent match collected fields without changing purpose or retention',()=>{
  for(const lang of ['ko','en','ja']) {
-  const t=portalCopy[lang], normal=t['consent.requiredDetail'], ax=t['consent.requiredDetail.ax'];
+  const t=portalCopy[lang], normal=t['consent.requiredDetail'], print=t['consent.requiredDetail.print'], ax=t['consent.requiredDetail.ax'];
   const company={ko:'회사·팀명(선택)',en:'company or team (optional)',ja:'会社・チーム名(任意)'}[lang];
   const attachment={ko:'첨부 파일',en:'attachments',ja:'添付ファイル'}[lang];
   assert.ok(ax.includes(company));assert.ok(!ax.includes(attachment));
-  assert.equal(ax,normal.replace(attachment,company));
-  assert.ok(ax.includes('{retention}'));assert.ok(t['consent.retention']);
+  assert.ok(print.includes(attachment));assert.ok(!print.includes(company));
+  assert.ok(!normal.includes(attachment));assert.ok(!normal.includes(company));
+  assert.equal(ax,print.replace(attachment,company));
+  assert.equal(normal,print.replace((lang==='ja'?'、':', ')+attachment,''));
+  for(const text of [normal,print,ax]) assert.ok(text.includes('{retention}'));
+  assert.ok(t['consent.retention']);
  }
- assert.match(source('src/scripts/inquiry-form.ts'),/type === 'ax' \? 'consent.requiredDetail.ax' : 'consent.requiredDetail'/);
+ assert.match(source('src/scripts/inquiry-form.ts'),/type === 'print' \? 'consent.requiredDetail.print' : type === 'ax' \? 'consent.requiredDetail.ax' : 'consent.requiredDetail'/);
+ assert.match(source('src/components/portal/InquiryForm.astro'),/kind === 'required' \? 'consent.requiredDetail.print' : 'consent.optionalDetail'/);
 });

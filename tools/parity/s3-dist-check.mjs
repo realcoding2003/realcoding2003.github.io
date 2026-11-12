@@ -114,13 +114,31 @@ for (const file of walk(root)) {
   check(nodes.filter(n => n.tag === 'form').length === 1,path,'Form count');
   for (const name of ['name','email','phone','company','message','files','consent_required','consent_optional']) check(nodes.some(n => n.a.name === name),path,`Missing form field ${name}`);
   check(nodes.some(n => n.a.name === 'files' && n.a.accept === '.3mf,.stl' && 'multiple' in n.a),path,'File accept/multiple');
-  check(nodes.filter(n => n.a.role === 'tablist').length === 1 && nodes.filter(n => n.a.role === 'tab').length === 3,path,'Tabs');
+  const types=['print','dev','ax','etc'];
+  check(nodes.filter(n => n.a.role === 'tablist').length === 1 && nodes.filter(n => n.a.role === 'tab').length === 4,path,'Four tabs');
+  check(nodes.filter(n=>n.a.role==='tabpanel').length===4,path,'Four panels');
+  check(nodes.filter(n=>n.a.type==='radio' && n.a.name==='type').map(n=>n.a.value).join(',')===types.join(','),path,'Four fallback type radios in order');
+  check(nodes.filter(n=>n.a.role==='tab').map(n=>n.a['aria-controls']).join(',')===types.join(','),path,'Tab order');
+  for(const type of types) {
+   const panel=nodes.find(n=>n.a.id===type);
+   check(nodes.some(n=>n.a.id===`tab-${type}` && n.a['aria-controls']===type) && panel?.a.role==='tabpanel' && panel.a['aria-labelledby']===`tab-${type}` && !('hidden' in panel.a),path,`${type} tab/panel linked and visible without JS`);
+  }
   const ax=nodes.find(n=>n.a.id==='ax');
   check(nodes.some(n=>n.a.id==='tab-ax' && n.a['aria-controls']==='ax') && ax?.a.role==='tabpanel',path,'AX tab/panel linked');
   check(ax && nodes.some(n=>n.tag==='img' && n.a.src==='/assets/video/portal/ax-hero-desktop-poster.jpg' && ancestor(n,p=>p===ax)),path,'AX tab poster');
   const copy=JSON.parse(html.match(/<script\b[^>]*data-inquiry-copy[^>]*>([\s\S]*?)<\/script>/i)[1]);
+  const etc=nodes.find(n=>n.a.id==='etc');
+  check(etc && nodes.some(n=>n.tag==='h2' && ancestor(n,p=>p===etc) && textOf(n)===copy['etc.title']) && nodes.some(n=>n.tag==='p' && ancestor(n,p=>p===etc) && textOf(n)===copy['etc.sub']),path,'ETC title and description');
+  check(etc && nodes.some(n=>n.tag==='img' && n.a.src==='/assets/video/portal/request-poster.jpg' && ancestor(n,p=>p===etc)),path,'ETC reuses dev poster');
+  check(etc && !nodes.some(n=>ancestor(n,p=>p===etc) && (hasClass(n,'steps') || hasClass(n,'steps-title') || hasClass(n,'capabilities') || 'data-ambient' in n.a)),path,'ETC has no steps, capabilities or video');
+  for(const key of ['tab.etc','form.title.etc','form.sub.etc','ph.message.etc']) check(!!copy[key],path,`ETC copy ${key}`);
+  check(copy['form.mailSubject.etc']==={ko:'[문의] 기타',en:'[Inquiry] Other',ja:'[お問い合わせ] その他'}[htmlNode.a.lang],path,'ETC mail subject');
   const company={ko:'회사·팀명(선택)',en:'company or team (optional)',ja:'会社・チーム名(任意)'}[htmlNode.a.lang];
-  check(copy['consent.requiredDetail.ax'].includes(company) && copy['consent.requiredDetail.ax'].includes('{retention}'),path,'AX consent disclosure');
+  const attachment={ko:'첨부 파일',en:'attachments',ja:'添付ファイル'}[htmlNode.a.lang];
+  check(copy['consent.requiredDetail.ax'].includes(company) && !copy['consent.requiredDetail.ax'].includes(attachment) && copy['consent.requiredDetail.ax'].includes('{retention}'),path,'AX consent disclosure');
+  check(copy['consent.requiredDetail.print'].includes(attachment) && !copy['consent.requiredDetail.print'].includes(company),path,'Print consent includes attachments only');
+  check(!copy['consent.requiredDetail'].includes(attachment) && !copy['consent.requiredDetail'].includes(company),path,'Dev/ETC consent excludes attachments and company');
+  check(textOf(nodes.find(n=>n.a.id==='consent-required-detail'))===copy['consent.requiredDetail.print'].replace('{retention}',copy['consent.retention']),path,'SSR starts with print consent');
   const form = nodes.find(n => n.tag === 'form');
   if (!form.a['data-api']) { check(html.includes('mailto:kevinpark@okyc.kr'),path,'Offline mail'); check(nodes.some(n => hasClass(n,'submit-bar') && 'hidden' in n.a),path,'Submit bar must start hidden'); }
   check(/문의 처리 완료 후 1년|one year after the inquiry is closed|お問い合わせ対応完了後1年間/.test(html),path,'Retention notice');

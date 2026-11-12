@@ -230,6 +230,23 @@ AMS liteコンボでも749,000ウォンです。
 - 多色出力が中心(ツールチェンジャー機のほうが向いています)
 - リモートで映像を確認する機能が重要
 
+## 動画でもまとめました
+
+開封からAMS liteを上に載せるまで、最初のキャリブレーションも含めて4分半ほどの動画にまとめました。
+
+<div style="position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/jLd5rJcj1h4?cc_lang_pref=ja&cc_load_policy=1" title="Bambu Lab A2L 開封&amp;レビュー:大きなベッドと高コスパ(AMS lite を上に載せる)" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
+
+短く見たい方は、ショート動画からどうぞ。
+
+<div style="position: relative; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/6pXO-FC5jbQ?cc_lang_pref=ja&cc_load_policy=1" title="Bambu Lab A2L:330mmベッドで$469。買う価値はある?" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
+
+- YouTube動画: [Bambu Lab A2L 開封&レビュー:大きなベッドと高コスパ(AMS lite を上に載せる)](https://www.youtube.com/watch?v=jLd5rJcj1h4)
+- YouTubeショート: [Bambu Lab A2L:330mmベッドで$469。買う価値はある?](https://www.youtube.com/shorts/6pXO-FC5jbQ)
+
 ## まとめ
 
 オプションは、はっきり言って物足りません。

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- 의뢰하기 '기타 문의' 탭(협업·강의·인터뷰·글/영상 질문) — 탭 4개, 모바일 2×2, 탭별 수집 항목 고지 정정 (portal)
 - 리뉴얼기 글 '블로그를 포털로 갈아엎었다, 코드는 AI 에이전트들이 짰다'(한·영·일)와 AI 화면 대표 글 카드 연결 (ai)
 - AI 영역: 메뉴 1순위 'AI', 홈 작업대 첫 조각(빛이 흐르는 반복 영상), `/ai/` 화면(AX 스크롤 영화 15초·이렇게 씁니다·기업 AX·DX 전환·AI 글 30편), 의뢰 'AI 도입·AX' 탭(회사·팀명 선택, 고지 반영) (ai)
 - Astro 정적 사이트 뼈대: `_posts` 글 로더, Jekyll식 주소(UTC 날짜·slug·permalink), 이동 페이지 649건, hreflang, Atom feed, sitemap, 404 (site)
@@ -23,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- 개인정보 처리방침 개정 공지(2026-11-19 시행): 의뢰·문의 접수 항목, 처리 위탁(AWS 서울·Google Workspace), 국외 이전 현황, Google 애널리틱스 고지, 바닥 링크 개정 표시 (privacy)
 - 홈 '출력한 것들'을 큐레이션 사진 14장 갤러리로 교체 — 제목은 마우스 올림·키보드 포커스 때만, 터치 기기는 사진만, 출력 기록 숫자 띠 제거 (portal)
 - 검증 스크립트(routes·ai-realm 테스트, s2·s3·s5 dist 점검)의 글 465편·sitemap 498·AI 글 30편 고정값을 하한으로 — 새 글이 생겨도 기존 보존을 확인, AI 대표 글은 같은 언어 글로 연결되는지 확인 (parity)
 - 사이트 이름: 실전코딩 기술 블로그 → 실전코딩 작업실 / RealCoding Workshop / 実戦コーディング工房, 설명 문구·목록 화면 설명·앱 manifest 교체 (site)

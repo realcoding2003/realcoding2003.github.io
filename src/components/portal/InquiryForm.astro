@@ -33,6 +33,7 @@ h2 { font-size: clamp(1.75rem,1.2rem + 2vw,3rem); font-weight: 800; }
 .inquiry-receipt { margin-top: 1rem; border: 1px solid var(--accent); padding: 1rem; overflow-wrap: anywhere; }
 .inquiry-receipt h3 { margin: 0 0 .5rem; }
 .inquiry-receipt p { margin: 0; }
+.inquiry-receipt :global(.receipt-id) { white-space: nowrap; font-family: var(--mono-font); color: var(--accent); }
 .form-field { display: grid; grid-template-columns: 8.5rem minmax(0,1fr); gap: 1rem; margin-block: 1.25rem; align-items: start; }
 .company-field { display: none; }
 .inquiry-form[data-type=ax] .company-field { display: grid; }

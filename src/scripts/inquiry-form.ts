@@ -102,7 +102,7 @@ if (form) {
   }
   function showReceipt(id: string) {
     done = true; lockInputs(true); setState('done'); fallback.hidden = true;
-    receipt.querySelector('[data-receipt-body]')!.textContent = t['form.done.body'].replace('{id}',id); receipt.hidden = false;
+    { const body = receipt.querySelector<HTMLElement>('[data-receipt-body]')!; const [before, after = ''] = t['form.done.body'].split('{id}'); const num = document.createElement('span'); num.className = 'receipt-id'; num.textContent = id; body.replaceChildren(document.createTextNode(before), num, document.createTextNode(after)); } receipt.hidden = false;
   }
   if (fixedPreview) {
     const [state,ratio] = preview!.split(':'); setState(state,Number(ratio || 0)/100);

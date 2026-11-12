@@ -11,6 +11,8 @@ const { lang,hidden = false } = Astro.props;
 .submit-bar[data-state=uploading] { justify-content: space-between; }
 .submit-bar[data-state=sending] { color: var(--stone-100); }
 .submit-percent { color: var(--stone-100); font: 1.125rem/1 var(--mono-font); }
+/* 업로드 중: 노란 채움 위·아래 어디서나 읽히게 어두운 받침 위에 밝은 글자(11-12 M4) */
+.submit-bar[data-state=uploading] .submit-label,.submit-bar[data-state=uploading] .submit-percent { color: var(--stone-100); background: rgb(12 17 48 / .78); padding: .15em .45em; white-space: nowrap; }
 .submit-bar[data-state=error] { border-color: var(--accent); color: var(--accent); }
 .submit-bar:active:not(:disabled) { transform: translateY(1px); }
 @media(prefers-reduced-motion:no-preference) { .submit-bar::before { transition: width 120ms; } }

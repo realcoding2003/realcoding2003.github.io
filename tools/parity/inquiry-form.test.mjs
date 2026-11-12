@@ -16,7 +16,7 @@ class InquiryTransportError extends Error {
 }
 function element(extra = {}) {
  return {attrs:{},events:{},hidden:false,textContent:'',value:'',checked:false,disabled:false,children:[],dataset:{},style:{setProperty(){}},
-  append(...children){this.children.push(...children);},replaceChildren(){this.children=[];},focus(){this.focused=true;},
+  append(...children){this.children.push(...children);},replaceChildren(...children){this.children=children;this.textContent=children.map(c=>c?.textContent??'').join('');},focus(){this.focused=true;},
   querySelector(selector){return this.children.find(child=>selector==='button'&&child.type==='button');},
   addEventListener(name,fn) {this.events[name]=fn;},
   getAttribute(name) {return this.attrs[name] ?? null;},
@@ -46,7 +46,7 @@ function session(copy,hash,{api='',search='',sendInquiry=()=>assert.fail('mailto
   sessionStorage:{getItem(key){if(storageBlocked)throw Error('blocked');return storage.get(key)||null;},setItem(key,value){if(storageBlocked)throw Error('blocked');storage.set(key,value);},removeItem(key){if(storageBlocked)throw Error('blocked');storage.delete(key);}},
   DataTransfer:class {files=[];items={add:file=>this.files.push(file)};},
   require:path=>path.endsWith('inquiry-validate.mjs') ? {validateInquiry} : path.endsWith('inquiry-mail.mjs') ? {buildMailto} : {sendInquiry,InquiryTransportError},
-  document:{querySelector:()=>form,createElement:()=>element(),addEventListener:(name,fn)=>{events[name]=fn;}}});
+  document:{querySelector:()=>form,createElement:()=>element(),createTextNode:text=>({textContent:String(text)}),addEventListener:(name,fn)=>{events[name]=fn;}}});
  vm.runInContext(code,context);
  now+=4200;
  return {form,inputs,selectors,radios,events,location,notice,receiptBody,storage,controls,barChildren,uuidCalls:()=>uuidCalls};

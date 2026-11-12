@@ -1,0 +1,49 @@
+---
+import type { Work } from '../../lib/works';
+import { loadGallery } from '../../lib/gallery-data.mjs';
+import { portalCopy } from '../../lib/portal-copy';
+import { prefix } from '../../lib/site.mjs';
+import WorkImage from './WorkImage.astro';
+interface Props { works: Work[]; lang: string }
+const { works, lang } = Astro.props; const t = portalCopy[lang];
+const gallery = loadGallery().map(item => {
+  const work = works.find(w => w.id === item.work);
+  if (!work) throw new Error(`Missing gallery work ${item.work}`);
+  return { src: item.src, alt: item.alt[lang], title: work.title, href: work.posts[0]?.path || (work.long || work.shorts)!.url };
+});
+---
+<section class="portal-section container--wide" id="works" data-layer="3" aria-labelledby="works-title">
+  <div class="bento-heading section-head" data-reveal><h2 class="display" id="works-title" data-copy>{t['works.title']}</h2><a class="all-builds" href={`${prefix(lang)}/maker/#works`} data-copy>{t['works.all']} <span>→</span></a></div>
+  <div class="works-gallery" data-reveal data-reveal-delay>{gallery.map(item => <a class="gallery-cell" href={item.href} aria-label={item.title} rel="noopener">
+    <WorkImage src={item.src} alt={item.alt} loading="lazy" sizes="(min-width:1100px) 25vw, (min-width:640px) 33vw, 50vw" />
+    <div class="gallery-caption" aria-hidden="true"><h3>{item.title}</h3></div>
+  </a>)}</div>
+</section>
+<style>
+.bento-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 1.5rem 3rem; }
+.all-builds { font-size: clamp(1rem,.8rem + .6vw,1.5rem); font-weight: 700; text-decoration: underline 2px var(--accent); text-underline-offset: 6px; color: var(--fg); }
+.all-builds span { color: var(--accent); display: inline-block; }
+.all-builds:hover span { transform: translateX(4px); }
+.works-gallery { columns: 2; column-gap: 8px; }
+.gallery-cell { display: block; position: relative; break-inside: avoid; margin-bottom: 8px; overflow: hidden; background: var(--rule); color: var(--stone-100); text-decoration: none; }
+.gallery-cell :global(picture),.gallery-cell :global(img) { width: 100%; height: auto; }
+.gallery-caption { position: absolute; inset: 0; display: flex; align-items: flex-end; padding: clamp(.75rem,1.5vw,1.5rem); background: linear-gradient(to bottom,transparent 35%,color-mix(in srgb,var(--ink-950) 94%,transparent)); opacity: 0; pointer-events: none; }
+.gallery-caption h3 { font-size: clamp(1rem,.8rem + .6vw,1.5rem); font-weight: 800; line-height: 1.35; }
+/* 포커스 링: 사진(확대)·캡션이 outline을 덮어 안 보였다(11-12 M4) → 맨 위층 ::after에 안쪽 테두리로 그린다 */
+.gallery-cell::after { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.gallery-cell:focus-visible { outline: none; z-index: 1; }
+.gallery-cell:focus-visible::after { box-shadow: inset 0 0 0 3px var(--focus); }
+.gallery-cell:focus-visible .gallery-caption { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .gallery-cell:hover .gallery-caption { opacity: 1; }
+  .gallery-cell:hover :global(img),.gallery-cell:focus-visible :global(img) { filter: brightness(1.05); transform: scale(1.025); }
+}
+@media (min-width:640px) { .works-gallery { columns: 3; } }
+@media (min-width:1100px) { .works-gallery { columns: 4; } }
+@media (prefers-reduced-motion:no-preference) {
+  .gallery-caption { transition: opacity 200ms; }
+  .gallery-cell :global(img) { transition: filter 200ms,transform 200ms; }
+  .all-builds span { transition: transform 160ms; }
+}
+@media (prefers-reduced-motion:reduce) { .gallery-cell :global(img) { transform: none; } }
+</style>

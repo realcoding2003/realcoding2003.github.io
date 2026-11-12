@@ -1,0 +1,17 @@
+# 홈 '출력한 것들' 갤러리 (2026-11-12 사용자: 보기 좋은 사진만 모아 갤러리처럼, 제목은 마우스 올렸을 때만, 피규어 위주)
+# 순서 = 화면 순서. work = src/data/works/<id>.yaml의 id (마우스 올림 제목·링크는 그 작업의 제목·첫 글).
+items:
+  - {src: "/assets/images/posts/mario-luigi-multipart-assembly/hero.jpg", work: "2026-11-10_mario-luigi-multipart-assembly", alt: {"ko": "마리오·루이지와 요시, 쿠파, 굼바 피규어 단체 사진", "en": "Mario, Luigi, Yoshi, Bowser and Goomba figures together", "ja": "マリオ、ルイージ、ヨッシー、クッパ、クリボーのフィギュア集合"}}
+  - {src: "/assets/images/posts/chiikawa-ice-cream-keychain/06-bowl-all.jpg", work: "2026-11-11_chiikawa-ice-cream-keychain", alt: {"ko": "보울 가득 담긴 치이카와 아이스크림콘 키링", "en": "A bowl full of Chiikawa ice cream cone keychains", "ja": "ボウルいっぱいのちいかわアイスクリームキーホルダー"}}
+  - {src: "/assets/images/posts/bowser-multipart-assembly/hero.jpg", work: "2026-11-07_bowser-multipart-assembly", alt: {"ko": "완성한 쿠파 피규어 정면", "en": "Finished Bowser figure, front view", "ja": "完成したクッパフィギュア(正面)"}}
+  - {src: "/assets/images/posts/bambulab-h3c-multicolor-figure/05-donald-front.jpg", work: "2026-11-08_bambulab-h3c-multicolor-figure", alt: {"ko": "검은 후드를 입은 도널드 덕 다색 출력 피규어", "en": "Multicolor print of Donald Duck in a black hoodie", "ja": "黒いパーカーを着たドナルドダックのマルチカラー出力フィギュア"}}
+  - {src: "/assets/images/posts/bulbasaur-15cm-multipart-print/04-finished-right.jpg", work: "2026-11-07_bulbasaur-15cm-multipart-print", alt: {"ko": "15 cm 이상해씨 피규어", "en": "15 cm Bulbasaur figure", "ja": "15cmのフシギダネフィギュア"}}
+  - {src: "/assets/images/posts/mario-luigi-multipart-assembly/08-brothers.jpg", work: "2026-11-10_mario-luigi-multipart-assembly", alt: {"ko": "나란히 선 마리오와 루이지", "en": "Mario and Luigi standing side by side", "ja": "並んで立つマリオとルイージ"}}
+  - {src: "/assets/images/posts/chiikawa-ice-cream-keychain/03-chiikawa-hachiware-heads.jpg", work: "2026-11-11_chiikawa-ice-cream-keychain", alt: {"ko": "출력한 치이카와·하치와레 머리", "en": "Printed Chiikawa and Hachiware heads", "ja": "出力したちいかわとハチワレの頭"}}
+  - {src: "/assets/images/posts/bambulab-h3c-multicolor-figure/08-goomba-front.jpg", work: "2026-11-08_bambulab-h3c-multicolor-figure", alt: {"ko": "굼바 피규어 정면", "en": "Goomba figure, front view", "ja": "クリボーのフィギュア(正面)"}}
+  - {src: "/assets/images/posts/bambulab-h3c-ams3-unboxing/08-capybara-keyring.jpg", work: "2026-11-07_bambulab-h3c-ams3-unboxing", alt: {"ko": "손에 든 카피바라 키링", "en": "Capybara keyring in hand", "ja": "手に持ったカピバラのキーホルダー"}}
+  - {src: "/assets/images/posts/mario-luigi-multipart-assembly/01-mario-parts.jpg", work: "2026-11-10_mario-luigi-multipart-assembly", alt: {"ko": "색깔별로 출력한 마리오 조각들", "en": "Mario parts printed in separate colors", "ja": "色ごとに出力したマリオのパーツ"}}
+  - {src: "/assets/images/posts/bowser-multipart-assembly/07-finished-left.jpg", work: "2026-11-07_bowser-multipart-assembly", alt: {"ko": "왼쪽에서 본 쿠파 피규어", "en": "Bowser figure from the left", "ja": "左から見たクッパフィギュア"}}
+  - {src: "/assets/images/posts/chiikawa-ice-cream-keychain/05-assembled-arc.jpg", work: "2026-11-11_chiikawa-ice-cream-keychain", alt: {"ko": "반원으로 늘어선 아이스크림콘 키링", "en": "Ice cream cone keychains lined up in an arc", "ja": "半円に並んだアイスクリームキーホルダー"}}
+  - {src: "/assets/images/posts/mario-luigi-multipart-assembly/05-mario-done.jpg", work: "2026-11-10_mario-luigi-multipart-assembly", alt: {"ko": "완성한 마리오 피규어", "en": "Finished Mario figure", "ja": "完成したマリオのフィギュア"}}
+  - {src: "/assets/images/posts/ams2-pro-sliding-speedrack-underrail/hero.jpg", work: "2026-11-09_ams2-pro-sliding-speedrack-underrail", alt: {"ko": "레일 위에 올린 AMS 2 Pro 슬라이딩 덮개", "en": "AMS 2 Pro sliding cover on drawer rails", "ja": "レールに載せたAMS 2 Proスライドカバー"}}

@@ -109,8 +109,10 @@ test('print, AX and default consent match collected fields without changing purp
   assert.equal(ax,print.replace(attachment,company));
   assert.equal(normal,print.replace((lang==='ja'?'、':', ')+attachment,''));
   for(const text of [normal,print,ax]) assert.ok(text.includes('{retention}'));
+  const retention={ko:' (첨부 파일은 접수 후 90일)',en:' (attachments: 90 days after receipt)',ja:'(添付ファイルは受付後90日)'}[lang];
+  assert.equal(t['consent.requiredDetail.print.server'],print.replace('{retention}','{retention}'+retention));
   assert.ok(t['consent.retention']);
  }
- assert.match(source('src/scripts/inquiry-form.ts'),/type === 'print' \? 'consent.requiredDetail.print' : type === 'ax' \? 'consent.requiredDetail.ax' : 'consent.requiredDetail'/);
- assert.match(source('src/components/portal/InquiryForm.astro'),/kind === 'required' \? 'consent.requiredDetail.print' : 'consent.optionalDetail'/);
+ assert.match(source('src/scripts/inquiry-form.ts'),/type === 'print' \? api \? 'consent.requiredDetail.print.server' : 'consent.requiredDetail.print' : type === 'ax' \? 'consent.requiredDetail.ax' : 'consent.requiredDetail'/);
+ assert.match(source('src/components/portal/InquiryForm.astro'),/kind === 'required' \? api \? 'consent.requiredDetail.print.server' : 'consent.requiredDetail.print' : 'consent.optionalDetail'/);
 });

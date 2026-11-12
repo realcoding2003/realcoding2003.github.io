@@ -1,23 +1,27 @@
 ---
 import { portalCopy } from '../../lib/portal-copy';
 import { CONTACT_EMAIL } from '../../lib/site.mjs';
+import { INQUIRY_API, INQUIRY_NOTICE_VERSION } from '../../lib/inquiry-config.mjs';
 import SubmitBar from './SubmitBar.astro';
 import LineIcon from './LineIcon.astro';
 interface Props { lang: string }
-const { lang } = Astro.props; const t = portalCopy[lang]; const api = import.meta.env.PUBLIC_INQUIRY_API?.trim() || '';
+const { lang } = Astro.props; const t = portalCopy[lang]; const api = import.meta.env.PUBLIC_INQUIRY_API?.trim() || INQUIRY_API;
 ---
-<form class="inquiry-form" data-inquiry-form data-type="print" data-api={api} data-contact={CONTACT_EMAIL} action={`mailto:${CONTACT_EMAIL}`} method="get">
+<form class="inquiry-form" data-inquiry-form data-type="print" data-api={api} data-lang={lang} data-notice-version={INQUIRY_NOTICE_VERSION} data-contact={CONTACT_EMAIL} action={`mailto:${CONTACT_EMAIL}`} method="get">
   <script type="application/json" data-inquiry-copy set:html={JSON.stringify(t).replace(/</g,'\\u003c')} />
   <h2 data-form-title data-copy>{t['form.title.print']}</h2><p class="form-sub" data-form-sub data-copy>{t['form.sub.print']}</p>
   <p class="error-summary" role="alert" hidden>{t['errors.summary']}</p>
+  <div class="inquiry-trap" aria-hidden="true"><label for="inquiry-website">Website</label><input id="inquiry-website" name="website" type="text" tabindex="-1" autocomplete="off" /></div>
   <fieldset class="type-radios"><legend>{t['form.type']}</legend>{['print','dev','ax','etc'].map(type => <label><input type="radio" name="type" value={type} checked={type === 'print'} required />{t[`tab.${type}`]}</label>)}</fieldset>
   {(['name','email','phone'] as const).map(name => <div class="form-field" data-field={name}><label for={`inquiry-${name}`}>{t[`label.${name}`]}</label><div><input id={`inquiry-${name}`} name={name} type={name === 'phone' ? 'tel' : name === 'email' ? 'email' : 'text'} autocomplete={name === 'phone' ? 'tel' : name} maxlength={name === 'name' ? 50 : name === 'email' ? 254 : 20} placeholder={t[`ph.${name}`]} required={name !== 'phone'} /><p class="field-error" id={`error-${name}`} hidden></p></div></div>)}
-  <div class="form-field company-field" data-company-section><label for="inquiry-company" data-copy>{t['label.company']}</label><div><input id="inquiry-company" name="company" type="text" autocomplete="organization" maxlength="100" placeholder={t['ph.company']} disabled /></div></div>
+  <div class="form-field company-field" data-company-section><label for="inquiry-company" data-copy>{t['label.company']}</label><div><input id="inquiry-company" name="company" type="text" autocomplete="organization" maxlength="100" placeholder={t['ph.company']} disabled /><p class="field-error" id="error-company" hidden></p></div></div>
   <div class="message-field" data-field="message"><label for="inquiry-message">{t['label.message']}</label><textarea id="inquiry-message" name="message" rows="6" maxlength="5000" placeholder={t['ph.message.print']} required></textarea><p class="field-error" id="error-message" hidden></p></div>
   <div data-file-section data-field="files"><label class="file-drop" data-file-drop><input class="sr-only" type="file" id="inquiry-files" name="files" multiple accept=".3mf,.stl" /><LineIcon name="upload" /><strong>{t['file.drop']}</strong><span>{t['file.pick']}</span></label><ul class="file-list" data-file-list></ul><p class="field-error" id="error-files" hidden></p></div>
-  {['required','optional'].map(kind => <div class="consent" data-field={`consent_${kind}`}><input type="checkbox" id={`consent-${kind}`} name={`consent_${kind}`} required={kind === 'required'} aria-describedby={`consent-${kind}-detail`} /><div><label for={`consent-${kind}`}>{t[`consent.${kind}`]}</label><p id={`consent-${kind}-detail`} data-copy>{t[kind === 'required' ? 'consent.requiredDetail.print' : 'consent.optionalDetail'].replace('{retention}',t['consent.retention'])}</p><p class="field-error" id={`error-consent_${kind}`} hidden></p></div><a href="/privacy/">{t['consent.full']}</a></div>)}
+  {['required','optional'].map(kind => <div class="consent" data-field={`consent_${kind}`}><input type="checkbox" id={`consent-${kind}`} name={`consent_${kind}`} required={kind === 'required'} aria-describedby={`consent-${kind}-detail`} /><div><label for={`consent-${kind}`}>{t[`consent.${kind}`]}</label><p id={`consent-${kind}-detail`} data-copy>{t[kind === 'required' ? api ? 'consent.requiredDetail.print.server' : 'consent.requiredDetail.print' : 'consent.optionalDetail'].replace('{retention}',t['consent.retention'])}</p><p class="field-error" id={`error-consent_${kind}`} hidden></p></div><a href="/privacy/">{t['consent.full']}</a></div>)}
   <SubmitBar lang={lang} hidden={!api} />
-  {!api && <div class="offline-notice"><p data-copy>{t['form.offline']}</p><button class="mail-button" type="button" data-mail>{t['form.mail']}</button><noscript><a class="mail-link" href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(t['form.mailSubject.print'])}`}>{t['form.mail']}</a></noscript></div>}
+  <div class="inquiry-receipt" data-inquiry-receipt role="status" hidden><h3 data-copy>{t['form.done.title']}</h3><p data-receipt-body></p></div>
+  <div class="offline-notice" data-mail-fallback hidden={!!api}><p data-mail-notice data-copy>{t[api ? 'form.error' : 'form.offline']}</p><button class="mail-button" type="button" data-mail>{t[api ? 'form.mailFallback' : 'form.mail']}</button>{!api && <noscript><a class="mail-link" href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(t['form.mailSubject.print'])}`}>{t['form.mail']}</a></noscript>}</div>
+  {api && <noscript><p>{t['form.offline']}</p><button class="mail-link" type="submit">{t['form.mailFallback']}</button></noscript>}
   <p class="sr-only" aria-live="polite" data-form-status></p>
 </form>
 <script>import '../../scripts/inquiry-form';</script>
@@ -25,6 +29,11 @@ const { lang } = Astro.props; const t = portalCopy[lang]; const api = import.met
 .inquiry-form { min-width: 0; padding: clamp(1.5rem,2.5vw,2.5rem); border: 1px solid var(--rule); background: var(--surface); align-self: start; }
 h2 { font-size: clamp(1.75rem,1.2rem + 2vw,3rem); font-weight: 800; }
 .form-sub { color: var(--fg-muted); margin-bottom: 2rem; }
+.inquiry-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.inquiry-receipt { margin-top: 1rem; border: 1px solid var(--accent); padding: 1rem; overflow-wrap: anywhere; }
+.inquiry-receipt h3 { margin: 0 0 .5rem; }
+.inquiry-receipt p { margin: 0; }
+.inquiry-receipt :global(.receipt-id) { white-space: nowrap; font-family: var(--mono-font); color: var(--accent); }
 .form-field { display: grid; grid-template-columns: 8.5rem minmax(0,1fr); gap: 1rem; margin-block: 1.25rem; align-items: start; }
 .company-field { display: none; }
 .inquiry-form[data-type=ax] .company-field { display: grid; }

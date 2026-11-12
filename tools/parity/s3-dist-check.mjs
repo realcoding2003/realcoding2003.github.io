@@ -4,6 +4,7 @@ import { parseHtml, textOf, hasClass, ancestor, decode } from './html-tree.mjs';
 import { loadWorks } from '../../src/lib/works-data.mjs';
 import { loadGallery } from '../../src/lib/gallery-data.mjs';
 import { AI_FLAGSHIP_SLUG, parseDocument, postMetadata } from '../../src/lib/site.mjs';
+import { INQUIRY_API, INQUIRY_NOTICE_VERSION } from '../../src/lib/inquiry-config.mjs';
 const root = resolve(process.argv[2] || 'dist');
 const failures = []; let pages = 0, internalLinks = 0, related = 0;
 const check = (ok,path,message) => { if (!ok) failures.push({path,message}); };
@@ -112,7 +113,7 @@ for (const file of walk(root)) {
  }
  if (realm === 'request') {
   check(nodes.filter(n => n.tag === 'form').length === 1,path,'Form count');
-  for (const name of ['name','email','phone','company','message','files','consent_required','consent_optional']) check(nodes.some(n => n.a.name === name),path,`Missing form field ${name}`);
+  for (const name of ['name','email','phone','company','message','files','consent_required','consent_optional','website']) check(nodes.some(n => n.a.name === name),path,`Missing form field ${name}`);
   check(nodes.some(n => n.a.name === 'files' && n.a.accept === '.3mf,.stl' && 'multiple' in n.a),path,'File accept/multiple');
   const types=['print','dev','ax','etc'];
   check(nodes.filter(n => n.a.role === 'tablist').length === 1 && nodes.filter(n => n.a.role === 'tab').length === 4,path,'Four tabs');
@@ -138,9 +139,21 @@ for (const file of walk(root)) {
   check(copy['consent.requiredDetail.ax'].includes(company) && !copy['consent.requiredDetail.ax'].includes(attachment) && copy['consent.requiredDetail.ax'].includes('{retention}'),path,'AX consent disclosure');
   check(copy['consent.requiredDetail.print'].includes(attachment) && !copy['consent.requiredDetail.print'].includes(company),path,'Print consent includes attachments only');
   check(!copy['consent.requiredDetail'].includes(attachment) && !copy['consent.requiredDetail'].includes(company),path,'Dev/ETC consent excludes attachments and company');
-  check(textOf(nodes.find(n=>n.a.id==='consent-required-detail'))===copy['consent.requiredDetail.print'].replace('{retention}',copy['consent.retention']),path,'SSR starts with print consent');
   const form = nodes.find(n => n.tag === 'form');
-  if (!form.a['data-api']) { check(html.includes('mailto:kevinpark@okyc.kr'),path,'Offline mail'); check(nodes.some(n => hasClass(n,'submit-bar') && 'hidden' in n.a),path,'Submit bar must start hidden'); }
+  const api = process.env.PUBLIC_INQUIRY_API?.trim() || INQUIRY_API;
+  check(form.a['data-api']===api,path,'API config matches build environment');
+  check(form.a['data-notice-version']===INQUIRY_NOTICE_VERSION && form.a['data-lang']===htmlNode.a.lang,path,'Notice version and submission language');
+  check(form.a.action==='mailto:kevinpark@okyc.kr',path,'Native mailto fallback retained');
+  const trap=nodes.find(n=>n.a.name==='website');
+  check(trap?.a.tabindex==='-1' && trap.a.autocomplete==='off' && ancestor(trap,n=>n.a['aria-hidden']==='true') && nodes.some(n=>n.tag==='label' && n.a.for===trap.a.id && ancestor(n,p=>p.a['aria-hidden']==='true')),path,'Honeypot and label hidden from accessibility tree');
+  check(nodes.some(n=>'data-inquiry-receipt' in n.a && n.a.role==='status' && 'hidden' in n.a) && nodes.some(n=>'data-receipt-body' in n.a),path,'Hidden reference/status region');
+  const fallback=nodes.find(n=>'data-mail-fallback' in n.a);
+  check(!!fallback && ('hidden' in fallback.a)===!!api && nodes.some(n=>'data-mail' in n.a && ancestor(n,p=>p===fallback)),path,'Mail fallback always rendered, initially hidden only for API');
+  for(const key of ['form.sending','form.uploading','form.done.title','form.done.body','form.busy','form.error','form.expired','form.mailFallback','consent.requiredDetail.print.server']) check(!!copy[key],path,`Server form copy ${key}`);
+  check(copy['consent.requiredDetail.print.server'].includes('90'),path,'Server print consent includes attachment retention');
+  check(textOf(nodes.find(n=>n.a.id==='consent-required-detail'))===copy[api?'consent.requiredDetail.print.server':'consent.requiredDetail.print'].replace('{retention}',copy['consent.retention']),path,'SSR starts with matching print consent');
+  check(nodes.some(n => hasClass(n,'submit-bar') && ('hidden' in n.a)===!api),path,'Submit bar initial API visibility');
+  if (!api) check(html.includes('mailto:kevinpark@okyc.kr'),path,'Offline mail');
   check(/문의 처리 완료 후 1년|one year after the inquiry is closed|お問い合わせ対応完了後1年間/.test(html),path,'Retention notice');
   if(path === '/request/') check(html.includes('캐릭터 피규어 등 타인 저작물의 판매용 출력 대행'),path,'Copyright restriction');
  }

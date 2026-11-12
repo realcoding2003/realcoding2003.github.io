@@ -225,6 +225,23 @@ AMS lite 콤보도 749,000원이다.
 - 다색 출력이 주력이다 (툴 체인저 기종이 낫다)
 - 원격으로 영상 확인하는 기능이 중요하다
 
+## 영상으로도 정리했다
+
+개봉부터 AMS lite 올리기, 첫 교정까지 4분 남짓으로 묶었다.
+
+<div style="position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/jLd5rJcj1h4?cc_lang_pref=ko&cc_load_policy=1" title="뱀부랩 A2L 개봉기·리뷰 | 옵션은 아쉬워도 가성비는 최고 (AMS lite 상단 거치)" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
+
+짧게 보고 싶으면 쇼츠로 ㅎㅎ
+
+<div style="position: relative; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/6pXO-FC5jbQ?cc_lang_pref=ko&cc_load_policy=1" title="뱀부랩 A2L, 330mm 베드에 59만 9천 원. 살 만할까?" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
+
+- 유튜브 롱폼: [뱀부랩 A2L 개봉기·리뷰 | 옵션은 아쉬워도 가성비는 최고 (AMS lite 상단 거치)](https://www.youtube.com/watch?v=jLd5rJcj1h4)
+- 유튜브 쇼츠: [뱀부랩 A2L, 330mm 베드에 59만 9천 원. 살 만할까?](https://www.youtube.com/shorts/6pXO-FC5jbQ)
+
 ## 정리하면
 
 옵션은 확실히 아쉽다.

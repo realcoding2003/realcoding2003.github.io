@@ -1,0 +1,9 @@
+id: "2026-11-12_bambulab-a2l-unboxing-review"
+date: "2026-11-12"
+title: {"ko": "뱀부랩 A2L 개봉기·리뷰", "en": "Bambu Lab A2L Unboxing & Review", "ja": "Bambu Lab A2L 開封レビュー"}
+summary: {"ko": "개봉·조립부터 X2D로 뽑은 거치대로 AMS lite를 위에 올리기까지.", "en": "Unboxing, assembly, and an X2D-printed mount to put the AMS lite on top.", "ja": "開封と組み立てから、X2Dで出力したマウントでAMS liteを上に載せるまで。"}
+posts: ["bambulab-a2l-unboxing-review"]
+image: {"src": "/assets/images/posts/bambulab-a2l-unboxing-review/hero.jpg", "alt": {"ko": "AMS lite를 위에 올린 뱀부랩 A2L", "en": "Bambu Lab A2L with the AMS lite mounted on top", "ja": "AMS liteを上に載せたBambu Lab A2L"}}
+printers: ["A2L", "X2D"]
+shorts: {"id": "6pXO-FC5jbQ", "seconds": 72}
+long: {"id": "jLd5rJcj1h4", "seconds": 283}

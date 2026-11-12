@@ -230,6 +230,23 @@ But for checking on a print visually and capturing video myself, it falls well s
 - Multicolor is your main use (a tool changer is better)
 - Remote video monitoring matters to you
 
+## The video version
+
+I put the unboxing, the AMS lite mount, and the first calibration into a video of about four and a half minutes.
+
+<div style="position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/jLd5rJcj1h4" title="Bambu Lab A2L Unboxing &amp; Review: Big Bed, Great Value (AMS lite on Top)" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
+
+If you just want the short version, here is the Short.
+
+<div style="position: relative; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; margin: 1.5rem auto;">
+  <iframe src="https://www.youtube.com/embed/6pXO-FC5jbQ" title="Bambu Lab A2L: 330 mm Bed for $469. Worth It?" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
+
+- YouTube video: [Bambu Lab A2L Unboxing & Review: Big Bed, Great Value (AMS lite on Top)](https://www.youtube.com/watch?v=jLd5rJcj1h4)
+- YouTube Short: [Bambu Lab A2L: 330 mm Bed for $469. Worth It?](https://www.youtube.com/shorts/6pXO-FC5jbQ)
+
 ## Summary
 
 The feature set is clearly lacking.

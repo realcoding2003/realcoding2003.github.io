@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- 홈 '출력한 것들'을 큐레이션 사진 14장 갤러리로 교체 — 제목은 마우스 올림·키보드 포커스 때만, 터치 기기는 사진만, 출력 기록 숫자 띠 제거 (portal)
 - 검증 스크립트(routes·ai-realm 테스트, s2·s3·s5 dist 점검)의 글 465편·sitemap 498·AI 글 30편 고정값을 하한으로 — 새 글이 생겨도 기존 보존을 확인, AI 대표 글은 같은 언어 글로 연결되는지 확인 (parity)
 - 사이트 이름: 실전코딩 기술 블로그 → 실전코딩 작업실 / RealCoding Workshop / 実戦コーディング工房, 설명 문구·목록 화면 설명·앱 manifest 교체 (site)
 - 상단 메뉴를 화면 위에 고정하고, 모든 폭에서 메뉴 항목을 바로 보이게(767px 이하 두 줄, 768px 이상 한 줄, 접는 메뉴 제거) — 히어로·목차·앵커 오프셋을 메뉴 높이 변수 하나로 맞춤 (header)

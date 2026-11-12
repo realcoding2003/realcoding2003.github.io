@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- 의뢰 접수를 서버 방식으로 전환(접수번호 표시·1회용 첨부 업로드·알림 메일), 처리방침 시행일 2026-11-12 (portal)
 - 개인정보 처리방침 개정 공지(2026-11-19 시행): 의뢰·문의 접수 항목, 처리 위탁(AWS 서울·Google Workspace), 국외 이전 현황, Google 애널리틱스 고지, 바닥 링크 개정 표시 (privacy)
 - 홈 '출력한 것들'을 큐레이션 사진 14장 갤러리로 교체 — 제목은 마우스 올림·키보드 포커스 때만, 터치 기기는 사진만, 출력 기록 숫자 띠 제거 (portal)
 - 검증 스크립트(routes·ai-realm 테스트, s2·s3·s5 dist 점검)의 글 465편·sitemap 498·AI 글 30편 고정값을 하한으로 — 새 글이 생겨도 기존 보존을 확인, AI 대표 글은 같은 언어 글로 연결되는지 확인 (parity)

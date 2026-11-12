@@ -1,7 +1,7 @@
 const tabs = [...document.querySelectorAll<HTMLButtonElement>('.request-tabs [role=tab]')];
 if (tabs.length) {
   function activate(type: string, focus = false, update = true) {
-    if (!['print','dev','ax'].includes(type)) type = 'print';
+    if (!['print','dev','ax','etc'].includes(type)) type = 'print';
     for (const tab of tabs) {
       const active = tab.getAttribute('aria-controls') === type;
       tab.setAttribute('aria-selected',String(active)); tab.tabIndex = active ? 0 : -1;

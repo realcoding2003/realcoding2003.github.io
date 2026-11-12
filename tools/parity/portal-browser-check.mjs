@@ -44,7 +44,7 @@ try {
  for(const width of [360,1440]) for(const prefix of prefixes) {
   await page.setViewportSize({width,height:width===1440?1000:844});
   await page.goto(origin+prefix+'/request/#ax');
-  check(await page.locator('#tab-ax').getAttribute('aria-selected')==='true' && await page.locator('#ax').isVisible() && !await page.locator('#print').isVisible() && !await page.locator('#dev').isVisible(),{kind:'ax-deep-link',width,prefix});
+  check(await page.locator('#tab-ax').getAttribute('aria-selected')==='true' && await page.locator('#ax').isVisible() && !await page.locator('#print').isVisible() && !await page.locator('#dev').isVisible() && !await page.locator('#etc').isVisible(),{kind:'ax-deep-link',width,prefix});
   check(await page.locator('[data-inquiry-form]').getAttribute('data-type')==='ax' && await page.locator('#inquiry-company').isVisible() && await page.locator('#inquiry-company').isEnabled() && await page.locator('#inquiry-files').isDisabled() && !await page.locator('[data-file-section]').isVisible(),{kind:'ax-form-fields',width,prefix});
   const copy=JSON.parse(await page.locator('[data-inquiry-copy]').textContent());
   check(await page.locator('#consent-required-detail').textContent()===copy['consent.requiredDetail.ax'].replace('{retention}',copy['consent.retention']),{kind:'ax-consent',width,prefix});
@@ -55,6 +55,24 @@ try {
   await page.locator('.see-work').click();
   const anchor=await page.locator('#posts').evaluate(n=>({top:n.getBoundingClientRect().top,header:document.querySelector('.site-header').getBoundingClientRect().bottom}));
   check(anchor.top>=anchor.header-1,{kind:'ai-posts-anchor',width,prefix,...anchor});
+ }
+ // All request types, including ETC deep links, use matching fields and consent.
+ for(const width of [360,390,1440]) for(const prefix of prefixes) {
+  await page.setViewportSize({width,height:width===1440?1000:844});
+  await page.goto(origin+prefix+'/request/#etc'); await page.evaluate(()=>document.fonts.ready);
+  const copy=JSON.parse(await page.locator('[data-inquiry-copy]').textContent());
+  check(await page.locator('#tab-etc').getAttribute('aria-selected')==='true' && await page.locator('[role=tabpanel]:visible').count()===1 && await page.locator('#etc').isVisible() && await page.locator('[data-inquiry-form]').getAttribute('data-type')==='etc' && await page.locator('input[name=type][value=etc]').isChecked(),{kind:'etc-deep-link',width,prefix});
+  check(await page.locator('#etc h2').textContent()===copy['etc.title'] && await page.locator('#etc .poster-copy p').textContent()===copy['etc.sub'] && await page.locator('#etc .steps,#etc .capabilities').count()===0,{kind:'etc-panel',width,prefix});
+  const tabs=await page.locator('.request-tabs').evaluate(n=>({width:n.clientWidth,scroll:n.scrollWidth,boxes:[...n.querySelectorAll('[role=tab]')].map(t=>{const r=t.getBoundingClientRect(),p=n.getBoundingClientRect();return{left:r.left-p.left,right:r.right-p.left,visible:r.width>0 && r.height>0};})}));
+  check(tabs.scroll===tabs.width && tabs.boxes.length===4 && tabs.boxes.every(t=>t.visible && t.left>=-1 && t.right<=tabs.width+1),{kind:'four-tabs-no-scroll',width,prefix,...tabs});
+  if(width===390) {const file=`${filename(prefix+'/request/')}-etc-390.png`;await page.screenshot({path:join(out,file),fullPage:true});report.screenshots.push(file);}
+  for(const type of ['etc','print','dev','ax','etc']) {
+   await page.locator(`#tab-${type}`).click();
+   check(await page.locator('[data-inquiry-form]').getAttribute('data-type')===type && await page.locator(`input[name=type][value=${type}]`).isChecked() && new URL(page.url()).hash===`#${type}`,{kind:'request-type-sync',type,width,prefix});
+   check(await page.locator('[data-file-section]').isVisible()===(type==='print') && await page.locator('#inquiry-files').isEnabled()===(type==='print') && await page.locator('#inquiry-company').isVisible()===(type==='ax') && await page.locator('#inquiry-company').isEnabled()===(type==='ax'),{kind:'request-type-fields',type,width,prefix});
+   const key=type==='print'?'consent.requiredDetail.print':type==='ax'?'consent.requiredDetail.ax':'consent.requiredDetail';
+   check(await page.locator('#consent-required-detail').textContent()===copy[key].replace('{retention}',copy['consent.retention']) && await page.locator('[data-form-title]').textContent()===copy[`form.title.${type}`] && await page.locator('#inquiry-message').getAttribute('placeholder')===copy[`ph.message.${type}`],{kind:'request-type-copy',type,width,prefix});
+  }
  }
  // Round 2 M4 regression: all collapsed labels must remain a single vertical
  // column inside their own slice, including the maker label after opening others.
@@ -128,7 +146,7 @@ try {
   check(await devTab.getAttribute('aria-selected') === 'true' && new URL(page.url()).hash === '#dev',{kind:'request-right',prefix});
   await page.keyboard.press('ArrowLeft');
   check(await printTab.getAttribute('aria-selected') === 'true' && new URL(page.url()).hash === '#print',{kind:'request-left',prefix});
-  await page.keyboard.press('End'); check(await page.locator('#tab-ax').getAttribute('aria-selected') === 'true',{kind:'request-end',prefix});
+  await page.keyboard.press('End'); check(await page.locator('#tab-etc').getAttribute('aria-selected') === 'true',{kind:'request-end',prefix});
   await page.keyboard.press('Home'); check(await printTab.getAttribute('aria-selected') === 'true',{kind:'request-home',prefix});
   await page.locator('[data-mail]').click();
   check(await page.locator('[role=alert]').isVisible() && await page.locator('#inquiry-name').evaluate(n => n === document.activeElement),{kind:'empty-form',prefix});
@@ -154,8 +172,11 @@ try {
  // Verify progressive enhancement without JavaScript as well.
  const nojs = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
  await nojs.route('**/*',route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
- const fallback = await nojs.newPage(); await fallback.goto(origin+'/request/');
- check(await fallback.locator('[role=tabpanel]:visible').count() === 3 && await fallback.locator('.type-radios').isVisible() && await fallback.locator('noscript a[href^="mailto:"]').isVisible(),{kind:'no-js-request'});
+ const fallback = await nojs.newPage();
+ for(const prefix of prefixes) {
+  await fallback.goto(origin+prefix+'/request/#etc');
+  check(await fallback.locator('[role=tabpanel]:visible').count() === 4 && await fallback.locator('#etc').isVisible() && await fallback.locator('.type-radios').isVisible() && await fallback.locator('input[name=type]').count() === 4 && await fallback.locator('noscript a[href^="mailto:"]').isVisible(),{kind:'no-js-request',prefix});
+ }
  await nojs.close();
  check(report.console.length===0,{kind:'portal-console',errors:report.console});
  await context.close();

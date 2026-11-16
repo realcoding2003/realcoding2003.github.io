@@ -8,6 +8,7 @@ import { loadWorks } from '../../src/lib/works-data.mjs';
 import { validateInquiry } from '../../src/lib/inquiry-validate.mjs';
 import { buildMailto } from '../../src/lib/inquiry-mail.mjs';
 const expected = [
+ ['2026-11-16_chiikawa-sitting-keychains-h3c',null,['chiikawa-sitting-keychains-h3c'],['Vrkuof5NQJM',65],null,null,['H3C'],'PLA','~16h 41m','~396 g','/assets/images/posts/chiikawa-sitting-keychains-h3c/hero.jpg'],
  ['2026-11-12_bambulab-a2l-unboxing-review',null,['bambulab-a2l-unboxing-review'],['6pXO-FC5jbQ',72],['jLd5rJcj1h4',283],null,['A2L','X2D'],null,null,null,'/assets/images/posts/bambulab-a2l-unboxing-review/hero.jpg'],
  ['2026-11-11_chiikawa-ice-cream-keychain',null,['chiikawa-ice-cream-keychain'],['RseZJz4l1g4',56],null,null,['X2D','H3C'],'PLA',null,null,'/assets/images/posts/chiikawa-ice-cream-keychain/hero.jpg'],
  ['2026-11-10_mario-luigi-multipart-assembly',null,['mario-luigi-multipart-assembly'],['ejELZAjMKug',63],['sedkCEygUiM',403],null,[],null,null,null,'/assets/images/posts/mario-luigi-multipart-assembly/08-brothers.jpg'],

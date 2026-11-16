@@ -7,10 +7,10 @@ import { parse } from 'yaml';
 import { loadGallery } from '../../src/lib/gallery-data.mjs';
 import { loadWorks } from '../../src/lib/works-data.mjs';
 
-test('the curated gallery has 14 ordered photos, localized alt text and existing works', () => {
+test('the curated gallery has 16 ordered photos, localized alt text and existing works', () => {
   const gallery = loadGallery();
   const works = new Set(loadWorks().map(w => w.id));
-  assert.equal(gallery.length, 14);
+  assert.equal(gallery.length, 16);
   assert.deepEqual(gallery, parse(readFileSync('src/data/gallery.yaml', 'utf8')).items);
   assert.equal(new Set(gallery.map(item => item.src)).size, gallery.length);
   for (const item of gallery) {

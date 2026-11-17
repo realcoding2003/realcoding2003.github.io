@@ -1,0 +1,13 @@
+id: "2026-11-17_magnetic-filament-name-tags"
+date: "2026-11-17"
+title: {"ko": "자석 필라멘트 이름표", "en": "Magnetic Filament Name Tags", "ja": "磁石付きフィラメントネームタグ"}
+summary: {"ko": "그 필라멘트로 뽑은 이름표에 자석을 넣어 보관함과 AMS 사이를 따라다니게 했다.", "en": "Tags printed in their own filament, with magnets so they follow each spool between the bin and the AMS.", "ja": "そのフィラメントで出力したタグに磁石を入れ、保管ケースとAMSの間をついて回るようにしました。"}
+posts: ["magnetic-filament-name-tags"]
+image: {"src": "/assets/images/posts/magnetic-filament-name-tags/hero.jpg", "alt": {"ko": "이름표가 하나씩 붙은 시리얼통 필라멘트 보관함", "en": "Cereal-container filament bins, each with a name tag", "ja": "ネームタグが1つずつ付いたシリアルケースのフィラメント保管ボックス"}}
+printers: ["P2S"]
+material: "PLA"
+time: "~24m"
+filament: "~8.4 g"
+makerworld: 3632166
+shorts: {"id": "RaKwP9tal4o", "seconds": 72}
+long: {"id": "3oopvBIKz_I", "seconds": 162}

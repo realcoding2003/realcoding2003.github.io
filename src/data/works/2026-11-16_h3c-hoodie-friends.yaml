@@ -1,0 +1,11 @@
+id: "2026-11-16_h3c-hoodie-friends"
+date: "2026-11-16"
+title: {"ko": "후디 친구들, 헬로키티·피카추 다색 피규어", "en": "Hoodie Friends: Hello Kitty & Pikachu", "ja": "フード姿の仲間たち、ハローキティとピカチュウ"}
+summary: {"ko": "도널드에 이어 H3C로 다색 한 번에 뽑은 후디 친구 둘.", "en": "Two more hoodie friends after Donald, multicolor in one print on the H3C.", "ja": "ドナルドに続き、H3Cでマルチカラー一発出力した2人。"}
+posts: ["h3c-hoodie-friends"]
+image: {"src": "/assets/images/posts/h3c-hoodie-friends/hero.jpg", "alt": {"ko": "후드 입은 헬로키티, 도널드, 피카추", "en": "Hello Kitty, Donald, and Pikachu in hoodies", "ja": "フードを着たハローキティ、ドナルド、ピカチュウ"}}
+printers: ["H3C"]
+material: "PLA"
+time: "~29h 24m"
+filament: "~407 g"
+shorts: {"id": "s_4SvIQ1ux0", "seconds": 57}

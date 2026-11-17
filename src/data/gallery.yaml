@@ -1,6 +1,7 @@
-# 홈 '출력한 것들' 갤러리 (2026-11-12 사용자: 보기 좋은 사진만 모아 갤러리처럼, 제목은 마우스 올렸을 때만, 피규어 위주) · 11-17 치이카와 앉은 키링 2장 추가(16장)
+# 홈 '출력한 것들' 갤러리 (2026-11-12 사용자: 보기 좋은 사진만 모아 갤러리처럼, 제목은 마우스 올렸을 때만, 피규어 위주) · 11-17 치이카와 앉은 키링 2장 추가(16장) · 11-17 후디 친구들 2장(AMS 거치대·마리오 부품 사진과 교체)
 # 순서 = 화면 순서. work = src/data/works/<id>.yaml의 id (마우스 올림 제목·링크는 그 작업의 제목·첫 글).
 items:
+  - {src: "/assets/images/posts/h3c-hoodie-friends/hero.jpg", work: "2026-11-16_h3c-hoodie-friends", alt: {"ko": "후드 입은 헬로키티, 도널드, 피카추 피규어", "en": "Hello Kitty, Donald, and Pikachu figures in hoodies", "ja": "フードを着たハローキティ、ドナルド、ピカチュウのフィギュア"}}
   - {src: "/assets/images/posts/chiikawa-sitting-keychains-h3c/hero.jpg", work: "2026-11-16_chiikawa-sitting-keychains-h3c", alt: {"ko": "앉은 치이카와 키링과 아이스크림콘 친구들 단체 사진", "en": "Sitting Chiikawa keychains with the ice cream cone crew", "ja": "座ったちいかわキーホルダーとアイスクリーム組の集合写真"}}
   - {src: "/assets/images/posts/mario-luigi-multipart-assembly/hero.jpg", work: "2026-11-10_mario-luigi-multipart-assembly", alt: {"ko": "마리오·루이지와 요시, 쿠파, 굼바 피규어 단체 사진", "en": "Mario, Luigi, Yoshi, Bowser and Goomba figures together", "ja": "マリオ、ルイージ、ヨッシー、クッパ、クリボーのフィギュア集合"}}
   - {src: "/assets/images/posts/chiikawa-ice-cream-keychain/06-bowl-all.jpg", work: "2026-11-11_chiikawa-ice-cream-keychain", alt: {"ko": "보울 가득 담긴 치이카와 아이스크림콘 키링", "en": "A bowl full of Chiikawa ice cream cone keychains", "ja": "ボウルいっぱいのちいかわアイスクリームキーホルダー"}}
@@ -12,8 +13,7 @@ items:
   - {src: "/assets/images/posts/bambulab-h3c-multicolor-figure/08-goomba-front.jpg", work: "2026-11-08_bambulab-h3c-multicolor-figure", alt: {"ko": "굼바 피규어 정면", "en": "Goomba figure, front view", "ja": "クリボーのフィギュア(正面)"}}
   - {src: "/assets/images/posts/bambulab-h3c-ams3-unboxing/08-capybara-keyring.jpg", work: "2026-11-07_bambulab-h3c-ams3-unboxing", alt: {"ko": "손에 든 카피바라 키링", "en": "Capybara keyring in hand", "ja": "手に持ったカピバラのキーホルダー"}}
   - {src: "/assets/images/posts/chiikawa-sitting-keychains-h3c/02-standing-chiikawa.jpg", work: "2026-11-16_chiikawa-sitting-keychains-h3c", alt: {"ko": "두 팔 벌리고 서 있는 치이카와 피규어", "en": "Standing Chiikawa figure with arms wide open", "ja": "両手を広げて立つちいかわのフィギュア"}}
-  - {src: "/assets/images/posts/mario-luigi-multipart-assembly/01-mario-parts.jpg", work: "2026-11-10_mario-luigi-multipart-assembly", alt: {"ko": "색깔별로 출력한 마리오 조각들", "en": "Mario parts printed in separate colors", "ja": "色ごとに出力したマリオのパーツ"}}
+  - {src: "/assets/images/posts/h3c-hoodie-friends/03-pikachu-front.jpg", work: "2026-11-16_h3c-hoodie-friends", alt: {"ko": "검정 후드를 입은 피카추 피규어 정면", "en": "Pikachu figure in a black hoodie, front view", "ja": "黒いフードを着たピカチュウのフィギュア(正面)"}}
   - {src: "/assets/images/posts/bowser-multipart-assembly/07-finished-left.jpg", work: "2026-11-07_bowser-multipart-assembly", alt: {"ko": "왼쪽에서 본 쿠파 피규어", "en": "Bowser figure from the left", "ja": "左から見たクッパフィギュア"}}
   - {src: "/assets/images/posts/chiikawa-ice-cream-keychain/05-assembled-arc.jpg", work: "2026-11-11_chiikawa-ice-cream-keychain", alt: {"ko": "반원으로 늘어선 아이스크림콘 키링", "en": "Ice cream cone keychains lined up in an arc", "ja": "半円に並んだアイスクリームキーホルダー"}}
   - {src: "/assets/images/posts/mario-luigi-multipart-assembly/05-mario-done.jpg", work: "2026-11-10_mario-luigi-multipart-assembly", alt: {"ko": "완성한 마리오 피규어", "en": "Finished Mario figure", "ja": "完成したマリオのフィギュア"}}
-  - {src: "/assets/images/posts/ams2-pro-sliding-speedrack-underrail/hero.jpg", work: "2026-11-09_ams2-pro-sliding-speedrack-underrail", alt: {"ko": "레일 위에 올린 AMS 2 Pro 슬라이딩 덮개", "en": "AMS 2 Pro sliding cover on drawer rails", "ja": "レールに載せたAMS 2 Proスライドカバー"}}

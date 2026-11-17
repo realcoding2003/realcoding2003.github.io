@@ -8,6 +8,7 @@ import { loadWorks } from '../../src/lib/works-data.mjs';
 import { validateInquiry } from '../../src/lib/inquiry-validate.mjs';
 import { buildMailto } from '../../src/lib/inquiry-mail.mjs';
 const expected = [
+ ['2026-11-17_magnetic-filament-name-tags',null,['magnetic-filament-name-tags'],['RaKwP9tal4o',72],['3oopvBIKz_I',162],3632166,['P2S'],'PLA','~24m','~8.4 g','/assets/images/posts/magnetic-filament-name-tags/hero.jpg'],
  ['2026-11-16_h3c-hoodie-friends',null,['h3c-hoodie-friends'],['s_4SvIQ1ux0',57],null,null,['H3C'],'PLA','~29h 24m','~407 g','/assets/images/posts/h3c-hoodie-friends/hero.jpg'],
  ['2026-11-16_chiikawa-sitting-keychains-h3c',null,['chiikawa-sitting-keychains-h3c'],['Vrkuof5NQJM',65],null,null,['H3C'],'PLA','~16h 41m','~396 g','/assets/images/posts/chiikawa-sitting-keychains-h3c/hero.jpg'],
  ['2026-11-12_bambulab-a2l-unboxing-review',null,['bambulab-a2l-unboxing-review'],['6pXO-FC5jbQ',72],['jLd5rJcj1h4',283],null,['A2L','X2D'],null,null,null,'/assets/images/posts/bambulab-a2l-unboxing-review/hero.jpg'],

@@ -1,0 +1,11 @@
+id: "2026-11-21_charmander-print-orientation"
+date: "2026-11-21"
+title: {"ko": "파이리 키링 4마리, 출력 방향으로 서포트 줄이기", "en": "4 Charmander Keychains, Fewer Supports by Print Orientation", "ja": "ヒトカゲのキーホルダー4個、造形方向でサポートを減らす"}
+summary: {"ko": "뒤로 눕혀 디테일이 기울지 않게, 서포트는 4.7 g에서 1.1 g으로.", "en": "Tilted back so the details don't overhang, supports cut from 4.7 g to 1.1 g.", "ja": "後ろに寝かせて細部が傾かないように、サポートは4.7 gから1.1 gへ。"}
+posts: ["charmander-print-orientation"]
+image: {"src": "/assets/images/posts/charmander-print-orientation/hero.jpg", "alt": {"ko": "키링 고리를 끼운 파이리 4마리", "en": "Four Charmander keychains with key rings", "ja": "キーリングを付けたヒトカゲ4体"}}
+printers: ["H3C"]
+material: "PLA"
+time: "2h 30m"
+filament: "~46.5 g"
+shorts: {"id": "RRo-vO9T6Z0", "seconds": 71}

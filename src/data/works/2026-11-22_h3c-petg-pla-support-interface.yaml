@@ -1,0 +1,11 @@
+id: "2026-11-22_h3c-petg-pla-support-interface"
+date: "2026-11-22"
+title: {"ko": "뱀부 공식 파일로 배운 PETG + PLA 이종 서포트", "en": "PETG + PLA Dual-Material Supports From Bambu's Official File", "ja": "Bambu公式ファイルで学んだPETG + PLA異種サポート"}
+summary: {"ko": "PETG 본체 밑 서포트 접촉면만 일반 PLA로, 간격 0으로 붙여도 쭉 벗겨진다.", "en": "Plain PLA only on the support interface under a PETG body, so it peels off even with zero gap.", "ja": "PETG本体の下のサポート接触面だけ普通のPLAに。間隔0でもするっと剥がれます。"}
+posts: ["h3c-petg-pla-support-interface"]
+image: {"src": "/assets/images/posts/h3c-petg-pla-support-interface/hero.jpg", "alt": {"ko": "판 위의 호스 어댑터, 테두리 밑에 흰 PLA 층이 보인다", "en": "Hose adapter on the plate, with a white PLA layer under the rim", "ja": "プレート上のホースアダプター、縁の下に白いPLA層が見える"}}
+printers: ["H3C"]
+material: "PETG + PLA"
+time: "~6h 16m"
+filament: "~220 g"
+shorts: {"id": "wyGlZ6_S4aE", "seconds": 78}

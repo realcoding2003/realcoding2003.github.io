@@ -8,6 +8,7 @@ import { loadWorks } from '../../src/lib/works-data.mjs';
 import { validateInquiry } from '../../src/lib/inquiry-validate.mjs';
 import { buildMailto } from '../../src/lib/inquiry-mail.mjs';
 const expected = [
+ ['2026-11-22_h3c-petg-pla-support-interface',null,['h3c-petg-pla-support-interface'],['wyGlZ6_S4aE',78],null,null,['H3C'],'PETG + PLA','~6h 16m','~220 g','/assets/images/posts/h3c-petg-pla-support-interface/hero.jpg'],
  ['2026-11-21_charmander-print-orientation',null,['charmander-print-orientation'],['RRo-vO9T6Z0',71],null,null,['H3C'],'PLA','2h 30m','~46.5 g','/assets/images/posts/charmander-print-orientation/hero.jpg'],
  ['2026-11-17_magnetic-filament-name-tags',null,['magnetic-filament-name-tags'],['RaKwP9tal4o',72],['3oopvBIKz_I',162],3632166,['P2S'],'PLA','~24m','~8.4 g','/assets/images/posts/magnetic-filament-name-tags/hero.jpg'],
  ['2026-11-16_h3c-hoodie-friends',null,['h3c-hoodie-friends'],['s_4SvIQ1ux0',57],null,null,['H3C'],'PLA','~29h 24m','~407 g','/assets/images/posts/h3c-hoodie-friends/hero.jpg'],

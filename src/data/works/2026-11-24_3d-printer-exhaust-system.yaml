@@ -1,0 +1,13 @@
+id: "2026-11-24_3d-printer-exhaust-system"
+date: "2026-11-24"
+title: {"ko": "3D 프린터 배기 시스템", "en": "3D Printer Exhaust System", "ja": "3Dプリンターの排気システム"}
+summary: {"ko": "프린터 3대의 배기를 직접 설계한 합류 어댑터로 모아 배기팬 하나로 창문 밖에 뺐다.", "en": "Three printers vent through a self-designed 3-to-1 merge adapter and one exhaust fan out the window.", "ja": "プリンター3台の排気を自作の合流アダプターでまとめ、排気ファン1台で窓の外へ出しました。"}
+posts: ["3d-printer-exhaust-system"]
+image: {"src": "/assets/images/posts/3d-printer-exhaust-system/hero.jpg", "alt": {"ko": "선반 위 합류 어댑터로 올라오는 80 mm 주름관 3줄", "en": "Three 80 mm flex ducts rising into the merge adapter on the shelf", "ja": "棚の上の合流アダプターへ上がる80 mmフレキダクト3本"}}
+printers: ["H3C"]
+material: "PETG"
+time: "~23h"
+filament: "~914 g"
+makerworld: 3678886
+shorts: {"id": "LjdKEq_2nqs", "seconds": 76}
+long: {"id": "vhXm8nz6GXE", "seconds": 383}

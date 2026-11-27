@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cell Survivor Stage 310 Cleared, and the Must-Have Abyssal Mark Didn't Show Up for 11 Minutes"
+title: "Cell Survivor: Clearing Stage 310, the Final Stage Before the Update, Plus a 10-Second Ancient Invasion"
 date: 2026-11-27 01:50:00 +0900
 categories: [Game]
 section: game
@@ -13,7 +13,7 @@ permalink: /en/:year/:month/:day/:title/
 redirect_from:
   - /en/2026/11/26/cell-survivor-stage-310-en/
   - /2026/11/26/cell-survivor-stage-310-en/
-excerpt: "I cleared Stage 310, the last stage before the update, in 31 min 45 s. The Abyssal Mark, a must-have card, only showed up at 11 min 48 s, which was rough, and Ancient Invasion at the final difficulty 6 ended in exactly 10 seconds."
+excerpt: "Before today's update, I cleared Stage 310, the final stage, in 31 min 45 s. The must-have Abyssal Mark only showed up at 11 min 48 s, so I had to hold out for a long time, and Ancient Invasion at the final difficulty 6 ended in exactly 10 seconds."
 image: "/assets/images/posts/cell-survivor-stage-310/hero.jpg"
 ---
 
@@ -25,7 +25,7 @@ It's Cell Survivor (the Korean title is 세포특공대).
 So far this blog has only had 3D printer posts, so this is my first game post, haha.
 There was an update today, so I'm saving two records I captured before it.
 
-- Cleared Stage 310, the last stage before the update
+- Cleared Stage 310, the final stage before the update
 - Ancient Invasion, final difficulty 6, a 10-second clear
 
 ## What Kind of Game Is Cell Survivor
@@ -36,7 +36,7 @@ During a fight, three "attribute upgrade" cards pop up at a time, and you pick o
 If you don't like the options, you can refresh, but only a set number of times.
 Which cards show up comes down to luck, so even the same stage plays out differently every run.
 
-## The Last Stage Before the Update, 310
+## The Final Stage Before the Update, 310
 
 Stage 310 is called "Sha Wujing Has Vanished!" (「사오정이 사라졌다!」).
 It's a Journey to the West chapter, with characters like 悟空 floating around in the background.
@@ -90,7 +90,7 @@ Other upgrades kept stacking in the meantime, so I can't say it was all thanks t
 Still, the damage from the first 12 minutes is only 3.3% of the final total.
 You can see in the numbers how frustrating that opening was, haha.
 
-## Cleared in 31 min 45 s
+## 31 min 45 s, Final Stage Cleared
 
 In the late game the screen fills up with effects.
 
@@ -128,7 +128,7 @@ I also cut these into two Shorts.
 Game audio as-is, with Korean captions on screen and subtitles in 7 languages.
 
 <div style="position: relative; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; margin: 1.5rem auto;">
-  <iframe src="https://www.youtube.com/embed/xHoMl8oHquI?cc_lang_pref=en&cc_load_policy=1" title="Cell Survivor Stage 310: my must-have skill didn't show for 11 minutes" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  <iframe src="https://www.youtube.com/embed/jChEJJ6KmfI?cc_lang_pref=en&cc_load_policy=1" title="Cell Survivor: Stage 310 cleared, the final stage before the update (31:45)" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
 </div>
 
 And here is the 10-second Ancient Invasion clear.
@@ -137,16 +137,17 @@ And here is the 10-second Ancient Invasion clear.
   <iframe src="https://www.youtube.com/embed/WqDoFDl6u4E?cc_lang_pref=en&cc_load_policy=1" title="Cell Survivor: Ancient Invasion max level in 10 seconds (before the update)" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
 </div>
 
-- YouTube Shorts (Stage 310): [Cell Survivor Stage 310: my must-have skill didn't show for 11 minutes](https://www.youtube.com/shorts/xHoMl8oHquI)
+- YouTube Shorts (Stage 310): [Cell Survivor: Stage 310 cleared, the final stage before the update (31:45)](https://www.youtube.com/shorts/jChEJJ6KmfI)
 - YouTube Shorts (Ancient Invasion): [Cell Survivor: Ancient Invasion max level in 10 seconds (before the update)](https://www.youtube.com/shorts/WqDoFDl6u4E)
 
 ## Wrap-up
 
-- If you run the Abyssal Maw in Cell Survivor, make sure you get the Abyssal Mark. In this run it came late, so the damage from the first 12 minutes was only 3.3% of the total.
-- Still, you can just hold on. After the Mark showed up, damage per minute jumped, and I cleared it in 31 min 45 s.
+- I cleared Stage 310, the final stage before the update, in 31 min 45 s. Total damage 84,717,617.7B.
+- The must-have Abyssal Mark only showed up at 11 min 48 s, so the damage from the first 12 minutes was only 3.3% of the total. If you run the Abyssal Maw, make sure you get the Mark.
 - Ancient Invasion difficulty 6 is quiet for the first 8 seconds, then ends in the last 2.5.
 
-If you play Cell Survivor, around what minute does the Abyssal Mark usually show up for you?
+If you play Cell Survivor, did you clear Stage 310 before the update?
+I'm also curious around what minute the Abyssal Mark usually shows up for you.
 Let me know in the comments!
 
 ## Play info

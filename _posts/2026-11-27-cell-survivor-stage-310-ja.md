@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cell Survivor ステージ310をクリア、必須スキルの「Abyssal Mark」が11分間出ませんでした"
+title: "Cell Survivor アップデート前の最終ステージ310をクリア、Ancient Invasionは10秒クリア"
 date: 2026-11-27 01:50:00 +0900
 categories: [Game]
 section: game
@@ -13,7 +13,7 @@ permalink: /ja/:year/:month/:day/:title/
 redirect_from:
   - /ja/2026/11/26/cell-survivor-stage-310-ja/
   - /2026/11/26/cell-survivor-stage-310-ja/
-excerpt: "アップデート前の最後のステージ310を31分45秒でクリアしました。必須と言われるAbyssal Markが11分48秒になってようやく出て困りましたが、Ancient Invasionの最終難易度6はちょうど10秒で終わりました。"
+excerpt: "今日のアップデートの前に、最終ステージ310を31分45秒でクリアしました。途中、必須スキルのAbyssal Markが11分48秒まで出ず長く粘りましたが、Ancient Invasionの最終難易度6はちょうど10秒で終わりました。"
 image: "/assets/images/posts/cell-survivor-stage-310/hero.jpg"
 ---
 
@@ -25,7 +25,7 @@ Cell Survivor（韓国語の題名は세포특공대）です。
 これまでブログには3Dプリンターの記事ばかり載せてきましたが、今回は初めてのゲーム記事です。
 今日アップデートがあったので、その前に撮っておいた記録を2つ残しておきます。
 
-- アップデート前の最後のステージ310をクリア
+- アップデート前の最終ステージ310をクリア
 - Ancient Invasion（원시 침공）最終難易度6、10秒クリア
 
 ## Cell Survivorはこんなゲームです
@@ -36,7 +36,7 @@ Cell Survivor（韓国語の題名は세포특공대）です。
 気に入らなければ更新できますが、回数は決まっています。
 結局どのカードが出るかは運なので、同じステージでも毎回流れが変わります。
 
-## アップデート前の最後のステージ、310
+## アップデート前の最終ステージ、310
 
 310の名前は「Sha Wujing Has Vanished!」（「사오정이 사라졌다!」、「沙悟浄が消えた！」）です。
 背景のあちこちに悟空のような漢字が浮かんでいる、西遊記のチャプターです。
@@ -90,7 +90,7 @@ Markを選んでから、毎分のダメージが約5倍になりました。
 それでも、最初の12分間に溜めたダメージは最終ダメージのわずか3.3%です。
 序盤がどれだけもどかしかったか、数字で見えます（笑）。
 
-## 31分45秒でクリア
+## 31分45秒、最終ステージクリア
 
 後半は画面がエフェクトでいっぱいになります。
 
@@ -128,7 +128,7 @@ MawはMarkでほかの武器のダメージを上げながら、自分も2番目
 ゲームの音はそのままで、画面に字幕だけ載せています(字幕は7言語)。
 
 <div style="position: relative; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; margin: 1.5rem auto;">
-  <iframe src="https://www.youtube.com/embed/xHoMl8oHquI?cc_lang_pref=ja&cc_load_policy=1" title="Cell Survivor ステージ310、必須スキル Abyssal Mark が11分出なかった" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  <iframe src="https://www.youtube.com/embed/jChEJJ6KmfI?cc_lang_pref=ja&cc_load_policy=1" title="Cell Survivor アップデート前の最終ステージ310クリア(31分45秒)" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
 </div>
 
 Ancient Invasion の10秒クリアはこちらです。
@@ -137,16 +137,17 @@ Ancient Invasion の10秒クリアはこちらです。
   <iframe src="https://www.youtube.com/embed/WqDoFDl6u4E?cc_lang_pref=ja&cc_load_policy=1" title="Cell Survivor 原始侵攻(Ancient Invasion)最終難易度を10秒でクリア(アップデート前)" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
 </div>
 
-- YouTubeショート(ステージ310): [Cell Survivor ステージ310、必須スキル Abyssal Mark が11分出なかった](https://www.youtube.com/shorts/xHoMl8oHquI)
+- YouTubeショート(ステージ310): [Cell Survivor アップデート前の最終ステージ310クリア(31分45秒)](https://www.youtube.com/shorts/jChEJJ6KmfI)
 - YouTubeショート(Ancient Invasion): [Cell Survivor 原始侵攻(Ancient Invasion)最終難易度を10秒でクリア(アップデート前)](https://www.youtube.com/shorts/WqDoFDl6u4E)
 
 ## まとめ
 
-- Cell SurvivorでAbyssal Mawを使うなら、「Abyssal Mark」は必ず確保したいところです。今回は出るのが遅く、最初の12分間に溜めたダメージは全体の3.3%だけでした。
-- それでも耐えれば大丈夫です。Markが出てからは毎分のダメージが一気に跳ね上がり、31分45秒でクリアできました。
+- アップデート前の最終ステージ310を31分45秒でクリアしました。総ダメージは84,717,617.7Bです。
+- 途中、必須スキルの「Abyssal Mark」が11分48秒まで出ず、最初の12分間に溜めたダメージは全体の3.3%だけでした。Abyssal Mawを使うなら、Markは必ず確保したいところです。
 - Ancient Invasion難易度6は、開始の8秒間は静かで、最後の2.5秒で終わります。
 
-Cell Survivorを遊んでいる方、Abyssal Markはだいたい何分ごろに出ますか？
+Cell Survivorを遊んでいる方、アップデート前に310までクリアできましたか？
+Abyssal Markがだいたい何分ごろに出るのかも気になります。
 コメントで教えてください！
 
 ## プレイ情報

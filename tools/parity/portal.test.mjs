@@ -8,6 +8,7 @@ import { loadWorks } from '../../src/lib/works-data.mjs';
 import { validateInquiry } from '../../src/lib/inquiry-validate.mjs';
 import { buildMailto } from '../../src/lib/inquiry-mail.mjs';
 const expected = [
+ ['2026-11-28_hybrid-partition-tray',null,['hybrid-partition-tray'],['swGOY6G8TA4',36],null,null,['P2S','X2D','A2L'],'PLA · PETG','~1h 49m','~51 g','/assets/images/posts/hybrid-partition-tray/hero.jpg'],
  ['2026-11-24_3d-printer-exhaust-system',null,['3d-printer-exhaust-system'],['LjdKEq_2nqs',76],['vhXm8nz6GXE',383],3678886,['H3C'],'PETG','~23h','~914 g','/assets/images/posts/3d-printer-exhaust-system/hero.jpg'],
  ['2026-11-22_h3c-petg-pla-support-interface',null,['h3c-petg-pla-support-interface'],['wyGlZ6_S4aE',78],null,null,['H3C'],'PETG + PLA','~6h 16m','~220 g','/assets/images/posts/h3c-petg-pla-support-interface/hero.jpg'],
  ['2026-11-21_charmander-print-orientation',null,['charmander-print-orientation'],['RRo-vO9T6Z0',71],null,null,['H3C'],'PLA','2h 30m','~46.5 g','/assets/images/posts/charmander-print-orientation/hero.jpg'],

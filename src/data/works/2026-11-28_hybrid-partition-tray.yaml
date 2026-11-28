@@ -1,0 +1,11 @@
+id: "2026-11-28_hybrid-partition-tray"
+date: "2026-11-28"
+title: {"ko": "동그란 구멍 판·스카디스 판 둘 다 걸리는 수납 트레이", "en": "A Storage Tray for Round-Hole Boards and IKEA SKÅDIS", "ja": "丸穴ボードにもスコーディスにも掛けられる収納トレイ"}
+summary: {"ko": "스카디스 판은 T자 클립, 동그란 구멍 판은 나사 클립과 날개 너트로 거는 하이브리드 트레이.", "en": "A hybrid tray that hangs on SKÅDIS with a T-clip and on round-hole boards with a screw clip and wing nut.", "ja": "スコーディスにはT字クリップ、丸穴ボードにはネジクリップと蝶ナットで掛けるハイブリッドトレイ。"}
+posts: ["hybrid-partition-tray"]
+image: {"src": "/assets/images/posts/hybrid-partition-tray/hero.jpg", "alt": {"ko": "원형 타공 파티션에 두 줄로 건 파랑·흰색 수납 트레이", "en": "Blue and white storage trays hung in two rows on a round-hole partition", "ja": "丸穴の有孔パーティションに2段で掛けた青と白の収納トレイ"}}
+printers: ["P2S", "X2D", "A2L"]
+material: "PLA · PETG"
+time: "~1h 49m"
+filament: "~51 g"
+shorts: {"id": "swGOY6G8TA4", "seconds": 36}
